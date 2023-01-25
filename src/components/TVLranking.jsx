@@ -1,9 +1,12 @@
 import React, { useState, useEffect} from 'react'
 import axios from 'axios';
 
+import Loader from './Loader';
+
 const TVLranking = () => {
 
   const [protocols, setProtocols] = useState([])
+
   useEffect(() => {
     axios.get('https://api.llama.fi/protocols', {
       params: {
@@ -32,7 +35,7 @@ const TVLranking = () => {
   
 
   return (
-    <div className="h-auto m-10 border rounded-xl border-gray-400 bg-gray-800 text-white">
+    <div className="h-max m-10 border rounded-xl border-gray-400 bg-gray-800 text-white">
       <div className="grid grid-cols-7 p-2 border-black border-b ">
         <header>Name</header>
         <header className="text-right">Category</header>
@@ -42,7 +45,8 @@ const TVLranking = () => {
         <header className="text-right">30d Change</header>
         <header className="text-right">TVL</header>
       </div>
-        {
+
+      { protocols.length ? (
           protocols.map(protocol =>
             <div
               className="grid grid-cols-7 p-2 border-black border-b"
@@ -79,7 +83,8 @@ const TVLranking = () => {
               </div>
 
             </div>)
-        }
+      ) : <Loader />}
+      
     </div>
   )
 }
