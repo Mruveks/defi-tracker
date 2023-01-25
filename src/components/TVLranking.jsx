@@ -52,6 +52,7 @@ const TVLranking = () => {
               className="grid grid-cols-7 p-2 border-black border-b"
               key={protocol.id}
             >
+
               <div className="flex w-[140%]">
               <img src={protocol.logo} alt="logo" className="h-8 w-8 rounded-full" />
               <a href={protocol.url} alt="site" target="_blank" className="w-full h-full px-2 my-auto">{protocol.name}</a>
