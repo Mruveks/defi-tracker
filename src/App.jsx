@@ -10,9 +10,9 @@ import { Home, Stables, Yields, Fees, Bridges } from './pages/index'
 function App() {
 
   return (
-    <div className="w-full overflow-hidden bg-gray-400 pl-48">
+    <div className="w-full overflow-hidden bg-gray-600 pl-48">
       <Navbar />
-      <div className="text-center py-10 text-2xl">
+      <div className="text-center text-white  py-10 text-4xl">
         Cross Chain Defi Platform
       </div>
       <Routes>
