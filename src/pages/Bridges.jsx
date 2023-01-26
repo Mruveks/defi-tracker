@@ -1,9 +1,10 @@
 import React from 'react'
+import BridgesRanking from '../components/BridgesRanking'
 
 const Bridges = () => {
   return (
     <div>
-      Bridges
+      <BridgesRanking />
     </div>
   )
 }
