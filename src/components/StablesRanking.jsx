@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 import Loader from './Loader';
+import Commafy from '../utilities/Commafy'
 
 const StablesRanking = () => {
 
@@ -15,21 +16,10 @@ const StablesRanking = () => {
       .catch(err => console.log(err))
   }, []);
 
-  function commafy( num ) {
-    var str = num.toString().split('.');
-    if (str[0].length >= 5) {
-        str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
-    }
-    if (str[1] && str[1].length >= 5) {
-        str[1] = str[1].replace(/(\d{3})/g, '$1 ');
-    }
-    return str.join('.');
-  }
-
   return (
     <div className="h-max m-10 border rounded-xl border-gray-400 bg-gray-800 text-white">
       <div className="grid grid-cols-7 p-2 border-black border-b ">
-        <header className="text-right">Name</header>
+        <header className="">Name</header>
         <header className="text-right">Price</header>
         <header className="text-right">Peg Type</header>
         <header className="text-right">1d Change</header>
@@ -45,7 +35,7 @@ const StablesRanking = () => {
               className="grid grid-cols-7 p-2 border-black border-b"
               key={stable.id}
             >
-              <a href={`https://www.coingecko.com/en/coins/${stable.gecko_id}`} alt="site" target="_blank" className="text-right">{stable.name} ({stable.symbol})</a>
+              <a href={`https://www.coingecko.com/en/coins/${stable.gecko_id}`} alt="site" target="_blank" className="">{stable.name} ({stable.symbol})</a>
               
               <div className="text-right">
                 {
@@ -73,11 +63,8 @@ const StablesRanking = () => {
                 }
               </div>
               <div className="text-right">
-                {
-                  `${commafy(parseFloat(stable.circulating.peggedUSD).toFixed(2))}`
-                } $
+                <Commafy num={(parseFloat(stable.circulating.peggedUSD).toFixed(2))} />
               </div>
-
 
             </div>)
       ) : <Loader />}
