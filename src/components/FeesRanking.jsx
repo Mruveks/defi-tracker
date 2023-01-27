@@ -27,7 +27,7 @@ const FeesRanking = () => {
       <header className="text-right font-bold italic">Daily Holder Revenue</header>
       <header className="text-right font-bold italic">Daily Protocol Revenue</header>
       <header className="text-right font-bold italic">Revenue</header>
-      <header className="text-right font-bold italic">User Fees</header>
+      <header className="text-right font-bold italic">All time fees</header>
     </div>
 
     {fees.length ?
@@ -37,7 +37,7 @@ const FeesRanking = () => {
             className="grid grid-cols-7 p-2 border-black border-b"
             key={fee.id}
           >
-            <div className="text-right">{fee.displayName}</div>
+            <div className="">{fee.displayName}</div>
             <div className="text-right">{fee.category}</div>
 
             <div className="text-right">{fee.dailyFees ? (<div><Commafy num={parseFloat(fee.dailyFees).toFixed(2)}/> $</div>) : ('')}</div>
@@ -48,7 +48,7 @@ const FeesRanking = () => {
 
             <div className="text-right">{fee.dailyRevenue ? (<div><Commafy num={parseFloat(fee.dailyRevenue).toFixed(2)}/> $</div>) : ('')}</div>
 
-            <div className="text-right">{fee.dailyUserFees ? (<div><Commafy num={parseFloat(fee.dailyUserFees).toFixed(2)}/> $</div>) : ('')}</div>
+            <div className="text-right">{fee.totalAllTime ? (<div><Commafy num={parseFloat(fee.totalAllTime).toFixed(2)}/> $</div>) : ('')}</div>
 
 
           </div>)

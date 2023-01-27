@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import Commafy from '../utilities/Commafy';
 import Loader from './Loader';
+import ToUpperCase from '../utilities/ToUpperCase';
 
 const BridgesRanking = () => {
 
@@ -19,31 +20,25 @@ const BridgesRanking = () => {
 
   return (
     <div className="h-max m-10 border rounded-xl border-gray-400 bg-gray-800 text-white">
-      <div className="grid grid-cols-7 p-2 border-black border-b ">
+      <div className="grid grid-cols-3 p-2 border-black border-b ">
         <header className="">Name</header>
-        <header className="text-right">monthly Vol</header>
         <header className="text-right">Chain</header>
-        <header className="text-right">1d Change</header>
-        <header className="text-right">7d Change</header>
-        <header className="text-right">1m Change</header>
-        <header className="text-right">MarketCap</header>
+        <header className="text-right">Monthly Volume</header>
+ 
 
       </div>
       {bridges ? (
         bridges.map(bridge => 
           <div
-          className="grid grid-cols-7 p-2 border-black border-b"
+          className="grid grid-cols-3 p-2 border-black border-b" 
           key={bridge.id}
           >
-             <div className="">{ bridge.id }</div>
+             <div className="">{ bridge.displayName }</div>
 
-            <div className="">{ bridge.name }</div>
+            <div className="text-right"><ToUpperCase word ={ bridge.name } /></div>
 
-            <div className="text-right">{bridge.monthlyVolume}</div>
+            <div className="text-right"><div><Commafy num={parseFloat(bridge.monthlyVolume).toFixed(2)}/> $</div></div>
             
-            <div className="text-right">{ bridge.destinationChain }</div>
-
-            {`${console.log(bridges.monthlyVolume)}`}
           </div>
         )
       )  : (<Loader />)
