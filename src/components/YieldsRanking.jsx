@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import Loader from './Loader';
 import Commafy from '../utilities/Commafy'
+import ToUpperCase from '../utilities/ToUpperCase';
 
 const YieldsRanking = () => {
 
@@ -40,7 +41,7 @@ const YieldsRanking = () => {
               key={pool.id}
             >
               <div >{pool.symbol}</div>
-              <div className="text-right">{pool.project}</div>
+              <div className="text-right"><ToUpperCase word = {pool.project}/></div>
               <div className="text-right">{pool.chain}</div>
               <div className="text-right">
                 <Commafy num={(parseFloat(pool.tvlUsd))} /> $
@@ -54,7 +55,7 @@ const YieldsRanking = () => {
               <div className="text-right">
               {pool.apyReward ? (`${parseFloat(pool.apyReward).toFixed(2)}%`) : ('')}
               </div>
-
+              <div className="text-right">{pool.apyReward}</div>
 
             </div>)
         )

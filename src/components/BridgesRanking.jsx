@@ -30,19 +30,20 @@ const BridgesRanking = () => {
 
       </div>
       {bridges ? (
-        bridges.map(bridge =>
+        bridges.map(bridge => 
           <div
           className="grid grid-cols-7 p-2 border-black border-b"
           key={bridge.id}
           >
+             <div className="">{ bridge.id }</div>
 
-            <div className="">{ bridge.displayName }</div>
+            <div className="">{ bridge.name }</div>
 
             <div className="text-right">{bridge.monthlyVolume}</div>
             
             <div className="text-right">{ bridge.destinationChain }</div>
 
-
+            {`${console.log(bridges.monthlyVolume)}`}
           </div>
         )
       )  : (<Loader />)

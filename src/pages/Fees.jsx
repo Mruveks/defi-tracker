@@ -1,9 +1,10 @@
 import React from 'react'
+import FeesRanking from '../components/FeesRanking'
 
 const Fees = () => {
   return (
     <div>
-      Fees
+      <FeesRanking />
     </div>
   )
 }
