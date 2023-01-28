@@ -44,7 +44,7 @@ const YieldsRanking = () => {
               <div className="text-right"><ToUpperCase word = {pool.project}/></div>
               <div className="text-right">{pool.chain}</div>
               <div className="text-right">
-                <Commafy num={(parseFloat(pool.tvlUsd))} /> $
+                <Commafy num={(parseFloat(pool.tvlUsd)) + ' $'} /> 
               </div>
               <div className="text-right">
                 {pool.apy ? (`${parseFloat(pool.apy).toFixed(2)}%`) : ('')}
@@ -55,7 +55,6 @@ const YieldsRanking = () => {
               <div className="text-right">
               {pool.apyReward ? (`${parseFloat(pool.apyReward).toFixed(2)}%`) : ('')}
               </div>
-              <div className="text-right">{pool.apyReward}</div>
 
             </div>)
         )

@@ -69,7 +69,7 @@ const TVLranking = () => {
                 }
               </div>
               <div className="text-right">
-                <Commafy num={(parseFloat(protocol.tvl).toFixed(2))} /> $
+                <Commafy num={(parseFloat(protocol.tvl).toFixed(2))  + ' $'} /> $
               </div>
 
             </div>)

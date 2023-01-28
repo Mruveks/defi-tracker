@@ -6,6 +6,7 @@ import './App.css'
 import Navbar from './components/Navbar'
 
 import { Home, Stables, Yields, Fees, Bridges } from './pages/index'
+import Avax from './components/projects/Avax'
 
 function App() {
 
@@ -21,6 +22,8 @@ function App() {
         <Route path="/yields" element={<Yields />} />
         <Route path="/fees" element={<Fees />} />
         <Route path="/bridges" element={<Bridges />} />
+        <Route path="/avax" element={<Avax protocol={`platypus-finance`}/>} />
+
       </Routes>
     </div>
   )

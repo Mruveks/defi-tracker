@@ -38,32 +38,24 @@ const StablesRanking = () => {
               <a href={`https://www.coingecko.com/en/coins/${stable.gecko_id}`} alt="site" target="_blank" className="">{stable.name} ({stable.symbol})</a>
               
               <div className="text-right">
-                {
-                `${parseFloat(stable.price).toFixed(4)}` >= 1 ? (<div className="text-green-500">{parseFloat(stable.price).toFixed(4)}$</div>):(<div className="text-red-500">{parseFloat(stable.price).toFixed(4)}$</div>)
-                }
+              {stable.price ? (`${parseFloat(stable.price).toFixed(4)}` >= 1 ? (<div className="text-green-500">{parseFloat(stable.price).toFixed(4)}$</div>):(<div className="text-red-500">{parseFloat(stable.price).toFixed(4)}$</div>)) : ('')}
               </div>
 
               <div className="text-right">
-                {stable.pegType}
+                {stable.pegType.slice(6)}
               </div>
 
-              <div className="text-right">         
-              {
-                  `${parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevDay.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevDay.peggedUSD).toFixed(2)) * 100 ).toFixed(2)}` > 0 ? (<div className="text-green-500">+{parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevDay.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevDay.peggedUSD).toFixed(2)) * 100 ).toFixed(2)}%</div>) : (<div className="text-red-500">{parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevDay.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevDay.peggedUSD).toFixed(2)) * 100 ).toFixed(2)}%</div>)
-                }
+              <div className="text-right">
+                {stable.circulatingPrevDay.peggedUSD ? (`${parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevDay.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevDay.peggedUSD).toFixed(2)) * 100 ).toFixed(2)}` > 0 ? (<div className="text-green-500">+{parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevDay.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevDay.peggedUSD).toFixed(2)) * 100 ).toFixed(2)}%</div>) : (<div className="text-red-500">{parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevDay.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevDay.peggedUSD).toFixed(2)) * 100 ).toFixed(2)}%</div>)) : ('')}
               </div>
               <div className="text-right">
-              {
-                  `${parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevWeek.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevWeek.peggedUSD).toFixed(2)) * 100 ).toFixed(2)}` > 0 ? (<div className="text-green-500">+{parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevWeek.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevWeek.peggedUSD).toFixed(2)) * 100 ).toFixed(2)}%</div>) : (<div className="text-red-500">{parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevWeek.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevWeek.peggedUSD).toFixed(2)) * 100 ).toFixed(2)}%</div>)
-                }
+                {stable.circulatingPrevWeek.peggedUSD ? (`${parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevWeek.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevWeek.peggedUSD).toFixed(2)) * 100 ).toFixed(2)}` > 0 ? (<div className="text-green-500">+{parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevWeek.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevWeek.peggedUSD).toFixed(2)) * 100 ).toFixed(2)}%</div>) : (<div className="text-red-500">{parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevWeek.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevWeek.peggedUSD).toFixed(2)) * 100 ).toFixed(2)}%</div>)) : ('')}
               </div>
               <div className="text-right">
-              {
-                  `${parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevMonth.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevMonth.peggedUSD).toFixed(2)) * 100 ).toFixed(2)}` > 0 ? (<div className="text-green-500">+{parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevMonth.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevMonth.peggedUSD).toFixed(2)) * 100 ).toFixed(2)}%</div>) : (<div className="text-red-500">{parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevMonth.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevMonth.peggedUSD).toFixed(2)) * 100 ).toFixed(2)}%</div>)
-                }
+                {stable.circulatingPrevMonth.peggedUSD ? (`${parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevMonth.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevMonth.peggedUSD).toFixed(2)) * 100 ).toFixed(2)}` > 0 ? (<div className="text-green-500">+{parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevMonth.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevMonth.peggedUSD).toFixed(2)) * 100 ).toFixed(2)}%</div>) : (<div className="text-red-500">{parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevMonth.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevMonth.peggedUSD).toFixed(2)) * 100 ).toFixed(2)}%</div>)) : ('')}
               </div>
               <div className="text-right">
-                <Commafy num={(parseFloat(stable.circulating.peggedUSD).toFixed(2))} />
+              {stable.circulating.peggedUSD ? ( <Commafy num={(parseFloat(stable.circulating.peggedUSD).toFixed(2)) + ' $'} />  ) : ('')}
               </div>
 
             </div>)
