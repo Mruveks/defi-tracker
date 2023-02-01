@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@syncfusion/ej2": "^20.4.48",
+    "@syncfusion/ej2-react-charts": "^20.4.48",
     "axios": "^1.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
