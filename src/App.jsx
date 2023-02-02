@@ -20,7 +20,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="https://kuba-mrowiec-defi-tracker.netlify.app/stables" element={<Stables />} />
+        <Route path="/stables" element={<Stables />} />
         <Route path="/yields" element={<Yields />} />
         <Route path="/fees" element={<Fees />} />
         <Route path="/bridges" element={<Bridges />} />
