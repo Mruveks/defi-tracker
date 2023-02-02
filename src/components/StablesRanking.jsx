@@ -30,7 +30,7 @@ const StablesRanking = () => {
       </div>
 
       { stables.length ? (
-          stables.map(stable =>
+          stables.filter(item => item.circulating.peggedUSD != null && item.price != null ).map(stable =>
             <div
               className="grid grid-cols-7 p-2 border-black border-b"
               key={stable.id}
