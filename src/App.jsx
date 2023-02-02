@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="w-full overflow-hidden pl-48">
       <Navbar />
-      <div className="text-center text-white  py-10 text-4xl">
+      <div className="text-center text-white pt-10 pb-5 text-4xl">
         Cross Chain Defi Platform
       </div>
 

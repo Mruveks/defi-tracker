@@ -2,12 +2,12 @@ import React, {useState, useEffect} from 'react'
 import { ChartComponent, LineSeries, ColumnSeries, SeriesDirective, SeriesCollectionDirective, Inject, DataLabel, DateTime, Legend, Tooltip, Category } from '@syncfusion/ej2-react-charts'
 import axios from 'axios'
 
-const TVLchart = () => {
+const StablesTVLchart = () => {
 
   const [protocols, setProtocols] = useState([])
 
   useEffect(() => {
-    axios.get('https://api.llama.fi/charts')
+    axios.get('https://stablecoins.llama.fi/stablecoincharts/all?stablecoin=1')
       .then(res => {
         setProtocols(res.data)
         console.log(res.data)
@@ -41,4 +41,4 @@ const TVLchart = () => {
   )
 }
 
-export default TVLchart
+export default StablesTVLchart

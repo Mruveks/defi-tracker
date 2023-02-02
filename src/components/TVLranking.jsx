@@ -3,7 +3,6 @@ import axios from 'axios';
 
 import Loader from './Loader';
 import Commafy from '../utilities/Commafy'
-import TVLchart from './charts/TVLchart';
 
 const TVLranking = () => {
 
@@ -28,7 +27,6 @@ const TVLranking = () => {
 
   return (
     <div className="h-max m-10 border rounded-xl border-gray-400 bg-gray-800 text-white">
-      <TVLchart />
       <div className="grid grid-cols-7 p-2 border-black border-b ">
         <header>Name</header>
         <header className="text-right">Category</header>
