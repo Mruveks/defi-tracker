@@ -27,17 +27,21 @@ const FeesRanking = () => {
       <header className="text-right font-bold italic">Daily Holder Revenue</header>
       <header className="text-right font-bold italic">Daily Protocol Revenue</header>
       <header className="text-right font-bold italic">Revenue</header>
-      <header className="text-right font-bold italic">All time fees</header>
+      <header className="text-right font-bold italic">All time collected fees</header>
     </div>
 
     {fees.length ?
       (
-        fees.map(fee =>
+        fees.filter(item => item.dailyFees != null && item.dailyFees != '0' && item.totalAllTime != '0' && item.totalAllTime != null).map(fee =>
           <div
             className="grid grid-cols-7 p-2 border-black border-b"
             key={fee.id}
           >
-            <div className="">{fee.displayName}</div>
+            <div className="flex w-[140%]">
+              <img src={fee.logo}  alt="logo" className="h-8 w-8 rounded-full"/>
+              <div className="pl-2">{fee.displayName}</div>
+            </div> 
+            
             <div className="text-right">{fee.category}</div>
 
             <div className="text-right">{fee.dailyFees ? (<div><Commafy num={parseFloat(fee.dailyFees).toFixed(2)}/> $</div>) : ('')}</div>

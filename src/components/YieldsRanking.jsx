@@ -27,15 +27,15 @@ const YieldsRanking = () => {
         <header className="font-bold italic">Symbol</header>
         <header className="text-right font-bold italic">Project</header>
         <header className="text-right font-bold italic">Chain</header>
-        <header className="text-right font-bold italic">TVL</header>
         <header className="text-right font-bold italic">APY</header>
         <header className="text-right font-bold italic">Base APY</header>
         <header className="text-right font-bold italic">Reward APY</header>
+        <header className="text-right font-bold italic">TVL</header>
       </div>
 
       {Yields.length ?
         (
-          Yields.map(pool =>
+          Yields.filter(item => item.apy != null && item.apy != '0').map(pool =>
             <div
               className="grid grid-cols-7 p-2 border-black border-b"
               key={pool.id}
@@ -43,9 +43,7 @@ const YieldsRanking = () => {
               <div >{pool.symbol}</div>
               <div className="text-right"><ToUpperCase word = {pool.project}/></div>
               <div className="text-right">{pool.chain}</div>
-              <div className="text-right">
-                <Commafy num={(parseFloat(pool.tvlUsd)) + ' $'} /> 
-              </div>
+              
               <div className="text-right">
                 {pool.apy ? (`${parseFloat(pool.apy).toFixed(2)}%`) : ('')}
               </div>
@@ -55,7 +53,9 @@ const YieldsRanking = () => {
               <div className="text-right">
               {pool.apyReward ? (`${parseFloat(pool.apyReward).toFixed(2)}%`) : ('')}
               </div>
-
+              <div className="text-right">
+                <Commafy num={(parseFloat(pool.tvlUsd)) + ' $'} /> 
+              </div>
             </div>)
         )
           : (<Loader />)}

@@ -7,14 +7,9 @@ import Commafy from '../utilities/Commafy'
 const TVLranking = () => {
 
   const [protocols, setProtocols] = useState([])
-  const [stateData, setStateData] = useState();
 
   useEffect(() => {
-    axios.get('https://api.llama.fi/protocols', {
-      params: {
-        filter: '[["tvl", "=", ""]]',
-      }
-    })
+    axios.get('https://api.llama.fi/protocols')
       .then(res => {
         setProtocols(res.data)
         console.log(protocols)
@@ -25,9 +20,7 @@ const TVLranking = () => {
   }, []);
 
 
-  
-console.log(stateData)
-  return (
+    return (
     <div className="h-max m-10 border rounded-xl border-gray-400 bg-gray-800 text-white">
       <div className="grid grid-cols-7 p-2 border-black border-b ">
         <header>Name</header>
@@ -40,12 +33,11 @@ console.log(stateData)
       </div>
 
       { protocols.length ? (
-          protocols.filter(item => item.tvl != "").map(protocol =>
+          protocols.filter(item => item.tvl != null).map(protocol =>
             <div
               className="grid grid-cols-7 p-2 border-black border-b"
               key={protocol.id}
             >
-
               <div className="flex w-[140%]">
               <img src={protocol.logo} alt="logo" className="h-8 w-8 rounded-full" />
               <a href={protocol.url} alt="site" target="_blank" className="w-full h-full px-2 my-auto">{protocol.name}</a>
