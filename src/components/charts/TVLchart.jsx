@@ -37,23 +37,24 @@ const TVLchart = () => {
   
   const dollarChange = (num1 - num2).toFixed(2)
   const percentageChange = (((num1 - num2) / num2) * 100).toFixed(2)
-
+  
+  console.log(protocols)
   return (
     <>
       {protocols.length ?
         (<div className="grid grid-cols-[1fr,2fr]">
 
-        <div className="grid grid-cols-1 w-48 items-center mx-auto">
+        <div className="grid grid-cols-1 w-64 items-center mx-auto">
           
-          <div className="border border-blue-400 rounded text-right p-2">
-              <div className="text-xl">Total Value Locked</div>
+          <div className="rounded text-xl text-left p-2">
+              <div className="text-2xl pb-2">Total Value Locked</div>
               <div>{'$' + Formatter(num2)}</div>
           </div>
             
-          <div className="border border-blue-400 rounded text-right p-2">
-              <div className="text-xl">24h change</div>
-              {percentageChange > 0 ? (<div className="text-green-500">+{percentageChange} %</div>) : (<div className="text-red-500">{ percentageChange }%</div>) }
-              {dollarChange > 0 ? (<div className="text-green-500">+{dollarChange} $</div>) : (<div className="text-red-500">{dollarChange}$</div>) }
+          <div className="rounded text-xl text-left p-2">
+              <div className="text-2xl pb-2">24h change</div>
+              {percentageChange > 0 ? (<div className="text-green-500">+{percentageChange}%</div>) : (<div className="text-red-500">{ percentageChange }%</div>) }
+              {dollarChange > 0 ? (<div className="text-green-500">{'+$' + Formatter(dollarChange)}</div>) : (<div className="text-red-500">{dollarChange}$</div>) }
           </div>
           
         </div>

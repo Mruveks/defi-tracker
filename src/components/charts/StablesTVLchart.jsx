@@ -5,27 +5,46 @@ import axios from 'axios'
 const StablesTVLchart = () => {
 
   const [protocols, setProtocols] = useState([])
+  
+  const datadate = new Array;
+  const totalCirculating = new Array;
+  const totalPegged = new Array;
+  const datasource = [];
 
   useEffect(() => {
     axios.get('https://stablecoins.llama.fi/stablecoincharts/all?stablecoin=1')
       .then(res => {
-        setProtocols(res.data)
-        console.log(res.data)
+
+        const data = res.data
+        setProtocols(data)
+        
+
+        for (var i = 0; i < protocols.length; i++){
+          datadate.push(parseFloat(protocols[i].date))
+          totalCirculating.push(data[i].totalCirculatingUSD)
+        }
+
+        for (var y = 0; y < totalCirculating.length; y++){
+          totalPegged.push(totalCirculating[y].peggedUSD)
+        }
+        
+        for (var e = 0; e < datadate.length; e++){
+          datasource.push({ date: datadate[e], value: totalPegged[e] })
+        }
       })
       .catch(err => {
         console.log(err)
       })
   }, []);
 
+
   const primaryxAxis = { valueType: 'Category', visible: false }
   const primaryyAxis = { labelFormat: '${value}K', visible: false }
   const legendSettings = { visible: true, textStyle: { color: 'white' } }
   const tooltip = { enable: true, shared: false }
-
   const palette = ["skyblue"]
 
-
-
+  console.log(datasource)
   return (
     <div className="w-full">
     <ChartComponent id="charts" primaryXAxis={primaryxAxis} primaryYAxis={primaryyAxis} palettes={palette} legendSettings={legendSettings} tooltip={tooltip}>
@@ -33,7 +52,7 @@ const StablesTVLchart = () => {
       <Inject services={[ColumnSeries, Tooltip, LineSeries, DataLabel, Category, DateTime, Legend]} />
       
       <SeriesCollectionDirective>
-        <SeriesDirective dataSource={protocols} xName='date' yName='totalLiquidityUSD' legendShape='Circle' name='Total Value Locked in USD'/>
+        <SeriesDirective dataSource={datasource} xName='date' yName='value' legendShape='Circle' name='Total Value Locked in USD'/>
       </SeriesCollectionDirective>
       
       </ChartComponent>

@@ -12,7 +12,6 @@ const StablesRanking = () => {
     axios.get('https://stablecoins.llama.fi/stablecoins?includePrices=true')
       .then(res => {
         setStables(res.data.peggedAssets)
-        console.log(res.data.peggedAssets)
       })
       .catch(err => console.log(err))
   }, []);
