@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
+
 import Loader from './Loader';
-import Commafy from '../utilities/Commafy'
+import { Formatter } from '../utilities/Formatter';
 
 const StablesRanking = () => {
 
@@ -64,7 +65,7 @@ const StablesRanking = () => {
                     ) : (<div className="text-red-500">{parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevMonth.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevMonth.peggedUSD).toFixed(2)) * 100).toFixed(2)}%</div>)) : ('')}
               </div>
               <div className="text-right">
-              {stable.circulating.peggedUSD ? ( <Commafy num={(parseFloat(stable.circulating.peggedUSD).toFixed(2)) + ' $'} />  ) : ('')}
+              {stable.circulating.peggedUSD ? ('$' + Formatter(parseFloat(stable.circulating.peggedUSD))) : ('')}
               </div>
 
             </div>)

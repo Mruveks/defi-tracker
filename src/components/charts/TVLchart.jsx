@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { ChartComponent, LineSeries, ColumnSeries, SeriesDirective, SeriesCollectionDirective, Inject, DataLabel, DateTime, Legend, Tooltip, Category } from '@syncfusion/ej2-react-charts'
-
 import axios from 'axios'
+
 import Loader from '../Loader'
 import {Formatter} from '../../utilities/Formatter'
 
@@ -47,7 +47,7 @@ const TVLchart = () => {
           
           <div className="border border-blue-400 rounded text-right p-2">
               <div className="text-xl">Total Value Locked</div>
-              <div>{Formatter(num2)} $</div>
+              <div>{'$' + Formatter(num2)}</div>
           </div>
             
           <div className="border border-blue-400 rounded text-right p-2">

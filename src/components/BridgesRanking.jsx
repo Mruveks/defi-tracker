@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
-import Commafy from '../utilities/Commafy';
+import { Formatter } from '../utilities/Formatter';
 import Loader from './Loader';
 import ToUpperCase from '../utilities/ToUpperCase';
 
@@ -35,9 +35,9 @@ const BridgesRanking = () => {
           >
              <div className="">{ bridge.displayName }</div>
 
-            <div className="text-right"><ToUpperCase word ={ bridge.name } /></div>
+            <div className="text-right"><ToUpperCase word={ bridge.name } /></div>
 
-            <div className="text-right"><div><Commafy num={parseFloat(bridge.monthlyVolume).toFixed(2)}/> $</div></div>
+            <div className="text-right"><div>{'$' + Formatter(parseFloat(bridge.monthlyVolume))}</div></div>
             
           </div>
         )

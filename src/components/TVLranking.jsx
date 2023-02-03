@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react'
 import axios from 'axios';
 
 import Loader from './Loader';
-import Commafy from '../utilities/Commafy'
+import { Formatter } from '../utilities/Formatter';
 
 const TVLranking = () => {
 
@@ -62,7 +62,7 @@ const TVLranking = () => {
                 }
               </div>
               <div className="text-right">
-                <Commafy num={(parseFloat(protocol.tvl).toFixed(2))  + ' $'} />
+                {'$' + Formatter(parseFloat(protocol.tvl))}
               </div>
 
             </div>)

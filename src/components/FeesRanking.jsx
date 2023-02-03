@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
-import Commafy from '../utilities/Commafy';
+import { Formatter } from '../utilities/Formatter';
 import Loader from './Loader';
 
 const FeesRanking = () => {
@@ -44,15 +44,15 @@ const FeesRanking = () => {
             
             <div className="text-right">{fee.category}</div>
 
-            <div className="text-right">{fee.dailyFees ? (<div><Commafy num={parseFloat(fee.dailyFees).toFixed(2)}/> $</div>) : ('')}</div>
+            <div className="text-right">{fee.dailyFees ? ('$' + Formatter(parseFloat(fee.dailyFees))) : ('')}</div>
 
-            <div className="text-right">{fee.dailyHoldersRevenue ? (<div><Commafy num={parseFloat(fee.dailyHoldersRevenue).toFixed(2)}/> $</div>) : ('')}</div>
+            <div className="text-right">{fee.dailyHoldersRevenue ? ('$' + Formatter(parseFloat(fee.dailyHoldersRevenue))) : ('')}</div>
 
-            <div className="text-right">{fee.dailyProtocolRevenue ? (<div><Commafy num={parseFloat(fee.dailyProtocolRevenue).toFixed(2)}/> $</div>) : ('')}</div>
+            <div className="text-right">{fee.dailyProtocolRevenue ? ('$' + Formatter(parseFloat(fee.dailyProtocolRevenue))) : ('')}</div>
 
-            <div className="text-right">{fee.dailyRevenue ? (<div><Commafy num={parseFloat(fee.dailyRevenue).toFixed(2)}/> $</div>) : ('')}</div>
+            <div className="text-right">{fee.dailyRevenue ? ('$' + Formatter(parseFloat(fee.dailyRevenue))) : ('')}</div>
 
-            <div className="text-right">{fee.totalAllTime ? (<div><Commafy num={parseFloat(fee.totalAllTime).toFixed(2)}/> $</div>) : ('')}</div>
+            <div className="text-right">{fee.totalAllTime ? ('$' + Formatter(parseFloat(fee.totalAllTime))) : ('')}</div>
 
 
           </div>)

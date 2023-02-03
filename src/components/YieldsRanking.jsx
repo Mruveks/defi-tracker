@@ -2,7 +2,7 @@ import React, { useState, useEffect }from 'react'
 import axios from 'axios';
 
 import Loader from './Loader';
-import Commafy from '../utilities/Commafy'
+import { Formatter } from '../utilities/Formatter';
 import ToUpperCase from '../utilities/ToUpperCase';
 
 const YieldsRanking = () => {
@@ -13,7 +13,6 @@ const YieldsRanking = () => {
     axios.get('https://yields.llama.fi/pools')
       .then(res => {
         setYields(res.data.data)
-        console.log(res.data.data)
       })
       .catch(err => {
         console.log(err)
@@ -54,7 +53,7 @@ const YieldsRanking = () => {
               {pool.apyReward ? (`${parseFloat(pool.apyReward).toFixed(2)}%`) : ('')}
               </div>
               <div className="text-right">
-                <Commafy num={(parseFloat(pool.tvlUsd)) + ' $'} /> 
+                {'$' + Formatter(parseFloat(pool.tvlUsd)) }
               </div>
             </div>)
         )
