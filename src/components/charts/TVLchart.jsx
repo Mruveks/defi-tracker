@@ -3,16 +3,20 @@ import { ChartComponent, LineSeries, ColumnSeries, SeriesDirective, SeriesCollec
 
 import axios from 'axios'
 import Loader from '../Loader'
+import {Formatter} from '../../utilities/Formatter'
 
 const TVLchart = () => {
 
   const [protocols, setProtocols] = useState([])
+  const [lastDay, setLastDay] = useState()
+  const [day, setDay] = useState()
 
   useEffect(() => {
     axios.get('https://api.llama.fi/charts')
       .then(res => {
         setProtocols(res.data)
-        console.log(res.data)
+        setLastDay(res.data[1632].totalLiquidityUSD)
+        setDay(res.data[1631].totalLiquidityUSD)
       })
       .catch(err => {
         console.log(err)
@@ -25,29 +29,29 @@ const TVLchart = () => {
   const tooltip = { enable: true, shared: false }
   const palette = ["skyblue"]
 
-
-  const n = 2;
-  const day1 = protocols[1631]
-  const day2 = protocols[1632]
-  const num1 = parseFloat(day1.totalLiquidityUSD).toFixed(2);
-  const num2 = parseFloat(day2.totalLiquidityUSD).toFixed(2);
-  const dollarChange = (num1 - num2).toFixed(2);
-  const percentageChange = (((num1 - num2) / num2) * 100).toFixed(2);
   
+  
+
+  const num1 = parseFloat(day).toFixed(2)
+  const num2 = parseFloat(lastDay).toFixed(2)
+  
+  const dollarChange = (num1 - num2).toFixed(2)
+  const percentageChange = (((num1 - num2) / num2) * 100).toFixed(2)
+
   return (
     <>
       {protocols.length ?
         (<div className="grid grid-cols-[1fr,2fr]">
 
-        <div className="grid grid-cols-1 items-center mx-auto">
+        <div className="grid grid-cols-1 w-48 items-center mx-auto">
           
-          <div>
-              <div className=" bg-blue-300 rounded">Total Locked USD</div>
-              <div></div>
+          <div className="border border-blue-400 rounded text-right p-2">
+              <div className="text-xl">Total Value Locked</div>
+              <div>{Formatter(num2)} $</div>
           </div>
             
-          <div>
-              <div>24h change</div>
+          <div className="border border-blue-400 rounded text-right p-2">
+              <div className="text-xl">24h change</div>
               {percentageChange > 0 ? (<div className="text-green-500">+{percentageChange} %</div>) : (<div className="text-red-500">{ percentageChange }%</div>) }
               {dollarChange > 0 ? (<div className="text-green-500">+{dollarChange} $</div>) : (<div className="text-red-500">{dollarChange}$</div>) }
           </div>

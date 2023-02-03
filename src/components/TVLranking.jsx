@@ -12,7 +12,6 @@ const TVLranking = () => {
     axios.get('https://api.llama.fi/protocols')
       .then(res => {
         setProtocols(res.data)
-        console.log(protocols)
       })
       .catch(err => {
         console.log(err)
