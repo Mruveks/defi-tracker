@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const StablesTVLchart = () => {
 
-  const [protocols, setProtocols] = useState([])
+  const [stable, setStables] = useState([])
   
   const datadate = new Array;
   const totalCirculating = new Array;
@@ -14,29 +14,19 @@ const StablesTVLchart = () => {
   useEffect(() => {
     axios.get('https://stablecoins.llama.fi/stablecoincharts/all?stablecoin=1')
       .then(res => {
-
-        const data = res.data
-        setProtocols(data)
-        
-
-        for (var i = 0; i < protocols.length; i++){
-          datadate.push(parseFloat(protocols[i].date))
-          totalCirculating.push(data[i].totalCirculatingUSD)
-        }
-
-        for (var y = 0; y < totalCirculating.length; y++){
-          totalPegged.push(totalCirculating[y].peggedUSD)
-        }
-        
-        for (var e = 0; e < datadate.length; e++){
-          datasource.push({ date: datadate[e], value: totalPegged[e] })
-        }
+        const stables = res.data;
+        const dates = stables.map(item => parseFloat(item.date));
+        const totalCirculating = stables.map(item => item.totalCirculatingUSD);
+        const totalPegged = totalCirculating.map(item => item.peggedUSD);
+        const datasource = totalPegged.map((value, index) => ({ date: dates[index], value }));
+        setStables(datasource);
       })
       .catch(err => {
         console.log(err)
-      })
+      });
   }, []);
 
+    console.log(stable)
 
   const primaryxAxis = { valueType: 'Category', visible: false }
   const primaryyAxis = { labelFormat: '${value}K', visible: false }
@@ -52,7 +42,7 @@ const StablesTVLchart = () => {
       <Inject services={[ColumnSeries, Tooltip, LineSeries, DataLabel, Category, DateTime, Legend]} />
       
       <SeriesCollectionDirective>
-        <SeriesDirective dataSource={datasource} xName='date' yName='value' legendShape='Circle' name='Total Value Locked in USD'/>
+        <SeriesDirective dataSource={stable} xName='date' yName='value' legendShape='Circle' name='Total Value Locked in USD'/>
       </SeriesCollectionDirective>
       
       </ChartComponent>
