@@ -8,7 +8,9 @@ const Stables = () => {
 
   return (
     <div >
-      <StablesTVLchart />
+      <div className="h-max m-10 text-white">
+        <StablesTVLchart />
+      </div>
       <header className="flex justify-center w-full text-white text-2xl italic">Stablecoin Ranking</header>
       <StablesRanking />
     </div>

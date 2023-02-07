@@ -29,9 +29,6 @@ const TVLchart = () => {
   const tooltip = { enable: true, shared: false }
   const palette = ["skyblue"]
 
-  
-  
-
   const num1 = parseFloat(day).toFixed(2)
   const num2 = parseFloat(lastDay).toFixed(2)
   
@@ -42,30 +39,30 @@ const TVLchart = () => {
   return (
     <>
       {protocols.length ?
-        (<div className="grid grid-cols-[1fr,2fr]">
+        (<div className="flex justify-between">
 
-        <div className="grid grid-cols-1 w-64 items-center mx-auto">
+        <div className="items-center w-[20%] p-2 flex flex-col justify-between gap-8">
           
-          <div className="rounded text-xl text-left p-2">
+          <div className="border border-gray-500 w-full h-full text-xl text-left py-10 px-4 bg-gray-800 rounded-xl">
               <div className="text-2xl pb-2">Total Value Locked</div>
-              <div>{'$' + Formatter(num2)}</div>
+              <div className="text-4xl pb-2 text-blue-500">{'$' + Formatter(num2)}</div>
           </div>
             
-          <div className="rounded text-xl text-left p-2">
-              <div className="text-2xl pb-2">24h change</div>
-              {percentageChange > 0 ? (<div className="text-green-500">+{percentageChange}%</div>) : (<div className="text-red-500">{ percentageChange }%</div>) }
-              {dollarChange > 0 ? (<div className="text-green-500">{'+$' + Formatter(dollarChange)}</div>) : (<div className="text-red-500">{dollarChange}$</div>) }
+          <div className="border border-gray-500 w-full h-full text-xl text-left py-10 px-4 bg-gray-800 rounded-xl">
+              <div className="text-2xl pb-2">24h Change</div>
+              {percentageChange > 0 ? (<div className="text-green-500 text-4xl pb-2">+{percentageChange}%</div>) : (<div className="text-red-500 text-4xl pb-2">{ percentageChange }%</div>) }
+              {dollarChange > 0 ? (<div className="text-green-500 text-4xl pb-2">{'+$' + Formatter(dollarChange)}</div>) : (<div className="text-red-500 text-4xl pb-2">{dollarChange}$</div>) }
           </div>
           
         </div>
 
-        <div className="pl-10">
+        <div className="bg-gray-800 w-[80%] my-2 rounded-xl">
         <ChartComponent id="charts" primaryXAxis={primaryxAxis} primaryYAxis={primaryyAxis} palettes={palette} legendSettings={legendSettings} tooltip={tooltip}>
 
-          <Inject services={[ColumnSeries, Tooltip, LineSeries, DataLabel, Category, DateTime, Legend]} />
+          <Inject services={[ColumnSeries, Tooltip, LineSeries, DataLabel, Category, DateTime]} />
       
           <SeriesCollectionDirective>
-            <SeriesDirective dataSource={protocols} xName='date' yName='totalLiquidityUSD' legendShape='Circle' name='Total Value Locked in USD' />
+            <SeriesDirective dataSource={protocols} xName='date' yName='totalLiquidityUSD' />
           </SeriesCollectionDirective>
       
         </ChartComponent>

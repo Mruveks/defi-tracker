@@ -6,7 +6,7 @@ import TVLchart from '../components/charts/TVLchart'
 const Home = () => {
   return (
     <div className="grid grid-cols-1 w-full">
-      <div className="h-max m-10 border rounded-xl border-gray-400 bg-gray-800 text-white">
+      <div className="h-max m-10 text-white">
         <TVLchart />
       </div>
       
