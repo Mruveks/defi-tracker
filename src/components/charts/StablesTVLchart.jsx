@@ -4,6 +4,8 @@ import { ChartComponent, LineSeries, ColumnSeries, SeriesDirective, SeriesCollec
 import axios from 'axios'
 import Loader from '../Loader'
 import { Formatter } from '../../utilities/Formatter'
+import { UnixConverter } from '../../utilities/UnixConverter'
+
 const StablesTVLchart = () => {
 
   const [stable, setStables] = useState([]);
@@ -19,12 +21,11 @@ const StablesTVLchart = () => {
     axios.get('https://stablecoins.llama.fi/stablecoincharts/all?stablecoin=1')
       .then(res => {
         const stables = res.data;
-        const dates = stables.map(item => parseFloat(item.date));
+        const dates = stables.map(item => UnixConverter(item.date));
         const totalCirculating = stables.map(item => item.totalCirculatingUSD);
         const totalPegged = totalCirculating.map(item => item.peggedUSD);
         const datasource = totalPegged.map((value, index) => ({ date: dates[index], value }));
         setStables(datasource);
-        console.log(datasource)
         setLastDay(datasource[767].value)
         setDay(datasource[768].value)
       })
@@ -41,8 +42,6 @@ const StablesTVLchart = () => {
   
   const num1 = parseFloat(day).toFixed(2)
   const num2 = parseFloat(lastDay).toFixed(2)
-  
-  console.log(day, lastDay)
 
   const dollarChange = (num1 - num2).toFixed(2)
   const percentageChange = (((num1 - num2) / num2) * 100).toFixed(2)
