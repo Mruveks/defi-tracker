@@ -10,7 +10,7 @@ export function UnixConverter(date) {
 
 
   if (dateObject.length === 19) {
-    dates = dates.slice(0, 9)
+    dates = dates.slice(0, 8)
   } else {
     dates = dates.slice(0, 10)
   }

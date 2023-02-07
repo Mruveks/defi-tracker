@@ -3,7 +3,8 @@ import { ChartComponent, LineSeries, ColumnSeries, SeriesDirective, SeriesCollec
 import axios from 'axios'
 
 import Loader from '../Loader'
-import {Formatter} from '../../utilities/Formatter'
+import { Formatter } from '../../utilities/Formatter'
+import { UnixConverter } from '../../utilities/UnixConverter'
 
 const TVLchart = () => {
 
@@ -14,7 +15,14 @@ const TVLchart = () => {
   useEffect(() => {
     axios.get('https://api.llama.fi/charts')
       .then(res => {
-        setProtocols(res.data)
+        const data = res.data
+        const dates = data.map(item => UnixConverter(item.date));
+        const datasource = data.map((value, index) => ({ date: dates[index], value: JSON.parse(Formatter(value.totalLiquidityUSD)) }));
+
+        console.log(datasource)
+        console.log(data)
+
+        setProtocols(data)
         setLastDay(res.data[1632].totalLiquidityUSD)
         setDay(res.data[1631].totalLiquidityUSD)
       })
@@ -23,8 +31,8 @@ const TVLchart = () => {
       })
   }, []);
 
-  const primaryxAxis = { valueType: 'Category', visible: false }
-  const primaryyAxis = { labelFormat: '${value}K', visible: false }
+  const primaryxAxis = { valueType: 'Double', minimum: 1, maximum: 1000, interval: 100 }
+  const primaryyAxis = { labelFormat: '${value}K'}
   const legendSettings = { visible: true, textStyle: { color: 'white' } }
   const tooltip = { enable: true, shared: false }
   const palette = ["skyblue"]
@@ -35,7 +43,6 @@ const TVLchart = () => {
   const dollarChange = (num1 - num2).toFixed(2)
   const percentageChange = (((num1 - num2) / num2) * 100).toFixed(2)
   
-  console.log(protocols)
   return (
     <>
       {protocols.length ?
@@ -62,7 +69,7 @@ const TVLchart = () => {
           <Inject services={[ColumnSeries, Tooltip, LineSeries, DataLabel, Category, DateTime]} />
       
           <SeriesCollectionDirective>
-            <SeriesDirective dataSource={protocols} xName='date' yName='totalLiquidityUSD' />
+            <SeriesDirective dataSource={protocols} xName='date' yName='totalLiquidityUSD' type="line"/>
           </SeriesCollectionDirective>
       
         </ChartComponent>
