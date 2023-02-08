@@ -16,7 +16,7 @@ const Navbar = () => {
           <header className="flex font-poppins items-center p-2 text-lg font-normal text-gray-400 ">Dashboards</header>
         </li>
         <li>
-          <NavLink to="/" onClick={() => setActiveNav('/')}
+          <NavLink to="/defi" onClick={() => setActiveNav('/')}
             className={`${activeNav === '/' ? 'bg-gray-700' : ''} flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-700`}
           >Defi</NavLink>
         </li>

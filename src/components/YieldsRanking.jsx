@@ -13,6 +13,7 @@ const YieldsRanking = () => {
     axios.get('https://yields.llama.fi/pools')
       .then(res => {
         setYields(res.data.data)
+        console.log(Yields)
       })
       .catch(err => {
         console.log(err)
@@ -21,7 +22,7 @@ const YieldsRanking = () => {
 
   return (
     
-      <div className="h-max m-10 border rounded-xl border-gray-400 bg-gray-800 text-white">
+      <div className="h-max mb-10 mx-10 border rounded-xl border-gray-400 bg-gray-800 text-white">
       <div className="grid grid-cols-7 p-2 border-black border-b ">
         <header className="font-bold italic">Symbol</header>
         <header className="text-right font-bold italic">Project</header>
@@ -36,25 +37,22 @@ const YieldsRanking = () => {
         (
           Yields.filter(item => item.apy != null && item.apy != '0').map(pool =>
             <div
-              className="grid grid-cols-7 p-2 border-black border-b"
+              className="grid grid-cols-7 items-center p-2 border-black border-b text-right"
               key={pool.id}
             >
-              <div >{pool.symbol}</div>
-              <div className="text-right"><ToUpperCase word = {pool.project}/></div>
-              <div className="text-right">{pool.chain}</div>
+              <div className="text-left"><ToUpperCase word={pool.project} /></div>
+              <div>{pool.symbol}</div>
+              <div>{pool.chain}</div>
               
-              <div className="text-right">
-                {pool.apy ? (`${parseFloat(pool.apy).toFixed(2)}%`) : ('')}
-              </div>
-              <div className="text-right">
-                {pool.apyBase ? (`${parseFloat(pool.apyBase).toFixed(2)}%`) : ('')}
-              </div>
-              <div className="text-right">
-              {pool.apyReward ? (`${parseFloat(pool.apyReward).toFixed(2)}%`) : ('')}
-              </div>
-              <div className="text-right">
+
+              {pool.apy ? (<div>{parseFloat(pool.apy).toFixed(2)}</div>) : (<div> </div>)}
+
+              {pool.apyBase ? (<div>{parseFloat(pool.apyBase).toFixed(2)}</div>) : (<div> </div>)}
+
+              {pool.apyReward ? (<div>{parseFloat(pool.apyReward).toFixed(2)}</div>) : (<div> </div>)}
+
                 {'$' + Formatter(parseFloat(pool.tvlUsd)) }
-              </div>
+              
             </div>)
         )
           : (<Loader />)}
