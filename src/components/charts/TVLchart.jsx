@@ -17,29 +17,33 @@ const TVLchart = () => {
       .then(res => {
         const data = res.data
         const dates = data.map(item => UnixConverter(item.date));
-        const datasource = data.map((value, index) => ({ date: dates[index], value: JSON.parse(Formatter(value.totalLiquidityUSD)) }));
+        const values = data.map(item => item.totalLiquidityUSD)
+        console.log(dates, values)
 
-        console.log(datasource)
-        console.log(data)
+        const datasource = values.map((value, index) => ({ date: dates[index], value }));
+        setProtocols(datasource)
 
-        setProtocols(data)
-        setLastDay(res.data[1632].totalLiquidityUSD)
-        setDay(res.data[1631].totalLiquidityUSD)
+        const today = datasource.slice(datasource.length - 1, datasource.length)
+        const yesterday = datasource.slice(datasource.length - 2, datasource.length - 1)
+
+        setLastDay(yesterday[0].value)
+        setDay(today[0].value)
       })
       .catch(err => {
         console.log(err)
       })
   }, []);
 
-  const primaryxAxis = { valueType: 'Double', minimum: 1, maximum: 1000, interval: 100 }
-  const primaryyAxis = { labelFormat: '${value}K'}
+  console.log(protocols)
+
+  const primaryxAxis = { valueType: 'Category', visible: false }
+  const primaryyAxis = { labelFormat: '${value}K', visible: false }
   const legendSettings = { visible: true, textStyle: { color: 'white' } }
   const tooltip = { enable: true, shared: false }
   const palette = ["skyblue"]
 
   const num1 = parseFloat(day).toFixed(2)
   const num2 = parseFloat(lastDay).toFixed(2)
-  
   const dollarChange = (num1 - num2).toFixed(2)
   const percentageChange = (((num1 - num2) / num2) * 100).toFixed(2)
   
@@ -66,10 +70,10 @@ const TVLchart = () => {
         <div className="bg-gray-800 w-[80%] my-2 rounded-xl">
         <ChartComponent id="charts" primaryXAxis={primaryxAxis} primaryYAxis={primaryyAxis} palettes={palette} legendSettings={legendSettings} tooltip={tooltip}>
 
-          <Inject services={[ColumnSeries, Tooltip, LineSeries, DataLabel, Category, DateTime]} />
+          <Inject services={[ColumnSeries, LineSeries, DataLabel, Category, DateTime]} />
       
           <SeriesCollectionDirective>
-            <SeriesDirective dataSource={protocols} xName='date' yName='totalLiquidityUSD' type="line"/>
+            <SeriesDirective dataSource={protocols} xName='date' yName='value' legendShape='Circle' />
           </SeriesCollectionDirective>
       
         </ChartComponent>

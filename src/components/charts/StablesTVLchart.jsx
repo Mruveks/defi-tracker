@@ -17,15 +17,19 @@ const StablesTVLchart = () => {
   const totalPegged = new Array;
   const datasource = [];
 
+  const dates2 = new Array;
+
   useEffect(() => {
     axios.get('https://stablecoins.llama.fi/stablecoincharts/all?stablecoin=1')
       .then(res => {
         const stables = res.data;
-        const dates = stables.map(item => UnixConverter(item.date));
+        const dates = stables.map(item => UnixConverter(item.date));        
         const totalCirculating = stables.map(item => item.totalCirculatingUSD);
         const totalPegged = totalCirculating.map(item => item.peggedUSD);
         const datasource = totalPegged.map((value, index) => ({ date: dates[index], value }));
+
         setStables(datasource);
+        
         setLastDay(datasource[767].value)
         setDay(datasource[768].value)
       })
@@ -33,7 +37,7 @@ const StablesTVLchart = () => {
         console.log(err)
       });
   }, []);
-
+console.log(stable)
   const primaryxAxis = { valueType: 'Category', visible: false }
   const primaryyAxis = { labelFormat: '${value}K', visible: false }
   const legendSettings = { visible: true, textStyle: { color: 'white' } }
@@ -67,12 +71,12 @@ const StablesTVLchart = () => {
       </div>
 
       <div className="bg-gray-800 w-[80%] my-2 rounded-xl">
-        <ChartComponent id="charts" primaryXAxis={primaryxAxis} primaryYAxis={primaryyAxis} palettes={palette} legendSettings={legendSettings} tooltip={tooltip}>
+      <ChartComponent id="charts" primaryXAxis={primaryxAxis} primaryYAxis={primaryyAxis} palettes={palette} legendSettings={legendSettings} tooltip={tooltip}>
 
         <Inject services={[ColumnSeries, Tooltip, LineSeries, DataLabel, Category, DateTime, Legend]} />
       
         <SeriesCollectionDirective>
-          <SeriesDirective dataSource={stable} xName='date' yName='value' legendShape='Circle' name='Total Value Locked in USD'/>
+          <SeriesDirective dataSource={stable} xName='date' yName='value' legendShape='Circle' />
         </SeriesCollectionDirective>
       
         </ChartComponent>
@@ -84,3 +88,4 @@ const StablesTVLchart = () => {
 }
 
 export default StablesTVLchart
+
