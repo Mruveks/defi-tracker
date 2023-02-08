@@ -5,8 +5,7 @@ import './App.css'
 
 import Navbar from './components/Navbar'
 
-import { Home, Stables, Yields, Fees, Bridges } from './pages/index'
-import Avax from './components/projects/Avax'
+import { Home, Stables, Yields, Fees, Bridges, Avax } from './pages/index'
 import Search from './utilities/Search'
 
 function App() {
@@ -24,7 +23,7 @@ function App() {
         <Route path="/yields" element={<Yields />} />
         <Route path="/fees" element={<Fees />} />
         <Route path="/bridges" element={<Bridges />} />
-        <Route path="/avax" element={<Avax />} />
+        <Route path="/avalanche" element={<Avax />} />
 
       </Routes>
     </div>

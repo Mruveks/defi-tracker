@@ -11,7 +11,7 @@ const Navbar = () => {
       
   <aside id="default-sidebar" className="w-48 fixed left-0 top-0 h-screen">
     <div className="px-3 py-4 overflow-y-auto bg-gray-900 h-full">
-      <ul className="space-y-2">
+      <ul className="space-y-2 mt-10">
         <li>         
           <header className="flex font-poppins items-center p-2 text-lg font-normal text-gray-400 ">Dashboards</header>
         </li>
@@ -40,6 +40,18 @@ const Navbar = () => {
             className={`${activeNav === '/fees' ? 'bg-gray-700' : ''} flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-700`}
           >Fees</NavLink>
         </li>
+      </ul>
+          
+      <ul className="space-y-2 mt-5">
+        <li>         
+          <header className="flex font-poppins items-center p-2 text-lg font-normal text-gray-400 ">Top Protocols</header>
+        </li>
+        <li>
+          <NavLink to="/avalanche" onClick={() => setActiveNav('/avalanche')}
+            className={`${activeNav === '/avalanche' ? 'bg-gray-700' : ''} flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-700`}
+          >Avalanche - (Avax)</NavLink>
+        </li>
+        
       </ul>
    </div>
   </aside>

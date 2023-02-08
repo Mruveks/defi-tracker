@@ -20,7 +20,7 @@ const TVLranking = () => {
       })
   }, []);
 
-/** TVL ranking przyciski co by patrzec po chainie [All] [ETH] [TRON] [Polygon] [Avax] Scrollable window do wybierania innych łancuch*/
+
   return (
     <>
           <div className="flex justify-between mx-8 h-full text-white ">
