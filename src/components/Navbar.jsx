@@ -52,6 +52,11 @@ const Navbar = () => {
           >Ethereum</NavLink>
         </li>
         <li>
+          <NavLink to="/bsc" onClick={() => setActiveNav('/bsc')}
+            className={`${activeNav === '/bsc' ? 'bg-gray-700' : ''} flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-700`}
+          >Bsc</NavLink>
+        </li>
+        <li>
           <NavLink to="/avalanche" onClick={() => setActiveNav('/avalanche')}
             className={`${activeNav === '/avalanche' ? 'bg-gray-700' : ''} flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-700`}
           >Avalanche</NavLink>
@@ -65,6 +70,16 @@ const Navbar = () => {
           <NavLink to="/arbitrum" onClick={() => setActiveNav('/arbitrum')}
             className={`${activeNav === '/arbitrum' ? 'bg-gray-700' : ''} flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-700`}
           >Arbitrum</NavLink>
+        </li>
+        <li>
+          <NavLink to="/optimism" onClick={() => setActiveNav('/optimism')}
+            className={`${activeNav === '/optimism' ? 'bg-gray-700' : ''} flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-700`}
+          >Optimism</NavLink>
+        </li>
+        <li>
+          <NavLink to="/solana" onClick={() => setActiveNav('/solana')}
+            className={`${activeNav === '/solana' ? 'bg-gray-700' : ''} flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-700`}
+          >Solana</NavLink>
         </li>
       </ul>
    </div>

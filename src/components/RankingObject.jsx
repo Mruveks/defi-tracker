@@ -18,6 +18,8 @@ const RankingObject = ({ chain }) => {
       })
   }, []);
 
+  /* dodac support dla mini chartow tvl**/
+
   return (
     <div className="h-max m-10 border rounded-xl border-gray-400 bg-gray-800 text-white">
 

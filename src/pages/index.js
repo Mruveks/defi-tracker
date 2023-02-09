@@ -7,6 +7,9 @@ import Avax from "./protocols/Avax";
 import Ethereum from "./protocols/Ethereum";
 import Polygon from "./protocols/Polygon";
 import Arbitrum from "./protocols/Arbitrum";
+import Bsc from "./protocols/Bsc";
+import Optimism from "./protocols/Optimism";
+import Solana from './protocols/Solana';
 
 export {
   Home,
@@ -17,5 +20,8 @@ export {
   Avax,
   Ethereum,
   Polygon,
-  Arbitrum
+  Arbitrum,
+  Bsc,
+  Optimism,
+  Solana
 }
