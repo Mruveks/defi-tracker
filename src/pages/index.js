@@ -5,6 +5,8 @@ import Fees from "./Fees";
 import Bridges from "./Bridges";
 import Avax from "./protocols/Avax";
 import Ethereum from "./protocols/Ethereum";
+import Polygon from "./protocols/Polygon";
+import Arbitrum from "./protocols/Arbitrum";
 
 export {
   Home,
@@ -13,5 +15,7 @@ export {
   Fees,
   Bridges,
   Avax,
-  Ethereum
+  Ethereum,
+  Polygon,
+  Arbitrum
 }

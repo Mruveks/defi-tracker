@@ -44,19 +44,28 @@ const Navbar = () => {
           
       <ul className="space-y-2 mt-5">
         <li>         
-          <header className="flex font-poppins items-center p-2 text-lg font-normal text-gray-400 ">Top Protocols</header>
+          <header className="flex font-poppins items-center p-2 text-lg font-normal text-gray-400 ">Top Chains</header>
         </li>
         <li>
-          <NavLink to="/avalanche" onClick={() => setActiveNav('/avalanche')}
-            className={`${activeNav === '/avalanche' ? 'bg-gray-700' : ''} flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-700`}
-          >Avalanche - (Avax)</NavLink>
-            </li>
-            <li>
           <NavLink to="/ethereum" onClick={() => setActiveNav('/ethereum')}
             className={`${activeNav === '/ethereum' ? 'bg-gray-700' : ''} flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-700`}
           >Ethereum</NavLink>
         </li>
-        
+        <li>
+          <NavLink to="/avalanche" onClick={() => setActiveNav('/avalanche')}
+            className={`${activeNav === '/avalanche' ? 'bg-gray-700' : ''} flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-700`}
+          >Avalanche</NavLink>
+        </li>
+        <li>
+          <NavLink to="/polygon" onClick={() => setActiveNav('/polygon')}
+            className={`${activeNav === '/polygon' ? 'bg-gray-700' : ''} flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-700`}
+          >Polygon</NavLink>
+        </li>
+        <li>
+          <NavLink to="/arbitrum" onClick={() => setActiveNav('/arbitrum')}
+            className={`${activeNav === '/arbitrum' ? 'bg-gray-700' : ''} flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-700`}
+          >Arbitrum</NavLink>
+        </li>
       </ul>
    </div>
   </aside>

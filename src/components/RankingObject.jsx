@@ -19,9 +19,9 @@ const RankingObject = ({ chain }) => {
   }, []);
 
   return (
-    <div className="h-max m-10 border rounded-xl border-gray-400 bg-gray-800 text-white">\
+    <div className="h-max m-10 border rounded-xl border-gray-400 bg-gray-800 text-white">
 
-    <div className="grid grid-cols-6 p-2 border-black border-b ">
+    <div className="grid grid-cols-6 p-2 border-black border-b uppercase italic">
       <header>Name</header>
       <header className="text-right">Category</header>
       <header className="text-right">1d Change</header>
