@@ -10,6 +10,10 @@ import Arbitrum from "./protocols/Arbitrum";
 import Bsc from "./protocols/Bsc";
 import Optimism from "./protocols/Optimism";
 import Solana from './protocols/Solana';
+import Algorand from './protocols/Algorand'
+import Near from './protocols/Near'
+import Fantom from './protocols/Fantom'
+import Kava from './protocols/Kava'
 
 export {
   Home,
@@ -23,5 +27,9 @@ export {
   Arbitrum,
   Bsc,
   Optimism,
-  Solana
+  Solana,
+  Kava,
+  Fantom,
+  Near,
+  Algorand
 }

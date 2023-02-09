@@ -96,7 +96,7 @@ const TVLranking = () => {
       :
 
       ( protocols.length ? (
-          protocols.filter(item => ( item.tvl != null && item.chain === query && item.tvl >= 100000)).map(protocol =>
+          protocols.filter(item => ( item.tvl != null && item.chain === query && item.tvl >= 1000000)).map(protocol =>
             <div
               className="grid grid-cols-7 items-center p-2 border-black border-b text-right"
               key={protocol.id}
