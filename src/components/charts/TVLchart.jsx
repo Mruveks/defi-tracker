@@ -18,7 +18,6 @@ const TVLchart = () => {
         const data = res.data
         const dates = data.map(item => UnixConverter(item.date));
         const values = data.map(item => item.totalLiquidityUSD)
-        console.log(dates, values)
 
         const datasource = values.map((value, index) => ({ date: dates[index], value }));
         setProtocols(datasource)
@@ -34,8 +33,6 @@ const TVLchart = () => {
       })
   }, []);
 
-  console.log(protocols)
-
   const primaryxAxis = { valueType: 'Category', visible: false }
   const primaryyAxis = { labelFormat: '${value}K', visible: false }
   const legendSettings = { visible: true, textStyle: { color: 'white' } }
@@ -46,7 +43,7 @@ const TVLchart = () => {
   const num2 = parseFloat(lastDay).toFixed(2)
   const dollarChange = (num1 - num2).toFixed(2)
   const percentageChange = (((num1 - num2) / num2) * 100).toFixed(2)
-  
+
   return (
     <>
       {protocols.length ?
@@ -62,7 +59,7 @@ const TVLchart = () => {
           <div className="border border-gray-500 w-full h-full text-xl text-left py-10 px-4 bg-gray-800 rounded-xl">
               <div className="text-2xl pb-2">24h Change</div>
               {percentageChange > 0 ? (<div className="text-green-500 text-4xl pb-2">+{percentageChange}%</div>) : (<div className="text-red-500 text-4xl pb-2">{ percentageChange }%</div>) }
-              {dollarChange > 0 ? (<div className="text-green-500 text-4xl pb-2">{'+$' + Formatter(dollarChange)}</div>) : (<div className="text-red-500 text-4xl pb-2">{dollarChange}$</div>) }
+              {dollarChange > 0 ? (<div className="text-green-500 text-4xl pb-2">{'+$' + Formatter(dollarChange)}</div>) : (<div className="text-red-500 text-4xl pb-2">{ dollarChange }$</div>) }
           </div>
           
         </div>

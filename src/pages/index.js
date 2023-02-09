@@ -4,6 +4,7 @@ import Yields from "./Yields";
 import Fees from "./Fees";
 import Bridges from "./Bridges";
 import Avax from "./protocols/Avax";
+import Ethereum from "./protocols/Ethereum";
 
 export {
   Home,
@@ -11,5 +12,6 @@ export {
   Yields,
   Fees,
   Bridges,
-  Avax
+  Avax,
+  Ethereum
 }

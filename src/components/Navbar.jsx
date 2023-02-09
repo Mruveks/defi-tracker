@@ -50,6 +50,11 @@ const Navbar = () => {
           <NavLink to="/avalanche" onClick={() => setActiveNav('/avalanche')}
             className={`${activeNav === '/avalanche' ? 'bg-gray-700' : ''} flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-700`}
           >Avalanche - (Avax)</NavLink>
+            </li>
+            <li>
+          <NavLink to="/ethereum" onClick={() => setActiveNav('/ethereum')}
+            className={`${activeNav === '/ethereum' ? 'bg-gray-700' : ''} flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-700`}
+          >Ethereum</NavLink>
         </li>
         
       </ul>

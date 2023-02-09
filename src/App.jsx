@@ -5,7 +5,7 @@ import './App.css'
 
 import Navbar from './components/Navbar'
 
-import { Home, Stables, Yields, Fees, Bridges, Avax } from './pages/index'
+import { Home, Stables, Yields, Fees, Bridges, Avax, Ethereum } from './pages/index'
 import Search from './utilities/Search'
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
         <Route path="/fees" element={<Fees />} />
         <Route path="/bridges" element={<Bridges />} />
         <Route path="/avalanche" element={<Avax />} />
-
+        <Route path="/ethereum" element={<Ethereum />} />
       </Routes>
     </div>
   )
