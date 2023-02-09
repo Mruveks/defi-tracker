@@ -11,7 +11,6 @@ const RankingObject = ({ chain }) => {
     axios.get('https://api.llama.fi/protocols')
       .then(res => {
         setProtocols(res.data)
-        console.log(protocols)
       })
       .catch(err => {
         console.log(err)
@@ -21,9 +20,9 @@ const RankingObject = ({ chain }) => {
   /* dodac support dla mini chartow tvl**/
 
   return (
-    <div className="h-max m-10 border rounded-xl border-gray-400 bg-gray-800 text-white">
+    <div className="h-max m-10 border rounded-xl border-white bg-gray-800 text-white">
 
-    <div className="grid grid-cols-6 p-2 border-black border-b uppercase italic">
+    <div className="grid grid-cols-6 p-2 uppercase italic">
       <header>Name</header>
       <header className="text-right">Category</header>
       <header className="text-right">1d Change</header>
@@ -33,9 +32,9 @@ const RankingObject = ({ chain }) => {
       </div>
       
     {protocols.length ? (
-          protocols.filter(item => item.tvl != null && item.chain === chain ).map(protocol =>
+          protocols.filter(item => item.tvl != null && item.chain === chain && item.tvl >= 100000).map(protocol =>
             <div
-              className="grid grid-cols-6 items-center p-2 border-black border-b text-right"
+              className="grid grid-cols-6 items-center p-2 border-black border-t text-right"
               key={protocol.id}
             >
               <div className="flex w-[140%] text-left">

@@ -17,12 +17,12 @@ const StablesRanking = () => {
 
   return (
     <>
-    <div className="h-max mx-10 mb-10 border rounded-xl border-gray-400 bg-gray-800 text-white">
+    <div className="h-max mx-10 mb-10 border rounded-xl border-white bg-gray-800 text-white">
       
       <div className="grid grid-cols-7 p-2 border-black border-b ">
         <header className="">Name</header>
         <header className="text-right">Price</header>
-        <header className="text-right">Peg Type</header>
+        <header className="text-right">Peg Asset</header>
         <header className="text-right">1d Change</header>
         <header className="text-right">7d Change</header>
         <header className="text-right">1m Change</header>
@@ -30,7 +30,7 @@ const StablesRanking = () => {
       </div>
 
       { stables.length ? (
-          stables.filter(item => item.circulating.peggedUSD != null && item.price != null ).map(stable =>
+          stables.filter(item => item.circulating.peggedUSD >= 1000000 && item.price != null ).map(stable =>
             <div
               className="grid grid-cols-7 items-center p-2 border-black border-b text-right"
               key={stable.id}

@@ -7,7 +7,7 @@ const Polygon = () => {
 
   return (
 
-    <div className="grid grid-cols-1 w-full">
+    <div className="grid grid-cols-1 w-full text-md">
       
       <div className="text-center text-white pt-10 mb-5 text-4xl italic">
         Polygon

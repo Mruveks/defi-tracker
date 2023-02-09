@@ -51,20 +51,20 @@ const ChartObject = ({chain}) => {
 
         <div className="items-center w-[20%] p-2 flex flex-col justify-between gap-8">
           
-          <div className="border border-gray-500 w-full h-full text-xl text-left py-10 px-4 bg-gray-800 rounded-xl">
+          <div className="border border-white w-full h-full text-xl text-left py-10 px-4 bg-gray-800 rounded-xl">
               <div className="text-2xl pb-2">Total Value Locked</div>
               <div className="text-4xl pb-2 text-blue-500">{'$' + Formatter(num2)}</div>
           </div>
             
-          <div className="border border-gray-500 w-full h-full text-xl text-left py-10 px-4 bg-gray-800 rounded-xl">
+          <div className="border border-white w-full h-full text-xl text-left py-10 px-4 bg-gray-800 rounded-xl">
               <div className="text-2xl pb-2">24h Change</div>
               {percentageChange > 0 ? (<div className="text-green-500 text-4xl pb-2">+{percentageChange}%</div>) : (<div className="text-red-500 text-4xl pb-2">{ percentageChange }%</div>) }
-              {dollarChange > 0 ? (<div className="text-green-500 text-4xl pb-2">{'+$' + Formatter(dollarChange)}</div>) : (<div className="text-red-500 text-4xl pb-2">{dollarChange}$</div>) }
+              {dollarChange > 0 ? (<div className="text-green-500 text-4xl pb-2">{'+$' + Formatter(dollarChange)}</div>) : (<div className="text-red-500 text-4xl pb-2">${Formatter(dollarChange)}</div>) }
           </div>
           
         </div>
 
-        <div className="bg-gray-800 w-[80%] my-2 rounded-xl">
+        <div className="bg-gray-800 border-white border w-[80%] my-2 rounded-xl">
         <ChartComponent id="charts" primaryXAxis={primaryxAxis} primaryYAxis={primaryyAxis} palettes={palette} legendSettings={legendSettings} tooltip={tooltip}>
 
           <Inject services={[ColumnSeries, Tooltip, LineSeries, DataLabel, Category, DateTime]} />

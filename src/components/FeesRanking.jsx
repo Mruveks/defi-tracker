@@ -19,7 +19,7 @@ const FeesRanking = () => {
 
   return (
     
-    <div className="h-max m-10 border rounded-xl border-gray-400 bg-gray-800 text-white">
+    <div className="h-max m-10 border rounded-xl border-white bg-gray-800 text-white">
     <div className="grid grid-cols-7 p-2 border-black border-b ">
       <header className="font-bold italic">Project</header>
       <header className="text-right font-bold italic">Category</header>

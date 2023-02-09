@@ -7,7 +7,7 @@ import StablesTVLchart from '../components/charts/StablesTVLchart'
 const Stables = () => {
 
   return (
-    <div >
+    <div className="grid grid-cols-1 w-full text-md" >
       <div className="h-max m-10 text-white">
         <StablesTVLchart />
       </div>

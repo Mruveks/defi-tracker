@@ -1,21 +1,16 @@
 export function Formatter(num) {
 
-  const digits = 2;
+  var identifiers = ['k', 'M', 'B'];
+  var identifierLengthMinusOne = identifiers.length - 1;
+  var identifierOffset = -1;
+  var isNegative = (num < 0);
 
-  const lookup = [
-    { value: 1, symbol: "" },
-    { value: 1e3, symbol: "k" },
-    { value: 1e6, symbol: "M" },
-    { value: 1e9, symbol: "G" },
-    { value: 1e12, symbol: "T" },
-    { value: 1e15, symbol: "P" },
-    { value: 1e18, symbol: "E" }
-  ];
+  num = Math.abs(num);
+  
+  while (num >= 1000 && identifierOffset < identifierLengthMinusOne) {
+      num /= 1000;
+      identifierOffset++;
+  }
 
-  const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
-  var item = lookup.slice().reverse().find(function(item) {
-    return num >= item.value;
-    
-  });
-  return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
+  return parseFloat((isNegative ? num * -1 : num) + (identifierOffset > -1 ? ' ' : '')).toFixed(2) + identifiers[identifierOffset];
 }
