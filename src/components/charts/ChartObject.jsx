@@ -67,10 +67,10 @@ const ChartObject = ({chain}) => {
         <div className="bg-gray-800 w-[80%] my-2 rounded-xl">
         <ChartComponent id="charts" primaryXAxis={primaryxAxis} primaryYAxis={primaryyAxis} palettes={palette} legendSettings={legendSettings} tooltip={tooltip}>
 
-          <Inject services={[ColumnSeries, LineSeries, DataLabel, Category, DateTime]} />
+          <Inject services={[ColumnSeries, Tooltip, LineSeries, DataLabel, Category, DateTime]} />
       
           <SeriesCollectionDirective>
-            <SeriesDirective dataSource={protocols} xName='date' yName='value' legendShape='Circle' />
+            <SeriesDirective dataSource={protocols} xName='date' yName='value' legendShape='Circle' name="Total Locked" />
           </SeriesCollectionDirective>
       
         </ChartComponent>
