@@ -20,7 +20,7 @@ const BridgesRanking = () => {
 
   return (
     <div className="h-max m-10 border rounded-xl border-white bg-gray-800 text-white">
-      <div className="grid grid-cols-3 p-2 border-black border-b ">
+      <div className="grid grid-cols-3 p-2 uppercase italic border-white border-b ">
         <header className="">Name</header>
         <header className="text-right">Chain</header>
         <header className="text-right">Monthly Volume</header>
@@ -30,7 +30,7 @@ const BridgesRanking = () => {
       {bridges ? (
         bridges.map(bridge => 
           <div
-          className="grid grid-cols-3 p-2 border-black border-b" 
+          className="grid grid-cols-3 p-2 border-black border-t" 
           key={bridge.id}
           >
              <div className="">{ bridge.displayName }</div>

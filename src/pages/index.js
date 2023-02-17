@@ -14,6 +14,9 @@ import Algorand from './protocols/Algorand'
 import Near from './protocols/Near'
 import Fantom from './protocols/Fantom'
 import Kava from './protocols/Kava'
+import Lending from "./Lending";
+import CEX from "./CEX";
+import DEX from "./DEX";
 
 export {
   Home,
@@ -21,6 +24,9 @@ export {
   Yields,
   Fees,
   Bridges,
+  Lending,
+  CEX,
+  DEX,
   Avax,
   Ethereum,
   Polygon,

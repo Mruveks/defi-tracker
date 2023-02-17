@@ -20,7 +20,7 @@ const FeesRanking = () => {
   return (
     
     <div className="h-max m-10 border rounded-xl border-white bg-gray-800 text-white">
-    <div className="grid grid-cols-7 p-2 border-black border-b ">
+    <div className="grid grid-cols-7 p-2 uppercase italic border-white border-b ">
       <header className="font-bold italic">Project</header>
       <header className="text-right font-bold italic">Category</header>
       <header className="text-right font-bold italic">Daily Fees</header>
@@ -34,7 +34,7 @@ const FeesRanking = () => {
       (
         fees.filter(item => item.dailyFees != null && item.dailyFees != '0' && item.totalAllTime != '0' && item.totalAllTime != null).map(fee =>
           <div
-            className="grid grid-cols-7 p-2 border-black border-b"
+            className="grid grid-cols-7 p-2 border-black border-t"
             key={fee.id}
           >
             <div className="flex w-[140%]">

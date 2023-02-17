@@ -40,11 +40,26 @@ const Navbar = () => {
             className={`${activeNav === '/fees' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
           >Fees</NavLink>
         </li>
+        <li>
+          <NavLink to="/cex" onClick={() => setActiveNav('/cex')}
+            className={`${activeNav === '/cex' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
+          >Cex</NavLink>
+        </li>
+        <li>
+          <NavLink to="/dex" onClick={() => setActiveNav('/dex')}
+            className={`${activeNav === '/dex' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
+          >Dex</NavLink>
+        </li>
+        <li>
+          <NavLink to="/lending" onClick={() => setActiveNav('/lending')}
+            className={`${activeNav === '/lending' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
+          >Lending</NavLink>
+        </li>
       </ul>
       
-      <div className=" border-b-2 border-gray-600 mx-1 my-5"></div>
+      <div className=" border-b-2 border-gray-600 mx-1 my-2"></div>
           
-      <ul className="space-y-2 mt-5 text-base text-white">
+      <ul className="space-y-2 text-base text-white">
         <li>         
           <header className="flex items-center p-1 text-xl text-gray-400 ">Top Chains</header>
         </li>

@@ -19,7 +19,7 @@ const StablesRanking = () => {
     <>
     <div className="h-max mx-10 mb-10 border rounded-xl border-white bg-gray-800 text-white">
       
-      <div className="grid grid-cols-7 p-2 border-black border-b ">
+      <div className="grid grid-cols-7 p-2 uppercase italic border-white border-b ">
         <header className="">Name</header>
         <header className="text-right">Price</header>
         <header className="text-right">Peg Asset</header>
@@ -32,7 +32,7 @@ const StablesRanking = () => {
       { stables.length ? (
           stables.filter(item => item.circulating.peggedUSD >= 1000000 && item.price != null ).map(stable =>
             <div
-              className="grid grid-cols-7 items-center p-2 border-black border-b text-right"
+              className="grid grid-cols-7 items-center p-2 border-black border-t text-right"
               key={stable.id}
             >
               <div className="text-left">
