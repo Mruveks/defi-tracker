@@ -33,7 +33,7 @@ const BridgesRanking = () => {
       {bridges ? (
         bridges.filter(bridge => bridge.monthlyVolume > 0).map(bridge => 
           <div
-          className="grid grid-cols-4  text-right p-2 border-black border-t" 
+          className="grid grid-cols-4  text-right p-2 border-gray-600 border-t" 
           key={bridge.id}
           >
              <div className="text-left">{ bridge.displayName }</div>

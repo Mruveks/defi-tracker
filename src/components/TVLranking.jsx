@@ -67,7 +67,7 @@ const TVLranking = () => {
       ( protocols.length ? (
           protocols.filter(item => item.tvl >= 1000000).map(protocol =>
             <div
-              className="grid grid-cols-7 items-center p-2 border-black border-t text-right"
+              className="grid grid-cols-7 items-center p-2 border-gray-600 border-t text-right"
               key={protocol.id}
             >
               <div className="flex w-[140%] text-left">
@@ -98,7 +98,7 @@ const TVLranking = () => {
       ( protocols.length ? (
           protocols.filter(item => ( item.tvl != null && item.chain === query && item.tvl >= 1000000)).map(protocol =>
             <div
-              className="grid grid-cols-7 items-center p-2 border-black border-b text-right"
+              className="grid grid-cols-7 items-center p-2 border-gray-600 border-b text-right"
               key={protocol.id}
             >
               <div className="flex w-[140%] text-left">

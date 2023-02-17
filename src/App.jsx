@@ -5,7 +5,7 @@ import './App.css'
 
 import Navbar from './components/Navbar'
 
-import { Home, Stables, Yields, Fees, Bridges, Avax, Ethereum, Polygon, Arbitrum, Optimism, Bsc, Solana, Kava, Near, Algorand, Fantom, Lending, CEX, DEX } from './pages/index'
+import { Home, Stables, Yields, Bridges, Avax, Ethereum, Polygon, Arbitrum, Optimism, Bsc, Solana, Kava, Near, Algorand, Fantom, Lending, CEX, DEX } from './pages/index'
 
 function App() {
 

@@ -11,7 +11,7 @@ const Stables = () => {
      <div className="h-max my-5 mx-10 text-white">
         <StablesTVLchart />
       </div>
-      <header className="flex justify-center w-full text-white text-2xl italic">Stablecoin Ranking</header>
+      <header className="text-center text-white pt-10 mb-10 text-4xl italic">Stablecoin Ranking</header>
       <StablesRanking />
     </div>
   )

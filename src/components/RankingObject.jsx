@@ -36,7 +36,7 @@ const RankingObject = ({ chain }) => {
     {protocols.length ? (
           protocols.filter(item => item.tvl != null && (item.chain === chain || item.category === chain) && item.tvl >= 100000).map(protocol =>
             <div
-              className={`grid ${(chain === 'Lending' || 'CEX') ? "grid-cols-5" : "grid-cols-6"} items-center p-2 border-black border-t text-right`}
+              className={`grid ${(chain === 'Lending' || 'CEX') ? "grid-cols-5" : "grid-cols-6"} items-center p-2 border-gray-600 border-t text-right`}
               key={protocol.id}
             >
               <div className="flex w-[140%] text-left">

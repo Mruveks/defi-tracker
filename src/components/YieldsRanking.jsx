@@ -68,7 +68,7 @@ const YieldsRanking = () => {
         (
           Yields.filter(item => item.apy != null && item.apy != '0' && item.tvlUsd >= 1000000).map(pool =>
             <div
-              className="grid grid-cols-7 items-center p-2 border-black border-t text-right"
+              className="grid grid-cols-7 items-center p-2 border-gray-600 border-t text-right"
               key={pool.id}
             >
               <div className="text-left capitalize">{pool.project}</div>
@@ -94,7 +94,7 @@ const YieldsRanking = () => {
         (
           Yields.filter(item => item.apy != null && item.apy != '0' && item.tvlUsd >= 1000000 && item.chain === query).map(pool =>
             <div
-              className="grid grid-cols-7 items-center p-2 border-black border-t text-right"
+              className="grid grid-cols-7 items-center p-2 border-gray-600 border-t text-right"
               key={pool.id}
             >
               <div className="text-left capitalize">{pool.project}</div>
