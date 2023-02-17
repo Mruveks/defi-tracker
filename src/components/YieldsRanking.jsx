@@ -6,6 +6,7 @@ import { Formatter } from '../utilities/Formatter';
 
 const YieldsRanking = () => {
 
+  const [query, setQuery] = useState('')
   const [Yields, setYields] = useState([])
 
   useEffect(() => {
@@ -20,9 +21,39 @@ const YieldsRanking = () => {
   }, []);
 
   return (
-    
-      <div className="h-max mb-10 mx-10 border rounded-xl border-white bg-gray-800 text-white">
-      <div className="grid grid-cols-7 p-2 border-black border-b ">
+    <>
+    <div className="flex justify-between mx-8 h-full text-white ">
+      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('')}
+      >All</button>
+        
+      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => {setQuery('Ethereum')}}
+      >Ethereum</button>
+
+      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('Avalanche')}
+      >Avalanche</button>
+
+      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('BSC')}
+      >Bsc</button>
+
+      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('Tron')}
+      >Tron</button>
+
+      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('Arbitrum')}
+      >Arbitrum</button>
+
+      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('Polygon')}
+      >Polygon</button>
+
+      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('Optimism')}
+      >Optimism</button>
+
+      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('Solana')}
+      >Solana</button>
+    </div>
+    <div className="h-max mb-10 mx-10 border rounded-xl border-white bg-gray-800 text-white">
+      
+      
+      <div className="grid grid-cols-7 p-2 border-white border-b ">
         <header className="font-bold italic">Project</header>
         <header className="text-right font-bold italic">Symbol</header>
         <header className="text-right font-bold italic">Chain</header>
@@ -32,11 +63,12 @@ const YieldsRanking = () => {
         <header className="text-right font-bold italic">TVL</header>
       </div>
 
-      {Yields.length ?
+      { query === '' ?
+      (Yields.length ?
         (
           Yields.filter(item => item.apy != null && item.apy != '0' && item.tvlUsd >= 1000000).map(pool =>
             <div
-              className="grid grid-cols-7 items-center p-2 border-black border-b text-right"
+              className="grid grid-cols-7 items-center p-2 border-black border-t text-right"
               key={pool.id}
             >
               <div className="text-left capitalize">{pool.project}</div>
@@ -44,7 +76,7 @@ const YieldsRanking = () => {
               <div>{pool.chain}</div>
               
 
-              {pool.apy ? (<div>{parseFloat(pool.apy) + '%'}</div>) : (<div> </div>)}
+              {pool.apy ? (<div>{parseFloat(pool.apy).toFixed(2) + '%'}</div>) : (<div> </div>)}
 
               {pool.apyBase ? (<div>{parseFloat(pool.apyBase).toFixed(2)  + '%'}</div>) : (<div> </div>)}
 
@@ -54,10 +86,37 @@ const YieldsRanking = () => {
               
             </div>)
         )
-          : (<Loader />)}
+          : (<Loader />))
+        
+        :
+      
+        (Yields.length ?
+        (
+          Yields.filter(item => item.apy != null && item.apy != '0' && item.tvlUsd >= 1000000 && item.chain === query).map(pool =>
+            <div
+              className="grid grid-cols-7 items-center p-2 border-black border-t text-right"
+              key={pool.id}
+            >
+              <div className="text-left capitalize">{pool.project}</div>
+              <div>{pool.symbol}</div>
+              <div>{pool.chain}</div>
+              
+
+              {pool.apy ? (<div>{parseFloat(pool.apy).toFixed(2) + '%'}</div>) : (<div> </div>)}
+
+              {pool.apyBase ? (<div>{parseFloat(pool.apyBase).toFixed(2)  + '%'}</div>) : (<div> </div>)}
+
+              {pool.apyReward ? (<div>{parseFloat(pool.apyReward).toFixed(2)  + '%'}</div>) : (<div> </div>)}
+
+                {'$' + Formatter(parseFloat(pool.tvlUsd)) }
+              
+            </div>)
+        )
+          : (<Loader />))}
 
 
-    </div>
+      </div>
+    </>
   )
 }
 
