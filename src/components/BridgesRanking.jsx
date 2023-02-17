@@ -14,30 +14,35 @@ const BridgesRanking = () => {
       .then(res => {
         setBridges(res.data.bridges)
         console.log(res.data.bridges)
+        console.log(bridges[5].lastDailyVolume)
       })
       .catch(err => console.log(err))
   }, []);
 
+
   return (
     <div className="h-max m-10 border rounded-xl border-white bg-gray-800 text-white">
-      <div className="grid grid-cols-3 p-2 uppercase italic border-white border-b ">
-        <header className="">Name</header>
-        <header className="text-right">Chain</header>
-        <header className="text-right">Monthly Volume</header>
+      <div className="grid grid-cols-4 p-2 text-right uppercase italic border-white border-b ">
+        <header className="text-left">Name</header>
+        <header>Chain</header>
+        <header>1d change</header>
+        <header>Monthly Volume</header>
  
 
       </div>
       {bridges ? (
-        bridges.map(bridge => 
+        bridges.filter(bridge => bridge.monthlyVolume > 0).map(bridge => 
           <div
-          className="grid grid-cols-3 p-2 border-black border-t" 
+          className="grid grid-cols-4  text-right p-2 border-black border-t" 
           key={bridge.id}
           >
-             <div className="">{ bridge.displayName }</div>
+             <div className="text-left">{ bridge.displayName }</div>
 
-            <div className="text-right capitalize">{ bridge.name }</div>
+            <div className="capitalize">{bridge.name}</div>
+            
+            <div>{((bridge.volumePrevDay - bridge.dayBeforeLastVolume) / bridge.dayBeforeLastVolume).toFixed(2) * 100}%</div>
 
-            <div className="text-right"><div>{'$' + Formatter(parseFloat(bridge.monthlyVolume))}</div></div>
+            <div className=""><div>{'$' + Formatter(parseFloat(bridge.monthlyVolume))}</div></div>
             
           </div>
         )

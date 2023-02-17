@@ -36,11 +36,6 @@ const Navbar = () => {
           >Bridges</NavLink>
         </li>
         <li>
-          <NavLink to="/fees" onClick={() => setActiveNav('/fees')}
-            className={`${activeNav === '/fees' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
-          >Fees</NavLink>
-        </li>
-        <li>
           <NavLink to="/cex" onClick={() => setActiveNav('/cex')}
             className={`${activeNav === '/cex' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
           >Cex</NavLink>

@@ -7,7 +7,6 @@ export function UnixConverter(date) {
   const dateObject = new Date(milliseconds)
   
   let dates = dateObject.toLocaleString()
-console.log(dates)
 
   if (dates.length === 20) {
     dates = dates.slice(0, 10)

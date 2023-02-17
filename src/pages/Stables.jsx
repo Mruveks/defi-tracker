@@ -8,7 +8,7 @@ const Stables = () => {
 
   return (
     <div className="grid grid-cols-1 w-full text-md" >
-      <div className="h-max m-10 text-white">
+     <div className="h-max my-5 mx-10 text-white">
         <StablesTVLchart />
       </div>
       <header className="flex justify-center w-full text-white text-2xl italic">Stablecoin Ranking</header>
