@@ -18,9 +18,9 @@ const StablesRanking = () => {
 
   return (
     <>
-    <div className="h-max mx-10 mb-10 border rounded-xl border-white bg-gray-800 text-white">
+    <div className="h-max mx-10 mb-10 border-gray-600 p-2 border rounded-xl bg-gray-800 ">
       
-      <div className="grid grid-cols-8 p-2 uppercase italic border-white border-b ">
+      <div className="grid grid-cols-8 p-2 uppercase italic border-b-gray-600 ">
         <header className="">Name</header>
         <header className="text-right">Price</header>
         <header className="text-right">Peg Asset</header>
@@ -37,7 +37,7 @@ const StablesRanking = () => {
               className="grid grid-cols-8 items-center p-2 border-gray-600 border-t text-right"
               key={stable.id}
             >
-              <div className="text-left">
+              <div className="text-left text-blue-400 p-1">
                 <a href={`https://www.coingecko.com/en/coins/${stable.gecko_id}`} alt="site" target="_blank" className="">{stable.name} ({stable.symbol})</a>
               </div>
 

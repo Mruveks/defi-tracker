@@ -22,45 +22,45 @@ const YieldsRanking = () => {
 
   return (
     <>
-    <div className="flex justify-between mx-8 h-full text-white ">
-      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('')}
+    <div className="flex justify-between mx-8 h-full  py-2">
+      <button className="m-2 py-1 px-4 bg-gray-600 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('')}
       >All</button>
         
-      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => {setQuery('Ethereum')}}
+      <button className="m-2 py-1 px-4 bg-gray-600 rounded-lg text-lg hover:bg-gray-600" onClick={() => {setQuery('Ethereum')}}
       >Ethereum</button>
 
-      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('Avalanche')}
+      <button className="m-2 py-1 px-4 bg-gray-600 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('Avalanche')}
       >Avalanche</button>
 
-      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('BSC')}
+      <button className="m-2 py-1 px-4 bg-gray-600 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('BSC')}
       >Bsc</button>
 
-      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('Tron')}
+      <button className="m-2 py-1 px-4 bg-gray-600 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('Tron')}
       >Tron</button>
 
-      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('Arbitrum')}
+      <button className="m-2 py-1 px-4 bg-gray-600 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('Arbitrum')}
       >Arbitrum</button>
 
-      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('Polygon')}
+      <button className="m-2 py-1 px-4 bg-gray-600 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('Polygon')}
       >Polygon</button>
 
-      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('Optimism')}
+      <button className="m-2 py-1 px-4 bg-gray-600 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('Optimism')}
       >Optimism</button>
 
-      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('Solana')}
+      <button className="m-2 py-1 px-4 bg-gray-600 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('Solana')}
       >Solana</button>
     </div>
-    <div className="h-max mb-10 mx-10 border rounded-xl border-white bg-gray-800 text-white">
+    <div className="h-max mb-10 mx-10 border rounded-xl border-gray-600 ">
       
       
-      <div className="grid grid-cols-7 p-2 border-white border-b ">
-        <header className="font-bold italic">Project</header>
-        <header className="text-right font-bold italic">Symbol</header>
-        <header className="text-right font-bold italic">Chain</header>
-        <header className="text-right font-bold italic">APY</header>
-        <header className="text-right font-bold italic">Base APY</header>
-        <header className="text-right font-bold italic">Reward APY</header>
-        <header className="text-right font-bold italic">TVL</header>
+      <div className="grid grid-cols-7 p-2 border-gray-600 border-b text-right uppercase italic">
+        <header className="text-left">Project</header>
+        <header>Symbol</header>
+        <header>Chain</header>
+        <header>APY</header>
+        <header>Base APY</header>
+        <header>Reward APY</header>
+        <header>TVL</header>
       </div>
 
       { query === '' ?
@@ -71,8 +71,8 @@ const YieldsRanking = () => {
               className="grid grid-cols-7 items-center p-2 border-gray-600 border-t text-right"
               key={pool.id}
             >
-              <div className="text-left capitalize">{pool.project}</div>
-              <div>{pool.symbol}</div>
+              <div className="text-left capitalize text-blue-400">{pool.project}</div>
+              <div>{(pool.symbol).toLowerCase()}</div>
               <div>{pool.chain}</div>
               
 
@@ -97,8 +97,8 @@ const YieldsRanking = () => {
               className="grid grid-cols-7 items-center p-2 border-gray-600 border-t text-right"
               key={pool.id}
             >
-              <div className="text-left capitalize">{pool.project}</div>
-              <div>{pool.symbol}</div>
+              <div className="text-left capitalize text-blue-400">{pool.project}</div>
+              <div>{(pool.symbol).toLowerCase()}</div>
               <div>{pool.chain}</div>
               
 

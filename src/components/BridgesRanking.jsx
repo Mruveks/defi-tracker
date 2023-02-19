@@ -14,35 +14,38 @@ const BridgesRanking = () => {
       .then(res => {
         setBridges(res.data.bridges)
         console.log(res.data.bridges)
-        console.log(bridges[5].lastDailyVolume)
       })
       .catch(err => console.log(err))
   }, []);
 
 
   return (
-    <div className="h-max m-10 border rounded-xl border-white bg-gray-800 text-white">
-      <div className="grid grid-cols-4 p-2 text-right uppercase italic border-white border-b ">
+    <div className="h-max m-10 border rounded-xl border-gray-600 p-2">
+      <div className="grid grid-cols-5 p-2 text-right uppercase italic">
         <header className="text-left">Name</header>
         <header>Chain</header>
-        <header>1d change</header>
+        <header>1d volume change</header>
+        <header>Today's Volume</header>
         <header>Monthly Volume</header>
  
 
       </div>
       {bridges ? (
-        bridges.filter(bridge => bridge.monthlyVolume > 0).map(bridge => 
+        bridges.filter(bridge => bridge.currentDayVolume > 1000).map(bridge => 
           <div
-          className="grid grid-cols-4  text-right p-2 border-gray-600 border-t" 
+          className="grid grid-cols-5 text-right p-2 border-gray-600 border-t" 
           key={bridge.id}
           >
-             <div className="text-left">{ bridge.displayName }</div>
+             <div className="text-left text-blue-400">{ bridge.displayName }</div>
 
             <div className="capitalize">{bridge.name}</div>
-            
-            <div>{((bridge.volumePrevDay - bridge.dayBeforeLastVolume) / bridge.dayBeforeLastVolume).toFixed(2) * 100}%</div>
 
-            <div className=""><div>{'$' + Formatter(parseFloat(bridge.monthlyVolume))}</div></div>
+            
+            { (((bridge.volumePrevDay - bridge.dayBeforeLastVolume) / bridge.dayBeforeLastVolume) * 100).toFixed(2) > 0 ? (<div className="text-green-500">+{(((bridge.volumePrevDay - bridge.dayBeforeLastVolume) / bridge.dayBeforeLastVolume) * 100).toFixed(2)}%</div>):(<div className="text-red-500">{(((bridge.volumePrevDay - bridge.dayBeforeLastVolume) / bridge.dayBeforeLastVolume) * 100).toFixed(2)}%</div>)}
+
+            <div>{'$' + Formatter(parseFloat(bridge.currentDayVolume))}</div>
+            
+            <div>{'$' + Formatter(parseFloat(bridge.monthlyVolume))}</div>
             
           </div>
         )

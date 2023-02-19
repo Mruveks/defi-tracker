@@ -3,7 +3,6 @@ import axios from 'axios';
 
 import Loader from './Loader';
 import { Formatter } from '../utilities/Formatter';
-
 const TVLranking = () => {
 
   const [protocols, setProtocols] = useState([])
@@ -22,44 +21,44 @@ const TVLranking = () => {
 
   return (
     <>
-    <div className="flex justify-between mx-8 h-full text-white ">
-      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('')}
+    <div className="flex justify-between mx-8 py-2 h-full  ">
+      <button className="m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('')}
       >All</button>
         
-      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => {setQuery('Ethereum')}}
+      <button className="m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600" onClick={() => {setQuery('Ethereum')}}
       >Ethereum</button>
 
-      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('Avalanche')}
+      <button className="m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('Avalanche')}
       >Avalanche</button>
 
-      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('Binance')}
+      <button className="m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('Binance')}
       >Bsc</button>
 
-      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('Tron')}
+      <button className="m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('Tron')}
       >Tron</button>
 
-      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('Arbitrum')}
+      <button className="m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('Arbitrum')}
       >Arbitrum</button>
 
-      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('Polygon')}
+      <button className="m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('Polygon')}
       >Polygon</button>
 
-      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('Optimism')}
+      <button className="m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('Optimism')}
       >Optimism</button>
 
-      <button className="m-2 py-1 px-4 bg-gray-800 rounded-lg text-lg hover:bg-gray-700" onClick={() => setQuery('Solana')}
+      <button className="m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('Solana')}
       >Solana</button>
     </div>
       
-    <div className="h-max mb-10 mx-10 border rounded-xl border-white bg-gray-800 text-white">
-      <div className="grid grid-cols-7 p-2 ">
-        <header>Name</header>
-        <header className="text-right">Category</header>
-        <header className="text-right">Chain</header>
-        <header className="text-right">1d Change</header>
-        <header className="text-right">7d Change</header>
-        <header className="text-right">30d Change</header>
-        <header className="text-right">TVL</header>
+    <div className="h-max mb-10 mx-10 border-gray-600 border p-2 rounded-xl bg-gray-800 ">
+      <div className="grid grid-cols-7 p-2 border-b-gray-600 text-right italic uppercase">
+        <header className="text-left">Name</header>
+        <header>Category</header>
+        <header>Chain</header>
+        <header>1d Change</header>
+        <header>7d Change</header>
+        <header>30d Change</header>
+        <header>TVL</header>
       </div>
 
         { ( query === '') ?
@@ -72,7 +71,7 @@ const TVLranking = () => {
             >
               <div className="flex w-[140%] text-left">
               <img src={ protocol.logo } alt="logo" className="h-8 w-8 rounded-full" />
-              <a href={ protocol.url } alt="site" target="_blank" className="w-full h-full px-2 my-auto">{ protocol.name }</a>
+              <a href={ protocol.url } alt="site" target="_blank" className="w-full h-full px-2 my-auto text-blue">{ protocol.name }</a>
               </div>
 
               <div>{ protocol.category }</div>

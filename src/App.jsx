@@ -5,7 +5,7 @@ import './App.css'
 
 import Navbar from './components/Navbar'
 
-import { Home, Stables, Yields, Bridges, Avax, Ethereum, Polygon, Arbitrum, Optimism, Bsc, Solana, Kava, Near, Algorand, Fantom, Lending, CEX, DEX } from './pages/index'
+import { Home, Stables, Yields, Bridges, Avax, Ethereum, Polygon, Arbitrum, Optimism, Bsc, Solana, Kava, Tron, Algorand, Fantom, Lending, CEX, DEX } from './pages/index'
 
 function App() {
 
@@ -30,7 +30,7 @@ function App() {
         <Route path="/optimism" element={<Optimism />} />
         <Route path="/solana" element={<Solana />} />
         <Route path="/kava" element={<Kava />} />
-        <Route path="/near" element={<Near />} />
+        <Route path="/tron" element={<Tron />} />
         <Route path="/algorand" element={<Algorand />} />
         <Route path="/fantom" element={<Fantom />} />
       </Routes>

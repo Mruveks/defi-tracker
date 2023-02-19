@@ -10,7 +10,7 @@ import Bsc from "./protocols/Bsc";
 import Optimism from "./protocols/Optimism";
 import Solana from './protocols/Solana';
 import Algorand from './protocols/Algorand'
-import Near from './protocols/Near'
+import Tron from './protocols/Tron'
 import Fantom from './protocols/Fantom'
 import Kava from './protocols/Kava'
 import Lending from "./Lending";
@@ -34,6 +34,6 @@ export {
   Solana,
   Kava,
   Fantom,
-  Near,
+  Tron,
   Algorand
 }

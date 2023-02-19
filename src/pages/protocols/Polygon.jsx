@@ -2,13 +2,18 @@ import React from 'react'
 
 import ChartObject from '../../components/charts/ChartObject'
 import RankingObject from '../../components/RankingObject';
+import SearchList from '../../components/SearchList'
 
 const Polygon = () => {
 
   return (
 
     <div className="grid grid-cols-1 w-full text-md">
-      
+        
+      <div className="mt-10 mx-10">
+        <SearchList/>
+      </div>
+
       <div className="text-center text-white pt-10 mb-5 text-4xl italic">
         Polygon
       </div>

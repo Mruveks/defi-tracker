@@ -21,22 +21,22 @@ const RankingObject = ({ chain }) => {
   /* dodac support dla mini chartow tvl**/
 
   return (
-    <div className="h-max m-10 border rounded-xl border-white bg-gray-800 text-white">
+    <div className="h-max m-10 border rounded-xl border-gray-600 p-2">
 
-    <div className={`grid ${(chain === 'Lending' || 'CEX') ? "grid-cols-5" : "grid-cols-6"} p-2 uppercase italic norder-white border-b`}>
-        <header>Name</header>
+    <div className={`grid ${(chain === 'Lending' || 'CEX') ? "grid-cols-5" : "grid-cols-6"} p-2 uppercase italic text-right`}>
         
+      <header className="text-left">Name</header> 
       {(chain === 'Lending' || 'CEX' || 'DEX') ? null : <header className="text-right">Category</header>}
-      <header className="text-right">1d Change</header>
-      <header className="text-right">7d Change</header>
-      <header className="text-right">30d Change</header>
-      <header className="text-right">TVL</header>
+      <header>1d Change</header>
+      <header>7d Change</header>
+      <header>30d Change</header>
+      <header>TVL</header>
     </div>
       
     {protocols.length ? (
           protocols.filter(item => item.tvl != null && (item.chain === chain || item.category === chain) && item.tvl >= 100000).map(protocol =>
             <div
-              className={`grid ${(chain === 'Lending' || 'CEX') ? "grid-cols-5" : "grid-cols-6"} items-center p-2 border-gray-600 border-t text-right`}
+              className={`grid ${(chain === 'Lending' || 'CEX' || 'DEX') ? "grid-cols-5" : "grid-cols-6"} items-center p-2 border-gray-600 border-t text-right`}
               key={protocol.id}
             >
               <div className="flex w-[140%] text-left">

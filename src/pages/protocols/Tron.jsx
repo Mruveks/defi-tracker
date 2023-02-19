@@ -1,10 +1,10 @@
 import React from 'react'
 
 import ChartObject from '../../components/charts/ChartObject'
-import RankingObject from '../../components/RankingObject'
+import RankingObject from '../../components/RankingObject';
 import SearchList from '../../components/SearchList'
 
-const Arbitrum = () => {
+const Tron = () => {
 
   return (
 
@@ -15,18 +15,18 @@ const Arbitrum = () => {
       </div>
 
       <div className="text-center text-white pt-10 mb-5 text-4xl italic">
-        Arbitrum
+      Tron
       </div>
       
       <div className="h-max my-5 mx-10 text-white">
-        <ChartObject chain='Arbitrum' />
+        <ChartObject chain='Tron' />
       </div>
       
-      <header className="flex justify-center w-full mt-5 text-white text-3xl">Top protocols from <h1 className="italic px-2"> Arbitrum </h1> ecosystem</header>
-      <RankingObject chain='Arbitrum' />
+      <header className="flex justify-center w-full mt-5 text-white text-3xl">Top protocols from <h1 className="italic px-2"> Tron </h1> ecosystem</header>
+      <RankingObject chain='Tron' />
 
     </div>
   )
 }
 
-export default Arbitrum
+export default Tron

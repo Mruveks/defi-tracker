@@ -12,7 +12,6 @@ const Home = () => {
         <SearchList/>
       </div>
  
-
       <div className="h-max my-5 mx-10 text-white">
         <TVLchart />
       </div>

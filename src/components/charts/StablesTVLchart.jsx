@@ -57,12 +57,12 @@ console.log(stable)
 
       <div className="items-center w-[30%] p-2 flex flex-col justify-between gap-8">
         
-        <div className="border border-white w-full h-full text-4xl text-left py-10 px-4 bg-gray-800 rounded-xl">
-              <div className=" pb-2">Total Value Locked</div>
+        <div className="border border-gray-600 w-full h-full text-4xl text-left py-10 px-4 rounded-xl">
+              <div className="pb-2">Total Value Locked</div>
               <div className="pb-2 text-blue-500">{'$' + Formatter(stable[768].value)}</div>
         </div>
           
-        <div className="border border-white w-full h-full text-4xl text-left py-10 px-4 bg-gray-800 rounded-xl">
+        <div className="border border-gray-600 w-full h-full text-4xl text-left py-10 px-4 rounded-xl">
             <div className="pb-2">24h change</div>
             {percentageChange > 0 ? (<div className="text-green-500 pb-2">+{percentageChange}%</div>) : (<div className="text-red-500 pb-2">{ percentageChange }%</div>) }
               {dollarChange > 0 ? (<div className="text-green-500 pb-2">{'+$' + Formatter(dollarChange)}</div>) : (<div className="text-red-500 pb-2">{Formatter(dollarChange)}$</div>) }
@@ -70,7 +70,7 @@ console.log(stable)
         
       </div>
 
-      <div className="bg-gray-800 w-[70%] my-2 rounded-xl border border-white">
+      <div className="border-gray-600 border w-[80%] my-2 rounded-xl">
       <ChartComponent id="charts" primaryXAxis={primaryxAxis} primaryYAxis={primaryyAxis} palettes={palette} legendSettings={legendSettings} tooltip={tooltip}>
 
         <Inject services={[ColumnSeries, Tooltip, LineSeries, DataLabel, Category, DateTime, Legend]} />
