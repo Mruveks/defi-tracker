@@ -6,6 +6,7 @@ import './App.css'
 import Navbar from './components/Navbar'
 
 import { Home, Stables, Yields, Bridges, Avax, Ethereum, Polygon, Arbitrum, Optimism, Bsc, Solana, Kava, Tron, Algorand, Fantom, Lending, CEX, DEX } from './pages/index'
+import ProtocolObject from './pages/protocols/ProtocolObject'
 
 function App() {
 
@@ -21,6 +22,8 @@ function App() {
         <Route path="/lending" element={<Lending />} />
         <Route path="/cex" element={<CEX />} />
         <Route path="/dex" element={<DEX />} />
+
+        <Route path="/protocols" element={<ProtocolObject />} />
 
         <Route path="/ethereum" element={<Ethereum />} />
         <Route path="/bsc" element={<Bsc />} />

@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import useComponentVisible from '../utilities/isComponentVisible'
-
+import ProtocolObject from '../pages/protocols/ProtocolObject';
 const SearchList = () => {
 
   const [protocols, setProtocols] = useState([])
   const [searchData, setSearchData] = useState("")
   const { ref, isComponentVisible } = useComponentVisible(true);
-
+  const [nav, setNav] = useState('#')
 
   useEffect(() => {
     axios.get('https://api.llama.fi/protocols')
@@ -47,8 +47,7 @@ const SearchList = () => {
               return (
                 <div key={key} className="flex p-2 items-center border-t-gray-600 border-t hover:bg-gray-600">
                   <img src={val.logo} alt="logo" className="h-8 w-8 rounded-full mr-2" />
-                  <a to={`/${val.name.toLowerCase()}`}>{val.name}</a>
-                  <Link to={`/${val.name.toLowerCase()}`} >{val.name}</Link>
+                  <Link to='/protocols' onClick={e => setNav(`#${val.name.toLowerCase()}`)}>{val.name}</Link>
                  
                 </div>
               )
