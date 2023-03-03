@@ -52,7 +52,6 @@ const YieldsRanking = () => {
     </div>
     <div className="h-max mb-10 mx-10 border rounded-xl border-gray-600 ">
       
-      
       <div className="grid grid-cols-7 p-2 border-gray-600 border-b text-right uppercase italic">
         <header className="text-left">Project</header>
         <header>Symbol</header>

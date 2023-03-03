@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import useComponentVisible from '../utilities/isComponentVisible'
-import ProtocolObject from '../pages/protocols/ProtocolObject';
 
 const SearchList = () => {
 
   const [protocols, setProtocols] = useState([])
   const [searchData, setSearchData] = useState("")
-  const { ref, isComponentVisible } = useComponentVisible(true);
-  const [nav, setNav] = useState('#')
 
   useEffect(() => {
     axios.get('https://api.llama.fi/protocols')

@@ -33,10 +33,10 @@ const ChartObject = ({chain}) => {
       })
   }, []);
 
-  const primaryxAxis = { valueType: 'Category', visible: false }
-  const primaryyAxis = { labelFormat: '${value}K', visible: false }
+  const primaryxAxis = { valueType: 'Category', visible: false}
+  const primaryyAxis = { visible: false, rangePadding: 'Additional', labelFormat: 'c2' }
   const legendSettings = { visible: true, textStyle: { color: 'white' } }
-  const tooltip = { enable: true, shared: false }
+  const tooltip = {enable: true}
   const palette = ["skyblue"]
 
   const num1 = parseFloat(day).toFixed(2)
@@ -52,20 +52,26 @@ const ChartObject = ({chain}) => {
         <div className="items-center w-[30%] p-2 flex flex-col justify-between gap-8">
           
           <div className="border border-gray-600 w-full h-full text-4xl text-left py-10 px-4 rounded-xl">
-              <div className=" pb-2">Total Value Locked</div>
-              <div className=" pb-2 text-blue-500">{'$' + Formatter(num2)}</div>
+            <div className=" pb-2">Total Value Locked</div>
+            <div className=" pb-2 text-blue-500">{'$' + Formatter(num2)}</div>
           </div>
             
-          <div className="border border-gray-600 w-full h-full text-4xl text-left py-10 px-4 rounded-xl">
-              <div className=" pb-2">24h Change</div>
-              {percentageChange > 0 ? (<div className="text-green-500  pb-2">+{percentageChange}%</div>) : (<div className="text-red-500 text-4xl pb-2">{ percentageChange }%</div>) }
-              {dollarChange > 0 ? (<div className="text-green-500  pb-2">{'+$' + Formatter(dollarChange)}</div>) : (<div className="text-red-500 text-4xl pb-2">${Formatter(dollarChange)}</div>) }
+          <div className="border border-gray-600 w-full h-full text-3xl text-left py-10 px-4 rounded-xl">
+              <div className="text-4xl pb-2">24h Change</div>
+              {percentageChange > 0 ?
+                <div className="text-green-500 pb-2">+{percentageChange}%</div>
+                : <div className="text-red-500 pb-2">{percentageChange + '%'}</div>
+              }
+              {dollarChange > 0 ?
+                <div className="text-green-500 pb-2">{'+$' + Formatter(dollarChange)}</div>
+                : <div className="text-red-500 pb-2">{'-$' + Formatter(dollarChange.slice(1, 14))}</div>
+              }
           </div>
           
         </div>
 
         <div className="border-gray-600 border w-[80%] my-2 rounded-xl">
-        <ChartComponent id="charts" primaryXAxis={primaryxAxis} primaryYAxis={primaryyAxis} palettes={palette} legendSettings={legendSettings} tooltip={tooltip}>
+        <ChartComponent id="charts" primaryXAxis={primaryxAxis} primaryYAxis={primaryyAxis} palettes={palette} legendSettings={legendSettings} tooltip={tooltip} useGroupingSeparator={true}>
 
           <Inject services={[ColumnSeries, Tooltip, LineSeries, DataLabel, Category, DateTime]} />
       

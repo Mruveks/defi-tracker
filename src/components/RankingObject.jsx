@@ -33,7 +33,8 @@ const RankingObject = ({ chain }) => {
     </div>
       
     {protocols.length ? (
-          protocols.filter(item => item.tvl != null && (item.chain === chain || item.category === chain) && item.tvl >= 100000).map(protocol =>
+        protocols.filter(item => item.tvl != null && (item.chain === chain || item.category === chain) && item.tvl >= 100000)
+          .map(protocol =>
             <div
               className={`grid ${(chain === 'Lending' || 'CEX' || 'DEX') ? "grid-cols-5" : "grid-cols-6"} items-center p-2 border-gray-600 border-t text-right`}
               key={protocol.id}
@@ -45,19 +46,19 @@ const RankingObject = ({ chain }) => {
               {(chain === 'Lending' || 'CEX' || 'DEX') ? null : <div>{protocol.category}</div>}
                            
               {
-                parseFloat(protocol.change_1h).toFixed(2) > 0 ?
+                protocol.change_1h > 0 ?
                   (<div className="text-green-500">+{parseFloat(protocol.change_1h).toFixed(2)}%</div>)
                   : (<div className="text-red-500">{parseFloat(protocol.change_1h).toFixed(2)}%</div>)
               }
               
               {
-                parseFloat(protocol.change_1d).toFixed(2) > 0 ?
+                protocol.change_1d > 0 ?
                   (<div className="text-green-500">+{parseFloat(protocol.change_1d).toFixed(2)}%</div>)
                   : (<div className="text-red-500">{parseFloat(protocol.change_1d).toFixed(2)}%</div>)
               }
               
               {
-                parseFloat(protocol.change_7d).toFixed(2) > 0 ?
+                protocol.change_7d > 0 ?
                   (<div className="text-green-500">+{parseFloat(protocol.change_7d).toFixed(2)}%</div>)
                   : (<div className="text-red-500">{parseFloat(protocol.change_7d).toFixed(2)}%</div>)
               }

@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import Loader from './Loader';
 import { Formatter } from '../utilities/Formatter';
+
 const TVLranking = () => {
 
   const [protocols, setProtocols] = useState([])
@@ -17,7 +18,6 @@ const TVLranking = () => {
         console.log(err)
       })
   }, []);
-
 
   return (
     <>
@@ -61,9 +61,8 @@ const TVLranking = () => {
         <header>TVL</header>
       </div>
 
-      { ( query === '') ?
-      
-        ( protocols.length ? (
+      { query === '' ?      
+        protocols.length ? 
           protocols.filter(item => item.tvl >= 1000000).map(protocol =>
             <div
               className="grid grid-cols-7 items-center p-2 border-gray-600 border-t text-right"
@@ -77,26 +76,28 @@ const TVLranking = () => {
               <div>{ protocol.category }</div>
               <div>{ protocol.chain }</div>
               
-              {(protocol.change_1h) > 0 ?
-                (<div className="text-green-500">+{parseFloat(protocol.change_1h).toFixed(2)}%</div>)
-                : (<div className="text-red-500">{parseFloat(protocol.change_1h).toFixed(2)}%</div>)}
+              {protocol.change_1h > 0 ?
+                <div className="text-green-500">+{parseFloat(protocol.change_1h).toFixed(2)}%</div>
+                : <div className="text-red-500">{parseFloat(protocol.change_1h).toFixed(2)}%</div>
+              }
               
-              {(protocol.change_1d) > 0 ?
-                (<div className="text-green-500">+{parseFloat(protocol.change_1d).toFixed(2)}%</div>)
-                : (<div className="text-red-500">{parseFloat(protocol.change_1d).toFixed(2)}%</div>)}
+              {protocol.change_1d > 0 ?
+                <div className="text-green-500">+{parseFloat(protocol.change_1d).toFixed(2)}%</div>
+                : <div className="text-red-500">{parseFloat(protocol.change_1d).toFixed(2)}%</div>
+              }
               
-              {(protocol.change_7d) > 0 ?
-                (<div className="text-green-500">+{parseFloat(protocol.change_7d).toFixed(2)}%</div>)
-                : (<div className="text-red-500">{parseFloat(protocol.change_7d).toFixed(2)}%</div>)}
+              {protocol.change_7d > 0 ?
+                <div className="text-green-500">+{parseFloat(protocol.change_7d).toFixed(2)}%</div>
+                : <div className="text-red-500">{parseFloat(protocol.change_7d).toFixed(2)}%</div>
+              }
               
               {'$' + Formatter(parseFloat(protocol.tvl))}
               
-            </div>)
+            </div>
           ) : <Loader />
-        )
       :
-        ( protocols.length ?
-          ( protocols.filter(item => ( item.tvl != null && item.chain === query && item.tvl >= 1000000)).map(protocol =>
+        protocols.length ?
+          protocols.filter(item => ( item.tvl != null && item.chain === query && item.tvl >= 1000000)).map(protocol =>
             <div
               className="grid grid-cols-7 items-center p-2 border-gray-600 border-b text-right"
               key={protocol.id}
@@ -109,23 +110,25 @@ const TVLranking = () => {
               <div>{ protocol.category }</div>
               <div>{ protocol.chain }</div>
               
-              {(protocol.change_1h) > 0 ?
-                (<div className="text-green-500">+{parseFloat(protocol.change_1h).toFixed(2)}%</div>)
-                : (<div className="text-red-500">{parseFloat(protocol.change_1h).toFixed(2)}%</div>)}
+              {protocol.change_1h > 0 ?
+                <div className="text-green-500">+{parseFloat(protocol.change_1h).toFixed(2)}%</div>
+                : <div className="text-red-500">{parseFloat(protocol.change_1h).toFixed(2)}%</div>
+              }
               
-              {(protocol.change_1d) > 0 ?
-                (<div className="text-green-500">+{parseFloat(protocol.change_1d).toFixed(2)}%</div>)
-                : (<div className="text-red-500">{parseFloat(protocol.change_1d).toFixed(2)}%</div>)}
+              {protocol.change_1d > 0 ?
+                <div className="text-green-500">+{parseFloat(protocol.change_1d).toFixed(2)}%</div>
+                : <div className="text-red-500">{parseFloat(protocol.change_1d).toFixed(2)}%</div>
+              }
               
-              {(protocol.change_7d) > 0 ?
-                (<div className="text-green-500">+{parseFloat(protocol.change_7d).toFixed(2)}%</div>)
-                : (<div className="text-red-500">{parseFloat(protocol.change_7d).toFixed(2)}%</div>)}
+              {protocol.change_7d > 0 ?
+                <div className="text-green-500">+{parseFloat(protocol.change_7d).toFixed(2)}%</div>
+                : <div className="text-red-500">{parseFloat(protocol.change_7d).toFixed(2)}%</div>
+              }
               
               {'$' + Formatter(parseFloat(protocol.tvl))}
 
-            </div>)
-          ) : <Loader />
-        )
+            </div>
+          ) : <Loader />        
       }
       
       </div>
