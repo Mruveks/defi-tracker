@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 import Loader from './Loader';
 import { Formatter } from '../utilities/Formatter';
+import CalculateChange from '../utilities/CalculateChange';
 
 const StablesRanking = () => {
 
@@ -43,72 +44,56 @@ const StablesRanking = () => {
 
               {stable.price ? (`${parseFloat(stable.price).toFixed(4)}` >= 1 ? (<div className="text-green-500">{parseFloat(stable.price).toFixed(4)}$</div>):(<div className="text-red-500">{parseFloat(stable.price).toFixed(4)}$</div>)) : ('')}
 
-             <div>{stable.pegType.slice(6)}</div>
+              <div>{stable.pegType.slice(6)}</div>
               <div>{stable.pegMechanism}</div>
               
               {/* CALCULATING DAILY CHANGE */}
               {stable.circulating.peggedEUR ?
                 (stable.circulatingPrevDay.peggedEUR ?
-                  (`${parseFloat(((parseFloat(stable.circulating.peggedEUR).toFixed(2) - parseFloat(stable.circulatingPrevDay.peggedEUR).toFixed(2)) / parseFloat(stable.circulatingPrevDay.peggedEUR).toFixed(2)) * 100).toFixed(2)}` > 0 ?
-                    (<div className="text-green-500">+{parseFloat(((parseFloat(stable.circulating.peggedEUR).toFixed(2) - parseFloat(stable.circulatingPrevDay.peggedEUR).toFixed(2)) / parseFloat(stable.circulatingPrevDay.peggedEUR).toFixed(2)) * 100).toFixed(2)}%</div>
-                    ) : (<div className="text-red-500">{parseFloat(((parseFloat(stable.circulating.peggedEUR).toFixed(2) - parseFloat(stable.circulatingPrevDay.peggedEUR).toFixed(2)) / parseFloat(stable.circulatingPrevDay.peggedEUR).toFixed(2)) * 100).toFixed(2)}%</div>)) : (''))
+                  (<CalculateChange lastDay={stable.circulating.peggedEUR} today={stable.circulatingPrevDay.peggedEUR} />) : null)
                 : null}
-                
+              
               {stable.circulating.peggedUSD ?
                 (stable.circulatingPrevDay.peggedUSD ?
-                  (`${parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevDay.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevDay.peggedUSD).toFixed(2)) * 100).toFixed(2)}` > 0 ?
-                    (<div className="text-green-500">+{parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevDay.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevDay.peggedUSD).toFixed(2)) * 100).toFixed(2)}%</div>
-                    ) : (<div className="text-red-500">{parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevDay.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevDay.peggedUSD).toFixed(2)) * 100).toFixed(2)}%</div>)) : (''))
+                  (<CalculateChange lastDay={stable.circulating.peggedUSD} today={stable.circulatingPrevDay.peggedUSD} />) : null)
                 : null}
               
               {stable.circulating.peggedVAR ?
-                (stable.circulatingPrevWeek.peggedVAR ?
-                  (`${parseFloat(((parseFloat(stable.circulating.peggedVAR).toFixed(2) - parseFloat(stable.circulatingPrevDay.peggedVAR).toFixed(2)) / parseFloat(stable.circulatingPrevDay.peggedVAR).toFixed(2)) * 100).toFixed(2)}` > 0 ?
-                    (<div className="text-green-500">+{parseFloat(((parseFloat(stable.circulating.peggedVAR).toFixed(2) - parseFloat(stable.circulatingPrevDay.peggedVAR).toFixed(2)) / parseFloat(stable.circulatingPrevDay.peggedVAR).toFixed(2)) * 100).toFixed(2)}%</div>
-                    ) : (<div className="text-red-500">{parseFloat(((parseFloat(stable.circulating.peggedVAR).toFixed(2) - parseFloat(stable.circulatingPrevDay.peggedVAR).toFixed(2)) / parseFloat(stable.circulatingPrevDay.peggedVAR).toFixed(2)) * 100).toFixed(2)}%</div>)) : (''))
+                (stable.circulatingPrevDay.peggedVAR ?
+                  (<CalculateChange lastDay={stable.circulating.peggedVAR} today={stable.circulatingPrevDay.peggedVAR} />) : null)
                 : null}
               
               {/* CALCULATING WEEKLY CHANGE */}
               {stable.circulating.peggedEUR ?
                 (stable.circulatingPrevWeek.peggedEUR ?
-                  (`${parseFloat(((parseFloat(stable.circulating.peggedEUR).toFixed(2) - parseFloat(stable.circulatingPrevWeek.peggedEUR).toFixed(2)) / parseFloat(stable.circulatingPrevWeek.peggedEUR).toFixed(2)) * 100).toFixed(2)}` > 0 ?
-                    (<div className="text-green-500">+{parseFloat(((parseFloat(stable.circulating.peggedEUR).toFixed(2) - parseFloat(stable.circulatingPrevWeek.peggedEUR).toFixed(2)) / parseFloat(stable.circulatingPrevWeek.peggedEUR).toFixed(2)) * 100).toFixed(2)}%</div>
-                    ) : (<div className="text-red-500">{parseFloat(((parseFloat(stable.circulating.peggedEUR).toFixed(2) - parseFloat(stable.circulatingPrevWeek.peggedEUR).toFixed(2)) / parseFloat(stable.circulatingPrevWeek.peggedEUR).toFixed(2)) * 100).toFixed(2)}%</div>)) : (''))
+                  (<CalculateChange lastDay={stable.circulating.peggedEUR} today={stable.circulatingPrevWeek.peggedEUR} />) : null)
                 : null}
-                
+
               {stable.circulating.peggedUSD ?
                 (stable.circulatingPrevWeek.peggedUSD ?
-                  (`${parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevWeek.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevWeek.peggedUSD).toFixed(2)) * 100).toFixed(2)}` > 0 ?
-                    (<div className="text-green-500">+{parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevWeek.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevWeek.peggedUSD).toFixed(2)) * 100).toFixed(2)}%</div>
-                    ) : (<div className="text-red-500">{parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevWeek.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevWeek.peggedUSD).toFixed(2)) * 100).toFixed(2)}%</div>)) : (''))
+                  (<CalculateChange lastDay={stable.circulating.peggedUSD} today={stable.circulatingPrevWeek.peggedUSD} />) : null)
                 : null}
-              
+
               {stable.circulating.peggedVAR ?
                 (stable.circulatingPrevWeek.peggedVAR ?
-                  (`${parseFloat(((parseFloat(stable.circulating.peggedVAR).toFixed(2) - parseFloat(stable.circulatingPrevWeek.peggedVAR).toFixed(2)) / parseFloat(stable.circulatingPrevWeek.peggedVAR).toFixed(2)) * 100).toFixed(2)}` > 0 ?
-                    (<div className="text-green-500">+{parseFloat(((parseFloat(stable.circulating.peggedVAR).toFixed(2) - parseFloat(stable.circulatingPrevWeek.peggedVAR).toFixed(2)) / parseFloat(stable.circulatingPrevWeek.peggedVAR).toFixed(2)) * 100).toFixed(2)}%</div>
-                    ) : (<div className="text-red-500">{parseFloat(((parseFloat(stable.circulating.peggedVAR).toFixed(2) - parseFloat(stable.circulatingPrevWeek.peggedVAR).toFixed(2)) / parseFloat(stable.circulatingPrevWeek.peggedVAR).toFixed(2)) * 100).toFixed(2)}%</div>)) : (''))
+                  (<CalculateChange lastDay={stable.circulating.peggedVAR} today={stable.circulatingPrevWeek.peggedVAR} />) : null)
                 : null}
                 
-                {/*CULATING MONTHLY CHANGE */}
+                {/* CALCULATING MONTHLY CHANGE */}
               {stable.circulating.peggedEUR ?
                 (stable.circulatingPrevMonth.peggedEUR ?
-                  (`${parseFloat(((parseFloat(stable.circulating.peggedEUR).toFixed(2) - parseFloat(stable.circulatingPrevMonth.peggedEUR).toFixed(2)) / parseFloat(stable.circulatingPrevMonth.peggedEUR).toFixed(2)) * 100).toFixed(2)}` > 0 ?
-                    (<div className="text-green-500">+{parseFloat(((parseFloat(stable.circulating.peggedEUR).toFixed(2) - parseFloat(stable.circulatingPrevMonth.peggedEUR).toFixed(2)) / parseFloat(stable.circulatingPrevMonth.peggedEUR).toFixed(2)) * 100).toFixed(2)}%</div>
-                    ) : (<div className="text-red-500">{parseFloat(((parseFloat(stable.circulating.peggedEUR).toFixed(2) - parseFloat(stable.circulatingPrevMonth.peggedEUR).toFixed(2)) / parseFloat(stable.circulatingPrevMonth.peggedEUR).toFixed(2)) * 100).toFixed(2)}%</div>)) : (''))
+                  (<CalculateChange lastDay={stable.circulating.peggedEUR} today={stable.circulatingPrevMonth.peggedEUR} />) : null)
                 : null}
-              {stable.circulating.peggedUSD ?
-              (stable.circulatingPrevMonth.peggedUSD ?
-                (`${parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevMonth.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevMonth.peggedUSD).toFixed(2)) * 100).toFixed(2)}` > 0 ?
-                  (<div className="text-green-500">+{parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevMonth.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevMonth.peggedUSD).toFixed(2)) * 100).toFixed(2)}%</div>
-                  ) : (<div className="text-red-500">{parseFloat(((parseFloat(stable.circulating.peggedUSD).toFixed(2) - parseFloat(stable.circulatingPrevMonth.peggedUSD).toFixed(2)) / parseFloat(stable.circulatingPrevMonth.peggedUSD).toFixed(2)) * 100).toFixed(2)}%</div>)) : null) : null}
               
+              {stable.circulating.peggedUSD ?
+                (stable.circulatingPrevMonth.peggedUSD ?
+                  (<CalculateChange lastDay={stable.circulating.peggedUSD} today={stable.circulatingPrevMonth.peggedUSD} />) : null)
+                : null}
+
               {stable.circulating.peggedVAR ?
-              (stable.circulatingPrevMonth.peggedVAR ?
-                (`${parseFloat(((parseFloat(stable.circulating.peggedVAR).toFixed(2) - parseFloat(stable.circulatingPrevMonth.peggedVAR).toFixed(2)) / parseFloat(stable.circulatingPrevMonth.peggedVAR).toFixed(2)) * 100).toFixed(2)}` > 0 ?
-                  (<div className="text-green-500">+{parseFloat(((parseFloat(stable.circulating.peggedVAR).toFixed(2) - parseFloat(stable.circulatingPrevMonth.peggedVAR).toFixed(2)) / parseFloat(stable.circulatingPrevMonth.peggedVAR).toFixed(2)) * 100).toFixed(2)}%</div>
-                  ) : (<div className="text-red-500">{parseFloat(((parseFloat(stable.circulating.peggedVAR).toFixed(2) - parseFloat(stable.circulatingPrevMonth.peggedVAR).toFixed(2)) / parseFloat(stable.circulatingPrevMonth.peggedVAR).toFixed(2)) * 100).toFixed(2)}%</div>)) : null) : null}
-               
+                (stable.circulatingPrevMonth.peggedVAR ?
+                  (<CalculateChange lastDay={stable.circulating.peggedVAR} today={stable.circulatingPrevMonth.peggedVAR} />) : null)
+                : null}
                       
               {stable.circulating.peggedUSD ? ('$' + Formatter(parseFloat(stable.circulating.peggedUSD))) : null}
               {stable.circulating.peggedEUR ? ('$' + Formatter(parseFloat(stable.circulating.peggedEUR * 1.06))) : null}

@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import { Formatter } from '../utilities/Formatter';
 import Loader from './Loader';
+import CalculateChange from '../utilities/CalculateChange';
 
 
 const BridgesRanking = () => {
@@ -36,15 +37,13 @@ const BridgesRanking = () => {
           className="grid grid-cols-5 text-right p-2 border-gray-600 border-t" 
           key={bridge.id}
           >
-             <div className="text-left text-blue-400">{ bridge.displayName }</div>
+            <div className="text-left text-blue-400">{ bridge.displayName }</div>
 
             <div className="capitalize">{bridge.name}</div>
 
-            
-            { (((bridge.volumePrevDay - bridge.dayBeforeLastVolume) / bridge.dayBeforeLastVolume) * 100).toFixed(2) > 0 ? (<div className="text-green-500">+{(((bridge.volumePrevDay - bridge.dayBeforeLastVolume) / bridge.dayBeforeLastVolume) * 100).toFixed(2)}%</div>):(<div className="text-red-500">{(((bridge.volumePrevDay - bridge.dayBeforeLastVolume) / bridge.dayBeforeLastVolume) * 100).toFixed(2)}%</div>)}
-
-            <div>{'$' + Formatter(parseFloat(bridge.currentDayVolume))}</div>
-            
+            <div><CalculateChange lastDay={bridge.dayBeforeLastVolume} today={bridge.volumePrevDay} /></div>
+           
+            <div>{'$' + Formatter(parseFloat(bridge.currentDayVolume))}</div>        
             <div>{'$' + Formatter(parseFloat(bridge.monthlyVolume))}</div>
             
           </div>

@@ -61,64 +61,70 @@ const TVLranking = () => {
         <header>TVL</header>
       </div>
 
-        { ( query === '') ?
+      { ( query === '') ?
       
-      ( protocols.length ? (
+        ( protocols.length ? (
           protocols.filter(item => item.tvl >= 1000000).map(protocol =>
             <div
               className="grid grid-cols-7 items-center p-2 border-gray-600 border-t text-right"
               key={protocol.id}
             >
               <div className="flex w-[140%] text-left">
-              <img src={ protocol.logo } alt="logo" className="h-8 w-8 rounded-full" />
-              <a href={ protocol.url } alt="site" target="_blank" className="w-full h-full px-2 my-auto text-blue">{ protocol.name }</a>
+                <img src={ protocol.logo } alt="logo" className="h-8 w-8 rounded-full" />
+                <a href={ protocol.url } alt="site" target="_blank" className="w-full h-full px-2 my-auto text-blue">{ protocol.name }</a>
               </div>
 
               <div>{ protocol.category }</div>
               <div>{ protocol.chain }</div>
-                
-               
               
-                { `${parseFloat(protocol.change_1h).toFixed(2)}` > 0 ? (<div className="text-green-500">+{parseFloat(protocol.change_1h).toFixed(2)}%</div>):(<div className="text-red-500">{parseFloat(protocol.change_1h).toFixed(2)}%</div>)}
+              {(protocol.change_1h) > 0 ?
+                (<div className="text-green-500">+{parseFloat(protocol.change_1h).toFixed(2)}%</div>)
+                : (<div className="text-red-500">{parseFloat(protocol.change_1h).toFixed(2)}%</div>)}
               
-                {`${parseFloat(protocol.change_1d).toFixed(2)}` > 0 ? (<div className="text-green-500">+{parseFloat(protocol.change_1d).toFixed(2)}%</div>):(<div className="text-red-500">{parseFloat(protocol.change_1d).toFixed(2)}%</div>)}
+              {(protocol.change_1d) > 0 ?
+                (<div className="text-green-500">+{parseFloat(protocol.change_1d).toFixed(2)}%</div>)
+                : (<div className="text-red-500">{parseFloat(protocol.change_1d).toFixed(2)}%</div>)}
               
-                {`${parseFloat(protocol.change_7d).toFixed(2)}` > 0 ? (<div className="text-green-500">+{parseFloat(protocol.change_7d).toFixed(2)}%</div>):(<div className="text-red-500">{parseFloat(protocol.change_7d).toFixed(2)}%</div>)}
+              {(protocol.change_7d) > 0 ?
+                (<div className="text-green-500">+{parseFloat(protocol.change_7d).toFixed(2)}%</div>)
+                : (<div className="text-red-500">{parseFloat(protocol.change_7d).toFixed(2)}%</div>)}
               
-                {'$' + Formatter(parseFloat(protocol.tvl))}
+              {'$' + Formatter(parseFloat(protocol.tvl))}
               
-
             </div>)
-        ) : <Loader />
-      )
-
+          ) : <Loader />
+        )
       :
-
-      ( protocols.length ? (
-          protocols.filter(item => ( item.tvl != null && item.chain === query && item.tvl >= 1000000)).map(protocol =>
+        ( protocols.length ?
+          ( protocols.filter(item => ( item.tvl != null && item.chain === query && item.tvl >= 1000000)).map(protocol =>
             <div
               className="grid grid-cols-7 items-center p-2 border-gray-600 border-b text-right"
               key={protocol.id}
             >
               <div className="flex w-[140%] text-left">
-              <img src={ protocol.logo } alt="logo" className="h-8 w-8 rounded-full" />
-              <a href={ protocol.url } alt="site" target="_blank" className="w-full h-full px-2 my-auto">{ protocol.name }</a>
+                <img src={ protocol.logo } alt="logo" className="h-8 w-8 rounded-full" />
+                <a href={ protocol.url } alt="site" target="_blank" className="w-full h-full px-2 my-auto">{ protocol.name }</a>
               </div>
 
               <div>{ protocol.category }</div>
               <div>{ protocol.chain }</div>
               
-                { `${parseFloat(protocol.change_1h).toFixed(2)}` > 0 ? (<div className="text-green-500">+{parseFloat(protocol.change_1h).toFixed(2)}%</div>):(<div className="text-red-500">{parseFloat(protocol.change_1h).toFixed(2)}%</div>)}
+              {(protocol.change_1h) > 0 ?
+                (<div className="text-green-500">+{parseFloat(protocol.change_1h).toFixed(2)}%</div>)
+                : (<div className="text-red-500">{parseFloat(protocol.change_1h).toFixed(2)}%</div>)}
               
-                {`${parseFloat(protocol.change_1d).toFixed(2)}` > 0 ? (<div className="text-green-500">+{parseFloat(protocol.change_1d).toFixed(2)}%</div>):(<div className="text-red-500">{parseFloat(protocol.change_1d).toFixed(2)}%</div>)}
+              {(protocol.change_1d) > 0 ?
+                (<div className="text-green-500">+{parseFloat(protocol.change_1d).toFixed(2)}%</div>)
+                : (<div className="text-red-500">{parseFloat(protocol.change_1d).toFixed(2)}%</div>)}
               
-                {`${parseFloat(protocol.change_7d).toFixed(2)}` > 0 ? (<div className="text-green-500">+{parseFloat(protocol.change_7d).toFixed(2)}%</div>):(<div className="text-red-500">{parseFloat(protocol.change_7d).toFixed(2)}%</div>)}
+              {(protocol.change_7d) > 0 ?
+                (<div className="text-green-500">+{parseFloat(protocol.change_7d).toFixed(2)}%</div>)
+                : (<div className="text-red-500">{parseFloat(protocol.change_7d).toFixed(2)}%</div>)}
               
-                {'$' + Formatter(parseFloat(protocol.tvl))}
-              
+              {'$' + Formatter(parseFloat(protocol.tvl))}
 
             </div>)
-        ) : <Loader />
+          ) : <Loader />
         )
       }
       

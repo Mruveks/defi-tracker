@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react'
 import Loader from './Loader';
 import axios from 'axios';
 import { Formatter } from '../utilities/Formatter';
+import CalculateChange from '../utilities/CalculateChange';
 
 const RankingObject = ({ chain }) => {
   
@@ -17,9 +18,7 @@ const RankingObject = ({ chain }) => {
       })
   }, []);
   console.log(chain)
-
-  /* dodac support dla mini chartow tvl**/
-
+  
   return (
     <div className="h-max m-10 border rounded-xl border-gray-600 p-2">
 
@@ -44,17 +43,26 @@ const RankingObject = ({ chain }) => {
                 <a href={protocol.url} alt="site" target="_blank" className="w-full h-full px-2 my-auto">{protocol.name}</a>
               </div>
               {(chain === 'Lending' || 'CEX' || 'DEX') ? null : <div>{protocol.category}</div>}
+                           
+              {
+                parseFloat(protocol.change_1h).toFixed(2) > 0 ?
+                  (<div className="text-green-500">+{parseFloat(protocol.change_1h).toFixed(2)}%</div>)
+                  : (<div className="text-red-500">{parseFloat(protocol.change_1h).toFixed(2)}%</div>)
+              }
               
+              {
+                parseFloat(protocol.change_1d).toFixed(2) > 0 ?
+                  (<div className="text-green-500">+{parseFloat(protocol.change_1d).toFixed(2)}%</div>)
+                  : (<div className="text-red-500">{parseFloat(protocol.change_1d).toFixed(2)}%</div>)
+              }
               
-                { `${parseFloat(protocol.change_1h).toFixed(2)}` > 0 ? (<div className="text-green-500">+{parseFloat(protocol.change_1h).toFixed(2)}%</div>):(<div className="text-red-500">{parseFloat(protocol.change_1h).toFixed(2)}%</div>)}
+              {
+                parseFloat(protocol.change_7d).toFixed(2) > 0 ?
+                  (<div className="text-green-500">+{parseFloat(protocol.change_7d).toFixed(2)}%</div>)
+                  : (<div className="text-red-500">{parseFloat(protocol.change_7d).toFixed(2)}%</div>)
+              }
               
-                {`${parseFloat(protocol.change_1d).toFixed(2)}` > 0 ? (<div className="text-green-500">+{parseFloat(protocol.change_1d).toFixed(2)}%</div>):(<div className="text-red-500">{parseFloat(protocol.change_1d).toFixed(2)}%</div>)}
-              
-                {`${parseFloat(protocol.change_7d).toFixed(2)}` > 0 ? (<div className="text-green-500">+{parseFloat(protocol.change_7d).toFixed(2)}%</div>):(<div className="text-red-500">{parseFloat(protocol.change_7d).toFixed(2)}%</div>)}
-              
-                {'$' + Formatter(parseFloat(protocol.tvl))}
-              
-
+              {'$' + Formatter(parseFloat(protocol.tvl))}
             </div>)
         ) : <Loader />
         }

@@ -1,22 +1,10 @@
 import React,{useState} from 'react'
 import { NavLink } from 'react-router-dom'
-
 import {BsPercent, BsCoin, BsBank, BsCodeSlash, BsBarChart} from 'react-icons/bs'
 import { GiRialtoBridge } from 'react-icons/gi'
 import { RiHandCoinLine } from 'react-icons/ri'
 
-import eth from '../assets/ethereum.png'
-import bsc from '../assets/bsc.png'
-import avax from '../assets/avalanche.png'
-import polygon from '../assets/polygon.png'
-import arbitrum from '../assets/arbitrum.png'
-import optimism from '../assets/optimism.png'
-import solana from '../assets/solana.png'
-import algorand from '../assets/algorand.png'
-import kava from '../assets/kava.png'
-import ftm from '../assets/fantom.png'
-import tron from '../assets/tron.png'
-
+import { eth, bsc, avax, polygon, optimism, solana, tron, kava, ftm, algo, arbitrum } from '../assets/AssetsIndex.js'
 
 const Navbar = () => {
 
@@ -122,7 +110,7 @@ const Navbar = () => {
         <li>
           <NavLink to="/algorand" onClick={() => setActiveNav('/algorand')}
             className={`${activeNav === '/algorand' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
-          ><img src={algorand} alt="" className="rounded-full mr-2" />Algorand</NavLink>
+          ><img src={algo} alt="" className="rounded-full mr-2" />Algorand</NavLink>
         </li>
         <li>
           <NavLink to="/kava" onClick={() => setActiveNav('/kava')}

@@ -76,21 +76,21 @@ const YieldsRanking = () => {
               <div>{pool.chain}</div>
               
 
-              {pool.apy ? (<div>{parseFloat(pool.apy).toFixed(2) + '%'}</div>) : (<div> </div>)}
+              {pool.apy ? (<div>{parseFloat(pool.apy).toFixed(2) + '%'}</div>) : null}
 
-              {pool.apyBase ? (<div>{parseFloat(pool.apyBase).toFixed(2)  + '%'}</div>) : (<div> </div>)}
+              {pool.apyBase ? (<div>{parseFloat(pool.apyBase).toFixed(2)  + '%'}</div>) : null}
 
-              {pool.apyReward ? (<div>{parseFloat(pool.apyReward).toFixed(2)  + '%'}</div>) : (<div> </div>)}
+              {pool.apyReward ? (<div>{parseFloat(pool.apyReward).toFixed(2)  + '%'}</div>) : null}
 
-                {'$' + Formatter(parseFloat(pool.tvlUsd)) }
+              {'$' + Formatter(parseFloat(pool.tvlUsd)) }
               
-            </div>)
-        )
-          : (<Loader />))
+            </div>
+          )
+        ) : (<Loader />))
         
-        :
+      :
       
-        (Yields.length ?
+      (Yields.length ?
         (
           Yields.filter(item => item.apy != null && item.apy != '0' && item.tvlUsd >= 1000000 && item.chain === query).map(pool =>
             <div
@@ -102,19 +102,18 @@ const YieldsRanking = () => {
               <div>{pool.chain}</div>
               
 
-              {pool.apy ? (<div>{parseFloat(pool.apy).toFixed(2) + '%'}</div>) : (<div> </div>)}
+              {pool.apy ? (<div>{parseFloat(pool.apy).toFixed(2) + '%'}</div>) : null}
 
-              {pool.apyBase ? (<div>{parseFloat(pool.apyBase).toFixed(2)  + '%'}</div>) : (<div> </div>)}
+              {pool.apyBase ? (<div>{parseFloat(pool.apyBase).toFixed(2)  + '%'}</div>) : null}
 
-              {pool.apyReward ? (<div>{parseFloat(pool.apyReward).toFixed(2)  + '%'}</div>) : (<div> </div>)}
+              {pool.apyReward ? (<div>{parseFloat(pool.apyReward).toFixed(2)  + '%'}</div>) : null}
 
-                {'$' + Formatter(parseFloat(pool.tvlUsd)) }
+              {'$' + Formatter(parseFloat(pool.tvlUsd)) }
               
             </div>)
+          ): (<Loader />)
         )
-          : (<Loader />))}
-
-
+      }
       </div>
     </>
   )
