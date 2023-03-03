@@ -2,7 +2,6 @@ import React, { useState, useEffect} from 'react'
 import Loader from './Loader';
 import axios from 'axios';
 import { Formatter } from '../utilities/Formatter';
-import CalculateChange from '../utilities/CalculateChange';
 
 const RankingObject = ({ chain }) => {
   
@@ -32,7 +31,7 @@ const RankingObject = ({ chain }) => {
       <header>TVL</header>
     </div>
       
-    {protocols.length ? (
+    {protocols.length ? 
         protocols.filter(item => item.tvl != null && (item.chain === chain || item.category === chain) && item.tvl >= 100000)
           .map(protocol =>
             <div
@@ -47,25 +46,25 @@ const RankingObject = ({ chain }) => {
                            
               {
                 protocol.change_1h > 0 ?
-                  (<div className="text-green-500">+{parseFloat(protocol.change_1h).toFixed(2)}%</div>)
-                  : (<div className="text-red-500">{parseFloat(protocol.change_1h).toFixed(2)}%</div>)
+                  <div className="text-green-500">+{parseFloat(protocol.change_1h).toFixed(2)}%</div>
+                  : <div className="text-red-500">{parseFloat(protocol.change_1h).toFixed(2)}%</div>
               }
               
               {
                 protocol.change_1d > 0 ?
-                  (<div className="text-green-500">+{parseFloat(protocol.change_1d).toFixed(2)}%</div>)
-                  : (<div className="text-red-500">{parseFloat(protocol.change_1d).toFixed(2)}%</div>)
+                  <div className="text-green-500">+{parseFloat(protocol.change_1d).toFixed(2)}%</div>
+                  : <div className="text-red-500">{parseFloat(protocol.change_1d).toFixed(2)}%</div>
               }
               
               {
                 protocol.change_7d > 0 ?
-                  (<div className="text-green-500">+{parseFloat(protocol.change_7d).toFixed(2)}%</div>)
-                  : (<div className="text-red-500">{parseFloat(protocol.change_7d).toFixed(2)}%</div>)
+                  <div className="text-green-500">+{parseFloat(protocol.change_7d).toFixed(2)}%</div>
+                  : <div className="text-red-500">{parseFloat(protocol.change_7d).toFixed(2)}%</div>
               }
               
               {'$' + Formatter(parseFloat(protocol.tvl))}
             </div>)
-        ) : <Loader />
+        : <Loader />
         }
 
 

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
+
 import Loader from './Loader';
 import { Formatter } from '../utilities/Formatter';
 import CalculateChange from '../utilities/CalculateChange';
@@ -12,7 +13,6 @@ const StablesRanking = () => {
     axios.get('https://stablecoins.llama.fi/stablecoins?includePrices=true')
       .then(res => {
         setStables(res.data.peggedAssets)
-        console.log(stables)
       })
       .catch(err => console.log(err))
   }, []);
@@ -32,7 +32,7 @@ const StablesRanking = () => {
         <header className="text-right">MarketCap</header>
       </div>
 
-      { stables.length ? (
+      { stables.length ? 
           stables.filter(item => (item.circulating.peggedUSD >= 1000000 || item.circulating.peggedEUR >= 1000000 || item.circulating.peggedVAR >= 1000000) && item.price != null)
             .map(stable =>
             <div
@@ -101,9 +101,9 @@ const StablesRanking = () => {
                       
               {stable.circulating.peggedUSD ? ('$' + Formatter(parseFloat(stable.circulating.peggedUSD))) : null}
               {stable.circulating.peggedEUR ? ('$' + Formatter(parseFloat(stable.circulating.peggedEUR * 1.08))) : null}
-              {stable.circulating.peggedVAR ? ('$' + Formatter(parseFloat(stable.circulating.peggedVAR) )) : null}
+              {stable.circulating.peggedVAR ? ('$' + Formatter(parseFloat(stable.circulating.peggedVAR))) : null}
             </div>)
-      ) : <Loader />}
+      : <Loader />}
       
     </div>
   </>

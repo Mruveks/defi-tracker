@@ -28,10 +28,9 @@ const BridgesRanking = () => {
         <header>1d volume change</header>
         <header>Today's Volume</header>
         <header>Monthly Volume</header>
- 
 
       </div>
-      {bridges ? (
+      {bridges ?
         bridges.filter(bridge => bridge.currentDayVolume > 1000).map(bridge => 
           <div
           className="grid grid-cols-5 text-right p-2 border-gray-600 border-t" 
@@ -43,13 +42,13 @@ const BridgesRanking = () => {
 
             <div><CalculateChange lastDay={bridge.dayBeforeLastVolume} today={bridge.volumePrevDay} /></div>
            
-            <div>{'$' + Formatter(parseFloat(bridge.currentDayVolume))}</div>        
+            <div>{'$' + Formatter(parseFloat(bridge.currentDayVolume))}</div>
+            
             <div>{'$' + Formatter(parseFloat(bridge.monthlyVolume))}</div>
             
           </div>
         )
-      )  : (<Loader />)
-        
+       : <Loader />
       }
     
     </div>

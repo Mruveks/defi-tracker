@@ -55,8 +55,8 @@ const TVLchart = () => {
               <div className="pb-2 text-blue-500">{'$' + Formatter(num2)}</div>
           </div>
             
-          <div className="border border-gray-600 w-full h-full text-3xl text-left py-10 px-4 rounded-xl">
-              <div className="text-4xl pb-2">24h Change</div>
+          <div className="border border-gray-600 w-full h-full text-4xl text-left py-10 px-4 rounded-xl">
+              <div className="pb-2">24h Change</div>
               {percentageChange > 0 ?
                 <div className="text-green-500 pb-2">+{percentageChange}%</div>
                 : <div className="text-red-500 pb-2">{percentageChange + '%'}</div>
