@@ -34,7 +34,7 @@ const SearchList = () => {
       </div>
 
         <div className="max-h-60 z-10 absolute ml-8 mr-6 right-4 left-52 border-gray-600 border bg-gray-900 rounded-b-xl overflow-y-auto">
-          {protocols.filter((val) => {
+          {protocols.filter(val => {
               if (searchData === "") {
                 return null
               } else if (val.name.toLowerCase().includes(searchData.toLowerCase())) {
@@ -44,8 +44,7 @@ const SearchList = () => {
               return (
                 <div key={key} className="flex p-2 items-center border-t-gray-600 border-t hover:bg-gray-600">
                   <img src={val.logo} alt="logo" className="h-8 w-8 rounded-full mr-2" />
-                  <Link to='/protocols' onClick={(e) => setNav(`#${val.name.toLowerCase()}`)}>{val.name}</Link>
-                 
+                  <Link to='/protocols' onClick={(e) => setNav(`#${val.name.toLowerCase()}`)}>{val.name}</Link>                 
                 </div>
               )
             })

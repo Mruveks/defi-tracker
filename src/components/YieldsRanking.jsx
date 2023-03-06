@@ -53,7 +53,7 @@ const YieldsRanking = () => {
     </div>
     <div className="h-max mb-10 mx-10 border rounded-xl border-gray-600 p-2">
       
-      <div className="grid grid-cols-7 p-2 border-gray-600 border-b text-right uppercase italic">
+      <div className="grid grid-cols-7 p-2 text-right uppercase italic">
         <header className="text-left">Project</header>
         <header>Symbol</header>
         <header>Chain</header>
@@ -75,11 +75,11 @@ const YieldsRanking = () => {
               <div>{pool.chain}</div>
               
 
-              {pool.apy ? (<div>{parseFloat(pool.apy).toFixed(2) + '%'}</div>) : null}
+              {pool.apy ? <div>{parseFloat(pool.apy).toFixed(2) + '%'}</div> : null}
 
-              {pool.apyBase ? (<div>{parseFloat(pool.apyBase).toFixed(2)  + '%'}</div>) : null}
+              {pool.apyBase ? <div>{parseFloat(pool.apyBase).toFixed(2)  + '%'}</div> : null}
 
-              {pool.apyReward ? (<div>{parseFloat(pool.apyReward).toFixed(2)  + '%'}</div>) : null}
+              {pool.apyReward ? <div>{parseFloat(pool.apyReward).toFixed(2)  + '%'}</div> : null}
 
               {'$' + Formatter(parseFloat(pool.tvlUsd)) }
               

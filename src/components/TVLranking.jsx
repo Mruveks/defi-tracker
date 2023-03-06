@@ -101,7 +101,7 @@ const TVLranking = () => {
         protocols.length ?
           protocols.filter(item => ( item.tvl != null && item.chain === query && item.tvl >= 1000000)).map(protocol =>
             <div
-              className="grid grid-cols-7 items-center p-2 border-gray-600 border-b text-right"
+              className="grid grid-cols-7 items-center p-2 border-gray-600 border-t text-right"
               key={protocol.id}
             >
               <a href={ protocol.url } target="_blank" className="flex w-max items-center text-left hover:bg-gray-600 rounded-full">
