@@ -10,112 +10,98 @@ const Navbar = () => {
 
   const [activeNav, setActiveNav] = useState('/');
 
+  const link = (id, img) => {
+    return (
+      <NavLink to={`/${id}`} onClick={() => setActiveNav(`/${id}`)}
+        className={`${activeNav === `/${id}` ? 'bg-gray-700' : ''} flex items-center capitalize rounded-lg hover:bg-gray-700`}
+      ><img src={img} alt="" className="rounded-full mr-2" />{id}</NavLink>
+    )
+  }
+
   return (
-  <div className="w-full h-auto absolute left-0 ">
+  <div className="w-48 fixed left-0 top-0">
       
-  <aside id="default-sidebar" className="w-48 fixed left-0 top-0 h-screen">
+    <aside id="default-sidebar">
       <div className="px-4 py-4 overflow-y-auto mt-14 h-full">
-      <ul className="space-y-2 mt-5 text-base ">
+      <ul className="space-y-4 space-x-2 mt-5 text-base ">
         <li>         
-          <header className="flex items-center text-sm text-gray-400 ">Dashboards</header>
+          <header className="flex items-center text-xl text-gray-400 ">Dashboards</header>
         </li>
         <li>
           <NavLink to="/" onClick={() => setActiveNav('/defi')}
-            className={`${activeNav === '/defi' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
-          ><BsBarChart className="mr-2"/>Defi</NavLink>
+            className={`${activeNav === '/defi' ? 'bg-gray-700' : ''} flex items-center rounded-lg hover:bg-gray-700`}
+              ><BsBarChart size={`100%`}/>Defi</NavLink>
         </li>
         <li>
           <NavLink to="/stables" onClick={() => setActiveNav('/stables')}
-            className={`${activeNav === '/stables' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
+            className={`${activeNav === '/stables' ? 'bg-gray-700' : ''} flex items-center rounded-lg hover:bg-gray-700`}
           ><BsCoin className="mr-2"/>Stables</NavLink>
         </li>
         <li>
           <NavLink to="/dex" onClick={() => setActiveNav('/dex')}
-            className={`${activeNav === '/dex' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
+            className={`${activeNav === '/dex' ? 'bg-gray-700' : ''} flex items-center rounded-lg hover:bg-gray-700`}
           ><BsCodeSlash className="mr-2"/>Dex</NavLink>
         </li>
         <li>
           <NavLink to="/cex" onClick={() => setActiveNav('/cex')}
-            className={`${activeNav === '/cex' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
+            className={`${activeNav === '/cex' ? 'bg-gray-700' : ''} flex items-center rounded-lg hover:bg-gray-700`}
           ><BsBank className="mr-2"/>Cex</NavLink>
         </li>
         <li>
           <NavLink to="/yields" onClick={() => setActiveNav('/yields')}
-            className={`${activeNav === '/yields' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
+            className={`${activeNav === '/yields' ? 'bg-gray-700' : ''} flex items-center rounded-lg hover:bg-gray-700`}
           ><BsPercent className="mr-2"/>Yields</NavLink>
         </li>
         <li>
           <NavLink to="/bridges" onClick={() => setActiveNav('/bridges')}
-            className={`${activeNav === '/bridges' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
+            className={`${activeNav === '/bridges' ? 'bg-gray-700' : ''} flex items-center rounded-lg hover:bg-gray-700`}
           ><GiRialtoBridge className="mr-2"/>Bridges</NavLink>
         </li>
         <li>
           <NavLink to="/lending" onClick={() => setActiveNav('/lending')}
-            className={`${activeNav === '/lending' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
+            className={`${activeNav === '/lending' ? 'bg-gray-700' : ''} flex items-center rounded-lg hover:bg-gray-700`}
           ><RiHandCoinLine className="mr-2"/>Lending</NavLink>
         </li>
       </ul>
       
-      <div className="border-b-2 border-gray-600 mx-1 my-2"></div>
+      <div className="border-b-2 border-gray-600 my-2"></div>
           
-      <ul className="space-y-2 text-base ">
+      <ul className="space-y-4 space-x-2 text-base ">
         <li>         
-          <header className="flex items-center p-1 text-sm text-gray-400 ">Top Chains</header>
+          <header className="flex items-center text-xl text-gray-400 ">Top Chains</header>
         </li>
         <li>
-          <NavLink to="/ethereum" onClick={() => setActiveNav('/ethereum')}
-            className={`${activeNav === '/ethereum' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
-          ><img src={eth} alt="" className="rounded-full mr-2" />Ethereum</NavLink>
+          {link('ethereum', eth)}
         </li>
         <li>
-          <NavLink to="/bsc" onClick={() => setActiveNav('/bsc')}
-            className={`${activeNav === '/bsc' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
-          ><img src={bsc} alt="" className="rounded-full mr-2" />Bsc</NavLink>
+          {link('bsc', bsc)}
         </li>
         <li>
-          <NavLink to="/avalanche" onClick={() => setActiveNav('/avalanche')}
-            className={`${activeNav === '/avalanche' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
-          ><img src={avax} alt="" className="rounded-full mr-2" />Avalanche</NavLink>
+          {link('avalanche', avax)}          
         </li>
         <li>
-          <NavLink to="/polygon" onClick={() => setActiveNav('/polygon')}
-            className={`${activeNav === '/polygon' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
-          ><img src={polygon} alt="" className="rounded-full mr-2" />Polygon</NavLink>
+          {link('polygon', polygon)}
         </li>
         <li>
-          <NavLink to="/arbitrum" onClick={() => setActiveNav('/arbitrum')}
-            className={`${activeNav === '/arbitrum' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
-          ><img src={arbitrum} alt="" className="rounded-full mr-2" />Arbitrum</NavLink>
+          {link('arbitrum', arbitrum)}  
         </li>
         <li>
-          <NavLink to="/optimism" onClick={() => setActiveNav('/optimism')}
-            className={`${activeNav === '/optimism' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
-          ><img src={optimism} alt="" className="rounded-full mr-2" />Optimism</NavLink>
+          {link('optimism', optimism)}
         </li>
         <li>
-          <NavLink to="/solana" onClick={() => setActiveNav('/solana')}
-            className={`${activeNav === '/solana' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
-          ><img src={solana} alt="" className="rounded-full mr-2" />Solana</NavLink>
+          {link('solana', solana)}
         </li>
         <li>
-          <NavLink to="/tron" onClick={() => setActiveNav('/tron')}
-            className={`${activeNav === '/tron' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
-          ><img src={tron} alt="" className="rounded-full mr-2" />Tron</NavLink>
+          {link('tron', tron)}
         </li>
         <li>
-          <NavLink to="/fantom" onClick={() => setActiveNav('/fantom')}
-            className={`${activeNav === '/fantom' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
-          ><img src={ftm} alt="" className="rounded-full mr-2" />Fantom</NavLink>
+          {link('fantom', ftm)}
         </li>
         <li>
-          <NavLink to="/algorand" onClick={() => setActiveNav('/algorand')}
-            className={`${activeNav === '/algorand' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
-          ><img src={algo} alt="" className="rounded-full mr-2" />Algorand</NavLink>
+          {link('algorand', algo)}
         </li>
         <li>
-          <NavLink to="/kava" onClick={() => setActiveNav('/kava')}
-            className={`${activeNav === '/kava' ? 'bg-gray-700' : ''} flex items-center p-1 rounded-lg hover:bg-gray-700`}
-          ><img src={kava} alt="" className="rounded-full mr-2" />Kava</NavLink>
+          {link('kava', kava)}
         </li>
       </ul>
    </div>
