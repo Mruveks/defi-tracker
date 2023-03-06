@@ -38,10 +38,11 @@ const RankingObject = ({ chain }) => {
               className={`grid ${(chain === 'Lending' || 'CEX' || 'DEX') ? "grid-cols-5" : "grid-cols-6"} items-center p-2 border-gray-600 border-t text-right`}
               key={protocol.id}
             >
-              <div className="flex w-[140%] text-left">
-                <img src={protocol.logo} alt="logo" className="h-8 w-8 rounded-full" />
-                <a href={protocol.url} alt="site" target="_blank" className="w-full h-full px-2 my-auto">{protocol.name}</a>
-              </div>
+              <a href={ protocol.url } target="_blank" className="flex w-max items-center text-left hover:bg-gray-600 rounded-full">
+                <img src={ protocol.logo } alt="logo"  className="h-8 w-8 rounded-full" />
+                <div className="px-2 my-auto text-blue-400">{ protocol.name }</div>
+              </a>
+              
               {(chain === 'Lending' || 'CEX' || 'DEX') ? null : <div>{protocol.category}</div>}
                            
               {

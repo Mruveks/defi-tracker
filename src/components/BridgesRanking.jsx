@@ -33,10 +33,10 @@ const BridgesRanking = () => {
       {bridges ?
         bridges.filter(bridge => bridge.currentDayVolume > 1000).map(bridge => 
           <div
-          className="grid grid-cols-5 text-right p-2 border-gray-600 border-t" 
+          className="grid grid-cols-5 items-center text-right p-2 border-gray-600 border-t " 
           key={bridge.id}
           >
-            <div className="text-left text-blue-400">{ bridge.displayName }</div>
+            <div className="text-left text-blue-400 ">{ bridge.displayName }</div>
 
             <div className="capitalize">{bridge.name}</div>
 

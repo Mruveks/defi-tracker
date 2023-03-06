@@ -39,10 +39,11 @@ const StablesRanking = () => {
               className="grid grid-cols-8 items-center p-2 border-gray-600 border-t text-right"
               key={stable.id}
             >
-              <div className="text-left text-blue-400 p-1">
-                <a href={`https://www.coingecko.com/en/coins/${stable.gecko_id}`} alt="site" target="_blank" className="">{stable.name} ({stable.symbol})</a>
-              </div>
-          
+              <a href={`https://www.coingecko.com/en/coins/${stable.gecko_id}`} target="_blank" className="flex w-max items-center text-left hover:bg-gray-600 rounded-full h-8">
+                <div className="px-1 my-auto text-blue-400">{ stable.name }</div>
+                <div className="px-1 my-auto text-blue-400">({ stable.symbol })</div>
+                </a>
+                
               { stable.price >= 1 ?
                 <div className="text-green-500">{parseFloat(stable.price).toFixed(2)}$</div>
                   : <div className="text-red-500">{parseFloat(stable.price).toFixed(2)}$</div>

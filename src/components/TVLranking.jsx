@@ -19,38 +19,40 @@ const TVLranking = () => {
       })
   }, []);
 
+  const buttonStyle = "m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600"
+
   return (
     <>
     <div className="flex justify-between mx-8 py-2 h-full  ">
-      <button className="m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('')}
+      <button className={`${buttonStyle}`} onClick={() => setQuery('')}
       >All</button>
         
-      <button className="m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600" onClick={() => {setQuery('Ethereum')}}
+      <button className={`${buttonStyle}`} onClick={() => setQuery('Ethereum')}
       >Ethereum</button>
 
-      <button className="m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('Avalanche')}
+      <button className={`${buttonStyle}`} onClick={() => setQuery('Avalanche')}
       >Avalanche</button>
 
-      <button className="m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('Binance')}
+      <button className={`${buttonStyle}`}onClick={() => setQuery('Binance')}
       >Bsc</button>
 
-      <button className="m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('Tron')}
+      <button className={`${buttonStyle}`} onClick={() => setQuery('Tron')}
       >Tron</button>
 
-      <button className="m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('Arbitrum')}
+      <button className={`${buttonStyle}`} onClick={() => setQuery('Arbitrum')}
       >Arbitrum</button>
 
-      <button className="m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('Polygon')}
+      <button className={`${buttonStyle}`} onClick={() => setQuery('Polygon')}
       >Polygon</button>
 
-      <button className="m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('Optimism')}
+      <button className={`${buttonStyle}`} onClick={() => setQuery('Optimism')}
       >Optimism</button>
 
-      <button className="m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600" onClick={() => setQuery('Solana')}
+      <button className={`${buttonStyle}`} onClick={() => setQuery('Solana')}
       >Solana</button>
     </div>
       
-    <div className="h-max mb-10 mx-10 border-gray-600 border p-2 rounded-xl bg-gray-800 ">
+    <div className="h-max mb-10 mx-10 border-gray-600 border p-2 rounded-xl bg-gray-800">
       <div className="grid grid-cols-7 p-2 border-b-gray-600 text-right italic uppercase">
         <header className="text-left">Name</header>
         <header>Category</header>
@@ -68,10 +70,10 @@ const TVLranking = () => {
               className="grid grid-cols-7 items-center p-2 border-gray-600 border-t text-right"
               key={protocol.id}
             >
-              <div className="flex w-[140%] text-left">
-                <img src={ protocol.logo } alt="logo" className="h-8 w-8 rounded-full" />
-                <a href={ protocol.url } alt="site" target="_blank" className="w-full h-full px-2 my-auto text-blue">{ protocol.name }</a>
-              </div>
+              <a href={ protocol.url } target="_blank" className="flex w-max items-center text-left hover:bg-gray-600 rounded-full">
+                <img src={ protocol.logo } alt="logo"  className="h-8 w-8 rounded-full" />
+                <div className="px-2 my-auto text-blue-400">{ protocol.name }</div>
+              </a>
 
               <div>{ protocol.category }</div>
               <div>{ protocol.chain }</div>
@@ -102,10 +104,10 @@ const TVLranking = () => {
               className="grid grid-cols-7 items-center p-2 border-gray-600 border-b text-right"
               key={protocol.id}
             >
-              <div className="flex w-[140%] text-left">
-                <img src={ protocol.logo } alt="logo" className="h-8 w-8 rounded-full" />
-                <a href={ protocol.url } alt="site" target="_blank" className="w-full h-full px-2 my-auto">{ protocol.name }</a>
-              </div>
+              <a href={ protocol.url } target="_blank" className="flex w-max items-center text-left hover:bg-gray-600 rounded-full">
+                <img src={ protocol.logo } alt="logo"  className="h-8 w-8 rounded-full" />
+                <div className="px-2 my-auto text-blue-400">{ protocol.name }</div>
+              </a>
 
               <div>{ protocol.category }</div>
               <div>{ protocol.chain }</div>
