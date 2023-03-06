@@ -29,37 +29,37 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink to="/" onClick={() => setActiveNav('/defi')}
-            className={`${activeNav === '/defi' ? 'bg-gray-700' : ''} flex items-center rounded-lg hover:bg-gray-700`}
-              ><BsBarChart size={`100%`}/>Defi</NavLink>
+            className={`${activeNav === '/defi' ? 'bg-gray-700' : ''} flex items-center ml-2 rounded-lg hover:bg-gray-700`}
+              ><BsBarChart className="mr-2"/>Defi</NavLink>
         </li>
         <li>
           <NavLink to="/stables" onClick={() => setActiveNav('/stables')}
-            className={`${activeNav === '/stables' ? 'bg-gray-700' : ''} flex items-center rounded-lg hover:bg-gray-700`}
+            className={`${activeNav === '/stables' ? 'bg-gray-700' : ''} flex items-center ml-2 rounded-lg hover:bg-gray-700`}
           ><BsCoin className="mr-2"/>Stables</NavLink>
         </li>
         <li>
           <NavLink to="/dex" onClick={() => setActiveNav('/dex')}
-            className={`${activeNav === '/dex' ? 'bg-gray-700' : ''} flex items-center rounded-lg hover:bg-gray-700`}
+            className={`${activeNav === '/dex' ? 'bg-gray-700' : ''} flex items-center ml-2 rounded-lg hover:bg-gray-700`}
           ><BsCodeSlash className="mr-2"/>Dex</NavLink>
         </li>
         <li>
           <NavLink to="/cex" onClick={() => setActiveNav('/cex')}
-            className={`${activeNav === '/cex' ? 'bg-gray-700' : ''} flex items-center rounded-lg hover:bg-gray-700`}
+            className={`${activeNav === '/cex' ? 'bg-gray-700' : ''} flex items-center ml-2 rounded-lg hover:bg-gray-700`}
           ><BsBank className="mr-2"/>Cex</NavLink>
         </li>
         <li>
           <NavLink to="/yields" onClick={() => setActiveNav('/yields')}
-            className={`${activeNav === '/yields' ? 'bg-gray-700' : ''} flex items-center rounded-lg hover:bg-gray-700`}
+            className={`${activeNav === '/yields' ? 'bg-gray-700' : ''} flex items-center ml-2 rounded-lg hover:bg-gray-700`}
           ><BsPercent className="mr-2"/>Yields</NavLink>
         </li>
         <li>
           <NavLink to="/bridges" onClick={() => setActiveNav('/bridges')}
-            className={`${activeNav === '/bridges' ? 'bg-gray-700' : ''} flex items-center rounded-lg hover:bg-gray-700`}
+            className={`${activeNav === '/bridges' ? 'bg-gray-700' : ''} flex items-center ml-2 rounded-lg hover:bg-gray-700`}
           ><GiRialtoBridge className="mr-2"/>Bridges</NavLink>
         </li>
         <li>
           <NavLink to="/lending" onClick={() => setActiveNav('/lending')}
-            className={`${activeNav === '/lending' ? 'bg-gray-700' : ''} flex items-center rounded-lg hover:bg-gray-700`}
+            className={`${activeNav === '/lending' ? 'bg-gray-700' : ''} flex items-center ml-2 rounded-lg hover:bg-gray-700`}
           ><RiHandCoinLine className="mr-2"/>Lending</NavLink>
         </li>
       </ul>
