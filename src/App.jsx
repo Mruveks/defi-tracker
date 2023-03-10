@@ -11,7 +11,7 @@ import ProtocolObject from './pages/protocols/ProtocolObject'
 function App() {
 
   return (
-    <div className="w-full pl-48 pt-8">
+    <div className="w-full pl-0 mt-20 sm:mt-0 md:pl-48 pt-8">
       <Navbar />
 
       <Routes>

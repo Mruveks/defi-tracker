@@ -3,4 +3,5 @@ body{
   font-family: 'Cursive';
   background-color: rgb(31 41 55);
   color: #fff;
+  overflow-x: hidden;
 }

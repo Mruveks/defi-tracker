@@ -23,7 +23,7 @@ const TVLranking = () => {
 
   return (
     <>
-    <div className="flex justify-between mx-8 py-2 h-full  ">
+    <div className="flex flex-wrap  justify-between mx-8 py-2 h-full">
       <button className={`${buttonStyle}`} onClick={() => setQuery('')}
       >All</button>
         
@@ -53,10 +53,10 @@ const TVLranking = () => {
     </div>
       
     <div className="h-max mb-10 mx-10 border-gray-600 border p-2 rounded-xl bg-gray-800">
-      <div className="grid grid-cols-7 p-2 border-b-gray-600 text-right italic uppercase">
+      <div className="grid lg:grid-cols-7 md:grid-cols-5 p-2 border-b-gray-600 text-right italic uppercase">
         <header className="text-left">Name</header>
-        <header>Category</header>
-        <header>Chain</header>
+        <header className="hidden lg:block">Category</header>
+        <header className="hidden lg:block">Chain</header>
         <header>1d Change</header>
         <header>7d Change</header>
         <header>30d Change</header>
@@ -67,16 +67,16 @@ const TVLranking = () => {
         protocols.length ? 
           protocols.filter(item => item.tvl >= 1000000).map(protocol =>
             <div
-              className="grid grid-cols-7 items-center p-2 border-gray-600 border-t text-right"
+              className="grid lg:grid-cols-7 md:grid-cols-5 items-center p-2 border-gray-600 border-t text-right"
               key={protocol.id}
             >
-              <a href={ protocol.url } target="_blank" className="flex w-max items-center text-left hover:bg-gray-600 rounded-full">
+              <a href={ protocol.url } target="_blank" className="flex items-center w-max text-left hover:bg-gray-600 rounded-full">
                 <img src={ protocol.logo } alt="logo"  className="h-8 w-8 rounded-full" />
-                <div className="px-2 my-auto text-blue-400">{ protocol.name }</div>
+                <div className="sm:w-fit md:w-40 px-2 my-auto text-blue-400">{ protocol.name }</div>
               </a>
 
-              <div>{ protocol.category }</div>
-              <div>{ protocol.chain }</div>
+              <div className="hidden lg:block">{ protocol.category }</div>
+              <div className="hidden lg:block">{ protocol.chain }</div>
               
               {protocol.change_1h > 0 ?
                 <div className="text-green-500">+{parseFloat(protocol.change_1h).toFixed(2)}%</div>
@@ -101,7 +101,7 @@ const TVLranking = () => {
         protocols.length ?
           protocols.filter(item => ( item.tvl != null && item.chain === query && item.tvl >= 1000000)).map(protocol =>
             <div
-              className="grid grid-cols-7 items-center p-2 border-gray-600 border-t text-right"
+              className="grid lg:grid-cols-7 md:grid-cols-5 items-center p-2 border-gray-600 border-t text-right"
               key={protocol.id}
             >
               <a href={ protocol.url } target="_blank" className="flex w-max items-center text-left hover:bg-gray-600 rounded-full">
@@ -109,8 +109,8 @@ const TVLranking = () => {
                 <div className="px-2 my-auto text-blue-400">{ protocol.name }</div>
               </a>
 
-              <div>{ protocol.category }</div>
-              <div>{ protocol.chain }</div>
+              <div className="hidden lg:block">{ protocol.category }</div>
+              <div className="hidden lg:block">{ protocol.chain }</div>
               
               {protocol.change_1h > 0 ?
                 <div className="text-green-500">+{parseFloat(protocol.change_1h).toFixed(2)}%</div>

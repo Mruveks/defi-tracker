@@ -19,7 +19,7 @@ const Navbar = () => {
   }
 
   return (
-  <div className="w-48 fixed left-0 top-0">
+  <div className="hidden md:block w-48 fixed left-0 top-0 ">
       
     <aside>
       <div className="px-4 py-4 mt-14 h-full overflow-auto">

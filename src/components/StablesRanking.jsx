@@ -21,22 +21,22 @@ const StablesRanking = () => {
   <>
     <div className="h-max mx-10 mb-10 border-gray-600 p-2 border rounded-xl bg-gray-800 ">
       
-      <div className="grid grid-cols-8 p-2 uppercase italic border-b-gray-600 ">
-        <header className="">Name</header>
-        <header className="text-right">Price</header>
-        <header className="text-right">Peg Asset</header>
-        <header className="text-right">Peg Mechanism</header>
-        <header className="text-right">1d Change</header>
-        <header className="text-right">7d Change</header>
-        <header className="text-right">1m Change</header>
-        <header className="text-right">MarketCap</header>
+      <div className="grid md:grid-cols-5 grid-cols-4 lg:grid-cols-8 p-2 text-right uppercase italic border-b-gray-600 ">
+        <header className="text-left">Name</header>
+        <header>Price</header>
+        <header className="hidden lg:block">Peg Asset</header>
+        <header className="hidden lg:block">Peg Mechanism</header>
+        <header >1d Change</header>
+        <header className="hidden md:block">7d Change</header>
+        <header className="hidden lg:block">1m Change</header>
+        <header >MarketCap</header>
       </div>
 
       { stables.length ? 
           stables.filter(item => (item.circulating.peggedUSD >= 1000000 || item.circulating.peggedEUR >= 1000000 || item.circulating.peggedVAR >= 1000000) && item.price != null)
             .map(stable =>
             <div
-              className="grid grid-cols-8 items-center p-2 border-gray-600 border-t text-right"
+              className="grid  grid-cols-4 md:grid-cols-5 lg:grid-cols-8 items-center p-2 border-gray-600 border-t text-right"
               key={stable.id}
             >
               <a href={`https://www.coingecko.com/en/coins/${stable.gecko_id}`} target="_blank" className="flex w-max items-center text-left hover:bg-gray-600 rounded-full h-8">
@@ -49,8 +49,8 @@ const StablesRanking = () => {
                   : <div className="text-red-500">{parseFloat(stable.price).toFixed(2)}$</div>
               }
 
-              <div>{stable.pegType.slice(6)}</div>
-              <div>{stable.pegMechanism}</div>
+              <div className="hidden lg:block">{stable.pegType.slice(6)}</div>
+              <div className="hidden lg:block">{stable.pegMechanism}</div>
               
               {/* CALCULATING DAILY CHANGE */}
               {stable.circulating.peggedEUR ?
@@ -71,33 +71,33 @@ const StablesRanking = () => {
               {/* CALCULATING WEEKLY CHANGE */}
               {stable.circulating.peggedEUR ?
                 stable.circulatingPrevWeek.peggedEUR ?
-                  <CalculateChange lastDay={stable.circulating.peggedEUR} today={stable.circulatingPrevWeek.peggedEUR} /> : null
+                  <div className="hidden md:block"><CalculateChange lastDay={stable.circulating.peggedEUR} today={stable.circulatingPrevWeek.peggedEUR} /></div> : null
                 : null}
 
               {stable.circulating.peggedUSD ?
                 stable.circulatingPrevWeek.peggedUSD ?
-                  <CalculateChange lastDay={stable.circulating.peggedUSD} today={stable.circulatingPrevWeek.peggedUSD} /> : null
+                <div className="hidden md:block"><CalculateChange lastDay={stable.circulating.peggedUSD} today={stable.circulatingPrevWeek.peggedUSD} /></div> : null
                 : null}
 
               {stable.circulating.peggedVAR ?
                 stable.circulatingPrevWeek.peggedVAR ?
-                  <CalculateChange lastDay={stable.circulating.peggedVAR} today={stable.circulatingPrevWeek.peggedVAR} /> : null
+                  <div className="hidden md:block"><CalculateChange lastDay={stable.circulating.peggedVAR} today={stable.circulatingPrevWeek.peggedVAR} /></div> : null
                 : null}
                 
                 {/* CALCULATING MONTHLY CHANGE */}
               {stable.circulating.peggedEUR ?
                 stable.circulatingPrevMonth.peggedEUR ?
-                  <CalculateChange lastDay={stable.circulating.peggedEUR} today={stable.circulatingPrevMonth.peggedEUR} /> : null
+                  <div className="hidden lg:block"><CalculateChange lastDay={stable.circulating.peggedEUR} today={stable.circulatingPrevMonth.peggedEUR} /></div> : null
                 : null}
               
               {stable.circulating.peggedUSD ?
                 stable.circulatingPrevMonth.peggedUSD ?
-                  <CalculateChange lastDay={stable.circulating.peggedUSD} today={stable.circulatingPrevMonth.peggedUSD} /> : null
+                  <div className="hidden lg:block"><CalculateChange lastDay={stable.circulating.peggedUSD} today={stable.circulatingPrevMonth.peggedUSD} /></div> : null
                 : null}
 
               {stable.circulating.peggedVAR ?
                 stable.circulatingPrevMonth.peggedVAR ?
-                  <CalculateChange lastDay={stable.circulating.peggedVAR} today={stable.circulatingPrevMonth.peggedVAR} /> : null
+                  <div className="hidden lg:block"><CalculateChange lastDay={stable.circulating.peggedVAR} today={stable.circulatingPrevMonth.peggedVAR} /></div>  : null
                 : null}
                       
               {stable.circulating.peggedUSD ? ('$' + Formatter(parseFloat(stable.circulating.peggedUSD))) : null}
