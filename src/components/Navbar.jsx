@@ -21,9 +21,9 @@ const Navbar = () => {
   return (
   <div className="w-48 fixed left-0 top-0">
       
-    <aside id="default-sidebar">
-      <div className="px-4 py-4 overflow-y-auto mt-14 h-full">
-      <ul className="space-y-4 space-x-2 mt-5 text-base ">
+    <aside>
+      <div className="px-4 py-4 mt-14 h-full overflow-auto">
+      <ul className="space-y-4 space-x-2 text-base ">
         <li>         
           <header className="flex items-center text-xl text-gray-400 ">Dashboards</header>
         </li>
@@ -61,7 +61,7 @@ const Navbar = () => {
           <NavLink to="/lending" onClick={() => setActiveNav('/lending')}
             className={`${activeNav === '/lending' ? 'bg-gray-700' : ''} flex items-center ml-2 rounded-lg hover:bg-gray-700`}
           ><RiHandCoinLine className="mr-2"/>Lending</NavLink>
-        </li>
+        </li>       
       </ul>
       
       <div className="border-b-2 border-gray-600 my-2"></div>
@@ -93,15 +93,6 @@ const Navbar = () => {
         </li>
         <li>
           {link('tron', tron)}
-        </li>
-        <li>
-          {link('fantom', ftm)}
-        </li>
-        <li>
-          {link('algorand', algo)}
-        </li>
-        <li>
-          {link('kava', kava)}
         </li>
       </ul>
    </div>
