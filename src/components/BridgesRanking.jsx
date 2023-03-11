@@ -14,7 +14,6 @@ const BridgesRanking = () => {
     axios.get('https://bridges.llama.fi/bridges?includeChains=true')
       .then(res => {
         setBridges(res.data.bridges)
-        console.log(res.data.bridges)
       })
       .catch(err => console.log(err))
   }, []);

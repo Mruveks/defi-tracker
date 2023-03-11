@@ -16,7 +16,6 @@ const RankingObject = ({ chain }) => {
         console.log(err)
       })
   }, []);
-  console.log(chain)
   
   return (
     <div className="h-max m-10 border rounded-xl border-gray-600 p-2">

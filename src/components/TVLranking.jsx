@@ -7,48 +7,51 @@ import { Formatter } from '../utilities/Formatter';
 const TVLranking = () => {
 
   const [protocols, setProtocols] = useState([])
-  const [query, setQuery] = useState('');
+  const [button, setButton] = useState('')
+  const [query, setQuery] = useState('')
 
   useEffect(() => {
     axios.get('https://api.llama.fi/protocols')
       .then(res => {
         setProtocols(res.data)
+        const datas = protocols.filter(item => item.category === 'Chain').map(item => item)
+        console.log(datas)
       })
       .catch(err => {
         console.log(err)
       })
   }, []);
 
-  const buttonStyle = "m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600"
+  const buttonStyle = `m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg`
 
   return (
     <>
-    <div className="flex flex-wrap  justify-between mx-8 py-2 h-full">
-      <button className={`${buttonStyle}`} onClick={() => setQuery('')}
+    <div className="flex flex-wrap justify-between mx-8 py-2 h-full">
+      <button className={`${buttonStyle} ${query === '' ? 'bg-gray-900' : ''}`} onClick={() => setQuery('')}
       >All</button>
         
-      <button className={`${buttonStyle}`} onClick={() => setQuery('Ethereum')}
+      <button className={`${buttonStyle} ${query === 'Ethereum' ? 'bg-gray-400' : ''}`} onClick={() => setQuery('Ethereum')}
       >Ethereum</button>
 
-      <button className={`${buttonStyle}`} onClick={() => setQuery('Avalanche')}
+      <button className={`${buttonStyle} ${query === 'Avalanche' ? 'bg-red-700' : ''}`} onClick={() => setQuery('Avalanche')}
       >Avalanche</button>
 
-      <button className={`${buttonStyle}`}onClick={() => setQuery('Binance')}
+      <button className={`${buttonStyle} ${query === 'Binance' ? 'bg-yellow-700' : ''}`}onClick={() => setQuery('Binance')}
       >Bsc</button>
 
-      <button className={`${buttonStyle}`} onClick={() => setQuery('Tron')}
+      <button className={`${buttonStyle} ${query === 'Tron' ? 'bg-red-700' : ''}`} onClick={() => setQuery('Tron')}
       >Tron</button>
 
-      <button className={`${buttonStyle}`} onClick={() => setQuery('Arbitrum')}
+      <button className={`${buttonStyle} ${query === 'Arbitrum' ? 'bg-blue-700' : ''}`} onClick={() => setQuery('Arbitrum')}
       >Arbitrum</button>
 
-      <button className={`${buttonStyle}`} onClick={() => setQuery('Polygon')}
+      <button className={`${buttonStyle} ${query === 'Polygon' ? 'bg-purple-700' : ''}`} onClick={() => setQuery('Polygon')}
       >Polygon</button>
 
-      <button className={`${buttonStyle}`} onClick={() => setQuery('Optimism')}
+      <button className={`${buttonStyle} ${query === 'Optimism' ? 'bg-red-700' : ''}`} onClick={() => setQuery('Optimism')}
       >Optimism</button>
 
-      <button className={`${buttonStyle}`} onClick={() => setQuery('Solana')}
+      <button className={`${buttonStyle} ${query === 'Solana' ? 'bg-purple-700' : ''}`} onClick={() => setQuery('Solana')}
       >Solana</button>
     </div>
       
@@ -65,7 +68,7 @@ const TVLranking = () => {
 
       { query === '' ?      
         protocols.length ? 
-          protocols.filter(item => item.tvl >= 1000000).map(protocol =>
+          protocols.filter(item => item.tvl >= 1000000 && (item.category != 'CEX' && item.category != 'Chain')).map(protocol =>
             <div
               className="grid lg:grid-cols-7 md:grid-cols-5 items-center p-2 border-gray-600 border-t text-right"
               key={protocol.id}
