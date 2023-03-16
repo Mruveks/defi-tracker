@@ -55,8 +55,8 @@ const YieldsRanking = () => {
     <div className="h-max mb-10 mx-10 border rounded-xl border-gray-600 p-2">
       
       <div className="grid grid-cols-7 p-2 text-right uppercase italic">
-        <header className="text-left">Project</header>
         <header className="text-left">Pool</header>
+        <header className="text-left">Project</header>
         <header>Chain</header>
         <header>APY</header>
         <header>Base APY</header>
