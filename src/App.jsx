@@ -7,13 +7,14 @@ import Navbar from './components/Navbar'
 
 import { Home, Stables, Yields, Bridges, Avax, Ethereum, Polygon, Arbitrum, Optimism, Bsc, Solana, Kava, Tron, Algorand, Fantom, Lending, CEX, DEX } from './pages/index'
 import ProtocolObject from './pages/protocols/ProtocolObject'
+import ScrollTopButton from './components/ScrollTopButton'
 
 function App() {
 
   return (
     <div className="w-full pl-0 mt-20 sm:mt-0 md:pl-48 pt-8">
       <Navbar />
-
+      <ScrollTopButton />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/stables" element={<Stables />} />
