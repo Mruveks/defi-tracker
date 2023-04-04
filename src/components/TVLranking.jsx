@@ -7,7 +7,6 @@ import { Formatter } from '../utilities/Formatter';
 const TVLranking = () => {
 
   const [protocols, setProtocols] = useState([])
-  const [button, setButton] = useState('')
   const [query, setQuery] = useState('')
 
   useEffect(() => {

@@ -53,49 +53,49 @@ const StablesRanking = () => {
               {/* CALCULATING DAILY CHANGE */}
               {stable.circulating.peggedEUR ?
                 stable.circulatingPrevDay.peggedEUR ?
-                  <CalculateChange lastDay={stable.circulating.peggedEUR} today={stable.circulatingPrevDay.peggedEUR} /> : null
+                  <CalculateChange lastDay={stable.circulating.peggedEUR} today={stable.circulatingPrevDay.peggedEUR} /> : <div></div>
                 : null}
               
               {stable.circulating.peggedUSD ?
                 stable.circulatingPrevDay.peggedUSD ?
-                  <CalculateChange lastDay={stable.circulating.peggedUSD} today={stable.circulatingPrevDay.peggedUSD} /> : null
+                  <CalculateChange lastDay={stable.circulating.peggedUSD} today={stable.circulatingPrevDay.peggedUSD} /> : <div></div>
                 : null}
               
               {stable.circulating.peggedVAR ?
                 stable.circulatingPrevDay.peggedVAR ?
-                  <CalculateChange lastDay={stable.circulating.peggedVAR} today={stable.circulatingPrevDay.peggedVAR} /> : null
+                  <CalculateChange lastDay={stable.circulating.peggedVAR} today={stable.circulatingPrevDay.peggedVAR} /> : <div></div>
                 : null}
               
               {/* CALCULATING WEEKLY CHANGE */}
               {stable.circulating.peggedEUR ?
                 stable.circulatingPrevWeek.peggedEUR ?
-                  <div className="hidden md:block"><CalculateChange lastDay={stable.circulating.peggedEUR} today={stable.circulatingPrevWeek.peggedEUR} /></div> : null
+                  <div className="hidden md:block"><CalculateChange lastDay={stable.circulating.peggedEUR} today={stable.circulatingPrevWeek.peggedEUR} /></div> : <div></div>
                 : null}
 
               {stable.circulating.peggedUSD ?
                 stable.circulatingPrevWeek.peggedUSD ?
-                <div className="hidden md:block"><CalculateChange lastDay={stable.circulating.peggedUSD} today={stable.circulatingPrevWeek.peggedUSD} /></div> : null
+                <div className="hidden md:block"><CalculateChange lastDay={stable.circulating.peggedUSD} today={stable.circulatingPrevWeek.peggedUSD} /></div> : <div></div>
                 : null}
 
               {stable.circulating.peggedVAR ?
                 stable.circulatingPrevWeek.peggedVAR ?
-                  <div className="hidden md:block"><CalculateChange lastDay={stable.circulating.peggedVAR} today={stable.circulatingPrevWeek.peggedVAR} /></div> : null
+                  <div className="hidden md:block"><CalculateChange lastDay={stable.circulating.peggedVAR} today={stable.circulatingPrevWeek.peggedVAR} /></div> : <div></div>
                 : null}
                 
                 {/* CALCULATING MONTHLY CHANGE */}
               {stable.circulating.peggedEUR ?
                 stable.circulatingPrevMonth.peggedEUR ?
-                  <div className="hidden lg:block"><CalculateChange lastDay={stable.circulating.peggedEUR} today={stable.circulatingPrevMonth.peggedEUR} /></div> : null
+                  <div className="hidden lg:block"><CalculateChange lastDay={stable.circulating.peggedEUR} today={stable.circulatingPrevMonth.peggedEUR} /></div> : <div></div>
                 : null}
               
               {stable.circulating.peggedUSD ?
                 stable.circulatingPrevMonth.peggedUSD ?
-                  <div className="hidden lg:block"><CalculateChange lastDay={stable.circulating.peggedUSD} today={stable.circulatingPrevMonth.peggedUSD} /></div> : null
+                  <div className="hidden lg:block"><CalculateChange lastDay={stable.circulating.peggedUSD} today={stable.circulatingPrevMonth.peggedUSD} /></div> : <div></div>
                 : null}
 
               {stable.circulating.peggedVAR ?
                 stable.circulatingPrevMonth.peggedVAR ?
-                  <div className="hidden lg:block"><CalculateChange lastDay={stable.circulating.peggedVAR} today={stable.circulatingPrevMonth.peggedVAR} /></div>  : null
+                  <div className="hidden lg:block"><CalculateChange lastDay={stable.circulating.peggedVAR} today={stable.circulatingPrevMonth.peggedVAR} /></div>  : <div></div>
                 : null}
                       
               {stable.circulating.peggedUSD ? ('$' + Formatter(parseFloat(stable.circulating.peggedUSD))) : null}

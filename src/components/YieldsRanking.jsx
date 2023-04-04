@@ -73,14 +73,13 @@ const YieldsRanking = () => {
             >
               <div className="text-left capitalize">{(pool.symbol).toLowerCase()}</div>
               <div className="text-left capitalize text-blue-400">{pool.project}</div>
-              <div>{pool.chain}</div>
-              
+              <div>{pool.chain}</div>             
 
-              {pool.apy ? <div>{parseFloat(pool.apy).toFixed(2) + '%'}</div> : null}
+              {pool.apy ? <div>{parseFloat(pool.apy).toFixed(2) + '%'}</div> : <div></div>}
 
-              {pool.apyBase ? <div>{parseFloat(pool.apyBase).toFixed(2)  + '%'}</div> : null}
+              {pool.apyBase ? <div>{parseFloat(pool.apyBase).toFixed(2)  + '%'}</div> : <div></div>}
 
-              {pool.apyReward ? <div>{parseFloat(pool.apyReward).toFixed(2)  + '%'}</div> : null}
+              {pool.apyReward ? <div>{parseFloat(pool.apyReward).toFixed(2)  + '%'}</div> : <div></div>}
 
               {'$' + Formatter(parseFloat(pool.tvlUsd)) }
               
@@ -97,11 +96,11 @@ const YieldsRanking = () => {
               <div className="text-left capitalize text-blue-400">{pool.project}</div>
               <div>{pool.chain}</div>
               
-              {pool.apy ? <div>{parseFloat(pool.apy).toFixed(2) + '%'}</div> : null}
+              {pool.apy ? <div>{parseFloat(pool.apy).toFixed(2) + '%'}</div> : <div></div>}
 
-              {pool.apyBase ? <div>{parseFloat(pool.apyBase).toFixed(2)  + '%'}</div> : null}
+              {pool.apyBase ? <div>{parseFloat(pool.apyBase).toFixed(2)  + '%'}</div> : <div></div>}
 
-              {pool.apyReward ? <div>{parseFloat(pool.apyReward).toFixed(2)  + '%'}</div> : null}
+              {pool.apyReward ? <div>{parseFloat(pool.apyReward).toFixed(2)  + '%'}</div> : <div></div>}
 
               {'$' + Formatter(parseFloat(pool.tvlUsd)) }
               
