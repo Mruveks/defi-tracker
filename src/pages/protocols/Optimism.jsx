@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet';
 
 import ChartObject from '../../components/charts/ChartObject'
 import RankingObject from '../../components/RankingObject'
@@ -10,6 +11,11 @@ const Optimism = () => {
 
     <div className="grid grid-cols-1 w-full text-md">
       
+      <Helmet>
+        <title>Optimism | DeFi</title>
+        <meta name="description" content="Optimism"/>
+      </Helmet>
+
       <div className="mt-10 mx-10">
         <SearchList/>
       </div>

@@ -5,3 +5,7 @@ body{
   color: #fff;
   overflow-x: hidden;
 }
+
+#img{
+  filter: invert(1)
+}

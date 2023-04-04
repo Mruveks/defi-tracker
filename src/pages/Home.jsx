@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 
 import TVLranking from '../components/TVLranking'
 import TVLchart from '../components/charts/TVLchart'
@@ -8,7 +9,16 @@ const Home = () => {
   return (
     <div className="grid grid-cols-1 w-full text-md">
 
-      <div className="mt-10 mx-10">
+      <Helmet>
+        <title>Home | DeFi</title>
+        <meta name="description" content="Discover the best decentralized finance (DeFi) protocols"/>
+      </Helmet>
+
+      <header className="text-center pt-10 mb-5 text-4xl italic">
+        Top DeFi Protocols
+      </header>
+
+      <div className="mx-10">
         <SearchList/>
       </div>
  
@@ -16,7 +26,7 @@ const Home = () => {
         <TVLchart />
       </div>
       
-      <header className="flex justify-center w-full mb-5 text-white text-3xl italic">Protocols TVL Ranking</header>
+      <header className="flex justify-center w-full mb-5 text-white text-4xl italic">Ranking</header>
 
       <TVLranking />
     </div>

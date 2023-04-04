@@ -21,10 +21,9 @@ const StablesRanking = () => {
   <>
     <div className="h-max mx-10 mb-10 border-gray-600 p-2 border rounded-xl bg-gray-800 ">
       
-      <div className="grid md:grid-cols-5 grid-cols-4 lg:grid-cols-8 p-2 text-right uppercase italic border-b-gray-600 ">
+      <div className="grid md:grid-cols-4 grid-cols-4 lg:grid-cols-7 p-2 text-right uppercase italic border-b-gray-600 ">
         <header className="text-left">Name</header>
         <header>Price</header>
-        <header className="hidden lg:block">Peg Asset</header>
         <header className="hidden lg:block">Peg Mechanism</header>
         <header >1d Change</header>
         <header className="hidden md:block">7d Change</header>
@@ -36,7 +35,7 @@ const StablesRanking = () => {
           stables.filter(item => (item.circulating.peggedUSD >= 1000000 || item.circulating.peggedEUR >= 1000000 || item.circulating.peggedVAR >= 1000000) && item.price != null)
             .map(stable =>
             <div
-              className="grid  grid-cols-4 md:grid-cols-5 lg:grid-cols-8 items-center p-2 border-gray-600 border-t text-right"
+              className="grid  grid-cols-4 md:grid-cols-4 lg:grid-cols-7 items-center p-2 border-gray-600 border-t text-right"
               key={stable.id}
             >
               <a href={`https://www.coingecko.com/en/coins/${stable.gecko_id}`} target="_blank" className="flex w-max items-center text-left hover:bg-gray-600 rounded-full h-8">
@@ -47,9 +46,8 @@ const StablesRanking = () => {
               { stable.price >= 1 ?
                 <div className="text-green-500">{parseFloat(stable.price).toFixed(2)}$</div>
                   : <div className="text-red-500">{parseFloat(stable.price).toFixed(2)}$</div>
-              }
-
-              <div className="hidden lg:block">{stable.pegType.slice(6)}</div>
+                }
+                
               <div className="hidden lg:block">{stable.pegMechanism}</div>
               
               {/* CALCULATING DAILY CHANGE */}

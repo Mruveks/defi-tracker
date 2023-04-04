@@ -39,7 +39,7 @@ const Navbar = () => {
         <li>
           <NavLink to="/stables" onClick={() => setActiveNav('/stables')}
             className={`${activeNav === '/stables' ? 'bg-gray-700' : ''} ${elementStyle} `}
-          ><BsCoin size={24} className="mr-2"/>Stables</NavLink> 
+          ><BsCoin size={24} className="mr-2"/>Stablecoins</NavLink> 
         </li>
         <li>
           <NavLink to="/dex" onClick={() => setActiveNav('/dex')}
