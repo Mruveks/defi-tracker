@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router'
 
 import './App.css'
 
 import Navbar from './components/Navbar'
+import chainRoutes from './routes/ChainRoutes'
 
-import { Home, Stables, Yields, Bridges, Avax, Ethereum, Polygon, Arbitrum, Optimism, Bsc, Solana, Kava, Tron, Algorand, Fantom, Lending, CEX, DEX } from './pages/index'
-import ProtocolObject from './pages/protocols/ProtocolObject'
+import { Home, Stables, Yields, Bridges, Lending, CEX, DEX } from './pages/index'
 import ScrollTopButton from './components/ScrollTopButton'
+
+const ProtocolPage = lazy(() => import('./pages/protocols/ProtocolPage'));
+
 
 function App() {
 
@@ -15,7 +18,9 @@ function App() {
     <div className="w-full pl-0 mt-20 sm:mt-0 md:pl-48 pt-8">
       <Navbar />
       <ScrollTopButton />
-      <Routes>
+      <Suspense fallback={<div>Loading...</div>} >
+        <Routes>
+        
         <Route path="/" element={<Home />} />
         <Route path="/stables" element={<Stables />} />
         <Route path="/yields" element={<Yields />} />
@@ -23,21 +28,13 @@ function App() {
         <Route path="/lending" element={<Lending />} />
         <Route path="/cex" element={<CEX />} />
         <Route path="/dex" element={<DEX />} />
+        <Route path="/protocol/:protocolId" element={<ProtocolPage />} />
 
-        <Route path="/protocols" element={<ProtocolObject />} />
-
-        <Route path="/ethereum" element={<Ethereum />} />
-        <Route path="/bsc" element={<Bsc />} />
-        <Route path="/avalanche" element={<Avax />} />
-        <Route path="/polygon" element={<Polygon />} />
-        <Route path="/arbitrum" element={<Arbitrum />} />
-        <Route path="/optimism" element={<Optimism />} />
-        <Route path="/solana" element={<Solana />} />
-        <Route path="/kava" element={<Kava />} />
-        <Route path="/tron" element={<Tron />} />
-        <Route path="/algorand" element={<Algorand />} />
-        <Route path="/fantom" element={<Fantom />} />
-      </Routes>
+        {chainRoutes.map((route, index) => (
+            <Route key={index} path={route.path} element={<route.component />} />
+          ))}
+        </Routes>
+      </Suspense>
     </div>
   )
 }

@@ -44,7 +44,7 @@ const SearchList = () => {
               return (
                 <div key={key} className="flex p-2 items-center border-t-gray-600 border-t hover:bg-gray-600">
                   <img src={val.logo} alt="logo" className="h-8 w-8 rounded-full mr-2" />
-                  <Link to='/protocols' onClick={(e) => setNav(`#${val.name.toLowerCase()}`)}>{val.name}</Link>                 
+                  <Link to={`/protocol/${val.name.toLowerCase()}`}>{val.name}</Link>                 
                 </div>
               )
             })
