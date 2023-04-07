@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import SearchList from "../../components/SearchList";
 import { UnixConverter } from "../../utilities/UnixConverter";
-import ChartObject from "../../components/charts/ChartObject";
+import { Helmet } from "react-helmet";
 import {
   ChartComponent,
   LineSeries,
@@ -70,6 +70,12 @@ const ProtocolPage = () => {
 
   return (
     <main>
+
+      <Helmet>
+        <title>{protocolId} | DeFi</title>
+        <meta name="description" content={`Learn more about ${protocolId} features and how it works on our website.`}/>
+      </Helmet>
+
       <div className="mt-10 mx-10">
         <SearchList />
       </div>
