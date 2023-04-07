@@ -63,7 +63,6 @@ const SearchList = () => {
           type="search"
           className="border-gray-600 border border-b-0 rounded-b-none block w-full p-4 pl-10 rounded-xl bg-gray-900"
           placeholder="Search Protocols..."
-          placeholder="Search Protocols..."
           required
           onChange={(e) => {
             setSearchData(e.target.value);
