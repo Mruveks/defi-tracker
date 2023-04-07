@@ -85,7 +85,7 @@ const SearchList = () => {
               ) {
                 return val;
               }
-            }).filter(val => val.category != ('CEX' && 'Chain'))
+            }).filter(val => (val.category != 'CEX' && val.category != 'Chain'))
             .map((val, key) => {
               return (
                 <div
