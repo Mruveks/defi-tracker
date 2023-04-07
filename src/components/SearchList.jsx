@@ -18,7 +18,7 @@ const SearchList = () => {
       });
   }, []);
 
-  const [searchBar, setSearchBar] = useState("");
+
   const [isOpen, setIsOpen] = useState(false);
   const searchListRef = useRef(null);
 
@@ -85,7 +85,7 @@ const SearchList = () => {
               ) {
                 return val;
               }
-            })
+            }).filter(val => val.category != ('CEX' && 'Chain'))
             .map((val, key) => {
               return (
                 <div
@@ -100,6 +100,7 @@ const SearchList = () => {
                   <Link
                     to={`/protocol/${val.name.toLowerCase()}`}
                     className="flex-1 h-full flex items-center"
+                    onClick={() => handleClickOutside()}
                   >
                     {val.name}
                   </Link>
