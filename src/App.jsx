@@ -28,7 +28,7 @@ function App() {
         <Route path="/lending" element={<Lending />} />
         <Route path="/cex" element={<CEX />} />
         <Route path="/dex" element={<DEX />} />
-        <Route path="/protocol/:protocolId" element={<ProtocolPage />} />
+        <Route key="/protocol/:protocolId" path="/protocol/:protocolId" element={<ProtocolPage />} />
 
         {chainRoutes.map((route, index) => (
             <Route key={index} path={route.path} element={<route.component />} />
