@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import moment from "moment";
 import numeral from "numeral";
-import Loader from "./Loader";
+import Loader from "../Loader";
 import {
   LineChart,
   Line,
@@ -89,7 +89,7 @@ const Chart = () => {
     <div className="w-full h-full justify-center flex m-2 border border-gray-600 rounded-xl">
       {formattedData ? (
         <LineChart
-          width={1000}
+          width={900}
           height={600}
           margin={{ right: 20, left: 20, bottom: 40 }}
           data={formattedData}

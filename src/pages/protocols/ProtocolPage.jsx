@@ -41,7 +41,10 @@ const ProtocolPage = () => {
   const renderInvestors = (investors) => (
     <div className="grid grid-cols-6 py-4 gap-4 text-lg text-gray-400 italic">
       {investors.map((investor) => (
-        <div key={investor} className="w-full hover:underline cursor-pointer hover:text-white">
+        <div
+          key={investor}
+          className="w-full hover:underline cursor-pointer hover:text-white"
+        >
           {investor}
         </div>
       ))}
@@ -159,7 +162,7 @@ const ProtocolPage = () => {
           </div>
         ))}
 
-        {protocolData ? 
+        {protocolData ? (
           <>
             {protocolData.raises != 0 ? (
               <>
@@ -196,7 +199,7 @@ const ProtocolPage = () => {
               </>
             ) : null}
           </>
-         : null}
+        ) : null}
       </div>
     </main>
   );

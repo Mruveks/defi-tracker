@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
-import Loader from "./Loader";
+import Loader from "../Loader";
 import axios from "axios";
 import numeral from "numeral";
 
-const RankingObject = ({ chain }) => {
+const Ranking = ({ chain }) => {
   const [protocols, setProtocols] = useState([]);
-  let CapChain = ''
+  let CapChain = "";
 
   const capitalizeChain = (chain) => {
-    if (chain && typeof chain === 'string') {
-      return CapChain = chain.charAt(0).toUpperCase() + chain.slice(1);
+    if (chain && typeof chain === "string") {
+      return (CapChain = chain.charAt(0).toUpperCase() + chain.slice(1));
     }
-    return '';
+    return "";
   };
-  capitalizeChain(chain)
-  console.log(CapChain)
+  capitalizeChain(chain);
+  console.log(CapChain);
 
   useEffect(() => {
     axios
@@ -31,9 +31,7 @@ const RankingObject = ({ chain }) => {
     <div className="h-max mx-10 border rounded-xl border-gray-600 p-2">
       <div
         className={`grid ${
-          chain === "Lending" || "CEX"
-            ? "lg:grid-cols-5"
-            : "lg:grid-cols-6"
+          chain === "Lending" || "CEX" ? "lg:grid-cols-5" : "lg:grid-cols-6"
         } grid-cols-4 p-2 uppercase italic text-right`}
       >
         <header className="text-left">Name</header>
@@ -122,4 +120,4 @@ const RankingObject = ({ chain }) => {
   );
 };
 
-export default RankingObject;
+export default Ranking;

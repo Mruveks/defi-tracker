@@ -87,7 +87,7 @@ const Chart = () => {
   return (
     <div className="w-full h-full justify-end flex py-4">
       <LineChart
-        width={1000}
+        width={900}
         height={500}
         margin={{ right: 20, left: 20, bottom: 40 }}
         data={formattedData}

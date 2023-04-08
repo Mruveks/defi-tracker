@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useParams } from "react-router";
 import axios from "axios";
-import ChainsChart from "../../components/ChainsChart";
-import RankingObject from "../../components/RankingObject";
+import ChainsChart from "../../components/charts/ChainsChart";
+import Ranking from "../../components/rankings/Ranking";
 import { UnixConverter } from "../../utilities/UnixConverter";
 import ChainsSearchList from '../../components/ChainsSearchList'
 import numeral from "numeral";
@@ -107,7 +107,7 @@ const ChainPage = () => {
       <header className="flex justify-center w-full my-5 text-white text-3xl">
         Top protocols from <h1 className="italic px-2 capitalize"> {chainId} </h1> ecosystem
       </header>
-      <RankingObject chain={chainId} />
+      <Ranking chain={chainId} />
     </div>
   );
 };

@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 
-import Loader from './Loader';
-import { Formatter } from '../utilities/Formatter';
-import CalculateChange from '../utilities/CalculateChange';
+import Loader from '../Loader';
+import numeral from 'numeral'; 
+import CalculateChange from '../../utilities/CalculateChange';
 
 const StablesRanking = () => {
 
@@ -98,9 +98,9 @@ const StablesRanking = () => {
                   <div className="hidden lg:block"><CalculateChange lastDay={stable.circulating.peggedVAR} today={stable.circulatingPrevMonth.peggedVAR} /></div>  : <div></div>
                 : null}
                       
-              {stable.circulating.peggedUSD ? ('$' + Formatter(parseFloat(stable.circulating.peggedUSD))) : null}
-              {stable.circulating.peggedEUR ? ('$' + Formatter(parseFloat(stable.circulating.peggedEUR * 1.08))) : null}
-              {stable.circulating.peggedVAR ? ('$' + Formatter(parseFloat(stable.circulating.peggedVAR))) : null}
+              {stable.circulating.peggedUSD ? numeral(stable.circulating.peggedUSD).format("$0.00a") : null}
+              {stable.circulating.peggedEUR ? numeral(stable.circulating.peggedEUR * 1.08).format("$0.00a") : null}
+              {stable.circulating.peggedVAR ? numeral(stable.circulating.peggedVAR).format("$0.00a") : null}
             </div>)
       : <Loader />}
       

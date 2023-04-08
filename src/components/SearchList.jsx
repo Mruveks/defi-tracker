@@ -7,7 +7,6 @@ const SearchList = () => {
   const [searchData, setSearchData] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const searchListRef = useRef(null);
-
   useEffect(() => {
     axios
       .get("https://api.llama.fi/protocols")
