@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const ChainsSearchList = () => {
-
   const [protocols, setProtocols] = useState([]);
   const [searchData, setSearchData] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -85,7 +84,7 @@ const ChainsSearchList = () => {
                 return val;
               }
             })
-            .filter(val => val.tvl > 100000000)
+            .filter((val) => val.tvl > 100000000)
             .map((val, key) => {
               return (
                 <div
@@ -97,7 +96,7 @@ const ChainsSearchList = () => {
                     className="pl-8 flex-1 h-full flex items-center"
                     onClick={() => handleClickOutside()}
                   >
-                  {val.name}  
+                    {val.name}
                   </Link>
                 </div>
               );

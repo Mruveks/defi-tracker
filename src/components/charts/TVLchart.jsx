@@ -29,7 +29,7 @@ const TVLchart = () => {
           value: value,
         }));
         setProtocols(datasource);
-        console.log(protocols)
+        console.log(protocols);
         const today = datasource.slice(
           datasource.length - 1,
           datasource.length
@@ -65,7 +65,7 @@ const TVLchart = () => {
 
   const CustomizedAxisTick = ({ x, y, payload }) => {
     const formattedDate = moment(payload.value).format("DD/MM/YYYY");
-    
+
     return (
       <g transform={`translate(${x},${y})`}>
         <text
@@ -81,7 +81,6 @@ const TVLchart = () => {
       </g>
     );
   };
-  
 
   const num1 = parseFloat(day).toFixed(2);
   const num2 = parseFloat(lastDay).toFixed(2);
@@ -95,7 +94,9 @@ const TVLchart = () => {
           <div className="flex flex-col w-full lg:w-[30%] gap-4 lg:gap-8 lg:py-2 lg:pr-2 text-4xl text-left">
             <div className="flex sm:flex-row lg:flex-col justify-evenly border border-gray-600 w-full h-full lg:py-10 py-2 px-4 rounded-xl md:items-center lg:items-start">
               <div>Total Value Locked</div>
-              <div className="text-blue-500">{numeral(num2).format("$0.00a")}</div>
+              <div className="text-blue-500">
+                {numeral(num2).format("$0.00a")}
+              </div>
             </div>
 
             <div className="flex sm:flex-row lg:flex-col justify-evenly border border-gray-600 w-full h-full lg:py-10 py-2 px-4 rounded-xl md:items-center lg:items-start">
@@ -111,7 +112,7 @@ const TVLchart = () => {
                 </div>
               ) : (
                 <div className="text-red-500">
-                    {numeral(dollarChange).format("$0.00a")}
+                  {numeral(dollarChange).format("$0.00a")}
                 </div>
               )}
             </div>
@@ -126,7 +127,6 @@ const TVLchart = () => {
             >
               <CartesianGrid vertical={false} horizontal={false} />
               <XAxis
-                
                 dataKey="date"
                 interval={182}
                 tick={<CustomizedAxisTick />}

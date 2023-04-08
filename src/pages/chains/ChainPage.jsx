@@ -4,28 +4,27 @@ import { useParams } from "react-router";
 import axios from "axios";
 import ChainsChart from "../../components/charts/ChainsChart";
 import Ranking from "../../components/rankings/Ranking";
-import { UnixConverter } from "../../utilities/UnixConverter";
-import ChainsSearchList from '../../components/ChainsSearchList'
+import ChainsSearchList from "../../components/ChainsSearchList";
 import numeral from "numeral";
+import moment from 'moment'
 
 const ChainPage = () => {
-
   const { chainId } = useParams();
   const [chains, setChains] = useState([]);
-  
+
   const [lastDay, setLastDay] = useState();
   const [day, setDay] = useState();
-  
-  let formattedProtocolId = chainId
-  console.log(chainId)
+
+  let formattedProtocolId = chainId;
+  console.log(chainId);
 
   useEffect(() => {
     axios
       .get(`https://api.llama.fi/charts/${formattedProtocolId}`)
       .then((res) => {
         const data = res.data;
-        console.log(data)
-        const dates = data.map((item) => UnixConverter(item.date));
+        console.log(data);
+        const dates = data.map((item) => moment.unix(item.date).toDate());
         const values = data.map((item) => item.totalLiquidityUSD);
         const datasource = values.map((value, index) => ({
           date: dates[index],
@@ -105,7 +104,8 @@ const ChainPage = () => {
       </div>
 
       <header className="flex justify-center w-full my-5 text-white text-3xl">
-        Top protocols from <h1 className="italic px-2 capitalize"> {chainId} </h1> ecosystem
+        Top protocols from{" "}
+        <h1 className="italic px-2 capitalize"> {chainId} </h1> ecosystem
       </header>
       <Ranking chain={chainId} />
     </div>

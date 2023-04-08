@@ -6,12 +6,4 @@ import Lending from "./Lending";
 import CEX from "./CEX";
 import DEX from "./DEX";
 
-export {
-  Home,
-  Stables,
-  Yields,
-  Bridges,
-  Lending,
-  CEX,
-  DEX,
-}
+export { Home, Stables, Yields, Bridges, Lending, CEX, DEX };

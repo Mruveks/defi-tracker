@@ -16,7 +16,6 @@ const Home = () => {
         />
       </Helmet>
 
-
       <div className="mx-10">
         <SearchList />
       </div>

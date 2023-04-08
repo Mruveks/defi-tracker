@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { BsArrowUpSquareFill } from 'react-icons/bs'
+import { useState, useEffect } from "react";
+import { BsArrowUpSquareFill } from "react-icons/bs";
 
 function ScrollToTopButton() {
   const [showButton, setShowButton] = useState(false);
@@ -10,21 +10,21 @@ function ScrollToTopButton() {
       setShowButton(scrollY > 0);
     }
 
-    document.addEventListener('scroll', handleScroll);
+    document.addEventListener("scroll", handleScroll);
 
     return () => {
-      document.removeEventListener('scroll', handleScroll);
+      document.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   function handleClick() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   return (
     <button
       className={`fixed flex items-center space-x-4 bottom-4 left-4  backdrop-blur-2xl bg-transparent border border-gray-600  hover:bg-gray-600 text-gray-400  font-bold py-2 px-4 rounded ${
-        showButton ? 'block' : 'hidden'
+        showButton ? "block" : "hidden"
       }`}
       onClick={handleClick}
     >
@@ -34,5 +34,4 @@ function ScrollToTopButton() {
   );
 }
 
-
-export default ScrollToTopButton
+export default ScrollToTopButton;
