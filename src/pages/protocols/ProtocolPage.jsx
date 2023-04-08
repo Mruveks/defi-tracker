@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import SearchList from "../../components/SearchList";
 import { UnixConverter } from "../../utilities/UnixConverter";
 import { Helmet } from "react-helmet";
-import ProtocolsChart from "../../components/ProtocolsChart";
+import ProtocolsChart from "../../components/charts/ProtocolsChart";
 import numeral from "numeral";
 
 const ProtocolPage = () => {

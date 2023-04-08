@@ -95,14 +95,14 @@ const Chart = () => {
         <CartesianGrid vertical={false} horizontal={false} />
         <XAxis
           dataKey="date"
-          interval={10}
+          interval={50}
           tick={<CustomizedAxisTick />}
           stroke="gray"
         />
         <YAxis
           stroke="gray"
           tickFormatter={(value) => numeral(value).format("$0.00a")}
-          padding={{ top: 100 }}
+          padding={{ top: 100, bottom: 40 }}
         />
         <Tooltip
           active={true}
