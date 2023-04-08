@@ -49,7 +49,6 @@ const TVLchart = () => {
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length > 0) {
-      // add a check for payload
       const formattedLabel = moment(label).format("DD/MM/YYYY");
       const formattedValue = numeral(payload[0].value).format("$0,0");
       return (
@@ -120,12 +119,12 @@ const TVLchart = () => {
 
           <div className="flex justify-self-center lg:w-[70%] my-2 rounded-xl border border-gray-600">
             <LineChart
-              width={900}
+              width={1000}
               height={500}
               margin={{ right: 20, left: 20, bottom: 40 }}
               data={protocols}
             >
-              <CartesianGrid vertical={false} horizontal={false} />
+              <CartesianGrid vertical={true} strokeOpacity={0.05} horizontal={true}/>
               <XAxis
                 dataKey="date"
                 interval={182}

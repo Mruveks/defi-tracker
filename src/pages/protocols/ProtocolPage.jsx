@@ -33,7 +33,7 @@ const ProtocolPage = () => {
     <div key={raise.name}>
       <p>Total Raised: ${raise.amount}m</p>
       <p>
-        {UnixConverter(raise.date)}: {raise.round} - Raised ${raise.amount}m
+        {moment.unix(raise.date).toDate()}: {raise.round} - Raised ${raise.amount}m
       </p>
     </div>
   );
@@ -50,6 +50,7 @@ const ProtocolPage = () => {
       ))}
     </div>
   );
+  console.log(protocolData)
 
   return (
     <main>
@@ -67,15 +68,16 @@ const ProtocolPage = () => {
 
       <div className="grid grid-cols-2 mx-10 my-10 rounded-xl">
         <div className="col-span-2 grid grid-cols-[40%_60%] border border-gray-600  rounded-xl">
-          {protocolData.map((protocol) => (
+          {protocolData ? 
+          protocolData.map((protocol) => (
             <div
               key={protocol.id}
               className="space-y-8 text-white w-[80%] p-4 italic capitalize"
             >
               <header className="text-3xl">
-                {protocolId}({protocol.symbol})
+                {protocolId} ({protocol.symbol})
               </header>
-              <div className="flex justify-between">
+              <div className="grid gap-4">
                 <div>
                   <h1>Total Value Locked</h1>
                   <p>{numeral(tvl).format("$0.00a")}</p>
@@ -107,12 +109,14 @@ const ProtocolPage = () => {
                 </div>
               </div>
             </div>
-          ))}
+          )) : <div></div>}
           <ProtocolsChart />
         </div>
 
         <header className="mt-10 mb-2 text-2xl">Protocol Infromation</header>
-        {protocolData.map((protocol) => (
+        { /** CODE BELOW IS BROKEN, CHANGING TO protocolDat ? BREAKS APP */}
+        {protocolData > 0 ?
+        protocolData.map((protocol) => (
           <div
             key={protocol.id}
             className="space-y-4 col-span-2 p-4 w-full rounded-xl border border-gray-600"
@@ -131,10 +135,11 @@ const ProtocolPage = () => {
               </div>
             ) : null}
           </div>
-        ))}
+        )) : <div></div>}
 
         <header className="mt-10 mb-2 text-2xl">Token Information</header>
-        {protocolData.map((protocol) => (
+        {protocolData > 0 ?
+        protocolData.map((protocol) => (
           <div
             key={protocol.id}
             className="col-span-2 space-y-4 p-4 w-full rounded-xl border border-gray-600"
@@ -160,9 +165,9 @@ const ProtocolPage = () => {
               </p>
             </div>
           </div>
-        ))}
+        )) : <div></div>}
 
-        {protocolData ? (
+        {protocolData > 0 ? (
           <>
             {protocolData.raises != 0 ? (
               <>
@@ -199,7 +204,7 @@ const ProtocolPage = () => {
               </>
             ) : null}
           </>
-        ) : null}
+        ) : <div></div>}
       </div>
     </main>
   );

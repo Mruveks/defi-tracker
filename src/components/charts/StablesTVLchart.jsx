@@ -121,7 +121,7 @@ const StablesTVLchart = () => {
               margin={{ right: 20, left: 20, bottom: 40 }}
               data={stable}
             >
-              <CartesianGrid vertical={false} horizontal={false} />
+              <CartesianGrid vertical={true} strokeOpacity={0.05} horizontal={true} />
               <XAxis
                 dataKey="date"
                 interval={100}

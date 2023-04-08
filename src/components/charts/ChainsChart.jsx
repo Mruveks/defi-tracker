@@ -97,7 +97,7 @@ const Chart = () => {
         >
           <CartesianGrid
             vertical={true}
-            strokeOpacity={0.1}
+            strokeOpacity={0.05}
             horizontal={true}
           />
           <XAxis
