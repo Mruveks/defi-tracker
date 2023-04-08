@@ -46,7 +46,6 @@ const Chart = () => {
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length > 0) {
-      // add a check for payload
       const formattedLabel = moment(label).format("DD/MM/YYYY");
       const formattedValue = numeral(payload[0].value).format("$0,0");
       return (
@@ -87,7 +86,7 @@ const Chart = () => {
   return (
     <div className="w-full h-full justify-end flex py-4">
       <LineChart
-        width={900}
+        width={1200}
         height={500}
         margin={{ right: 20, left: 20, bottom: 40 }}
         data={formattedData}

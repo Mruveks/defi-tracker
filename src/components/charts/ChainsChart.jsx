@@ -89,12 +89,17 @@ const Chart = () => {
     <div className="w-full h-full justify-center flex m-2 border border-gray-600 rounded-xl">
       {formattedData ? (
         <LineChart
-          width={900}
+          width={1200}
           height={600}
           margin={{ right: 20, left: 20, bottom: 40 }}
           data={formattedData}
+          style={{ width: "100%" }}
         >
-          <CartesianGrid vertical={false} horizontal={false} />
+          <CartesianGrid
+            vertical={true}
+            strokeOpacity={0.1}
+            horizontal={true}
+          />
           <XAxis
             dataKey="date"
             interval={182}

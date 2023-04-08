@@ -116,7 +116,7 @@ const StablesTVLchart = () => {
 
           <div className="resize lg:w-[70%] my-2 rounded-xl border border-gray-600">
             <LineChart
-              width={900}
+              width={1200}
               height={500}
               margin={{ right: 20, left: 20, bottom: 40 }}
               data={stable}
