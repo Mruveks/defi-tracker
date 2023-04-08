@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import SearchList from "../../components/SearchList";
-import { UnixConverter } from "../../utilities/UnixConverter";
+import moment from "moment";
 import { Helmet } from "react-helmet";
 import ProtocolsChart from "../../components/charts/ProtocolsChart";
 import numeral from "numeral";
@@ -120,7 +120,7 @@ const ProtocolPage = () => {
             <p className="text-justify">{protocol.description}</p>
             <p>Category: {protocol.category}</p>
             {protocol.listedAt ? (
-              <p>Created at: {UnixConverter(protocol.listedAt)}</p>
+              <p>Created at: {moment.unix(protocol.listedAt).toDate()}</p>
             ) : null}
             {protocol.audit_links ? (
               <div>

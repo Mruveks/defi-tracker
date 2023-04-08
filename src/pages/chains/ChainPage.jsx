@@ -89,7 +89,7 @@ const ChainPage = () => {
                 )}
                 {dollarChange > 0 ? (
                   <div className="text-green-500">
-                    {numeral(dollarChange).format("$0.00a")}
+                    {"+" + numeral(dollarChange).format("$0.00a")}
                   </div>
                 ) : (
                   <div className="text-red-500">
