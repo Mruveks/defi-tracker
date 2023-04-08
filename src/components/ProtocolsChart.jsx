@@ -21,7 +21,11 @@ const Chart = () => {
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get(`https://api.llama.fi/protocol/${protocolId.replace(/ /g, "-").toLowerCase()}`)
+      .get(
+        `https://api.llama.fi/protocol/${protocolId
+          .replace(/ /g, "-")
+          .toLowerCase()}`
+      )
       .then((res) => {
         const data = [res.data];
         const formattedData = data[0].tvl.map((item) => {
@@ -41,11 +45,12 @@ const Chart = () => {
   }, [protocolId]);
 
   const CustomTooltip = ({ active, payload, label }) => {
-    if (active && payload && (payload.length > 0)) { // add a check for payload
+    if (active && payload && payload.length > 0) {
+      // add a check for payload
       const formattedLabel = moment(label).format("DD/MM/YYYY");
       const formattedValue = numeral(payload[0].value).format("$0,0");
       return (
-        <div className="bg-transparent  text-2xl border border-none">
+        <div className="bg-transparent  text-2xl border border-none p-2">
           <p>Total TVL</p>
           <p className="text-xl italic font-semibold">{formattedValue}</p>
           <p className="text-base font-semibold">{formattedLabel}</p>
@@ -54,7 +59,6 @@ const Chart = () => {
     }
     return null;
   };
-  
 
   const CustomizedAxisTick = ({ x, y, payload }) => {
     const formattedDate = moment(payload.value).format("DD/MM/YYYY");
@@ -81,36 +85,35 @@ const Chart = () => {
     );
   };
   return (
-<div className="w-full h-full justify-end flex py-4">
-  <LineChart
-    width={1000}
-    height={500}
-    margin={{ right: 20, left: 20, bottom: 40 }}
-    data={formattedData}
-  >
-    <CartesianGrid vertical={false} horizontal={false} />
-    <XAxis
-      dataKey="date"
-      interval={10}
-      tick={<CustomizedAxisTick />}
-      stroke="gray"
-    />
-    <YAxis
-      stroke="gray"
-      tickFormatter={(value) => numeral(value).format("$0.00a")}
-      padding={{ top: 100 }}
-    />
-    <Tooltip
-      active={true}
-      content={<CustomTooltip />}
-      position={{ x: 100, y: 2 }}
-      contentStyle={{ color: "gray" }}
-      stroke="gray"
-    />
-    <Line dot={false} type="monotone" dataKey="value" stroke="#8884d8" />
-  </LineChart>
-</div>
-
+    <div className="w-full h-full justify-end flex py-4">
+      <LineChart
+        width={1000}
+        height={500}
+        margin={{ right: 20, left: 20, bottom: 40 }}
+        data={formattedData}
+      >
+        <CartesianGrid vertical={false} horizontal={false} />
+        <XAxis
+          dataKey="date"
+          interval={10}
+          tick={<CustomizedAxisTick />}
+          stroke="gray"
+        />
+        <YAxis
+          stroke="gray"
+          tickFormatter={(value) => numeral(value).format("$0.00a")}
+          padding={{ top: 100 }}
+        />
+        <Tooltip
+          active={true}
+          content={<CustomTooltip />}
+          position={{ x: 100, y: 2 }}
+          contentStyle={{ color: "gray" }}
+          stroke="gray"
+        />
+        <Line dot={false} type="monotone" dataKey="value" stroke="#8884d8" />
+      </LineChart>
+    </div>
   );
 };
 

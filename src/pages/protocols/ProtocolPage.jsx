@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import SearchList from "../../components/SearchList";
 import { UnixConverter } from "../../utilities/UnixConverter";
 import { Helmet } from "react-helmet";
-import Chart from "../../components/Chart";
+import ProtocolsChart from "../../components/ProtocolsChart";
 import numeral from "numeral";
 
 const ProtocolPage = () => {
@@ -105,7 +105,7 @@ const ProtocolPage = () => {
               </div>
             </div>
           ))}
-          <Chart />
+          <ProtocolsChart />
         </div>
 
         <header className="mt-10 mb-2 text-2xl">Protocol Infromation</header>
@@ -161,7 +161,7 @@ const ProtocolPage = () => {
 
         {protocolData ? 
           <>
-            {protocolData[0].raises != 0 ? (
+            {protocolData.raises != 0 ? (
               <>
                 <header className="mt-10 mb-2 text-2xl">Raises</header>
                 {protocolData.map((protocol) => (
