@@ -5,6 +5,8 @@ import axios from "axios";
 const SearchList = () => {
   const [protocols, setProtocols] = useState([]);
   const [searchData, setSearchData] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const searchListRef = useRef(null);
 
   useEffect(() => {
     axios
@@ -17,10 +19,6 @@ const SearchList = () => {
         console.log(err);
       });
   }, []);
-
-
-  const [isOpen, setIsOpen] = useState(false);
-  const searchListRef = useRef(null);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -85,7 +83,8 @@ const SearchList = () => {
               ) {
                 return val;
               }
-            }).filter(val => (val.category != 'CEX' && val.category != 'Chain'))
+            })
+            .filter((val) => val.category != "CEX" && val.category != "Chain")
             .map((val, key) => {
               return (
                 <div
