@@ -4,8 +4,7 @@ import { Route, Routes } from 'react-router'
 import './App.css'
 
 import Navbar from './components/Navbar'
-import chainRoutes from './routes/ChainRoutes'
-
+import ChainPage from './pages/chains/ChainPage'
 import { Home, Stables, Yields, Bridges, Lending, CEX, DEX } from './pages/index'
 import ScrollTopButton from './components/ScrollTopButton'
 
@@ -29,10 +28,8 @@ function App() {
         <Route path="/cex" element={<CEX />} />
         <Route path="/dex" element={<DEX />} />
         <Route key="/protocol/:protocolId" path="/protocol/:protocolId" element={<ProtocolPage />} />
-
-        {chainRoutes.map((route, index) => (
-            <Route key={index} path={route.path} element={<route.component />} />
-          ))}
+        <Route key="/chain/:chainId" path="/chain/:chainId" element={<ChainPage />} />
+        
         </Routes>
       </Suspense>
     </div>

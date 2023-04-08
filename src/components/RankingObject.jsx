@@ -1,75 +1,125 @@
-import React, { useState, useEffect} from 'react'
-import Loader from './Loader';
-import axios from 'axios';
-import { Formatter } from '../utilities/Formatter';
+import React, { useState, useEffect } from "react";
+import Loader from "./Loader";
+import axios from "axios";
+import numeral from "numeral";
 
 const RankingObject = ({ chain }) => {
-  
   const [protocols, setProtocols] = useState([]);
+  let CapChain = ''
+
+  const capitalizeChain = (chain) => {
+    if (chain && typeof chain === 'string') {
+      return CapChain = chain.charAt(0).toUpperCase() + chain.slice(1);
+    }
+    return '';
+  };
+  capitalizeChain(chain)
+  console.log(CapChain)
 
   useEffect(() => {
-    axios.get('https://api.llama.fi/protocols')
-      .then(res => {
-        setProtocols(res.data)
+    axios
+      .get("https://api.llama.fi/protocols")
+      .then((res) => {
+        setProtocols(res.data);
       })
-      .catch(err => {
-        console.log(err)
-      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
-  
-  return (
-    <div className="h-max m-10 border rounded-xl border-gray-600 p-2">
 
-    <div className={`grid ${(chain === 'Lending' || 'CEX') ? "lg:grid-cols-5" : "lg:grid-cols-6"} grid-cols-4 p-2 uppercase italic text-right`}>
-        
-      <header className="text-left">Name</header> 
-      {(chain === 'Lending' || 'CEX' || 'DEX') ? null : <header className="text-right">Category</header>}
-      <header>1h Change</header>
-      <header>1d Change</header>
-      <header className="hidden lg:block">7d Change</header>
-      <header>TVL</header>
-    </div>
-      
-    {protocols.length ? 
-        protocols.filter(item => item.tvl != null && (item.chain === chain || item.category === chain) && item.tvl >= 100000)
-          .map(protocol =>
+  return (
+    <div className="h-max mx-10 border rounded-xl border-gray-600 p-2">
+      <div
+        className={`grid ${
+          chain === "Lending" || "CEX"
+            ? "lg:grid-cols-5"
+            : "lg:grid-cols-6"
+        } grid-cols-4 p-2 uppercase italic text-right`}
+      >
+        <header className="text-left">Name</header>
+        {chain === "Lending" || "CEX" || "DEX" ? null : (
+          <header className="text-right">Category</header>
+        )}
+        <header>1h Change</header>
+        <header>1d Change</header>
+        <header className="hidden lg:block">7d Change</header>
+        <header>TVL</header>
+      </div>
+
+      {protocols.length ? (
+        protocols
+          .filter(
+            (item) =>
+              item.tvl != null &&
+              (item.chain === CapChain || item.category === CapChain) &&
+              item.tvl >= 100000
+          )
+          .map((protocol) => (
             <div
-              className={`grid ${(chain === 'Lending' || 'CEX' || 'DEX') ? "lg:grid-cols-5" : "lg:grid-cols-6"} grid-cols-4 items-center p-2 border-gray-600 border-t text-right`}
+              className={`grid ${
+                CapChain === "Lending" || "CEX" || "DEX"
+                  ? "lg:grid-cols-5"
+                  : "lg:grid-cols-6"
+              } grid-cols-4 items-center p-2 border-gray-600 border-t text-right`}
               key={protocol.id}
             >
-              <a href={ protocol.url } target="_blank" className="flex w-max items-center text-left hover:bg-gray-600 rounded-full">
-                <img src={ protocol.logo } alt="logo"  className="h-8 w-8 rounded-full" />
-                <div className="sm:w-fit md:w-40 px-2 my-auto text-blue-400">{ protocol.name }</div>
+              <a
+                href={protocol.url}
+                target="_blank"
+                className="flex w-max items-center text-left hover:bg-gray-600 rounded-full"
+              >
+                <img
+                  src={protocol.logo}
+                  alt="logo"
+                  className="h-8 w-8 rounded-full"
+                />
+                <div className="sm:w-fit md:w-40 px-2 my-auto text-blue-400">
+                  {protocol.name}
+                </div>
               </a>
-              
-              {(chain === 'Lending' || 'CEX' || 'DEX') ? null : <div>{protocol.category}</div>}
-                           
-              {
-                protocol.change_1h > 0 ?
-                  <div className="text-green-500">+{parseFloat(protocol.change_1h).toFixed(2)}%</div>
-                  : <div className="text-red-500">{parseFloat(protocol.change_1h).toFixed(2)}%</div>
-              }
-              
-              {
-                protocol.change_1d > 0 ?
-                  <div className="text-green-500">+{parseFloat(protocol.change_1d).toFixed(2)}%</div>
-                  : <div className="text-red-500">{parseFloat(protocol.change_1d).toFixed(2)}%</div>
-              }
-              
-              {
-                protocol.change_7d > 0 ?
-                  <div className="hidden lg:block text-green-500">+{parseFloat(protocol.change_7d).toFixed(2)}%</div>
-                  : <div className="hidden lg:block text-red-500">{parseFloat(protocol.change_7d).toFixed(2)}%</div>
-              }
-              
-              {'$' + Formatter(parseFloat(protocol.tvl))}
-            </div>)
-        : <Loader />
-        }
 
+              {CapChain === "Lending" || "CEX" || "DEX" ? null : (
+                <div>{protocol.category}</div>
+              )}
 
-  </div>
-  )
-}
+              {protocol.change_1h > 0 ? (
+                <div className="text-green-500">
+                  +{parseFloat(protocol.change_1h).toFixed(2)}%
+                </div>
+              ) : (
+                <div className="text-red-500">
+                  {parseFloat(protocol.change_1h).toFixed(2)}%
+                </div>
+              )}
 
-export default RankingObject
+              {protocol.change_1d > 0 ? (
+                <div className="text-green-500">
+                  +{parseFloat(protocol.change_1d).toFixed(2)}%
+                </div>
+              ) : (
+                <div className="text-red-500">
+                  {parseFloat(protocol.change_1d).toFixed(2)}%
+                </div>
+              )}
+
+              {protocol.change_7d > 0 ? (
+                <div className="hidden lg:block text-green-500">
+                  +{parseFloat(protocol.change_7d).toFixed(2)}%
+                </div>
+              ) : (
+                <div className="hidden lg:block text-red-500">
+                  {parseFloat(protocol.change_7d).toFixed(2)}%
+                </div>
+              )}
+
+              {numeral(protocol.tvl).format("$0.00a")}
+            </div>
+          ))
+      ) : (
+        <Loader />
+      )}
+    </div>
+  );
+};
+
+export default RankingObject;

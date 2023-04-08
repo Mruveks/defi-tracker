@@ -4,7 +4,7 @@ import {BsPercent, BsCoin, BsBank, BsCodeSlash, BsBarChart} from 'react-icons/bs
 import { GiRialtoBridge } from 'react-icons/gi'
 import { RiHandCoinLine } from 'react-icons/ri'
 
-import { eth, bsc, avax, polygon, optimism, solana, tron, kava, ftm, algo, arbitrum } from '../assets/AssetsIndex.js'
+import { eth, bsc, avax, polygon, optimism, solana, tron, arbitrum } from '../assets/AssetsIndex.js'
 
 const Navbar = () => {
 
@@ -13,11 +13,11 @@ const Navbar = () => {
 
   const elementStyle = 'flex items-center capitalize rounded-lg hover:bg-gray-700'
 
-  const link = (id, img) => {
+  const link = (chainId, img) => {
     return (
-      <NavLink to={`/${id}`} onClick={() => setActiveNav(`/${id}`)}
-        className={`${activeNav === `/${id}` ? 'bg-gray-700' : ''} ${elementStyle} `}
-      ><img src={img} alt="" className="rounded-full mr-2" />{id}</NavLink>
+      <NavLink key={chainId} to={`/chain/${chainId}`} onClick={() => setActiveNav(`/${chainId}`)}
+        className={`${activeNav === `/${chainId}` ? 'bg-gray-700' : ''} ${elementStyle} `}
+      ><img src={img} alt="" className="rounded-full mr-2" />{chainId}</NavLink>
     )
   }
 
