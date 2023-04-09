@@ -93,7 +93,6 @@ const Chart = () => {
           height={600}
           margin={{ right: 20, left: 20, bottom: 40 }}
           data={formattedData}
-          style={{ width: "100%" }}
         >
           <CartesianGrid
             vertical={true}

@@ -14,7 +14,6 @@ const Ranking = ({ chain }) => {
     return "";
   };
   capitalizeChain(chain);
-  console.log(CapChain);
 
   useEffect(() => {
     axios
@@ -46,12 +45,13 @@ const Ranking = ({ chain }) => {
 
       {protocols.length ? (
         protocols
-          .filter(
-            (item) =>
-              item.tvl != null &&
-              (item.chain === CapChain || item.category === CapChain) &&
-              item.tvl >= 100000
-          )
+        .filter(
+          (item) =>
+            item.tvl != null && // Check if tvl is not null
+            item.tvl >= 100000 &&
+            (CapChain === 'CEX' || item.category !== 'CEX') && // Filter out items with category = 'CEX' if CapChain is not 'CEX'
+            (item.chain === CapChain || item.category === CapChain) // Check if chain or category matches CapChain
+        )
           .map((protocol) => (
             <div
               className={`grid ${
@@ -61,6 +61,7 @@ const Ranking = ({ chain }) => {
               } grid-cols-4 items-center p-2 border-gray-600 border-t text-right`}
               key={protocol.id}
             >
+              {console.log(protocols)}
               <a
                 href={protocol.url}
                 target="_blank"

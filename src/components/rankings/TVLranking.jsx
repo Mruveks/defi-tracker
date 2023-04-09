@@ -122,9 +122,10 @@ const TVLranking = () => {
             protocols
               .filter(
                 (item) =>
+                  item.tvl != null &&
                   item.tvl >= 1000000 &&
-                  item.category != "CEX" &&
-                  item.category != "Chain"
+                  item.category !== "CEX" &&
+                  item.category !== "Chain"
               )
               .map((protocol) => (
                 <div
@@ -189,7 +190,8 @@ const TVLranking = () => {
           protocols
             .filter(
               (item) =>
-                item.tvl != null && item.chain === query && item.tvl >= 1000000
+                item.tvl != null && item.chain === query && item.tvl >= 1000000 && item.category !== "CEX" &&
+                item.category !== "Chain"
             )
             .map((protocol) => (
               <div

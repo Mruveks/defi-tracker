@@ -116,12 +116,17 @@ const StablesTVLchart = () => {
 
           <div className="resize lg:w-[70%] my-2 rounded-xl border border-gray-600">
             <LineChart
-              width={1200}
-              height={500}
+              width={1000}
+              height={600}
               margin={{ right: 20, left: 20, bottom: 40 }}
               data={stable}
+              
             >
-              <CartesianGrid vertical={true} strokeOpacity={0.05} horizontal={true} />
+              <CartesianGrid
+                vertical={true}
+                strokeOpacity={0.05}
+                horizontal={true}
+              />
               <XAxis
                 dataKey="date"
                 interval={100}
@@ -137,8 +142,6 @@ const StablesTVLchart = () => {
                 active={true}
                 content={<CustomTooltip />}
                 position={{ x: 100, y: 2 }}
-                contentStyle={{ color: "gray" }}
-                stroke="gray"
               />
               <Line
                 dot={false}
