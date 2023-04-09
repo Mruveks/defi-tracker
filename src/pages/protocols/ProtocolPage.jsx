@@ -6,6 +6,7 @@ import moment from "moment";
 import { Helmet } from "react-helmet";
 import ProtocolsChart from "../../components/charts/ProtocolsChart";
 import numeral from "numeral";
+import ProtocolAddress from "../../utilities/ProtocolAddress";
 
 const ProtocolPage = () => {
   const { protocolId } = useParams(); // get the protocol ID from the URL params
@@ -56,7 +57,9 @@ const ProtocolPage = () => {
   return (
     <main>
       <Helmet>
-        <title>{protocolId.charAt(0).toUpperCase() + protocolId.slice(1)} | DeFi</title>
+        <title>
+          {protocolId.charAt(0).toUpperCase() + protocolId.slice(1)} | DeFi
+        </title>
         <meta
           name="description"
           content={`Learn more about ${protocolId} features and how it works on our website.`}
@@ -186,24 +189,24 @@ const ProtocolPage = () => {
               key={protocol.id}
               className="col-span-2 space-y-4 p-4 w-full rounded-xl border border-gray-600"
             >
-              <p>Address: {protocol.address}</p>
-              <div className="flex space-x-4">
+              <div className="flex space-x-2">
+                <p>Address: </p>
+                <p className="italic">{protocol.address}</p>
+              </div>
+              <div className="flex space-x-2 items-center">
                 <p>
                   <a
-                    href={`https:/www.coingecko.com/en/coins/${protocol.gecko_id}`}
-                    target="__blank"
-                    className="px-4 py-2 rounded bg-gray-900 w-fit hover:bg-gray-600"
+                    href={`https://www.coingecko.com/en/coins/${protocol.gecko_id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    View on CoinGecko
+                    <button className="px-4 py-2 rounded bg-gray-900 w-fit hover:bg-gray-600">
+                      View on CoinGecko
+                    </button>
                   </a>
                 </p>
                 <p>
-                  <a
-                    href=""
-                    className="px-4 py-2 rounded bg-gray-900 w-fit hover:bg-gray-600"
-                  >
-                    view on blockchain
-                  </a>
+                  <ProtocolAddress address={protocol.address} />
                 </p>
               </div>
             </div>
