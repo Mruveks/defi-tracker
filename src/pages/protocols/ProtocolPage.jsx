@@ -56,7 +56,7 @@ const ProtocolPage = () => {
   return (
     <main>
       <Helmet>
-        <title>{protocolId} | DeFi</title>
+        <title>{protocolId.charAt(0).toUpperCase() + protocolId.slice(1)} | DeFi</title>
         <meta
           name="description"
           content={`Learn more about ${protocolId} features and how it works on our website.`}

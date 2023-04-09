@@ -57,7 +57,7 @@ const ChainPage = () => {
   return (
     <div className="grid grid-cols-1 w-full text-md">
       <Helmet>
-        <title>{`${chainId} | DeFi`}</title>
+        <title>{`${chainId.charAt(0).toUpperCase() + protocolId.slice(1)} | DeFi`}</title>
         <meta name="description" content={`${chainId}`} />
       </Helmet>
 
