@@ -93,27 +93,31 @@ const ProtocolPage = () => {
                     <h1>Total Value Locked</h1>
                     <p>{numeral(tvl).format("$0.00a")}</p>
                   </div>
-                  <div>
-                    <h1>Market Cap</h1>
-                    <p>{numeral(protocol.mcap).format("$0.00a")}</p>
-                  </div>
-                  <div>
-                    <h1>mcap/TVL</h1>
-                    <p>{(protocol.mcap / tvl).toFixed(2)}</p>
-                  </div>
+                  {protocol.mcap !== null ? (
+                    <>
+                      <div>
+                        <h1>Market Cap</h1>
+                        <p>{numeral(protocol.mcap).format("$0.00a")}</p>
+                      </div>
+                      <div>
+                        <h1>mcap/TVL</h1>
+                        <p>{(protocol.mcap / tvl).toFixed(2)}</p>
+                      </div>
+                    </>
+                  ) : null}
                 </div>
                 <div>
-                  <p>Chain breakdown</p>
-                  <div className="flex space-x-4">
-                    {protocol.chainTvls.length > 1 ? (
-                      <p className="flex space-x-4 whitespace-pre-wrap">
-                        {protocol.chainTvls.map((chain) => (
-                          <div key={chain.id} className="flex">
-                            <h1>{chain}</h1>
+                  <h1>Chain breakdown</h1>
+                  <div>
+                    <p>{protocol.chain}</p>
+                    {protocol.chains.length > 0 ? (
+                      <div className="">
+                        {protocol.chains.filter(chain => chain != protocol.chain).map((chain) => (
+                          <div key={chain.id} className="grid">
                             <p>{chain}</p>
                           </div>
                         ))}
-                      </p>
+                      </div>
                     ) : (
                       <p>{protocol.chain}</p>
                     )}
