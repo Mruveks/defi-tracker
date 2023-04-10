@@ -1,7 +1,6 @@
 import React from "react";
-
+import { BsArrowUpRight } from "react-icons/bs";
 const ProtocolAddress = ({ address }) => {
-
   let link;
 
   if (address && address.includes(":")) {
@@ -47,7 +46,7 @@ const ProtocolAddress = ({ address }) => {
         break;
     }
   } else {
-    link = `https://etherscan.io/address/${address}`
+    link = `https://etherscan.io/address/${address}`;
   }
 
   const handleClick = () => {
@@ -58,10 +57,11 @@ const ProtocolAddress = ({ address }) => {
 
   return (
     <button
-      className="px-4 py-2 rounded bg-gray-900 w-fit hover:bg-gray-600"
+      className="flex space-x-2 items-center px-4 py-2 rounded bg-gray-900 w-fit hover:bg-gray-600"
       onClick={handleClick}
     >
-      Check out on blockchain
+      <p>View on blockchain</p>
+      <BsArrowUpRight />
     </button>
   );
 };

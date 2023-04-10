@@ -7,6 +7,7 @@ import { Helmet } from "react-helmet";
 import ProtocolsChart from "../../components/charts/ProtocolsChart";
 import numeral from "numeral";
 import ProtocolAddress from "../../utilities/ProtocolAddress";
+import { BsArrowUpRight } from "react-icons/bs";
 
 const ProtocolPage = () => {
   const { protocolId } = useParams(); // get the protocol ID from the URL params
@@ -19,7 +20,6 @@ const ProtocolPage = () => {
       .get(`https://api.llama.fi/protocol/${formattedProtocolId}`)
       .then((res) => {
         const data = [res.data];
-        console.log(data);
         setProtocolData(data);
         const tvl = data[0].tvl;
         const lastElement = tvl[tvl.length - 1];
@@ -78,9 +78,16 @@ const ProtocolPage = () => {
                 key={protocol.id}
                 className="space-y-8 text-white w-[80%] p-4 italic capitalize"
               >
-                <header className="text-3xl">
-                  {protocolId} ({protocol.symbol})
-                </header>
+                <div className="flex space-x-2 items-center">
+                  <img
+                    src={protocol.logo}
+                    alt={protocolId}
+                    className="h-12 w-12"
+                  />
+                  <header className="text-3xl">
+                    {protocolId} ({protocol.symbol})
+                  </header>
+                </div>
                 <div className="grid gap-4">
                   <div>
                     <h1>Total Value Locked</h1>
@@ -119,8 +126,6 @@ const ProtocolPage = () => {
           )}
           <ProtocolsChart />
         </div>
-
-        <header className="mt-10 mb-2 text-2xl">Protocol Information</header>
         {protocolData &&
         (Array.isArray(protocolData)
           ? protocolData.length > 0
@@ -129,8 +134,9 @@ const ProtocolPage = () => {
             protocolData.map((protocol) => (
               <div
                 key={protocol.id}
-                className="space-y-4 col-span-2 p-4 w-full rounded-xl border border-gray-600"
+                className="mt-10 space-y-4 p-4 w-full rounded-l-xl rounded-r-none border border-r-0 border-l-gray-600 border-y-gray-600"
               >
+                <header className="text-2xl">Protocol Information</header>
                 <p className="text-justify">{protocol.description}</p>
                 <p>Category: {protocol.category}</p>
                 {protocol.listedAt ? (
@@ -153,6 +159,23 @@ const ProtocolPage = () => {
                     ))}
                   </div>
                 ) : null}
+                <div className="flex space-x-2">
+                  <a href={protocol.url} target="_blank">
+                    <button className="px-4 space-x-2 flex items-center py-2 rounded bg-gray-900 w-fit hover:bg-gray-600">
+                      <p>Website</p>
+                      <BsArrowUpRight />
+                    </button>
+                  </a>
+                  <a
+                    href={`https://twitter.com/${protocol.twitter}`}
+                    target="_blank"
+                  >
+                    <button className="px-4 space-x-2 h-full flex items-center rounded bg-gray-900 w-fit hover:bg-gray-600">
+                      <p>Twitter</p>
+                      <BsArrowUpRight />
+                    </button>
+                  </a>
+                </div>
               </div>
             ))
           ) : (
@@ -181,14 +204,13 @@ const ProtocolPage = () => {
         ) : (
           <div>No protocol information available.</div>
         )}
-
-        <header className="mt-10 mb-2 text-2xl">Token Information</header>
         {Array.isArray(protocolData) && protocolData.length > 0 ? (
           protocolData.map((protocol) => (
             <div
               key={protocol.id}
-              className="col-span-2 space-y-4 p-4 w-full rounded-xl border border-gray-600"
+              className="mt-10 space-y-4 p-4 w-full rounded-r-xl rounded-l-none border border-gray-600"
             >
+              <header className="text-2xl">Token Information</header>
               <div className="flex space-x-2">
                 <p>Address: </p>
                 {protocol.address !== null ? (
@@ -205,8 +227,9 @@ const ProtocolPage = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <button className="px-4 py-2 rounded bg-gray-900 w-fit hover:bg-gray-600">
-                        View on CoinGecko
+                      <button className="flex space-x-2 items-center px-4 py-2 rounded bg-gray-900 w-fit hover:bg-gray-600">
+                        <p>View on CoinGecko</p>
+                        <BsArrowUpRight />
                       </button>
                     </a>
                   </p>
@@ -221,34 +244,48 @@ const ProtocolPage = () => {
           <div></div>
         )}
 
+        {protocolData &&
+          protocolData.length > 0 &&
+          protocolData[0].methodology &&
+          protocolData.map((protocol) => (
+            <div
+              key={protocol.id}
+              className="col-span-2 mt-10 space-y-4 p-4 w-full rounded-xl border border-gray-600"
+            >
+              <header className="text-2xl">Methodology</header>
+              <p>{protocol.methodology}</p>
+            </div>
+          ))}
+
         {protocolData && (
           <>
             {Array.isArray(protocolData)
               ? protocolData.length > 0 &&
                 protocolData.map((protocol) => (
-                  <div key={protocol.id} className="col-span-2">
+                  <div
+                    key={protocol.id}
+                    className="col-span-2 mt-10 space-y-10"
+                  >
                     {protocol.raises && protocol.raises.length > 0 && (
                       <>
-                        <header className="mt-10 mb-2 text-2xl">Raises</header>
-                        <div className="col-span-2 p-4 rounded-xl border border-gray-600">
+                        <div className="grid-cols-2 p-4 rounded-xl border border-gray-600">
+                          <header className="text-2xl">Raises</header>
                           <div className="space-y-4">
                             {protocol.raises.map(renderRaises)}
                           </div>
                         </div>
-                        <header className="mt-10 mb-2 text-2xl">
-                          Lead Investors
-                        </header>
-                        <div className="col-span-2 p-4 w-full rounded-xl border border-gray-600">
+                        <div className="p-4 w-full rounded-xl border border-gray-600">
+                          <header className="mb-2 text-2xl">
+                            Lead Investors
+                          </header>
                           {protocol.raises.map((raise) => (
                             <div key={raise.name}>
                               {renderInvestors(raise.leadInvestors)}
                             </div>
                           ))}
                         </div>
-                        <header className="mt-10 mb-2 text-2xl">
-                          Other Investors
-                        </header>
-                        <div className="col-span-2 mb-10 p-4 w-full rounded-xl border border-gray-600">
+                        <div className="p-4 w-full rounded-xl border border-gray-600">
+                          <header className="text-2xl">Other Investors</header>
                           {protocol.raises.map((raise) => (
                             <div key={raise.name}>
                               {renderInvestors(raise.otherInvestors)}
