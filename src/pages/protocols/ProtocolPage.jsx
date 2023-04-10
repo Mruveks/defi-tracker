@@ -76,13 +76,13 @@ const ProtocolPage = () => {
             protocolData.map((protocol) => (
               <div
                 key={protocol.id}
-                className="space-y-8 text-white w-[80%] p-4 italic capitalize"
+                className="space-y-8 h-96 text-white w-[80%] p-4 italic capitalize"
               >
                 <div className="flex space-x-2 items-center">
                   <img
                     src={protocol.logo}
                     alt={protocolId}
-                    className="h-12 w-12"
+                    className="h-12 w-12 rounded-full"
                   />
                   <header className="text-3xl">
                     {protocolId} ({protocol.symbol})
@@ -111,9 +111,9 @@ const ProtocolPage = () => {
                   <div>
                     <p>{protocol.chain}</p>
                     {protocol.chains.length > 0 ? (
-                      <div className="">
+                      <div>
                         {protocol.chains.filter(chain => chain != protocol.chain).map((chain) => (
-                          <div key={chain.id} className="grid">
+                          <div key={chain.id} className="grid grid-cols-3 grid-flow-row auto-rows-min h-full">
                             <p>{chain}</p>
                           </div>
                         ))}
