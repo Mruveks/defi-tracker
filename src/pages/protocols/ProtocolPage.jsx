@@ -191,24 +191,30 @@ const ProtocolPage = () => {
             >
               <div className="flex space-x-2">
                 <p>Address: </p>
-                <p className="italic">{protocol.address}</p>
+                {protocol.address !== null ? (
+                  <p className="italic">{protocol.address}</p>
+                ) : (
+                  <p>No address available</p>
+                )}
               </div>
-              <div className="flex space-x-2 items-center">
-                <p>
-                  <a
-                    href={`https://www.coingecko.com/en/coins/${protocol.gecko_id}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <button className="px-4 py-2 rounded bg-gray-900 w-fit hover:bg-gray-600">
-                      View on CoinGecko
-                    </button>
-                  </a>
-                </p>
-                <p>
-                  <ProtocolAddress address={protocol.address} />
-                </p>
-              </div>
+              {protocol.address !== null ? (
+                <div className="flex space-x-2 items-center">
+                  <p>
+                    <a
+                      href={`https://www.coingecko.com/en/coins/${protocol.gecko_id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <button className="px-4 py-2 rounded bg-gray-900 w-fit hover:bg-gray-600">
+                        View on CoinGecko
+                      </button>
+                    </a>
+                  </p>
+                  <p>
+                    <ProtocolAddress address={protocol.address} />
+                  </p>
+                </div>
+              ) : null}
             </div>
           ))
         ) : (
