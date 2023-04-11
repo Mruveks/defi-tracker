@@ -5,6 +5,7 @@ import numeral from "numeral";
 import moment from "moment";
 import {
   LineChart,
+  ResponsiveContainer,
   Line,
   XAxis,
   YAxis,
@@ -86,70 +87,69 @@ const StablesTVLchart = () => {
   return (
     <>
       {stable.length ? (
-        <div className="flex flex-col lg:flex-row ">
-          <div className="flex flex-col w-full lg:w-[30%] gap-4 lg:gap-8 lg:py-2 lg:pr-2 text-4xl text-left">
-            <div className="flex sm:flex-row lg:flex-col justify-evenly border border-gray-600 w-full h-full lg:py-10 py-2 px-4 rounded-xl md:items-center lg:items-start">
-              <div>Total Value Locked</div>
-              <div className="text-blue-500">
-                {numeral(num2).format("$0.00a")}
+        <div className="grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
+          <div className="grid gap-10 w-full text-4xl m-6  text-left">
+              <div className="grid h-fit grid-flow-row w-full p-4">
+                <div>Total Value Locked</div>
+                <div className="text-blue-500">
+                  {numeral(num2).format("$0.00a")}
+                </div>
+              </div>
+
+              <div className="grid h-fit grid-flow-row w-full p-4">
+                <div>24h Change</div>
+                {percentageChange > 0 ? (
+                  <div className="text-green-500">+{percentageChange}%</div>
+                ) : (
+                  <div className="text-red-500">{percentageChange}%</div>
+                )}
+                {dollarChange > 0 ? (
+                  <div className="text-green-500">
+                    {"+" + numeral(dollarChange).format("$0.00a")}
+                  </div>
+                ) : (
+                  <div className="text-red-500">
+                    {numeral(dollarChange).format("$0.00a")}
+                  </div>
+                )}
               </div>
             </div>
 
-            <div className="flex sm:flex-row lg:flex-col justify-evenly border border-gray-600 w-full h-full lg:py-10 py-2 px-4 rounded-xl md:items-center lg:items-start">
-              <div>24h Change</div>
-              {percentageChange > 0 ? (
-                <div className="text-green-500">+{percentageChange}%</div>
-              ) : (
-                <div className="text-red-500">{percentageChange + "%"}</div>
-              )}
-              {dollarChange > 0 ? (
-                <div className="text-green-500">
-                  {numeral(dollarChange).format("$0.00a")}
-                </div>
-              ) : (
-                <div className="text-red-500">
-                  {numeral(dollarChange).format("$0.00a")}
-                </div>
-              )}
-            </div>
-          </div>
-
-          <div className="w-full h-full justify-end flex py-4 my-2 rounded-xl border border-gray-600">
-            <LineChart
-              width={1200}
-              height={500}
-              margin={{ right: 20, left: 20, bottom: 40 }}
-              data={stable}
-              
-            >
-              <CartesianGrid
-                vertical={true}
-                strokeOpacity={0.05}
-                horizontal={true}
-              />
-              <XAxis
-                dataKey="date"
-                interval={100}
-                tick={<CustomizedAxisTick />}
-                stroke="gray"
-              />
-              <YAxis
-                stroke="gray"
-                tickFormatter={(value) => numeral(value).format("$0.00a")}
-                padding={{ top: 100, bottom: 40 }}
-              />
-              <Tooltip
-                active={true}
-                content={<CustomTooltip />}
-                position={{ x: 100, y: 2 }}
-              />
-              <Line
-                dot={false}
-                type="monotone"
-                dataKey="value"
-                stroke="#8884d8"
-              />
-            </LineChart>
+          <div className="w-full sm:hidden h-full justify-end flex py-4">
+            <ResponsiveContainer width="100%" height={500}>
+              <LineChart
+                margin={{ right: 20, left: 20, bottom: 40 }}
+                data={stable}
+              >
+                <CartesianGrid
+                  vertical={true}
+                  strokeOpacity={0.05}
+                  horizontal={true}
+                />
+                <XAxis
+                  dataKey="date"
+                  interval={182}
+                  tick={<CustomizedAxisTick />}
+                  stroke="gray"
+                />
+                <YAxis
+                  stroke="gray"
+                  tickFormatter={(value) => numeral(value).format("$0.00a")}
+                  padding={{ top: 100, bottom: 40 }}
+                />
+                <Tooltip
+                  active={true}
+                  content={<CustomTooltip />}
+                  position={{ x: 100, y: 2 }}
+                />
+                <Line
+                  dot={false}
+                  type="monotone"
+                  dataKey="value"
+                  stroke="#8884d8"
+                />
+              </LineChart>
+            </ResponsiveContainer>
           </div>
         </div>
       ) : (

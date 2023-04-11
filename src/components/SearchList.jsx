@@ -71,7 +71,7 @@ const SearchList = () => {
       {isOpen && (
         <div
           ref={searchListRef}
-          className="max-h-60 z-10 absolute mx-6 right-4 left-52 border-gray-600 border bg-gray-900 rounded-b-xl overflow-y-auto"
+          className="max-h-60 z-10 absolute mx-6 right-4 left-52 sm:right-0 sm:left-0 sm:mx-5 border-gray-600 border bg-gray-900 rounded-b-xl overflow-y-auto"
         >
           {protocols
             .filter((val) => {

@@ -5,7 +5,7 @@ import SearchList from "../components/SearchList";
 
 const DEX = () => {
   return (
-    <div className="grid grid-cols-1 w-full text-md">
+    <div className="grid grid-cols-1 mx-10 sm:mx-5 text-md">
       <Helmet>
         <title>DEX | DeFi</title>
         <meta
@@ -14,9 +14,7 @@ const DEX = () => {
         />
       </Helmet>
 
-      <div className="mx-10">
-        <SearchList />
-      </div>
+      <SearchList />
 
       <header className="text-center my-10 text-4xl italic">
         Top Decentralised Exchanges

@@ -6,7 +6,7 @@ import ChainsChart from "../../components/charts/ChainsChart";
 import Ranking from "../../components/rankings/Ranking";
 import ChainsSearchList from "../../components/ChainsSearchList";
 import numeral from "numeral";
-import moment from 'moment'
+import moment from "moment";
 
 const ChainPage = () => {
   const { chainId } = useParams();
@@ -55,13 +55,15 @@ const ChainPage = () => {
   const percentageChange = (((num1 - num2) / num2) * 100).toFixed(2);
 
   return (
-    <div className="grid grid-cols-1 w-full text-md">
+    <div className="grid grid-cols-1 text-md mx-10 sm:mx-5">
       <Helmet>
-        <title>{`${chainId.charAt(0).toUpperCase() + chainId.slice(1)} | DeFi`}</title>
+        <title>{`${
+          chainId.charAt(0).toUpperCase() + chainId.slice(1)
+        } | DeFi`}</title>
         <meta name="description" content={`${chainId}`} />
       </Helmet>
 
-      <div className="mx-10">
+      <div>
         <ChainsSearchList />
       </div>
 
@@ -69,18 +71,18 @@ const ChainPage = () => {
         {chainId}
       </div>
 
-      <div className="h-max mx-10 text-white ">
+      <div className="h-max text-white ">
         {chains.length ? (
-          <div className="flex flex-col lg:flex-row">
-            <div className="flex flex-col w-full lg:w-[30%] gap-4 lg:gap-8 lg:py-2 lg:pr-2 text-4xl text-left">
-              <div className="flex sm:flex-row lg:flex-col justify-evenly border border-gray-600 w-full h-full lg:py-10 py-2 px-4 rounded-xl md:items-center lg:items-start">
+          <div className="col-span-2 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
+            <div className="grid gap-10 w-full text-4xl m-6  text-left">
+              <div className="grid h-fit grid-flow-row w-full p-4">
                 <div>Total Value Locked</div>
                 <div className="text-blue-500">
                   {numeral(num2).format("$0.00a")}
                 </div>
               </div>
 
-              <div className="flex sm:flex-row lg:flex-col justify-evenly border border-gray-600 w-full h-full lg:py-10 py-2 px-4 rounded-xl md:items-center lg:items-start">
+              <div className="grid h-fit grid-flow-row w-full p-4">
                 <div>24h Change</div>
                 {percentageChange > 0 ? (
                   <div className="text-green-500">+{percentageChange}%</div>
@@ -103,9 +105,10 @@ const ChainPage = () => {
         ) : null}
       </div>
 
-      <header className="flex justify-center w-full my-5 text-white text-3xl">
-        Top protocols from{" "}
-        <p className="italic px-2 capitalize"> {chainId} </p> ecosystem
+      <header className="flex flex-wrap justify-center my-5 text-white text-3xl">
+        Top protocols from
+        <p className="italic px-2 capitalize"> {chainId} </p>{" "}
+        ecosystem
       </header>
       <Ranking chain={chainId} />
     </div>

@@ -27,11 +27,11 @@ const Ranking = ({ chain }) => {
   }, []);
 
   return (
-    <div className="h-max mx-10 border rounded-xl border-gray-600 p-2">
+    <div className="h-max border rounded-xl border-gray-600 p-2">
       <div
         className={`grid ${
-          chain === "Lending" || "CEX" ? "lg:grid-cols-5" : "lg:grid-cols-6"
-        } grid-cols-4 p-2 uppercase italic text-right`}
+          chain === "Lending" || "CEX" ? "grid-cols-5" : "grid-cols-6"
+        } sm:grid-cols-4 p-2 uppercase italic text-right`}
       >
         <header className="text-left">Name</header>
         {chain === "Lending" || "CEX" || "DEX" ? null : (
@@ -39,7 +39,7 @@ const Ranking = ({ chain }) => {
         )}
         <header>1h Change</header>
         <header>1d Change</header>
-        <header className="hidden lg:block">7d Change</header>
+        <header className="sm:hidden block">7d Change</header>
         <header>TVL</header>
       </div>
 
@@ -56,12 +56,11 @@ const Ranking = ({ chain }) => {
             <div
               className={`grid ${
                 CapChain === "Lending" || "CEX" || "DEX"
-                  ? "lg:grid-cols-5"
-                  : "lg:grid-cols-6"
-              } grid-cols-4 items-center p-2 border-gray-600 border-t text-right`}
+                  ? "grid-cols-5"
+                  : "grid-cols-6"
+              } sm:grid-cols-4 items-center p-2 border-gray-600 border-t text-right`}
               key={protocol.id}
             >
-              {console.log(protocols)}
               <a
                 href={protocol.url}
                 target="_blank"
@@ -72,7 +71,7 @@ const Ranking = ({ chain }) => {
                   alt="logo"
                   className="h-8 w-8 rounded-full"
                 />
-                <div className="sm:w-fit md:w-40 px-2 my-auto text-blue-400">
+                <div className="w-fit md:w-40 px-2 my-auto text-blue-400">
                   {protocol.name}
                 </div>
               </a>
@@ -102,11 +101,11 @@ const Ranking = ({ chain }) => {
               )}
 
               {protocol.change_7d > 0 ? (
-                <div className="hidden lg:block text-green-500">
+                <div className="sm:hidden block text-green-500">
                   +{parseFloat(protocol.change_7d).toFixed(2)}%
                 </div>
               ) : (
-                <div className="hidden lg:block text-red-500">
+                <div className="sm:hidden block text-red-500">
                   {parseFloat(protocol.change_7d).toFixed(2)}%
                 </div>
               )}

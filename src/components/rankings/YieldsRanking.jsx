@@ -24,7 +24,7 @@ const YieldsRanking = () => {
 
   return (
     <>
-      <div className="flex justify-between mx-8 h-full py-2">
+      <div className="flex justify-between h-full py-2">
         <button
           className={`${buttonStyle} ${query === "" ? "bg-gray-900" : ""}`}
           onClick={() => setQuery("")}
@@ -102,7 +102,7 @@ const YieldsRanking = () => {
           Solana
         </button>
       </div>
-      <div className="h-max mb-10 mx-10 border rounded-xl border-gray-600 p-2">
+      <div className="h-max mb-10  border rounded-xl border-gray-600 p-2">
         <div className="grid grid-cols-7 p-2 text-right uppercase italic">
           <header className="text-left">Pool</header>
           <header className="text-left">Project</header>

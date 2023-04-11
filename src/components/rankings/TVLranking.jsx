@@ -27,7 +27,7 @@ const TVLranking = () => {
 
   return (
     <>
-      <div className="flex flex-wrap justify-between mx-8 py-2 h-full">
+      <div className="flex flex-wrap justify-between py-2 h-full">
         <button
           className={`${buttonStyle} ${query === "" ? "bg-gray-900" : ""}`}
           onClick={() => setQuery("")}
@@ -106,11 +106,11 @@ const TVLranking = () => {
         </button>
       </div>
 
-      <div className="h-max mb-10 mx-10 border-gray-600 border p-2 rounded-xl bg-gray-800">
-        <div className="grid lg:grid-cols-7 md:grid-cols-5 p-2 border-b-gray-600 text-right italic uppercase">
+      <div className="h-max mb-10 border-gray-600 border p-2 rounded-xl bg-gray-800">
+        <div className="grid grid-cols-7 sm:grid-cols-5 p-2 border-b-gray-600 text-right italic uppercase">
           <header className="text-left">Name</header>
-          <header className="hidden lg:block">Category</header>
-          <header className="hidden lg:block">Chain</header>
+          <header className="sm:hidden block">Category</header>
+          <header className="sm:hidden block">Chain</header>
           <header>1d Change</header>
           <header>7d Change</header>
           <header>30d Change</header>
@@ -129,7 +129,7 @@ const TVLranking = () => {
               )
               .map((protocol) => (
                 <div
-                  className="grid lg:grid-cols-7 md:grid-cols-5 items-center p-2 border-gray-600 border-t text-right"
+                  className="grid grid-cols-7 sm:grid-cols-5 items-center p-2 border-gray-600 border-t text-right"
                   key={protocol.id}
                 >
                   <a
@@ -142,13 +142,13 @@ const TVLranking = () => {
                       alt="logo"
                       className="h-8 w-8 rounded-full"
                     />
-                    <div className="sm:w-fit md:w-40 px-2 my-auto text-blue-400">
+                    <div className="sm:w-fit w-40 px-2 my-auto text-blue-400">
                       {protocol.name}
                     </div>
                   </a>
 
-                  <div className="hidden lg:block">{protocol.category}</div>
-                  <div className="hidden lg:block">{protocol.chain}</div>
+                  <div className="sm:hidden block">{protocol.category}</div>
+                  <div className="sm:hidden block">{protocol.chain}</div>
 
                   {protocol.change_1h > 0 ? (
                     <div className="text-green-500">
@@ -195,7 +195,7 @@ const TVLranking = () => {
             )
             .map((protocol) => (
               <div
-                className="grid lg:grid-cols-7 md:grid-cols-5 items-center p-2 border-gray-600 border-t text-right"
+                className="grid grid-cols-7 sm:grid-cols-5 items-center p-2 border-gray-600 border-t text-right"
                 key={protocol.id}
               >
                 <a
@@ -213,8 +213,8 @@ const TVLranking = () => {
                   </div>
                 </a>
 
-                <div className="hidden lg:block">{protocol.category}</div>
-                <div className="hidden lg:block">{protocol.chain}</div>
+                <div className="sm:hidden block">{protocol.category}</div>
+                <div className="sm:hidden block">{protocol.chain}</div>
 
                 {protocol.change_1h > 0 ? (
                   <div className="text-green-500">

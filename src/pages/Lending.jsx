@@ -5,7 +5,7 @@ import SearchList from "../components/SearchList";
 
 const Lending = () => {
   return (
-    <div className="grid grid-cols-1 w-full text-md">
+    <div className="grid grid-cols-1 mx-10 sm:mx-5 text-md">
       <Helmet>
         <title>Lending | DeFi</title>
         <meta
@@ -14,9 +14,7 @@ const Lending = () => {
         />
       </Helmet>
 
-      <div className="mx-10">
         <SearchList />
-      </div>
 
       <header className="text-center my-10 text-4xl italic">
         Top Lending Protocols

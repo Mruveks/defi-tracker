@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import moment from "moment";
 import numeral from "numeral";
 import {
+  ResponsiveContainer,
   LineChart,
   Line,
   XAxis,
@@ -11,7 +12,6 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts";
-import Loader from '../Loader'
 
 const Chart = () => {
   const { protocolId } = useParams(); // get the protocol ID from the URL params
@@ -85,39 +85,41 @@ const Chart = () => {
     );
   };
 
-
   return (
-    <div className="w-full h-full justify-end flex py-4">
-          <LineChart
-          width={1200}
-          height={500}
+    <div className="w-full sm:hidden h-full justify-end flex py-4">
+      <ResponsiveContainer width="100%" height={500}>
+        <LineChart
           margin={{ right: 20, left: 20, bottom: 40 }}
           data={formattedData}
-          >
-        <CartesianGrid vertical={true} strokeOpacity={0.05} horizontal={true} />
-        <XAxis
-          dataKey="date"
-          interval={50}
-          tick={<CustomizedAxisTick />}
-          stroke="gray"
+        >
+          <CartesianGrid
+            vertical={true}
+            strokeOpacity={0.05}
+            horizontal={true}
           />
-        <YAxis
-          stroke="gray"
-          tickFormatter={(value) => numeral(value).format("$0.00a")}
-          padding={{ top: 100, bottom: 40 }}
+          <XAxis
+            dataKey="date"
+            interval={50}
+            tick={<CustomizedAxisTick />}
+            stroke="gray"
           />
-        <Tooltip
-          active={true}
-          content={<CustomTooltip />}
-          position={{ x: 100, y: 2 }}
-          contentStyle={{ color: "gray" }}
-          stroke="gray"
+          <YAxis
+            stroke="gray"
+            tickFormatter={(value) => numeral(value).format("$0.00a")}
+            padding={{ top: 100, bottom: 40 }}
           />
-        <Line dot={false} type="monotone" dataKey="value" stroke="#8884d8" />
-      </LineChart>
+          <Tooltip
+            active={true}
+            content={<CustomTooltip />}
+            position={{ x: 100, y: 2 }}
+            contentStyle={{ color: "gray" }}
+            stroke="gray"
+          />
+          <Line dot={false} type="monotone" dataKey="value" stroke="#8884d8" />
+        </LineChart>
+      </ResponsiveContainer>
     </div>
-    );
-  };
-  
-  export default Chart;
-  
+  );
+};
+
+export default Chart;

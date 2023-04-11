@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import SearchList from "../../components/SearchList";
 import moment from "moment";
 import { Helmet } from "react-helmet";
@@ -41,20 +41,20 @@ const ProtocolPage = () => {
   );
 
   const renderInvestors = (investors) => (
-    <div className="grid grid-flow-col py-4 text-lg text-gray-400 italic">
+    <div className="grid grid-flow-col text-lg text-gray-400 italic">
       {investors.map((investor) => (
         <div
           key={investor}
-          className="w-full hover:underline cursor-pointer hover:text-white"
+          className="w-fit hover:underline cursor-pointer hover:text-white"
         >
           {investor}
         </div>
       ))}
     </div>
   );
-
+console.log(protocolData)
   return (
-    <main>
+    <main className="mx-10 sm:mx-5">
       <Helmet>
         <title>
           {protocolId.charAt(0).toUpperCase() + protocolId.slice(1)} | DeFi
@@ -65,81 +65,79 @@ const ProtocolPage = () => {
         />
       </Helmet>
 
-      <div className="mx-10">
+      <div>
         <SearchList />
       </div>
 
       {protocolData.length ? (
-        <div className="grid grid-cols-2 mx-10 my-10 rounded-xl">
-          <div className="col-span-2 grid grid-cols-[25%_75%] border border-gray-600  rounded-xl">
-            {protocolData ? (
-              protocolData.map((protocol) => (
-                <div
-                  key={protocol.id}
-                  className="space-y-8 h-96 text-white w-[80%] p-4 italic capitalize"
-                >
-                  <div className="flex space-x-2 items-center">
-                    <img
-                      src={protocol.logo}
-                      alt={protocolId}
-                      className="h-12 w-12 rounded-full"
-                    />
-                    <header className="text-3xl">
-                      {protocolId} ({protocol.symbol})
-                    </header>
-                  </div>
-                  <div className="grid gap-4">
-                    <div>
-                      <h1>Total Value Locked</h1>
-                      <p>{numeral(tvl).format("$0.00a")}</p>
-                    </div>
-                    {protocol.mcap !== null ? (
-                      <>
-                        <div>
-                          <h1>Market Cap</h1>
-                          <p>{numeral(protocol.mcap).format("$0.00a")}</p>
-                        </div>
-                        <div>
-                          <h1>mcap/TVL</h1>
-                          <p>{(protocol.mcap / tvl).toFixed(2)}</p>
-                        </div>
-                      </>
-                    ) : null}
-                  </div>
+        <div className="grid grid-cols-2 gap-10 my-10 rounded-xl">
+          <div className="col-span-2 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600  rounded-xl">
+            {protocolData.map((protocol) => (
+              <div
+                key={protocol.id}
+                className="space-y-8 h-fit text-white sm:w-full w-[80%] p-4 italic capitalize"
+              >
+                <div className="flex space-x-2 items-center">
+                  <img
+                    src={protocol.logo}
+                    alt={protocolId}
+                    className="h-16 w-16 rounded-full"
+                  />
+                  <header className="text-4xl">
+                    {protocolId} ({protocol.symbol})
+                  </header>
+                </div>
+                <div className="grid sm:flex gap-4">
                   <div>
-                    <h1>Chain breakdown</h1>
-                    <div>
+                    <h1>Total Value Locked</h1>
+                    <p>{numeral(tvl).format("$0.00a")}</p>
+                  </div>
+                  {protocol.mcap !== null ? (
+                    <>
+                      <div>
+                        <h1>Market Cap</h1>
+                        <p>{numeral(protocol.mcap).format("$0.00a")}</p>
+                      </div>
+                      <div>
+                        <h1>mcap/TVL</h1>
+                        <p>{(protocol.mcap / tvl).toFixed(2)}</p>
+                      </div>
+                    </>
+                  ) : null}
+                </div>
+                <div className="grid gap-4 w-full ">
+                  <h1>Chain breakdown</h1>
+                  <div className="sm:flex w-full">
+                    <Link to={`/chain/${(protocol.chain.toLowerCase())}`}>{protocol.chain}</Link>
+                    {protocol.chains.length > 0 ? (
+                      <div>
+                        {protocol.chains
+                          .filter((chain) => chain != protocol.chain)
+                          .map((chain) => (
+                            <div
+                              key={chain.id}
+                              className="grid sm:inline-block sm:px-2 grid-cols-3 h-full"
+                            >
+                              <Link to={`/chains/${chain}`}>{chain}</Link>
+                            </div>
+                          ))}
+                      </div>
+                    ) : (
                       <p>{protocol.chain}</p>
-                      {protocol.chains.length > 0 ? (
-                        <div>
-                          {protocol.chains
-                            .filter((chain) => chain != protocol.chain)
-                            .map((chain) => (
-                              <div
-                                key={chain.id}
-                                className="grid grid-cols-3 grid-flow-row auto-rows-min h-full"
-                              >
-                                <p>{chain}</p>
-                              </div>
-                            ))}
-                        </div>
-                      ) : (
-                        <p>{protocol.chain}</p>
-                      )}
-                    </div>
+                    )}
                   </div>
                 </div>
-              ))
-            ) : (
-              <div></div>
-            )}
+              </div>
+            ))}
             <ProtocolsChart />
           </div>
           {protocolData.map((protocol) => (
-            <>
-              <div key={protocol.id} className="mt-10 space-y-4 p-4 w-full rounded-l-xl rounded-r-none border border-r-0 border-l-gray-600 border-y-gray-600"
-              >
-                <header className="text-2xl">Protocol Information</header>
+            <div
+              key={protocol.id}
+              className="col-span-2 grid grid-cols-2 sm:grid-cols-1 rounded-xl border border-gray-600"
+            >
+              <div className="space-y-4 p-4 border-r border-gray-600">
+                <header className="text-4xl">Protocol Information</header>
                 <p className="text-justify">{protocol.description}</p>
                 <p>Category: {protocol.category}</p>
                 {protocol.listedAt ? (
@@ -195,36 +193,42 @@ const ProtocolPage = () => {
                 ) : null}
 
                 {protocol.raises && protocol.raises.length > 0 && (
-                  <>
-                    <div className="p-4 rounded-xl border border-gray-600">
-                      <header className="text-2xl">Raises</header>
+                  <div className="space-y-12 pt-8">
+                    <div>
+                      <header className="text-4xl">Raises</header>
                       <div className="space-y-4">
                         {protocol.raises.map(renderRaises)}
                       </div>
                     </div>
-                    <div className="p-4 rounded-xl border border-gray-600">
-                      <header className="mb-2 text-2xl">Lead Investors</header>
+                    <div>
+                      <header className="text-4xl">Lead Investors</header>
                       {protocol.raises.map((raise) => (
                         <div key={raise.name}>
                           {renderInvestors(raise.leadInvestors)}
                         </div>
                       ))}
                     </div>
-                    <div className="p-4 rounded-xl border border-gray-600">
-                      <header className="text-2xl">Other Investors</header>
+                    <div>
+                      <header className="text-4xl">Other Investors</header>
                       {protocol.raises.map((raise) => (
-                        <div key={raise.name}>
-                          {renderInvestors(raise.otherInvestors)}
-                        </div>
+                        <>
+                          {
+                            (raise.otherInvestors.length > 0 ? (
+                              <div key={raise.name}>
+                                {renderInvestors(raise.otherInvestors)}
+                              </div>
+                            ) : null)
+                          }
+                        </>
                       ))}
                     </div>
-                  </>
+                  </div>
                 )}
               </div>
 
-              <div className="mt-10 space-y-4 p-8 w-full rounded-r-xl rounded-l-none border border-gray-600">
-                <header className="text-2xl">Token Information</header>
-                <div className="flex space-x-2">
+              <div className="space-y-4 p-4 sm:border-t border-gray-600">
+                <header className="text-4xl">Token Information</header>
+                <div className="flex space-x-2 sm:space-x-0 sm:flex-col">
                   <p>Address: </p>
                   {protocol.address !== null ? (
                     <p className="italic">{protocol.address}</p>
@@ -252,7 +256,7 @@ const ProtocolPage = () => {
                   </div>
                 ) : null}
               </div>
-            </>
+            </div>
           ))}
         </div>
       ) : (
