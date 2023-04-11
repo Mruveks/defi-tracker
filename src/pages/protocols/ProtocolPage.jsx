@@ -52,7 +52,6 @@ const ProtocolPage = () => {
       ))}
     </div>
   );
-  console.log(protocolData);
 
   return (
     <main>
