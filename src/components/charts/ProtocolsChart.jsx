@@ -11,6 +11,7 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts";
+import Loader from '../Loader'
 
 const Chart = () => {
   const { protocolId } = useParams(); // get the protocol ID from the URL params
@@ -87,35 +88,41 @@ const Chart = () => {
 
   return (
     <div className="w-full h-full justify-end flex py-4">
-      <LineChart
-        width={1200}
-        height={500}
-        margin={{ right: 20, left: 20, bottom: 40 }}
-        data={formattedData}
-      >
+      {
+        formattedData.length ? (
+
+          <LineChart
+          width={1200}
+          height={500}
+          margin={{ right: 20, left: 20, bottom: 40 }}
+          data={formattedData}
+          >
         <CartesianGrid vertical={true} strokeOpacity={0.05} horizontal={true} />
         <XAxis
           dataKey="date"
           interval={50}
           tick={<CustomizedAxisTick />}
           stroke="gray"
-        />
+          />
         <YAxis
           stroke="gray"
           tickFormatter={(value) => numeral(value).format("$0.00a")}
           padding={{ top: 100, bottom: 40 }}
-        />
+          />
         <Tooltip
           active={true}
           content={<CustomTooltip />}
           position={{ x: 100, y: 2 }}
           contentStyle={{ color: "gray" }}
           stroke="gray"
-        />
+          />
         <Line dot={false} type="monotone" dataKey="value" stroke="#8884d8" />
       </LineChart>
+    ) : (<Loader />)
+  }
     </div>
-  );
-};
-
-export default Chart;
+    );
+  };
+  
+  export default Chart;
+  

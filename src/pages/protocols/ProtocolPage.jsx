@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import SearchList from "../../components/SearchList";
 import moment from "moment";
 import { Helmet } from "react-helmet";
@@ -34,8 +34,8 @@ const ProtocolPage = () => {
     <div key={raise.name}>
       <p>Total Raised: ${raise.amount}m</p>
       <p>
-        {moment.unix(raise.date).toDate().toLocaleString()}: {raise.round} -
-        Raised ${raise.amount}m
+        {moment.unix(raise.date).toDate().toLocaleString()}: {raise.round} - $
+        {raise.amount}m
       </p>
     </div>
   );
@@ -108,20 +108,32 @@ const ProtocolPage = () => {
                 </div>
                 <div>
                   <h1>Chain breakdown</h1>
-                  <div>
-                    <p>{protocol.chain}</p>
-                    {protocol.chains.length > 0 ? (
-                      <div>
-                        {protocol.chains.filter(chain => chain != protocol.chain).map((chain) => (
-                          <div key={chain.id} className="grid grid-cols-3 grid-flow-row auto-rows-min h-full">
-                            <p>{chain}</p>
+                  <Link
+                    key={protocol.chain}
+                    to={`/chain/${protocol.chain}`}
+                    className="flex space-x-2 items-center hover:underline w-fit"
+                  >
+                    {protocol.chain}
+                  </Link>
+                  {protocol.chains.length > 0 ? (
+                    <div className="grid grid-cols-2">
+                      {protocol.chains
+                        .filter((chain) => chain != protocol.chain)
+                        .map((chain) => (
+                          <div key={chain.id}>
+                            <Link
+                              key={chain}
+                              to={`/chain/${chain}`}
+                              className="flex space-x-2 items-center hover:underline w-fit"
+                            >
+                              {chain}
+                            </Link>
                           </div>
                         ))}
-                      </div>
-                    ) : (
-                      <p>{protocol.chain}</p>
-                    )}
-                  </div>
+                    </div>
+                  ) : (
+                    <p>{protocol.chain}</p>
+                  )}
                 </div>
               </div>
             ))
@@ -247,19 +259,6 @@ const ProtocolPage = () => {
         ) : (
           <div></div>
         )}
-
-        {protocolData &&
-          protocolData.length > 0 &&
-          protocolData[0].methodology &&
-          protocolData.map((protocol) => (
-            <div
-              key={protocol.id}
-              className="col-span-2 mt-10 space-y-4 p-4 w-full rounded-xl border border-gray-600"
-            >
-              <header className="text-2xl">Methodology</header>
-              <p>{protocol.methodology}</p>
-            </div>
-          ))}
 
         {protocolData && (
           <>

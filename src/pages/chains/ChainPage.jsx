@@ -57,7 +57,7 @@ const ChainPage = () => {
   return (
     <div className="grid grid-cols-1 w-full text-md">
       <Helmet>
-        <title>{`${chainId.charAt(0).toUpperCase() + protocolId.slice(1)} | DeFi`}</title>
+        <title>{`${chainId.charAt(0).toUpperCase() + chainId.slice(1)} | DeFi`}</title>
         <meta name="description" content={`${chainId}`} />
       </Helmet>
 
@@ -105,7 +105,7 @@ const ChainPage = () => {
 
       <header className="flex justify-center w-full my-5 text-white text-3xl">
         Top protocols from{" "}
-        <h1 className="italic px-2 capitalize"> {chainId} </h1> ecosystem
+        <p className="italic px-2 capitalize"> {chainId} </p> ecosystem
       </header>
       <Ranking chain={chainId} />
     </div>
