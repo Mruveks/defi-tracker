@@ -88,9 +88,6 @@ const Chart = () => {
 
   return (
     <div className="w-full h-full justify-end flex py-4">
-      {
-        formattedData.length ? (
-
           <LineChart
           width={1200}
           height={500}
@@ -118,8 +115,6 @@ const Chart = () => {
           />
         <Line dot={false} type="monotone" dataKey="value" stroke="#8884d8" />
       </LineChart>
-    ) : (<Loader />)
-  }
     </div>
     );
   };
