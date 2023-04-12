@@ -44,7 +44,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="sm:hidden block h-full w-40 px-2 fixed left-0 top-0 ">
+    <div className="sm:hidden md:hidden block h-full w-40 px-2 fixed left-0 top-0 ">
       <aside>
         <div className="px-4 py-4 h-full overflow-auto">
           <ul className="space-y-4 text-base ">

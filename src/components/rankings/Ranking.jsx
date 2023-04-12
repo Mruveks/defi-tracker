@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Loader from "../Loader";
 import axios from "axios";
 import numeral from "numeral";
+import { Link } from "react-router-dom";
 
 const Ranking = ({ chain }) => {
   const [protocols, setProtocols] = useState([]);
@@ -61,9 +62,8 @@ const Ranking = ({ chain }) => {
               } sm:grid-cols-4 items-center p-2 border-gray-600 border-t text-right`}
               key={protocol.id}
             >
-              <a
-                href={protocol.url}
-                target="_blank"
+              <Link
+                to={`/protocol/${protocol.name}`}
                 className="flex w-max items-center text-left hover:bg-gray-600 rounded-full"
               >
                 <img
@@ -74,7 +74,7 @@ const Ranking = ({ chain }) => {
                 <div className="w-fit md:w-40 px-2 my-auto text-blue-400">
                   {protocol.name}
                 </div>
-              </a>
+              </Link>
 
               {CapChain === "Lending" || "CEX" || "DEX" ? null : (
                 <div>{protocol.category}</div>
