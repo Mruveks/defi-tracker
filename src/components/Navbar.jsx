@@ -148,7 +148,7 @@ const Navbar = () => {
               </header>
             </li>
             <li>{link("ethereum", eth)}</li>
-            <li>{link("bsc", bsc)}</li>
+            <li>{link("binance", bsc)}</li>
             <li>{link("avalanche", avax)}</li>
             <li>{link("polygon", polygon)}</li>
             <li>{link("arbitrum", arbitrum)}</li>

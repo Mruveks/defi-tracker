@@ -20,7 +20,7 @@ const ChainPage = lazy(() => import("./pages/chains/ChainPage"));
 
 function App() {
   return (
-    <div className="w-full sm:pl-0 sm:mt-0 pl-48 pt-4">
+    <div className="w-full  pl-48 py-4 sm:pl-0 sm:mt-0">
       <Navbar />
       <ScrollTopButton />
       <Suspense fallback={<div>Loading...</div>}>

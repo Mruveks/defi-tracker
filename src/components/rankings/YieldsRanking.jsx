@@ -52,11 +52,11 @@ const YieldsRanking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Binance" ? "bg-yellow-700" : ""
+            query === "BSC" ? "bg-yellow-700" : ""
           }`}
-          onClick={() => setQuery("Binance")}
+          onClick={() => setQuery("BSC")}
         >
-          Bsc
+          Binance
         </button>
 
         <button
@@ -103,7 +103,7 @@ const YieldsRanking = () => {
         </button>
       </div>
       <div className="h-max mb-10  border rounded-xl border-gray-600 p-2">
-        <div className="grid grid-cols-7 p-2 text-right uppercase italic">
+        <div className="grid grid-cols-7 font-semibold p-2 text-right uppercase italic">
           <header className="text-left">Pool</header>
           <header className="text-left">Project</header>
           <header>Chain</header>

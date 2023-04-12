@@ -31,7 +31,7 @@ const Ranking = ({ chain }) => {
       <div
         className={`grid ${
           chain === "Lending" || "CEX" ? "grid-cols-5" : "grid-cols-6"
-        } sm:grid-cols-4 p-2 uppercase italic text-right`}
+        } sm:grid-cols-4 font-semibold p-2 uppercase italic text-right`}
       >
         <header className="text-left">Name</header>
         {chain === "Lending" || "CEX" || "DEX" ? null : (
