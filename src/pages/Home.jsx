@@ -22,7 +22,7 @@ const Home = () => {
         Top DeFi Protocols
       </header>
 
-      <div className="h-max mb-5 mx-10 text-white">
+      <div className="h-max mb-5 text-white">
         <TVLchart />
       </div>
 

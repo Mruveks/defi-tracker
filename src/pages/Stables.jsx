@@ -18,7 +18,7 @@ const Stables = () => {
         Top Stablecoins
       </header>
 
-      <div className="h-max mb-5 mx-10 ">
+      <div className="h-max mb-5">
         <StablesTVLchart />
       </div>
       <StablesRanking />

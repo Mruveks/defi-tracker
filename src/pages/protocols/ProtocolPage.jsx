@@ -52,7 +52,7 @@ const ProtocolPage = () => {
       ))}
     </div>
   );
-console.log(protocolData)
+  console.log(protocolData);
   return (
     <main className="mx-10 sm:mx-5">
       <Helmet>
@@ -108,7 +108,9 @@ console.log(protocolData)
                 <div className="grid gap-4 w-full ">
                   <h1>Chain breakdown</h1>
                   <div className="sm:flex w-full">
-                    <Link to={`/chain/${(protocol.chain.toLowerCase())}`}>{protocol.chain}</Link>
+                    <Link to={`/chain/${protocol.chain.toLowerCase()}`}>
+                      {protocol.chain}
+                    </Link>
                     {protocol.chains.length > 0 ? (
                       <div>
                         {protocol.chains
@@ -212,13 +214,11 @@ console.log(protocolData)
                       <header className="text-4xl">Other Investors</header>
                       {protocol.raises.map((raise) => (
                         <>
-                          {
-                            (raise.otherInvestors.length > 0 ? (
-                              <div key={raise.name}>
-                                {renderInvestors(raise.otherInvestors)}
-                              </div>
-                            ) : null)
-                          }
+                          {raise.otherInvestors.length > 0 ? (
+                            <div key={raise.name}>
+                              {renderInvestors(raise.otherInvestors)}
+                            </div>
+                          ) : null}
                         </>
                       ))}
                     </div>

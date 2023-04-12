@@ -13,3 +13,10 @@ body{
 h1{
   color: lightslategray
 }
+
+@media (max-width: 600px) {
+  .recharts-xAxis,
+  .recharts-yAxis {
+    display: none;
+  }
+}

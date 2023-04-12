@@ -87,7 +87,7 @@ const Chart = () => {
     );
   };
   return (
-    <div className="w-full sm:hidden h-full justify-end flex py-4">
+    <div className="w-full h-full flex mx-auto py-4">
       <ResponsiveContainer width="100%" height={500}>
           <LineChart
             width={1200}
