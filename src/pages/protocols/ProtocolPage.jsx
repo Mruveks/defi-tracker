@@ -9,6 +9,7 @@ import Loader from "../../components/Loader";
 import numeral from "numeral";
 import ProtocolAddress from "../../utilities/ProtocolAddress";
 import { BsArrowUpRight } from "react-icons/bs";
+import AddressFormatter from "../../utilities/AddressFormatter";
 
 const ProtocolPage = () => {
   const { protocolId } = useParams(); // get the protocol ID from the URL params
@@ -45,7 +46,7 @@ const ProtocolPage = () => {
       {investors.map((investor) => (
         <div
           key={investor}
-          className="hover:underline cursor-pointer hover:text-white"
+          className="w-fit py-2 hover:underline cursor-pointer hover:text-white"
         >
           {investor}
         </div>
@@ -92,7 +93,7 @@ const ProtocolPage = () => {
                     <h1>Total Value Locked</h1>
                     <p>{numeral(tvl).format("$0.00a")}</p>
                   </div>
-                  {protocol.mcap !== null ? (
+                  {protocol.mcap > 0 ? (
                     <>
                       <div>
                         <h1>Market Cap</h1>
@@ -103,24 +104,41 @@ const ProtocolPage = () => {
                         <p>{(protocol.mcap / tvl).toFixed(2)}</p>
                       </div>
                     </>
-                  ) : null}
+                  ) : (
+                    <>
+                      <div>
+                        <h1>Market Cap</h1>
+                        <p>-</p>
+                      </div>
+                      <div>
+                        <h1>mcap/TVL</h1>
+                        <p>-</p>
+                      </div>
+                    </>
+                  )}
                 </div>
-                <div className="grid gap-4 w-full ">
+                <div className="grid w-full ">
                   <h1>Chain breakdown</h1>
-                  <div className="sm:flex w-full">
-                    <Link to={`/chain/${protocol.chain.toLowerCase()}`}>
+                  <div className=" w-full">
+                    <Link
+                      to={`/chain/${protocol.chain.toLowerCase()}`}
+                      className="hover:underline"
+                    >
                       {protocol.chain}
                     </Link>
+
                     {protocol.chains.length > 0 ? (
-                      <div>
+                      <div className="flex flex-wrap text-justify">
                         {protocol.chains
                           .filter((chain) => chain != protocol.chain)
                           .map((chain) => (
-                            <div
-                              key={chain.id}
-                              className="grid sm:inline-block sm:px-2 grid-cols-3 h-full"
-                            >
-                              <Link to={`/chains/${chain}`}>{chain}</Link>
+                            <div key={chain.id} className="w-fit pr-2 ">
+                              <Link
+                                to={`/chain/${chain.toLowerCase()}`}
+                                className="hover:underline"
+                              >
+                                {chain}
+                              </Link>
                             </div>
                           ))}
                       </div>
@@ -230,10 +248,10 @@ const ProtocolPage = () => {
 
               <div className="space-y-4 p-4 sm:border-t border-gray-600">
                 <header className="text-4xl">Token Information</header>
-                <div className="flex space-x-2 sm:space-x-0 sm:flex-col">
+                <div className="flex space-x-2 overflow-hidden">
                   <p>Address: </p>
                   {protocol.address !== null ? (
-                    <p className="italic">{protocol.address}</p>
+                    <AddressFormatter address={protocol.address} />
                   ) : (
                     <p>No address available</p>
                   )}
