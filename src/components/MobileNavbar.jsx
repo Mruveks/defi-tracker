@@ -43,12 +43,12 @@ const Navbar = () => {
   };
 
   return (
-    <div className="sm:flex md:flex hidden h-46 mx-5 md:mx-10 p-4">
-      <div className="w-full">
+    <div className="sm:flex md:flex border-gray-600 border rounded-xl mb-10 hidden h-46 mx-5 md:mx-10">
+      <div className="w-full p-4">
         <header className="flex items-center pb-4 text-3xl text-gray-400 ">
           Dashboards
         </header>
-        <ul className="grid gap-2 grid-cols-3">
+        <ul className="grid gap-2 grid-cols-3 pb-4 border-gray-600 border-b">
           <li>
             <NavLink
               to="/"
@@ -69,7 +69,7 @@ const Navbar = () => {
                 activeNav === "/stables" ? "bg-gray-700" : ""
               } ${elementStyle} `}
             >
-              <BsCoin size={24} className="mr-2" />
+              <BsCoin size={28} className="mr-2" />
               Stablecoins
             </NavLink>
           </li>
