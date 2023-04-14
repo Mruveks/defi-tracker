@@ -10,6 +10,7 @@ import numeral from "numeral";
 import ProtocolAddress from "../../utilities/ProtocolAddress";
 import { BsArrowUpRight } from "react-icons/bs";
 import AddressFormatter from "../../utilities/AddressFormatter";
+import BackButton from "../../components/BackButton";
 
 const ProtocolPage = () => {
   const { protocolId } = useParams(); // get the protocol ID from the URL params
@@ -53,7 +54,7 @@ const ProtocolPage = () => {
       ))}
     </div>
   );
-  console.log(protocolData);
+
   return (
     <main className="mx-10 sm:mx-5">
       <Helmet>
@@ -68,10 +69,10 @@ const ProtocolPage = () => {
 
       <div>
         <SearchList />
+        <BackButton />
       </div>
-
       {protocolData.length ? (
-        <div className="grid grid-cols-2 gap-10 my-10 rounded-xl">
+        <div className="grid grid-cols-2 gap-10 mb-10 rounded-xl">
           <div className="col-span-2 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600  rounded-xl">
             {protocolData.map((protocol) => (
               <div
@@ -84,6 +85,7 @@ const ProtocolPage = () => {
                     alt={protocolId}
                     className="h-16 w-16 rounded-full"
                   />
+                  ]
                   <header className="text-4xl">
                     {protocolId} ({protocol.symbol})
                   </header>

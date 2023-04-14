@@ -5,8 +5,9 @@ import axios from "axios";
 import ChainsChart from "../../components/charts/ChainsChart";
 import Ranking from "../../components/rankings/Ranking";
 import ChainsSearchList from "../../components/ChainsSearchList";
-import numeral from "numeral";
+import BackButton from "../../components/BackButton";
 import moment from "moment";
+import numeral from "numeral";
 
 const ChainPage = () => {
   const { chainId } = useParams();
@@ -67,8 +68,9 @@ const ChainPage = () => {
         <ChainsSearchList />
       </div>
 
-      <div className="text-center capitalize text-white my-5 text-4xl italic">
-        {chainId}
+      <div className="grid grid-cols-3 text-center items-center capitalize text-white my-5 text-4xl italic">
+        <BackButton />
+        <p>{chainId}</p>
       </div>
 
       <div className="h-max text-white ">
@@ -107,8 +109,7 @@ const ChainPage = () => {
 
       <header className="flex flex-wrap justify-center my-5 text-white text-3xl">
         Top protocols from
-        <p className="italic px-2 capitalize"> {chainId} </p>{" "}
-        ecosystem
+        <p className="italic px-2 capitalize"> {chainId} </p> ecosystem
       </header>
       <Ranking chain={chainId} />
     </div>
