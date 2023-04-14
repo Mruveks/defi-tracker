@@ -16,7 +16,7 @@ const DEX = () => {
 
       <SearchList />
 
-      <header className="text-center my-10 text-4xl italic">
+      <header className="text-center my-5 text-4xl italic">
         Top Decentralised Exchanges
       </header>
 

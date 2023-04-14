@@ -13,7 +13,7 @@ import AddressFormatter from "../../utilities/AddressFormatter";
 import BackButton from "../../components/BackButton";
 
 const ProtocolPage = () => {
-  const { protocolId } = useParams(); // get the protocol ID from the URL params
+  const { protocolId } = useParams();
   const [protocolData, setProtocolData] = useState([]);
   const [tvl, setTvl] = useState();
   let formattedProtocolId = protocolId.replace(/ /g, "-").toLowerCase();
@@ -67,7 +67,7 @@ const ProtocolPage = () => {
         />
       </Helmet>
 
-      <div>
+      <div className="space-y-4 mb-4">
         <SearchList />
         <BackButton />
       </div>
@@ -77,19 +77,26 @@ const ProtocolPage = () => {
             {protocolData.map((protocol) => (
               <div
                 key={protocol.id}
-                className="space-y-8 h-fit text-white sm:w-full w-[80%] p-4 italic capitalize"
+                className="col-span-2 flex space-x-2 items-center h-fit text-white sm:w-full p-4 italic capitalize"
               >
-                <div className="flex space-x-2 items-center">
+
                   <img
                     src={protocol.logo}
                     alt={protocolId}
                     className="h-16 w-16 rounded-full"
                   />
-                  ]
+                  
                   <header className="text-4xl">
                     {protocolId} ({protocol.symbol})
                   </header>
-                </div>
+              </div>
+            ))}
+            
+            {protocolData.map((protocol) => (
+              <div
+                key={protocol.id}
+                className="space-y-8 h-fit text-white sm:w-full p-4 italic capitalize"
+              >
                 <div className="grid sm:flex gap-4">
                   <div>
                     <h1>Total Value Locked</h1>
@@ -255,7 +262,7 @@ const ProtocolPage = () => {
                   {protocol.address !== null ? (
                     <AddressFormatter address={protocol.address} />
                   ) : (
-                    <p>No address available</p>
+                    <p className="text-gray-600">No address available</p>
                   )}
                 </div>
                 {protocol.address !== null ? (

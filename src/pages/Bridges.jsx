@@ -16,7 +16,9 @@ const Bridges = () => {
 
       <SearchList />
 
-      <header className="text-center my-10 text-4xl italic">Top Bridges</header>
+      <header className="text-center my-5 text-4xl italic">
+        Top Bridges
+      </header>
 
       <BridgesRanking />
     </div>
