@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const ChainsSearchList = () => {
-  const [protocols, setProtocols] = useState([]);
+  const [chains, setProtocols] = useState([]);
   const [searchData, setSearchData] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const searchListRef = useRef(null);
@@ -13,7 +13,6 @@ const ChainsSearchList = () => {
       .get("https://api.llama.fi/chains")
       .then((res) => {
         setProtocols(res.data);
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -74,29 +73,28 @@ const ChainsSearchList = () => {
           ref={searchListRef}
           className="max-h-60 z-10 absolute mx-6 right-4 left-52 sm:right-0 sm:left-0 sm:mx-5 border-gray-600 border bg-gray-900 rounded-b-xl overflow-y-auto"
         >
-          {protocols
-            .filter((val) => {
+          {chains
+            .filter((chain) => {
               if (searchData === "") {
-                return null;
+                return;
               } else if (
-                val.name.toLowerCase().includes(searchData.toLowerCase())
+                chain.name.toLowerCase().includes(searchData.toLowerCase())
               ) {
-                return val;
+                return chain.name;
               }
             })
-            .filter((val) => val.tvl > 100000000)
-            .map((val, key) => {
+            .map((chain, key) => {
               return (
                 <div
                   key={key}
                   className="flex h-14 px-2 w-full items-center border-t-gray-600 border-t hover:bg-gray-600"
                 >
                   <Link
-                    to={`/chain/${val.name.toLowerCase()}`}
+                    to={`/chain/${chain.name.toLowerCase()}`}
                     className="pl-8 flex-1 h-full flex items-center"
                     onClick={() => handleClickOutside()}
                   >
-                    {val.name}
+                    {chain.name}
                   </Link>
                 </div>
               );
