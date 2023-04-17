@@ -14,10 +14,10 @@ const DEX = () => {
         />
       </Helmet>
 
+      <BackButton />
       <SearchList />
 
-      <header className="grid grid-cols-3 text-center items-center capitalize text-white my-5 text-4xl italic">
-        <BackButton />
+      <header className="flex justify-center items-center capitalize text-white my-10 text-6xl italic">
         Top Decentralised Exchanges
       </header>
 

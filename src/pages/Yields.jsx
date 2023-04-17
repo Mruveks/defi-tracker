@@ -15,11 +15,11 @@ const Yields = () => {
         />
       </Helmet>
 
+      <BackButton />
       <SearchList />
 
-      <header className="grid grid-cols-3 text-center items-center capitalize text-white my-5 text-4xl italic">
-        <BackButton />
-        Yields Ranking
+      <header className="flex justify-center items-center capitalize text-white my-10 text-6xl italic">
+        Pools Ranking
       </header>
       <YieldsRanking />
     </div>

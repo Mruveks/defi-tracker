@@ -94,7 +94,7 @@ const Chart = () => {
   };
 
   return (
-    <div className="w-full sm:hidden h-full justify-end flex py-4">
+    <div className="w-full h-full justify-end flex py-4">
       <ResponsiveContainer width="100%" height={500}>
         <LineChart
           margin={{ right: 20, left: 20, bottom: 40 }}
@@ -138,7 +138,7 @@ const Chart = () => {
           <Line dot={false} type="monotone" dataKey="value" stroke="#8884d8" />
         </LineChart>
       </ResponsiveContainer>
-      <div className="right-20 absolute space-x-4 text-lg">
+      <div className="sm:hidden right-20 absolute space-x-4 text-lg">
         <button
           onClick={toggleScale}
           className={`rounded-full px-2 transition duration-300 ${

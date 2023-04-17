@@ -67,31 +67,25 @@ const ProtocolPage = () => {
         />
       </Helmet>
 
-      <div className="space-y-4 mb-4">
-        <SearchList />
-        <BackButton />
-      </div>
-      {protocolData.length ? (
-        <div className="grid grid-cols-2 gap-10 mb-10 rounded-xl">
-          <div className="col-span-2 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600  rounded-xl">
-            {protocolData.map((protocol) => (
-              <div
-                key={protocol.id}
-                className="col-span-2 flex space-x-2 items-center h-fit text-white sm:w-full p-4 italic capitalize"
-              >
+      <BackButton />
+      <SearchList />
 
-                  <img
-                    src={protocol.logo}
-                    alt={protocolId}
-                    className="h-16 w-16 rounded-full"
-                  />
-                  
-                  <header className="text-4xl">
-                    {protocolId} ({protocol.symbol})
-                  </header>
-              </div>
-            ))}
-            
+      {protocolData.length ? (
+        <div className="grid grid-cols-2 gap-10 my-10 rounded-xl">
+          <div className="col-span-2 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600  rounded-xl">
+            <div className="col-span-2 sm:col-span-1 flex items-center text-6xl justify-center p-5 space-x-10 border-b border-gray-600 font-serif italic capitalize">
+              <img
+                src={protocolData[0].logo}
+                alt={protocolId}
+                className="sm:hidden h-16 w-16 rounded-full"
+              />
+              <header>{protocolId}</header>
+              <img
+                src={protocolData[0].logo}
+                alt={protocolId}
+                className="sm:hidden h-16 w-16 rounded-full shadow-"
+              />
+            </div>
             {protocolData.map((protocol) => (
               <div
                 key={protocol.id}
