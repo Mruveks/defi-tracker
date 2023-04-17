@@ -30,7 +30,7 @@ const TVLranking = () => {
     <>
       <div className="flex flex-wrap justify-between py-2 h-full">
         <button
-          className={`${buttonStyle} ${query === "" ? "bg-gray-900" : ""}`}
+          className={`${buttonStyle} ${query === "" ? "bg-blue-600" : ""}`}
           onClick={() => setQuery("")}
         >
           All
@@ -38,7 +38,7 @@ const TVLranking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Ethereum" ? "bg-gray-400" : ""
+            query === "Ethereum" ? "bg-blue-600" : ""
           }`}
           onClick={() => setQuery("Ethereum")}
         >
@@ -47,7 +47,7 @@ const TVLranking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Avalanche" ? "bg-red-700" : ""
+            query === "Avalanche" ? "bg-blue-600" : ""
           }`}
           onClick={() => setQuery("Avalanche")}
         >
@@ -56,7 +56,7 @@ const TVLranking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Binance" ? "bg-yellow-700" : ""
+            query === "Binance" ? "bg-blue-600" : ""
           }`}
           onClick={() => setQuery("Binance")}
         >
@@ -64,7 +64,7 @@ const TVLranking = () => {
         </button>
 
         <button
-          className={`${buttonStyle} ${query === "Tron" ? "bg-red-700" : ""}`}
+          className={`${buttonStyle} ${query === "Tron" ? "bg-blue-600" : ""}`}
           onClick={() => setQuery("Tron")}
         >
           Tron
@@ -72,7 +72,7 @@ const TVLranking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Arbitrum" ? "bg-blue-700" : ""
+            query === "Arbitrum" ? "bg-blue-600" : ""
           }`}
           onClick={() => setQuery("Arbitrum")}
         >
@@ -81,7 +81,7 @@ const TVLranking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Polygon" ? "bg-purple-700" : ""
+            query === "Polygon" ? "bg-blue-600" : ""
           }`}
           onClick={() => setQuery("Polygon")}
         >
@@ -90,7 +90,41 @@ const TVLranking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Optimism" ? "bg-red-700" : ""
+            query === "Cronos" ? "bg-blue-600" : ""
+          }`}
+          onClick={() => setQuery("Cronos")}
+        >
+          Cronos
+        </button>
+
+        <button
+          className={`${buttonStyle} ${
+            query === "Fantom" ? "bg-blue-600" : ""
+          }`}
+          onClick={() => setQuery("Fantom")}
+        >
+          Fantom
+        </button>
+
+        <button
+          className={`${buttonStyle} ${query === "Mixin" ? "bg-blue-600" : ""}`}
+          onClick={() => setQuery("Mixin")}
+        >
+          Mixin
+        </button>
+
+        <button
+          className={`${buttonStyle} ${
+            query === "DefiChain" ? "bg-blue-600" : ""
+          }`}
+          onClick={() => setQuery("DefiChain")}
+        >
+          DefiChain
+        </button>
+
+        <button
+          className={`${buttonStyle} ${
+            query === "Optimism" ? "bg-blue-600" : ""
           }`}
           onClick={() => setQuery("Optimism")}
         >
@@ -99,11 +133,19 @@ const TVLranking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Solana" ? "bg-purple-700" : ""
+            query === "Solana" ? "bg-blue-600" : ""
           }`}
           onClick={() => setQuery("Solana")}
         >
           Solana
+        </button>
+        <button
+          className={`${buttonStyle} ${
+            query === "Bitcoin" ? "bg-blue-600" : ""
+          }`}
+          onClick={() => setQuery("Bitcoin")}
+        >
+          Bitcoin
         </button>
       </div>
 
@@ -202,18 +244,18 @@ const TVLranking = () => {
                 key={protocol.id}
               >
                 <Link
-                    to={`/protocol/${protocol.name}`}
-                    className="flex items-center w-max text-left hover:bg-gray-600 transition duration-100 rounded-full"
-                  >
-                    <img
-                      src={protocol.logo}
-                      alt="logo"
-                      className="h-8 w-8 rounded-full"
-                    />
-                    <div className="sm:w-fit w-40 px-2 my-auto text-blue-400">
-                      {protocol.name}
-                    </div>
-                  </Link>
+                  to={`/protocol/${protocol.name}`}
+                  className="flex items-center w-max text-left hover:bg-gray-600 transition duration-100 rounded-full"
+                >
+                  <img
+                    src={protocol.logo}
+                    alt="logo"
+                    className="h-8 w-8 rounded-full"
+                  />
+                  <div className="sm:w-fit w-40 px-2 my-auto text-blue-400">
+                    {protocol.name}
+                  </div>
+                </Link>
 
                 <div className="sm:hidden block">{protocol.category}</div>
                 <div className="sm:hidden block">{protocol.chain}</div>

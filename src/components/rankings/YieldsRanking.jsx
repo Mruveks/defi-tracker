@@ -24,9 +24,9 @@ const YieldsRanking = () => {
 
   return (
     <>
-      <div className="flex justify-between h-full py-2">
+      <div className="flex flex-wrap justify-between py-2 h-full">
         <button
-          className={`${buttonStyle} ${query === "" ? "bg-gray-900" : ""}`}
+          className={`${buttonStyle} ${query === "" ? "bg-blue-600" : ""}`}
           onClick={() => setQuery("")}
         >
           All
@@ -34,7 +34,7 @@ const YieldsRanking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Ethereum" ? "bg-gray-400" : ""
+            query === "Ethereum" ? "bg-blue-600" : ""
           }`}
           onClick={() => setQuery("Ethereum")}
         >
@@ -43,7 +43,7 @@ const YieldsRanking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Avalanche" ? "bg-red-700" : ""
+            query === "Avalanche" ? "bg-blue-600" : ""
           }`}
           onClick={() => setQuery("Avalanche")}
         >
@@ -51,14 +51,16 @@ const YieldsRanking = () => {
         </button>
 
         <button
-          className={`${buttonStyle} ${query === "BSC" ? "bg-yellow-700" : ""}`}
+          className={`${buttonStyle} ${
+            query === "BSC" ? "bg-blue-600" : ""
+          }`}
           onClick={() => setQuery("BSC")}
         >
           Binance
         </button>
 
         <button
-          className={`${buttonStyle} ${query === "Tron" ? "bg-red-700" : ""}`}
+          className={`${buttonStyle} ${query === "Tron" ? "bg-blue-600" : ""}`}
           onClick={() => setQuery("Tron")}
         >
           Tron
@@ -66,7 +68,7 @@ const YieldsRanking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Arbitrum" ? "bg-blue-700" : ""
+            query === "Arbitrum" ? "bg-blue-600" : ""
           }`}
           onClick={() => setQuery("Arbitrum")}
         >
@@ -75,7 +77,7 @@ const YieldsRanking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Polygon" ? "bg-purple-700" : ""
+            query === "Polygon" ? "bg-blue-600" : ""
           }`}
           onClick={() => setQuery("Polygon")}
         >
@@ -84,7 +86,25 @@ const YieldsRanking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Optimism" ? "bg-red-700" : ""
+            query === "Cronos" ? "bg-blue-600" : ""
+          }`}
+          onClick={() => setQuery("Cronos")}
+        >
+          Cronos
+        </button>
+
+        <button
+          className={`${buttonStyle} ${
+            query === "Fantom" ? "bg-blue-600" : ""
+          }`}
+          onClick={() => setQuery("Fantom")}
+        >
+          Fantom
+        </button>
+
+        <button
+          className={`${buttonStyle} ${
+            query === "Optimism" ? "bg-blue-600" : ""
           }`}
           onClick={() => setQuery("Optimism")}
         >
@@ -93,13 +113,22 @@ const YieldsRanking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Solana" ? "bg-purple-700" : ""
+            query === "Solana" ? "bg-blue-600" : ""
           }`}
           onClick={() => setQuery("Solana")}
         >
           Solana
         </button>
+        <button
+          className={`${buttonStyle} ${
+            query === "Bitcoin" ? "bg-blue-600" : ""
+          }`}
+          onClick={() => setQuery("Bitcoin")}
+        >
+          Bitcoin
+        </button>
       </div>
+
       <div className="h-max mb-10  border rounded-xl border-gray-600 p-2">
         <div className="grid grid-cols-7 font-semibold p-2 text-right uppercase italic">
           <header className="text-left">Pool</header>
