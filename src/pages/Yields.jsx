@@ -2,6 +2,7 @@ import React from "react";
 import YieldsRanking from "../components/rankings/YieldsRanking";
 import { Helmet } from "react-helmet";
 import SearchList from "../components/SearchList";
+import BackButton from "../components/BackButton";
 
 const Yields = () => {
   return (
@@ -16,7 +17,8 @@ const Yields = () => {
 
       <SearchList />
 
-      <header className="text-center my-5 text-4xl italic">
+      <header className="grid grid-cols-3 text-center items-center capitalize text-white my-5 text-4xl italic">
+        <BackButton />
         Yields Ranking
       </header>
       <YieldsRanking />

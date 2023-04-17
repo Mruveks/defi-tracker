@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import BackButton from "../components/BackButton";
 import Ranking from "../components/rankings/Ranking";
 import SearchList from "../components/SearchList";
 
@@ -16,7 +17,8 @@ const CEX = () => {
 
       <SearchList />
 
-      <header className="text-center my-5 text-4xl italic">
+      <header className="grid grid-cols-3 text-center items-center capitalize text-white my-5 text-4xl italic">
+        <BackButton />
         Top Centralised Exchanges
       </header>
 

@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import StablesRanking from "../components/rankings/StablesRanking";
 import StablesTVLchart from "../components/charts/StablesTVLchart";
 import SearchList from "../components/SearchList";
+import BackButton from "../components/BackButton";
 
 const Stables = () => {
   return (
@@ -14,7 +15,8 @@ const Stables = () => {
 
       <SearchList />
 
-      <header className="text-center my-5 text-4xl italic">
+      <header className="grid grid-cols-3 text-center items-center capitalize text-white my-5 text-4xl italic">
+        <BackButton />
         Top Stablecoins
       </header>
 

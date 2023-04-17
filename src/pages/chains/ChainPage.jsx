@@ -64,9 +64,7 @@ const ChainPage = () => {
         <meta name="description" content={`${chainId}`} />
       </Helmet>
 
-      <div>
-        <ChainsSearchList />
-      </div>
+      <ChainsSearchList />
 
       <div className="grid grid-cols-3 text-center items-center capitalize text-white my-5 text-4xl italic">
         <BackButton />
