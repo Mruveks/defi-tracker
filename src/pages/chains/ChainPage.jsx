@@ -67,7 +67,7 @@ const ChainPage = () => {
         <BackButton />
       <ChainsSearchList />
 
-      <div className="flex justify-center items-center capitalize text-white my-10 text-6xl italic">
+      <div className="flex justify-center items-center text-center capitalize text-white my-10 text-6xl italic">
         <header>{chainId}</header>
       </div>
 

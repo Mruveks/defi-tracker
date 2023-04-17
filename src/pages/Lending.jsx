@@ -18,7 +18,7 @@ const Lending = () => {
       <BackButton />
       <SearchList />
 
-      <header className="flex justify-center items-center capitalize text-white my-10 text-6xl italic">
+      <header className="flex justify-center text-center items-center capitalize text-white my-10 text-6xl italic">
         Top Lending Protocols
       </header>
 
