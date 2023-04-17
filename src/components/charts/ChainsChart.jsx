@@ -111,6 +111,7 @@ const Chart = () => {
             interval={182}
             tick={<CustomizedAxisTick />}
             stroke="gray"
+            label={{ value: 'Date', position: 'insideBottomRight', offset: 0 }}
           />
           <YAxis
             stroke="gray"
@@ -118,6 +119,7 @@ const Chart = () => {
             padding={{ top: 100, bottom: 40 }}
             scale={isLogScale ? "log" : "linear"}
             domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
+            label={{ value: 'Value', position: 'insideTopLeft', }}
           />
           <Tooltip
             active={true}

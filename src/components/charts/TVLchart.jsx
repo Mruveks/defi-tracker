@@ -141,6 +141,7 @@ const TVLchart = () => {
                     interval={182}
                     tick={<CustomizedAxisTick />}
                     stroke="gray"
+                    label={{ value: 'Date', position: 'insideBottomRight', offset: 0 }}
                   />
                   <YAxis
                     stroke="gray"
@@ -148,6 +149,7 @@ const TVLchart = () => {
                     padding={{ top: 100, bottom: 40 }}
                     scale={isLogScale ? "log" : "linear"}
                     domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
+                    label={{ value: 'Value', position: 'insideTopLeft', }}
                   />
                   <Tooltip
                     active={true}
@@ -163,7 +165,7 @@ const TVLchart = () => {
                 </LineChart>
               </ResponsiveContainer>
             </div>
-            <button onClick={toggleScale} className="right-20 absolute text-lg">
+            <button onClick={toggleScale} className="right-20 pt-4 absolute text-lg">
             {isLogScale ? "Logarithmic" : "Linear"}
           </button>
           </div>
