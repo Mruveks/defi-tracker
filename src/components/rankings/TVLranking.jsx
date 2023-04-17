@@ -3,6 +3,7 @@ import axios from "axios";
 
 import Loader from "../Loader";
 import numeral from "numeral";
+import { Link } from "react-router-dom";
 
 const TVLranking = () => {
   const [protocols, setProtocols] = useState([]);
@@ -132,10 +133,9 @@ const TVLranking = () => {
                   className="grid grid-cols-7 sm:grid-cols-5 items-center p-2 border-gray-600 border-t text-right"
                   key={protocol.id}
                 >
-                  <a
-                    href={protocol.url}
-                    target="_blank"
-                    className="flex items-center w-max text-left hover:bg-gray-600 rounded-full"
+                  <Link
+                    to={`/protocol/${protocol.name}`}
+                    className="flex items-center w-max text-left hover:bg-gray-600 transition duration-100 rounded-full"
                   >
                     <img
                       src={protocol.logo}
@@ -145,7 +145,7 @@ const TVLranking = () => {
                     <div className="sm:w-fit w-40 px-2 my-auto text-blue-400">
                       {protocol.name}
                     </div>
-                  </a>
+                  </Link>
 
                   <div className="sm:hidden block">{protocol.category}</div>
                   <div className="sm:hidden block">{protocol.chain}</div>
@@ -201,20 +201,19 @@ const TVLranking = () => {
                 className="grid grid-cols-7 sm:grid-cols-5 items-center p-2 border-gray-600 border-t text-right"
                 key={protocol.id}
               >
-                <a
-                  href={protocol.url}
-                  target="_blank"
-                  className="flex w-max items-center text-left hover:bg-gray-600 rounded-full"
-                >
-                  <img
-                    src={protocol.logo}
-                    alt="logo"
-                    className="h-8 w-8 rounded-full"
-                  />
-                  <div className="px-2 my-auto text-blue-400">
-                    {protocol.name}
-                  </div>
-                </a>
+                <Link
+                    to={`/protocol/${protocol.name}`}
+                    className="flex items-center w-max text-left hover:bg-gray-600 transition duration-100 rounded-full"
+                  >
+                    <img
+                      src={protocol.logo}
+                      alt="logo"
+                      className="h-8 w-8 rounded-full"
+                    />
+                    <div className="sm:w-fit w-40 px-2 my-auto text-blue-400">
+                      {protocol.name}
+                    </div>
+                  </Link>
 
                 <div className="sm:hidden block">{protocol.category}</div>
                 <div className="sm:hidden block">{protocol.chain}</div>

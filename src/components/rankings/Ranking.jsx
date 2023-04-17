@@ -46,13 +46,14 @@ const Ranking = ({ chain }) => {
 
       {protocols.length ? (
         protocols
-        .filter(
-          (item) =>
-            item.tvl != null && // Check if tvl is not null
-            item.tvl >= 100000 &&
-            (CapChain === 'CEX' || item.category !== 'CEX') && // Filter out items with category = 'CEX' if CapChain is not 'CEX'
-            (item.chain === CapChain || item.category === CapChain) // Check if chain or category matches CapChain
-        )
+          .filter(
+            (item) =>
+              item.tvl != null &&
+              item.tvl >= 100000 &&
+              item.category !== "Chain" &&
+              (CapChain === "CEX" || item.category !== "CEX") &&
+              (item.chain === CapChain || item.category === CapChain)
+          )
           .map((protocol) => (
             <div
               className={`grid ${
@@ -64,7 +65,7 @@ const Ranking = ({ chain }) => {
             >
               <Link
                 to={`/protocol/${protocol.name}`}
-                className="flex w-max items-center text-left hover:bg-gray-600 rounded-full"
+                className="flex w-max items-center text-left hover:bg-gray-600 rounded-full transition duration-100"
               >
                 <img
                   src={protocol.logo}

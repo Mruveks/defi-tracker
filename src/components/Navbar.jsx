@@ -25,7 +25,7 @@ const Navbar = () => {
   const [activeNav, setActiveNav] = useState("/");
 
   const elementStyle =
-    "flex items-center capitalize rounded-lg hover:bg-gray-700";
+    "flex items-center capitalize rounded-lg hover:bg-gray-600 rounded-full transition duration-100";
 
   const link = (chainId, img) => {
     return (
@@ -44,7 +44,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="sm:hidden md:hidden block h-full w-40 px-2 fixed left-0 top-0 ">
+    <div className="sm:hidden md:hidden block h-full w-48 px-2 fixed left-0 top-0 ">
       <aside>
         <div className="px-4 py-4 h-full overflow-auto">
           <ul className="space-y-4 text-base ">

@@ -3,7 +3,7 @@ import axios from "axios";
 
 import Loader from "../Loader";
 import numeral from "numeral";
-
+import {Link} from "react-router-dom";
 const YieldsRanking = () => {
   const [query, setQuery] = useState("");
   const [Yields, setYields] = useState([]);
@@ -51,9 +51,7 @@ const YieldsRanking = () => {
         </button>
 
         <button
-          className={`${buttonStyle} ${
-            query === "BSC" ? "bg-yellow-700" : ""
-          }`}
+          className={`${buttonStyle} ${query === "BSC" ? "bg-yellow-700" : ""}`}
           onClick={() => setQuery("BSC")}
         >
           Binance
@@ -126,9 +124,14 @@ const YieldsRanking = () => {
                 <div className="text-left capitalize">
                   {pool.symbol.toLowerCase()}
                 </div>
-                <div className="text-left capitalize text-blue-400">
-                  {pool.project}
-                </div>
+                <Link
+                  to={`/protocol/${pool.project}`}
+                  className="flex w-max items-center text-left hover:bg-gray-600 transition duration-100 rounded-full"
+                >
+                  <div className="w-fit md:w-40 px-2 capitalize my-auto text-blue-400">
+                    {pool.project}
+                  </div>
+                </Link>
                 <div>{pool.chain}</div>
 
                 {pool.apy ? (
@@ -170,9 +173,14 @@ const YieldsRanking = () => {
               <div className="text-left capitalize">
                 {pool.symbol.toLowerCase()}
               </div>
-              <div className="text-left capitalize text-blue-400">
-                {pool.project}
-              </div>
+              <Link
+                to={`/protocol/${pool.project}`}
+                className="flex w-max items-center text-left hover:bg-gray-600 transition duration-100 rounded-full"
+              >
+                <div className="w-fit md:w-40 px-2 my-auto capitalize text-blue-400">
+                  {pool.project}
+                </div>
+              </Link>
               <div>{pool.chain}</div>
 
               {pool.apy ? (

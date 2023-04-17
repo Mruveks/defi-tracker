@@ -38,7 +38,7 @@ const StablesRanking = () => {
               className="grid sm:grid-cols-4 grid-cols-7 items-center p-2 border-gray-600 border-t text-right"
               key={stable.id}
             >
-              <a href={`https://www.coingecko.com/en/coins/${stable.gecko_id}`} target="_blank" className="flex w-max items-center text-left hover:bg-gray-600 rounded-full h-8">
+              <a href={`https://www.coingecko.com/en/coins/${stable.gecko_id}`} target="_blank" className="flex w-max items-center text-left hover:bg-gray-600 transition duration-100 rounded-full h-8">
                 <div className="px-1 my-auto text-blue-400">{ stable.name }</div>
                 <div className="px-1 my-auto text-blue-400">({ stable.symbol })</div>
                 </a>

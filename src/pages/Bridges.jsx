@@ -2,6 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import BridgesRanking from "../components/rankings/BridgesRanking";
 import SearchList from "../components/SearchList";
+import BackButton from "../components/BackButton";
 
 const Bridges = () => {
   return (
@@ -16,7 +17,8 @@ const Bridges = () => {
 
       <SearchList />
 
-      <header className="text-center my-5 text-4xl italic">
+      <header className="grid grid-cols-3 text-center items-center capitalize text-white my-5 text-4xl italic">
+        <BackButton />
         Top Bridges
       </header>
 

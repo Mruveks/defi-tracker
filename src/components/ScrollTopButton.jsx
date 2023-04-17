@@ -23,7 +23,7 @@ function ScrollToTopButton() {
 
   return (
     <button
-      className={`fixed flex items-center space-x-4 bottom-4 left-4 sm:left-5 sm:bottom-2  backdrop-blur-2xl bg-transparent border border-gray-600  hover:bg-gray-600 text-gray-400  font-bold py-2 px-4 rounded ${
+      className={`fixed flex items-center space-x-4 bottom-4 left-4 sm:left-5 sm:bottom-2  backdrop-blur-2xl bg-transparent border transition duration-100 border-gray-600  hover:bg-gray-600 text-gray-400  font-bold py-2 px-4 rounded ${
         showButton ? "block" : "hidden"
       }`}
       onClick={handleClick}
