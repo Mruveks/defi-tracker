@@ -3,7 +3,6 @@ import axios from "axios";
 import Loader from "../Loader";
 import numeral from "numeral";
 import moment from "moment";
-import { useMediaQuery } from "react-responsive";
 import {
   LineChart,
   ResponsiveContainer,
@@ -18,7 +17,23 @@ const StablesTVLchart = () => {
   const [stable, setStables] = useState([]);
   const [lastDay, setLastDay] = useState();
   const [day, setDay] = useState();
-  const isSmallScreen = useMediaQuery({ maxWidth: 640 });
+
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 640px)");
+
+    const handleMediaQueryChange = (e) => {
+      setIsSmallScreen(e.matches);
+    };
+
+    handleMediaQueryChange(mediaQuery);
+    mediaQuery.addListener(handleMediaQueryChange);
+
+    return () => {
+      mediaQuery.removeListener(handleMediaQueryChange);
+    };
+  }, []);
 
   useEffect(() => {
     axios
@@ -97,15 +112,15 @@ const StablesTVLchart = () => {
       {stable.length ? (
         <div className="grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
           <div className="grid gap-10 w-full text-4xl m-6 sm:m-0 sm:text-center text-left">
-            <div className="grid h-fit grid-flow-row w-full p-4 text-2xl">
-              <div className="text-4xl">Total Value Locked</div>
+            <div className="grid h-fit grid-flow-row w-full p-4">
+              <div>Total Value Locked</div>
               <div className="text-blue-500">
                 {numeral(num2).format("$0.00a")}
               </div>
             </div>
 
-            <div className="grid h-fit grid-flow-row w-full p-4 text-2xl">
-              <div className="text-4xl">24h Change</div>
+            <div className="grid h-fit grid-flow-row w-full p-4">
+              <div>24h Change</div>
               {percentageChange > 0 ? (
                 <div className="text-green-500">+{percentageChange}%</div>
               ) : (
@@ -123,47 +138,45 @@ const StablesTVLchart = () => {
             </div>
           </div>
 
-          <div className="w-full sm:col-span-2 h-full flex py-4">
+          <div className="w-full h-full flex py-4">
             <ResponsiveContainer width="100%" height={500}>
-              <LineChart
-                margin={{ right: 20, left: 20, bottom: 40 }}
-                data={stable}
-              >
+              <LineChart margin={{ right: 20, bottom: 40 }} data={stable}>
                 <CartesianGrid
                   vertical={true}
                   strokeOpacity={0.05}
                   horizontal={true}
                 />
-                {!isSmallScreen && (
-                    <XAxis
-                      dataKey="date"
-                      interval={182}
-                      tick={<CustomizedAxisTick />}
-                      stroke="gray"
-                      label={{
-                        value: "Date",
-                        position: "insideBottomRight",
-                        offset: 0,
-                      }}
-                    />
-                  )}
-                  {!isSmallScreen && (
-                    <YAxis
-                      stroke="gray"
-                      tickFormatter={(value) => numeral(value).format("$0.00a")}
-                      padding={{ top: 40, bottom: 40 }}
-                      scale={isLogScale ? "log" : "linear"}
-                      domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
-                      label={{ value: "Value", position: "insideTopLeft" }}
-                    />
-                  )}
-                  <Tooltip
-                    active={true}
-                    content={<CustomTooltip />}
-                    position={
-                      isSmallScreen ? { x: 10, y: 2 } : { x: 100, y: 2 }
-                    }
+                {isSmallScreen ? null : (
+                  <XAxis
+                    dataKey="date"
+                    interval={182}
+                    tick={<CustomizedAxisTick />}
+                    stroke="gray"
+                    label={{
+                      value: "Date",
+                      position: "insideBottomRight",
+                      offset: 0,
+                    }}
                   />
+                )}
+                {isSmallScreen ? null : (
+                  <YAxis
+                    stroke="gray"
+                    tickFormatter={(value) => numeral(value).format("$0.00a")}
+                    padding={{ top: 40, bottom: 40 }}
+                    scale={isLogScale ? "log" : "linear"}
+                    domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
+                    label={{
+                      value: "Value",
+                      position: "insideTopLeft",
+                    }}
+                  />
+                )}
+                <Tooltip
+                  active={true}
+                  content={<CustomTooltip />}
+                  position={{ x: 100, y: 2 }}
+                />
                 <Line
                   dot={false}
                   type="monotone"
@@ -173,7 +186,7 @@ const StablesTVLchart = () => {
               </LineChart>
             </ResponsiveContainer>
           </div>
-          <div className="right-20 sm:hidden absolute space-x-4 text-lg pt-4">
+          <div className="sm:hidden right-20 absolute space-x-4 text-lg pt-4">
             <button
               onClick={toggleScale}
               className={`rounded-full px-2 transition duration-300 ${

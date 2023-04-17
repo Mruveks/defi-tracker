@@ -3,7 +3,6 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import moment from "moment";
 import numeral from "numeral";
-import { useMediaQuery } from "react-responsive";
 import {
   LineChart,
   Line,
@@ -18,7 +17,23 @@ const Chart = () => {
   const { chainId } = useParams();
   const [formattedData, setFormattedData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const isSmallScreen = useMediaQuery({ maxWidth: 640 });
+
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 640px)");
+
+    const handleMediaQueryChange = (e) => {
+      setIsSmallScreen(e.matches);
+    };
+
+    handleMediaQueryChange(mediaQuery);
+    mediaQuery.addListener(handleMediaQueryChange);
+
+    return () => {
+      mediaQuery.removeListener(handleMediaQueryChange);
+    };
+  }, []);
 
   useEffect(() => {
     setIsLoading(true);
@@ -93,12 +108,12 @@ const Chart = () => {
   };
 
   return (
-    <div className="w-full h-full flex mx-auto py-4">
+    <div className="w-full h-full flex py-4 sm:px-4">
       <ResponsiveContainer width="100%" height={500}>
         <LineChart
           width={1200}
           height={600}
-          margin={{ right: 20, left: 20, bottom: 40 }}
+          margin={{ right: 20, bottom: 40 }}
           data={formattedData}
         >
           <CartesianGrid
@@ -106,7 +121,7 @@ const Chart = () => {
             strokeOpacity={0.05}
             horizontal={true}
           />
-          {!isSmallScreen && (
+          {isSmallScreen ? null : (
             <XAxis
               dataKey="date"
               interval={182}
@@ -119,20 +134,23 @@ const Chart = () => {
               }}
             />
           )}
-          {!isSmallScreen && (
+          {isSmallScreen ? null : (
             <YAxis
               stroke="gray"
               tickFormatter={(value) => numeral(value).format("$0.00a")}
               padding={{ top: 40, bottom: 40 }}
               scale={isLogScale ? "log" : "linear"}
               domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
-              label={{ value: "Value", position: "insideTopLeft" }}
+              label={{
+                value: "Value",
+                position: "insideTopLeft",
+              }}
             />
           )}
           <Tooltip
             active={true}
             content={<CustomTooltip />}
-            position={isSmallScreen ? { x: 10, y: 2 } : { x: 100, y: 2 }}
+            position={{ x: 100, y: 2 }}
             contentStyle={{ color: "gray" }}
             stroke="gray"
           />

@@ -74,7 +74,7 @@ const ChainPage = () => {
       <div className="h-max text-white ">
         {chains.length ? (
           <div className="col-span-2 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
-            <div className="grid gap-10 w-full text-4xl m-6  text-left">
+            <div className="grid gap-10 w-full text-4xl m-6 sm:m-0 sm:text-center  text-left">
               <div className="grid h-fit grid-flow-row w-full p-4">
                 <div>Total Value Locked</div>
                 <div className="text-blue-500">

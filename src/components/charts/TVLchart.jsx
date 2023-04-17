@@ -3,7 +3,6 @@ import axios from "axios";
 import Loader from "../Loader";
 import numeral from "numeral";
 import moment from "moment";
-import { useMediaQuery } from "react-responsive";
 import {
   LineChart,
   ResponsiveContainer,
@@ -19,7 +18,22 @@ const TVLchart = () => {
   const [lastDay, setLastDay] = useState();
   const [day, setDay] = useState();
 
-  const isSmallScreen = useMediaQuery({ maxWidth: 640 });
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 640px)");
+
+    const handleMediaQueryChange = (e) => {
+      setIsSmallScreen(e.matches);
+    };
+
+    handleMediaQueryChange(mediaQuery);
+    mediaQuery.addListener(handleMediaQueryChange);
+
+    return () => {
+      mediaQuery.removeListener(handleMediaQueryChange);
+    };
+  }, []);
 
   useEffect(() => {
     axios
@@ -128,15 +142,18 @@ const TVLchart = () => {
               </div>
             </div>
 
-            <div className="w-full items-center sm:col-span-2 h-full justify-center flex py-4">
+            <div className="w-full h-full justify-end flex py-4">
               <ResponsiveContainer width="100%" height={500}>
-                <LineChart data={protocols}>
+                <LineChart
+                  margin={{ right: 20, left: 20, bottom: 40 }}
+                  data={protocols}
+                >
                   <CartesianGrid
                     vertical={true}
                     strokeOpacity={0.05}
                     horizontal={true}
                   />
-                  {!isSmallScreen && (
+                  {isSmallScreen ? null : (
                     <XAxis
                       dataKey="date"
                       interval={182}
@@ -149,22 +166,23 @@ const TVLchart = () => {
                       }}
                     />
                   )}
-                  {!isSmallScreen && (
+                  {isSmallScreen ? null : (
                     <YAxis
                       stroke="gray"
                       tickFormatter={(value) => numeral(value).format("$0.00a")}
                       padding={{ top: 40, bottom: 40 }}
                       scale={isLogScale ? "log" : "linear"}
                       domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
-                      label={{ value: "Value", position: "insideTopLeft" }}
+                      label={{
+                        value: "Value",
+                        position: "insideTopLeft",
+                      }}
                     />
                   )}
                   <Tooltip
                     active={true}
                     content={<CustomTooltip />}
-                    position={
-                      isSmallScreen ? { x: 10, y: 2 } : { x: 100, y: 2 }
-                    }
+                    position={{ x: 100, y: 2 }}
                   />
                   <Line
                     dot={false}
@@ -175,7 +193,7 @@ const TVLchart = () => {
                 </LineChart>
               </ResponsiveContainer>
             </div>
-            <div className="right-20 absolute space-x-4 text-lg pt-4 sm:hidden">
+            <div className="right-20 sm:hidden absolute space-x-4 text-lg pt-4">
               <button
                 onClick={toggleScale}
                 className={`rounded-full px-2 transition duration-300 ${

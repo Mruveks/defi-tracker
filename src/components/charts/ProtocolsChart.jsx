@@ -3,7 +3,6 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import moment from "moment";
 import numeral from "numeral";
-import { useMediaQuery } from "react-responsive";
 import {
   ResponsiveContainer,
   LineChart,
@@ -15,11 +14,26 @@ import {
 } from "recharts";
 
 const Chart = () => {
-  const { protocolId } = useParams();
+  const { protocolId } = useParams(); // get the protocol ID from the URL params
   const [formattedData, setFormattedData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isLogarithmic, setIsLogarithmic] = useState(false);
-  const isSmallScreen = useMediaQuery({ maxWidth: 640 });
+
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 640px)");
+
+    const handleMediaQueryChange = (e) => {
+      setIsSmallScreen(e.matches);
+    };
+
+    handleMediaQueryChange(mediaQuery);
+    mediaQuery.addListener(handleMediaQueryChange);
+
+    return () => {
+      mediaQuery.removeListener(handleMediaQueryChange);
+    };
+  }, []);
 
   useEffect(() => {
     setIsLoading(true);
@@ -94,7 +108,7 @@ const Chart = () => {
   };
 
   return (
-    <div className="w-full h-full justify-end flex py-4">
+    <div className="w-full sm:hidden h-full justify-end flex py-4">
       <ResponsiveContainer width="100%" height={500}>
         <LineChart
           margin={{ right: 20, left: 20, bottom: 40 }}
@@ -105,7 +119,7 @@ const Chart = () => {
             strokeOpacity={0.05}
             horizontal={true}
           />
-          {!isSmallScreen && (
+          {isSmallScreen ? null : (
             <XAxis
               dataKey="date"
               interval={182}
@@ -118,27 +132,30 @@ const Chart = () => {
               }}
             />
           )}
-          {!isSmallScreen && (
+          {isSmallScreen ? null : (
             <YAxis
               stroke="gray"
               tickFormatter={(value) => numeral(value).format("$0.00a")}
               padding={{ top: 40, bottom: 40 }}
               scale={isLogScale ? "log" : "linear"}
               domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
-              label={{ value: "Value", position: "insideTopLeft" }}
+              label={{
+                value: "Value",
+                position: "insideTopLeft",
+              }}
             />
           )}
           <Tooltip
             active={true}
             content={<CustomTooltip />}
-            position={isSmallScreen ? { x: 10, y: 2 } : { x: 100, y: 2 }}
+            position={{ x: 100, y: 2 }}
             contentStyle={{ color: "gray" }}
             stroke="gray"
           />
           <Line dot={false} type="monotone" dataKey="value" stroke="#8884d8" />
         </LineChart>
       </ResponsiveContainer>
-      <div className="sm:hidden right-20 absolute space-x-4 text-lg">
+      <div className="right-20 absolute space-x-4 text-lg">
         <button
           onClick={toggleScale}
           className={`rounded-full px-2 transition duration-300 ${
