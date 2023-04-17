@@ -28,10 +28,12 @@ const BridgesRanking = () => {
       {bridges ? (
         bridges
           .filter((bridge) => bridge.currentDayVolume > 1000)
-          .map((bridge) => (
+          .map((bridge, index) => (
             <div
-              className="grid grid-cols-5 sm:grid-cols-3 items-center text-right p-2 border-gray-600 border-t "
-              key={bridge.id}
+              className={`${
+                index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"
+              } grid grid-cols-5 sm:grid-cols-3 items-center rounded-xl text-right p-2`}
+              key={index}
             >
               <div className="text-left text-blue-400 ">
                 {bridge.displayName}
@@ -46,7 +48,9 @@ const BridgesRanking = () => {
                 />
               </div>
 
-              <div className="sm:hidden block">{numeral(bridge.currentDayVolume).format("$0.00a")}</div>
+              <div className="sm:hidden block">
+                {numeral(bridge.currentDayVolume).format("$0.00a")}
+              </div>
 
               <div>{numeral(bridge.monthlyVolume).format("$0.00a")}</div>
             </div>

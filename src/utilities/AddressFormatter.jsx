@@ -6,11 +6,11 @@ const AddressFormatter = ({ address }) => {
 
   if (address && address.includes(":")) {
     const [blockchain, addr] = address.split(":");
-    firstFour = addr.slice(0, 4);
-    lastFour = addr.slice(-4);
+    firstFour = addr.slice(0, 6);
+    lastFour = addr.slice(-6);
   } else {
-    firstFour = address.slice(0, 4);
-    lastFour = address.slice(-4);
+    firstFour = address.slice(0, 6);
+    lastFour = address.slice(-6);
   }
 
   return (

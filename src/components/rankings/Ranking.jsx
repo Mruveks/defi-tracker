@@ -49,19 +49,21 @@ const Ranking = ({ chain }) => {
           .filter(
             (item) =>
               item.tvl != null &&
-              item.tvl >= 100000 &&
+              item.tvl >= 1000 &&
               item.category !== "Chain" &&
               (CapChain === "CEX" || item.category !== "CEX") &&
               (item.chain === CapChain || item.category === CapChain)
           )
-          .map((protocol) => (
+          .map((protocol, index) => (
             <div
+              key={index}
               className={`grid ${
+                index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"
+              }  ${
                 CapChain === "Lending" || "CEX" || "DEX"
                   ? "grid-cols-5"
                   : "grid-cols-6"
-              } sm:grid-cols-3 items-center p-2 border-gray-600 border-t text-right`}
-              key={protocol.id}
+              } sm:grid-cols-3 items-center p-2 rounded-xl text-right`}
             >
               <Link
                 to={`/protocol/${protocol.name}`}

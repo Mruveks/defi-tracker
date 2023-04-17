@@ -3,7 +3,7 @@ import axios from "axios";
 
 import Loader from "../Loader";
 import numeral from "numeral";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 const YieldsRanking = () => {
   const [query, setQuery] = useState("");
   const [Yields, setYields] = useState([]);
@@ -51,9 +51,7 @@ const YieldsRanking = () => {
         </button>
 
         <button
-          className={`${buttonStyle} ${
-            query === "BSC" ? "bg-blue-600" : ""
-          }`}
+          className={`${buttonStyle} ${query === "BSC" ? "bg-blue-600" : ""}`}
           onClick={() => setQuery("BSC")}
         >
           Binance
@@ -145,10 +143,12 @@ const YieldsRanking = () => {
             Yields.filter(
               (item) =>
                 item.apy != null && item.apy != "0" && item.tvlUsd >= 1000000
-            ).map((pool) => (
+            ).map((pool, index) => (
               <div
-                className="grid grid-cols-7 sm:grid-cols-4 items-center p-2 border-gray-600 border-t text-right"
-                key={pool.id}
+                key={index}
+                className={` ${
+                  index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"
+                } grid grid-cols-7 sm:grid-cols-4 items-center rounded-xl p-2 text-right`}
               >
                 <div className="text-left capitalize">
                   {pool.symbol.toLowerCase()}
@@ -170,13 +170,17 @@ const YieldsRanking = () => {
                 )}
 
                 {pool.apyBase ? (
-                  <div className="sm:hidden block">{parseFloat(pool.apyBase).toFixed(2) + "%"}</div>
+                  <div className="sm:hidden block">
+                    {parseFloat(pool.apyBase).toFixed(2) + "%"}
+                  </div>
                 ) : (
                   <div className="sm:hidden block"></div>
                 )}
 
                 {pool.apyReward ? (
-                  <div className="sm:hidden block">{parseFloat(pool.apyReward).toFixed(2) + "%"}</div>
+                  <div className="sm:hidden block">
+                    {parseFloat(pool.apyReward).toFixed(2) + "%"}
+                  </div>
                 ) : (
                   <div className="sm:hidden block"></div>
                 )}
@@ -219,13 +223,17 @@ const YieldsRanking = () => {
               )}
 
               {pool.apyBase ? (
-                <div className="sm:hidden block">{parseFloat(pool.apyBase).toFixed(2) + "%"}</div>
+                <div className="sm:hidden block">
+                  {parseFloat(pool.apyBase).toFixed(2) + "%"}
+                </div>
               ) : (
                 <div></div>
               )}
 
               {pool.apyReward ? (
-                <div className="sm:hidden block">{parseFloat(pool.apyReward).toFixed(2) + "%"}</div>
+                <div className="sm:hidden block">
+                  {parseFloat(pool.apyReward).toFixed(2) + "%"}
+                </div>
               ) : (
                 <div></div>
               )}

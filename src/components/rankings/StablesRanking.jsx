@@ -39,10 +39,12 @@ const StablesRanking = () => {
                   item.circulating.peggedVAR >= 1000000) &&
                 item.price != null
             )
-            .map((stable) => (
+            .map((stable, index) => (
               <div
-                className="grid sm:grid-cols-3 grid-cols-7 items-center p-2 border-gray-600 border-t text-right"
-                key={stable.id}
+                className={` ${
+                  index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"
+                } grid sm:grid-cols-3 grid-cols-7 items-center rounded-xl p-2 text-right`}
+                key={index}
               >
                 <a
                   href={`https://www.coingecko.com/en/coins/${stable.gecko_id}`}

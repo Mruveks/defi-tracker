@@ -57,7 +57,7 @@ const ProtocolAddress = ({ address }) => {
 
   return (
     <button
-      className="flex space-x-2 items-center px-4 py-2 rounded bg-gray-900 w-fit hover:bg-gray-600"
+      className="flex space-x-2 items-center px-4 py-2 rounded bg-gray-900 w-fit hover:bg-gray-600 transition duration-300"
       onClick={handleClick}
     >
       <p>View on blockchain</p>

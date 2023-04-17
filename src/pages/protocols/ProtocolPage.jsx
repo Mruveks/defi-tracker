@@ -73,7 +73,7 @@ const ProtocolPage = () => {
       {protocolData.length ? (
         <div className="grid grid-cols-2 gap-10 my-10 rounded-xl">
           <div className="col-span-2 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600  rounded-xl">
-            <div className="col-span-2 sm:col-span-1 flex items-center text-6xl justify-center p-5 space-x-10 border-b border-gray-600 font-serif italic capitalize">
+            <div className="col-span-2 sm:col-span-1 flex items-center text-6xl sm:space-x-0 justify-center p-5 space-x-10 border-b border-gray-600 font-serif italic capitalize">
               <img
                 src={protocolData[0].logo}
                 alt={protocolId}
@@ -91,7 +91,7 @@ const ProtocolPage = () => {
                 key={protocol.id}
                 className="space-y-8 h-fit text-white sm:w-full p-4 italic capitalize"
               >
-                <div className="grid sm:flex gap-4">
+                <div className="grid sm:grid-flow-col sm:items-center gap-4">
                   <div>
                     <h1>Total Value Locked</h1>
                     <p>{numeral(tvl).format("$0.00a")}</p>
@@ -102,7 +102,7 @@ const ProtocolPage = () => {
                         <h1>Market Cap</h1>
                         <p>{numeral(protocol.mcap).format("$0.00a")}</p>
                       </div>
-                      <div>
+                      <div >
                         <h1>mcap/TVL</h1>
                         <p>{(protocol.mcap / tvl).toFixed(2)}</p>
                       </div>
@@ -120,7 +120,7 @@ const ProtocolPage = () => {
                     </>
                   )}
                 </div>
-                <div className="grid w-full ">
+                <div className="grid w-full items-center">
                   <h1>Chain breakdown</h1>
                   <div className=" w-full">
                     <Link
@@ -159,7 +159,7 @@ const ProtocolPage = () => {
               key={protocol.id}
               className="col-span-2 grid grid-cols-2 sm:grid-cols-1 rounded-xl border border-gray-600"
             >
-              <div className="space-y-4 p-4 border-r border-gray-600">
+              <div className="space-y-4 p-4 border-r  border-gray-600">
                 <header className="text-4xl">Protocol Information</header>
                 <p className="text-justify">{protocol.description}</p>
                 <p>Category: {protocol.category}</p>
@@ -175,8 +175,8 @@ const ProtocolPage = () => {
                     {protocol.audit_links.map((audits) => (
                       <a
                         href={audits}
-                        target="__blank"
-                        className="hover:underline italic grid"
+                        target="__blank" 
+                        className="hover:underline italic flex overflow-x-clip" 
                       >
                         {audits}
                       </a>
@@ -185,7 +185,7 @@ const ProtocolPage = () => {
                 ) : null}
                 <div className="flex space-x-2">
                   <a href={protocol.url} target="_blank">
-                    <button className="px-4 space-x-2 flex items-center py-2 rounded bg-gray-900 w-fit hover:bg-gray-600">
+                    <button className="px-4 space-x-2 flex items-center py-2 rounded bg-gray-900 w-fit hover:bg-gray-600 transition duration-300">
                       <p>Website</p>
                       <BsArrowUpRight />
                     </button>
@@ -194,26 +194,12 @@ const ProtocolPage = () => {
                     href={`https://twitter.com/${protocol.twitter}`}
                     target="_blank"
                   >
-                    <button className="px-4 space-x-2 h-full flex items-center rounded bg-gray-900 w-fit hover:bg-gray-600">
+                    <button className="px-4 space-x-2 h-full flex items-center rounded bg-gray-900 w-fit hover:bg-gray-600 transition duration-300">
                       <p>Twitter</p>
                       <BsArrowUpRight />
                     </button>
                   </a>
                 </div>
-                {protocolData.listedAt ? (
-                  <p>
-                    Created at:{" "}
-                    {moment.unix(protocol.listedAt).toDate().toLocaleString()}
-                  </p>
-                ) : null}
-                {protocolData.audit_links ? (
-                  <div>
-                    <h2>Audits:</h2>
-                    {protocolData.audit_links.map((audits) => (
-                      <div>{audits}</div>
-                    ))}
-                  </div>
-                ) : null}
 
                 {protocol.raises && protocol.raises.length > 0 && (
                   <div className="space-y-12 pt-8">
@@ -267,7 +253,7 @@ const ProtocolPage = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <button className="flex space-x-2 items-center px-4 py-2 rounded bg-gray-900 w-fit hover:bg-gray-600">
+                        <button className="flex space-x-2 items-center px-4 py-2 rounded bg-gray-900 w-fit hover:bg-gray-600 transition duration-300">
                           <p>View on CoinGecko</p>
                           <BsArrowUpRight />
                         </button>

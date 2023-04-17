@@ -170,10 +170,12 @@ const TVLranking = () => {
                   item.category !== "CEX" &&
                   item.category !== "Chain"
               )
-              .map((protocol) => (
+              .map((protocol, index) => (
                 <div
-                  className="grid grid-cols-7 sm:grid-cols-3 items-center p-2 border-gray-600 border-t text-right"
-                  key={protocol.id}
+                  key={index}
+                  className={` ${
+                    index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"
+                  } grid grid-cols-7 sm:grid-cols-3 items-center rounded-xl p-2 text-right`}
                 >
                   <Link
                     to={`/protocol/${protocol.name}`}
