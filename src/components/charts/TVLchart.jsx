@@ -82,6 +82,12 @@ const TVLchart = () => {
     );
   };
 
+  const [isLogScale, setIsLogScale] = useState(false);
+
+  const toggleScale = () => {
+    setIsLogScale(!isLogScale);
+  };
+
   const num1 = parseFloat(day).toFixed(2);
   const num2 = parseFloat(lastDay).toFixed(2);
   const dollarChange = (num1 - num2).toFixed(2);
@@ -140,6 +146,8 @@ const TVLchart = () => {
                     stroke="gray"
                     tickFormatter={(value) => numeral(value).format("$0.00a")}
                     padding={{ top: 100, bottom: 40 }}
+                    scale={isLogScale ? "log" : "linear"}
+                    domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
                   />
                   <Tooltip
                     active={true}
@@ -155,6 +163,9 @@ const TVLchart = () => {
                 </LineChart>
               </ResponsiveContainer>
             </div>
+            <button onClick={toggleScale} className="right-20 absolute text-lg">
+            {isLogScale ? "Logarithmic" : "Linear"}
+          </button>
           </div>
         </div>
       ) : (

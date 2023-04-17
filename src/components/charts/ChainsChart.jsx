@@ -48,7 +48,6 @@ const Chart = () => {
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length > 0) {
-      // add a check for payload
       const formattedLabel = moment(label).format("DD/MM/YYYY");
       const formattedValue = numeral(payload[0].value).format("$0,0");
       return (
@@ -86,44 +85,51 @@ const Chart = () => {
       </g>
     );
   };
+
+  const [isLogScale, setIsLogScale] = useState(false);
+
+  const toggleScale = () => {
+    setIsLogScale(!isLogScale);
+  };
+
   return (
     <div className="w-full h-full flex mx-auto py-4">
       <ResponsiveContainer width="100%" height={500}>
-          <LineChart
-            width={1200}
-            height={600}
-            margin={{ right: 20, left: 20, bottom: 40 }}
-            data={formattedData}
-          >
-            <CartesianGrid
-              vertical={true}
-              strokeOpacity={0.05}
-              horizontal={true}
-            />
-            <XAxis
-              dataKey="date"
-              interval={182}
-              tick={<CustomizedAxisTick />}
-              stroke="gray"
-            />
-            <YAxis
-              stroke="gray"
-              tickFormatter={(value) => numeral(value).format("$0.00a")}
-              padding={{ top: 100, bottom: 40 }}
-            />
-            <Tooltip
-              active={true}
-              content={<CustomTooltip />}
-              position={{ x: 100, y: 2 }}
-            />
-            <Line
-              dot={false}
-              type="monotone"
-              dataKey="value"
-              stroke="#8884d8"
-            />
-          </LineChart>
+        <LineChart
+          width={1200}
+          height={600}
+          margin={{ right: 20, left: 20, bottom: 40 }}
+          data={formattedData}
+        >
+          <CartesianGrid
+            vertical={true}
+            strokeOpacity={0.05}
+            horizontal={true}
+          />
+          <XAxis
+            dataKey="date"
+            interval={182}
+            tick={<CustomizedAxisTick />}
+            stroke="gray"
+          />
+          <YAxis
+            stroke="gray"
+            tickFormatter={(value) => numeral(value).format("$0.00a")}
+            padding={{ top: 100, bottom: 40 }}
+            scale={isLogScale ? "log" : "linear"}
+            domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
+          />
+          <Tooltip
+            active={true}
+            content={<CustomTooltip />}
+            position={{ x: 100, y: 2 }}
+          />
+          <Line dot={false} type="monotone" dataKey="value" stroke="#8884d8" />
+        </LineChart>
       </ResponsiveContainer>
+      <button onClick={toggleScale} className="right-20 absolute text-lg">
+        {isLogScale ? "Logarithmic" : "Linear"}
+      </button>
     </div>
   );
 };

@@ -85,6 +85,12 @@ const Chart = () => {
     );
   };
 
+  const [isLogScale, setIsLogScale] = useState(false);
+
+  const toggleScale = () => {
+    setIsLogScale(!isLogScale);
+  };
+
   return (
     <div className="w-full sm:hidden h-full justify-end flex py-4">
       <ResponsiveContainer width="100%" height={500}>
@@ -107,6 +113,8 @@ const Chart = () => {
             stroke="gray"
             tickFormatter={(value) => numeral(value).format("$0.00a")}
             padding={{ top: 100, bottom: 40 }}
+            scale={isLogScale ? "log" : "linear"}
+            domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
           />
           <Tooltip
             active={true}
@@ -118,6 +126,9 @@ const Chart = () => {
           <Line dot={false} type="monotone" dataKey="value" stroke="#8884d8" />
         </LineChart>
       </ResponsiveContainer>
+      <button onClick={toggleScale} className="right-20 absolute text-lg">
+        {isLogScale ? "Logarithmic" : "Linear"}
+      </button>
     </div>
   );
 };

@@ -78,6 +78,12 @@ const StablesTVLchart = () => {
     );
   };
 
+  const [isLogScale, setIsLogScale] = useState(false);
+
+  const toggleScale = () => {
+    setIsLogScale(!isLogScale);
+  };
+
   const num1 = parseFloat(day).toFixed(2);
   const num2 = parseFloat(lastDay).toFixed(2);
 
@@ -89,31 +95,31 @@ const StablesTVLchart = () => {
       {stable.length ? (
         <div className="grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
           <div className="grid gap-10 w-full text-4xl m-6  text-left">
-              <div className="grid h-fit grid-flow-row w-full p-4">
-                <div>Total Value Locked</div>
-                <div className="text-blue-500">
-                  {numeral(num2).format("$0.00a")}
-                </div>
-              </div>
-
-              <div className="grid h-fit grid-flow-row w-full p-4">
-                <div>24h Change</div>
-                {percentageChange > 0 ? (
-                  <div className="text-green-500">+{percentageChange}%</div>
-                ) : (
-                  <div className="text-red-500">{percentageChange}%</div>
-                )}
-                {dollarChange > 0 ? (
-                  <div className="text-green-500">
-                    {"+" + numeral(dollarChange).format("$0.00a")}
-                  </div>
-                ) : (
-                  <div className="text-red-500">
-                    {numeral(dollarChange).format("$0.00a")}
-                  </div>
-                )}
+            <div className="grid h-fit grid-flow-row w-full p-4">
+              <div>Total Value Locked</div>
+              <div className="text-blue-500">
+                {numeral(num2).format("$0.00a")}
               </div>
             </div>
+
+            <div className="grid h-fit grid-flow-row w-full p-4">
+              <div>24h Change</div>
+              {percentageChange > 0 ? (
+                <div className="text-green-500">+{percentageChange}%</div>
+              ) : (
+                <div className="text-red-500">{percentageChange}%</div>
+              )}
+              {dollarChange > 0 ? (
+                <div className="text-green-500">
+                  {"+" + numeral(dollarChange).format("$0.00a")}
+                </div>
+              ) : (
+                <div className="text-red-500">
+                  {numeral(dollarChange).format("$0.00a")}
+                </div>
+              )}
+            </div>
+          </div>
 
           <div className="w-full sm:hidden h-full justify-end flex py-4">
             <ResponsiveContainer width="100%" height={500}>
@@ -136,6 +142,8 @@ const StablesTVLchart = () => {
                   stroke="gray"
                   tickFormatter={(value) => numeral(value).format("$0.00a")}
                   padding={{ top: 100, bottom: 40 }}
+                  scale={isLogScale ? "log" : "linear"}
+                  domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
                 />
                 <Tooltip
                   active={true}
@@ -151,6 +159,9 @@ const StablesTVLchart = () => {
               </LineChart>
             </ResponsiveContainer>
           </div>
+          <button onClick={toggleScale} className="right-20 absolute text-lg">
+            {isLogScale ? "Logarithmic" : "Linear"}
+          </button>
         </div>
       ) : (
         <Loader />
