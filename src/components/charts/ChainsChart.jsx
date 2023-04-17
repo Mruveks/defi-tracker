@@ -138,7 +138,7 @@ const Chart = () => {
             <YAxis
               stroke="gray"
               tickFormatter={(value) => numeral(value).format("$0.00a")}
-              padding={{ top: 40, bottom: 40 }}
+              padding={{ top: 80, bottom: 40 }}
               scale={isLogScale ? "log" : "linear"}
               domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
               label={{
@@ -150,7 +150,7 @@ const Chart = () => {
           <Tooltip
             active={true}
             content={<CustomTooltip />}
-            position={{ x: 100, y: 2 }}
+            position={isSmallScreen ? { x: 20, y: 2 } : { x: 100, y: 2 }}
             contentStyle={{ color: "gray" }}
             stroke="gray"
           />

@@ -140,7 +140,7 @@ const StablesTVLchart = () => {
 
           <div className="w-full h-full flex py-4">
             <ResponsiveContainer width="100%" height={500}>
-              <LineChart margin={{ right: 20, bottom: 40 }} data={stable}>
+              <LineChart margin={{ right: 20, left:20, bottom: 40 }} data={stable}>
                 <CartesianGrid
                   vertical={true}
                   strokeOpacity={0.05}
@@ -163,7 +163,7 @@ const StablesTVLchart = () => {
                   <YAxis
                     stroke="gray"
                     tickFormatter={(value) => numeral(value).format("$0.00a")}
-                    padding={{ top: 40, bottom: 40 }}
+                    padding={{ top: 80, bottom: 40 }}
                     scale={isLogScale ? "log" : "linear"}
                     domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
                     label={{
@@ -175,7 +175,7 @@ const StablesTVLchart = () => {
                 <Tooltip
                   active={true}
                   content={<CustomTooltip />}
-                  position={{ x: 100, y: 2 }}
+                  position={isSmallScreen ? { x: 20, y: 2 } : { x: 100, y: 2 }}
                 />
                 <Line
                   dot={false}
