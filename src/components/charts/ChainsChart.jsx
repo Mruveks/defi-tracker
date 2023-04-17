@@ -18,7 +18,6 @@ const Chart = () => {
   const { chainId } = useParams();
   const [formattedData, setFormattedData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isLogarithmic, setIsLogarithmic] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -111,7 +110,7 @@ const Chart = () => {
             interval={182}
             tick={<CustomizedAxisTick />}
             stroke="gray"
-            label={{ value: 'Date', position: 'insideBottomRight', offset: 0 }}
+            label={{ value: "Date", position: "insideBottomRight", offset: 0 }}
           />
           <YAxis
             stroke="gray"
@@ -119,7 +118,7 @@ const Chart = () => {
             padding={{ top: 100, bottom: 40 }}
             scale={isLogScale ? "log" : "linear"}
             domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
-            label={{ value: 'Value', position: 'insideTopLeft', }}
+            label={{ value: "Value", position: "insideTopLeft" }}
           />
           <Tooltip
             active={true}
@@ -129,9 +128,24 @@ const Chart = () => {
           <Line dot={false} type="monotone" dataKey="value" stroke="#8884d8" />
         </LineChart>
       </ResponsiveContainer>
-      <button onClick={toggleScale} className="right-20 absolute text-lg">
-        {isLogScale ? "Logarithmic" : "Linear"}
-      </button>
+      <div className="right-20 absolute space-x-4 text-lg">
+        <button
+          onClick={toggleScale}
+          className={`rounded-full px-2 transition duration-300 ${
+            isLogScale === true ? "bg-gray-600" : "bg-transparent"
+          }`}
+        >
+          Logarithmic
+        </button>
+        <button
+          onClick={toggleScale}
+          className={`rounded-full px-2 transition duration-300 ${
+            isLogScale === false ? "bg-gray-600" : "bg-gray-800"
+          }`}
+        >
+          Linear
+        </button>
+      </div>
     </div>
   );
 };
