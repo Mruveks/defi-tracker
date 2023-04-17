@@ -25,7 +25,7 @@ const Navbar = () => {
   const [activeNav, setActiveNav] = useState("/");
 
   const elementStyle =
-    "flex items-center capitalize rounded-lg hover:bg-gray-600 rounded-full transition duration-100";
+    "flex p-1 items-center capitalize rounded-lg hover:bg-gray-600 rounded-full transition duration-100";
 
   const link = (chainId, img) => {
     return (
