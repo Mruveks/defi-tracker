@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import moment from "moment";
 import numeral from "numeral";
+import { useMediaQuery } from "react-responsive";
 import {
   ResponsiveContainer,
   LineChart,
@@ -14,10 +15,11 @@ import {
 } from "recharts";
 
 const Chart = () => {
-  const { protocolId } = useParams(); // get the protocol ID from the URL params
+  const { protocolId } = useParams();
   const [formattedData, setFormattedData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isLogarithmic, setIsLogarithmic] = useState(false);
+  const isSmallScreen = useMediaQuery({ maxWidth: 640 });
 
   useEffect(() => {
     setIsLoading(true);
@@ -103,25 +105,33 @@ const Chart = () => {
             strokeOpacity={0.05}
             horizontal={true}
           />
-          <XAxis
-            dataKey="date"
-            interval={50}
-            tick={<CustomizedAxisTick />}
-            stroke="gray"
-            label={{ value: "Date", position: "insideBottomRight", offset: 0 }}
-          />
-          <YAxis
-            stroke="gray"
-            tickFormatter={(value) => numeral(value).format("$0.00a")}
-            padding={{ top: 100, bottom: 40 }}
-            scale={isLogScale ? "log" : "linear"}
-            domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
-            label={{ value: "Value", position: "insideTopLeft" }}
-          />
+          {!isSmallScreen && (
+            <XAxis
+              dataKey="date"
+              interval={182}
+              tick={<CustomizedAxisTick />}
+              stroke="gray"
+              label={{
+                value: "Date",
+                position: "insideBottomRight",
+                offset: 0,
+              }}
+            />
+          )}
+          {!isSmallScreen && (
+            <YAxis
+              stroke="gray"
+              tickFormatter={(value) => numeral(value).format("$0.00a")}
+              padding={{ top: 40, bottom: 40 }}
+              scale={isLogScale ? "log" : "linear"}
+              domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
+              label={{ value: "Value", position: "insideTopLeft" }}
+            />
+          )}
           <Tooltip
             active={true}
             content={<CustomTooltip />}
-            position={{ x: 100, y: 2 }}
+            position={isSmallScreen ? { x: 10, y: 2 } : { x: 100, y: 2 }}
             contentStyle={{ color: "gray" }}
             stroke="gray"
           />

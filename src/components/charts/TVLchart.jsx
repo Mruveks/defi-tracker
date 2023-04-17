@@ -3,6 +3,7 @@ import axios from "axios";
 import Loader from "../Loader";
 import numeral from "numeral";
 import moment from "moment";
+import { useMediaQuery } from "react-responsive";
 import {
   LineChart,
   ResponsiveContainer,
@@ -17,6 +18,8 @@ const TVLchart = () => {
   const [protocols, setProtocols] = useState([]);
   const [lastDay, setLastDay] = useState();
   const [day, setDay] = useState();
+
+  const isSmallScreen = useMediaQuery({ maxWidth: 640 });
 
   useEffect(() => {
     axios
@@ -98,7 +101,7 @@ const TVLchart = () => {
       {protocols.length ? (
         <div className="flex flex-col lg:flex-row ">
           <div className=" grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
-            <div className="grid gap-10 w-full text-4xl m-6  text-left">
+            <div className="grid gap-10 w-full text-4xl m-6 sm:m-0 sm:text-center  text-left">
               <div className="grid h-fit grid-flow-row w-full p-4">
                 <div>Total Value Locked</div>
                 <div className="text-blue-500">
@@ -125,40 +128,43 @@ const TVLchart = () => {
               </div>
             </div>
 
-            <div className="w-full sm:hidden h-full justify-end flex py-4">
+            <div className="w-full items-center sm:col-span-2 h-full justify-center flex py-4">
               <ResponsiveContainer width="100%" height={500}>
-                <LineChart
-                  margin={{ right: 20, left: 20, bottom: 40 }}
-                  data={protocols}
-                >
+                <LineChart data={protocols}>
                   <CartesianGrid
                     vertical={true}
                     strokeOpacity={0.05}
                     horizontal={true}
                   />
-                  <XAxis
-                    dataKey="date"
-                    interval={182}
-                    tick={<CustomizedAxisTick />}
-                    stroke="gray"
-                    label={{
-                      value: "Date",
-                      position: "insideBottomRight",
-                      offset: 0,
-                    }}
-                  />
-                  <YAxis
-                    stroke="gray"
-                    tickFormatter={(value) => numeral(value).format("$0.00a")}
-                    padding={{ top: 100, bottom: 40 }}
-                    scale={isLogScale ? "log" : "linear"}
-                    domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
-                    label={{ value: "Value", position: "insideTopLeft" }}
-                  />
+                  {!isSmallScreen && (
+                    <XAxis
+                      dataKey="date"
+                      interval={182}
+                      tick={<CustomizedAxisTick />}
+                      stroke="gray"
+                      label={{
+                        value: "Date",
+                        position: "insideBottomRight",
+                        offset: 0,
+                      }}
+                    />
+                  )}
+                  {!isSmallScreen && (
+                    <YAxis
+                      stroke="gray"
+                      tickFormatter={(value) => numeral(value).format("$0.00a")}
+                      padding={{ top: 40, bottom: 40 }}
+                      scale={isLogScale ? "log" : "linear"}
+                      domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
+                      label={{ value: "Value", position: "insideTopLeft" }}
+                    />
+                  )}
                   <Tooltip
                     active={true}
                     content={<CustomTooltip />}
-                    position={{ x: 100, y: 2 }}
+                    position={
+                      isSmallScreen ? { x: 10, y: 2 } : { x: 100, y: 2 }
+                    }
                   />
                   <Line
                     dot={false}
@@ -169,7 +175,7 @@ const TVLchart = () => {
                 </LineChart>
               </ResponsiveContainer>
             </div>
-            <div className="right-20 absolute space-x-4 text-lg pt-4">
+            <div className="right-20 absolute space-x-4 text-lg pt-4 sm:hidden">
               <button
                 onClick={toggleScale}
                 className={`rounded-full px-2 transition duration-300 ${
