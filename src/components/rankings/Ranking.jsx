@@ -32,13 +32,13 @@ const Ranking = ({ chain }) => {
       <div
         className={`grid ${
           chain === "Lending" || "CEX" ? "grid-cols-5" : "grid-cols-6"
-        } sm:grid-cols-4 font-semibold p-2 uppercase italic text-right`}
+        } sm:grid-cols-3 font-semibold p-2 uppercase italic text-right`}
       >
         <header className="text-left">Name</header>
         {chain === "Lending" || "CEX" || "DEX" ? null : (
           <header className="text-right">Category</header>
         )}
-        <header>1h Change</header>
+        <header className="sm:hidden block">1h Change</header>
         <header>1d Change</header>
         <header className="sm:hidden block">7d Change</header>
         <header>TVL</header>
@@ -60,12 +60,12 @@ const Ranking = ({ chain }) => {
                 CapChain === "Lending" || "CEX" || "DEX"
                   ? "grid-cols-5"
                   : "grid-cols-6"
-              } sm:grid-cols-4 items-center p-2 border-gray-600 border-t text-right`}
+              } sm:grid-cols-3 items-center p-2 border-gray-600 border-t text-right`}
               key={protocol.id}
             >
               <Link
                 to={`/protocol/${protocol.name}`}
-                className="flex w-max items-center text-left hover:bg-gray-600 rounded-full transition duration-100"
+                className="flex w-fit items-center text-left hover:bg-gray-600 rounded-full transition duration-100"
               >
                 <img
                   src={protocol.logo}
@@ -82,11 +82,11 @@ const Ranking = ({ chain }) => {
               )}
 
               {protocol.change_1h > 0 ? (
-                <div className="text-green-500">
+                <div className="sm:hidden block text-green-500">
                   +{parseFloat(protocol.change_1h).toFixed(2)}%
                 </div>
               ) : (
-                <div className="text-red-500">
+                <div className="sm:hidden block text-red-500">
                   {parseFloat(protocol.change_1h).toFixed(2)}%
                 </div>
               )}

@@ -18,11 +18,11 @@ const BridgesRanking = () => {
 
   return (
     <div className="h-max border rounded-xl border-gray-600 p-2">
-      <div className="grid grid-cols-5 font-semibold p-2 text-right uppercase italic">
+      <div className="grid grid-cols-5 sm:grid-cols-3 font-semibold p-2 text-right uppercase italic">
         <header className="text-left">Name</header>
         <header>Chain</header>
-        <header>1d volume change</header>
-        <header>Today's Volume</header>
+        <header className="sm:hidden block">1d volume change</header>
+        <header className="sm:hidden block">Today's Volume</header>
         <header>Monthly Volume</header>
       </div>
       {bridges ? (
@@ -30,7 +30,7 @@ const BridgesRanking = () => {
           .filter((bridge) => bridge.currentDayVolume > 1000)
           .map((bridge) => (
             <div
-              className="grid grid-cols-5 items-center text-right p-2 border-gray-600 border-t "
+              className="grid grid-cols-5 sm:grid-cols-3 items-center text-right p-2 border-gray-600 border-t "
               key={bridge.id}
             >
               <div className="text-left text-blue-400 ">
@@ -39,14 +39,14 @@ const BridgesRanking = () => {
 
               <div className="capitalize">{bridge.name}</div>
 
-              <div>
+              <div className="sm:hidden block">
                 <CalculateChange
                   lastDay={bridge.dayBeforeLastVolume}
                   today={bridge.volumePrevDay}
                 />
               </div>
 
-              <div>{numeral(bridge.currentDayVolume).format("$0.00a")}</div>
+              <div className="sm:hidden block">{numeral(bridge.currentDayVolume).format("$0.00a")}</div>
 
               <div>{numeral(bridge.monthlyVolume).format("$0.00a")}</div>
             </div>

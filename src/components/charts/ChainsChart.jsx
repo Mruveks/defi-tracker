@@ -139,7 +139,7 @@ const Chart = () => {
           <Line dot={false} type="monotone" dataKey="value" stroke="#8884d8" />
         </LineChart>
       </ResponsiveContainer>
-      <div className="right-20 absolute space-x-4 text-lg">
+      <div className="right-20 absolute space-x-4 text-lg sm:hidden block">
         <button
           onClick={toggleScale}
           className={`rounded-full px-2 transition duration-300 ${

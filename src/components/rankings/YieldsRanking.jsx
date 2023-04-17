@@ -130,13 +130,13 @@ const YieldsRanking = () => {
       </div>
 
       <div className="h-max mb-10  border rounded-xl border-gray-600 p-2">
-        <div className="grid grid-cols-7 font-semibold p-2 text-right uppercase italic">
+        <div className="grid grid-cols-7 sm:grid-cols-4 font-semibold p-2 text-right uppercase italic">
           <header className="text-left">Pool</header>
           <header className="text-left">Project</header>
-          <header>Chain</header>
+          <header className="sm:hidden block">Chain</header>
           <header>APY</header>
-          <header>Base APY</header>
-          <header>Reward APY</header>
+          <header className="sm:hidden block">Base APY</header>
+          <header className="sm:hidden block">Reward APY</header>
           <header>TVL</header>
         </div>
 
@@ -147,7 +147,7 @@ const YieldsRanking = () => {
                 item.apy != null && item.apy != "0" && item.tvlUsd >= 1000000
             ).map((pool) => (
               <div
-                className="grid grid-cols-7 items-center p-2 border-gray-600 border-t text-right"
+                className="grid grid-cols-7 sm:grid-cols-4 items-center p-2 border-gray-600 border-t text-right"
                 key={pool.id}
               >
                 <div className="text-left capitalize">
@@ -155,13 +155,13 @@ const YieldsRanking = () => {
                 </div>
                 <Link
                   to={`/protocol/${pool.project}`}
-                  className="flex w-max items-center text-left hover:bg-gray-600 transition duration-100 rounded-full"
+                  className="flex w-fit items-center text-left hover:bg-gray-600 transition duration-100 rounded-full"
                 >
                   <div className="w-fit md:w-40 px-2 capitalize my-auto text-blue-400">
                     {pool.project}
                   </div>
                 </Link>
-                <div>{pool.chain}</div>
+                <div className="sm:hidden block">{pool.chain}</div>
 
                 {pool.apy ? (
                   <div>{parseFloat(pool.apy).toFixed(2) + "%"}</div>
@@ -170,15 +170,15 @@ const YieldsRanking = () => {
                 )}
 
                 {pool.apyBase ? (
-                  <div>{parseFloat(pool.apyBase).toFixed(2) + "%"}</div>
+                  <div className="sm:hidden block">{parseFloat(pool.apyBase).toFixed(2) + "%"}</div>
                 ) : (
-                  <div></div>
+                  <div className="sm:hidden block"></div>
                 )}
 
                 {pool.apyReward ? (
-                  <div>{parseFloat(pool.apyReward).toFixed(2) + "%"}</div>
+                  <div className="sm:hidden block">{parseFloat(pool.apyReward).toFixed(2) + "%"}</div>
                 ) : (
-                  <div></div>
+                  <div className="sm:hidden block"></div>
                 )}
 
                 {numeral(pool.tvlUsd).format("$0.00a")}
@@ -196,7 +196,7 @@ const YieldsRanking = () => {
               item.chain === query
           ).map((pool) => (
             <div
-              className="grid grid-cols-7 items-center p-2 border-gray-600 border-t text-right"
+              className="grid grid-cols-7 sm:grid-cols-5 items-center p-2 border-gray-600 border-t text-right"
               key={pool.id}
             >
               <div className="text-left capitalize">
@@ -219,13 +219,13 @@ const YieldsRanking = () => {
               )}
 
               {pool.apyBase ? (
-                <div>{parseFloat(pool.apyBase).toFixed(2) + "%"}</div>
+                <div className="sm:hidden block">{parseFloat(pool.apyBase).toFixed(2) + "%"}</div>
               ) : (
                 <div></div>
               )}
 
               {pool.apyReward ? (
-                <div>{parseFloat(pool.apyReward).toFixed(2) + "%"}</div>
+                <div className="sm:hidden block">{parseFloat(pool.apyReward).toFixed(2) + "%"}</div>
               ) : (
                 <div></div>
               )}

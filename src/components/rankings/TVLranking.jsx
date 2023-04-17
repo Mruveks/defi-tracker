@@ -150,13 +150,13 @@ const TVLranking = () => {
       </div>
 
       <div className="h-max mb-10 border-gray-600 border p-2 rounded-xl bg-gray-800">
-        <div className="grid grid-cols-7 sm:grid-cols-5 font-semibold p-2 border-b-gray-600 text-right italic uppercase">
+        <div className="grid grid-cols-7 sm:grid-cols-3 font-semibold p-2 border-b-gray-600 text-right italic uppercase">
           <header className="text-left">Name</header>
           <header className="sm:hidden block">Category</header>
-          <header className="sm:hidden block">Chain</header>
-          <header>1d Change</header>
-          <header>7d Change</header>
-          <header>30d Change</header>
+          <header>Chain</header>
+          <header className="sm:hidden block">1h Change</header>
+          <header className="sm:hidden block">1d Change</header>
+          <header className="sm:hidden block">7d Change</header>
           <header>TVL</header>
         </div>
 
@@ -172,12 +172,12 @@ const TVLranking = () => {
               )
               .map((protocol) => (
                 <div
-                  className="grid grid-cols-7 sm:grid-cols-5 items-center p-2 border-gray-600 border-t text-right"
+                  className="grid grid-cols-7 sm:grid-cols-3 items-center p-2 border-gray-600 border-t text-right"
                   key={protocol.id}
                 >
                   <Link
                     to={`/protocol/${protocol.name}`}
-                    className="flex items-center w-max text-left hover:bg-gray-600 transition duration-100 rounded-full"
+                    className="flex items-center w-fit text-left hover:bg-gray-600 transition duration-100 rounded-full"
                   >
                     <img
                       src={protocol.logo}
@@ -190,34 +190,34 @@ const TVLranking = () => {
                   </Link>
 
                   <div className="sm:hidden block">{protocol.category}</div>
-                  <div className="sm:hidden block">{protocol.chain}</div>
+                  <div>{protocol.chain}</div>
 
                   {protocol.change_1h > 0 ? (
-                    <div className="text-green-500">
+                    <div className="text-green-500 sm:hidden block">
                       +{parseFloat(protocol.change_1h).toFixed(2)}%
                     </div>
                   ) : (
-                    <div className="text-red-500">
+                    <div className="text-red-500 sm:hidden block">
                       {parseFloat(protocol.change_1h).toFixed(2)}%
                     </div>
                   )}
 
                   {protocol.change_1d > 0 ? (
-                    <div className="text-green-500">
+                    <div className="text-green-500 sm:hidden block">
                       +{parseFloat(protocol.change_1d).toFixed(2)}%
                     </div>
                   ) : (
-                    <div className="text-red-500">
+                    <div className="text-red-500 sm:hidden block">
                       {parseFloat(protocol.change_1d).toFixed(2)}%
                     </div>
                   )}
 
                   {protocol.change_7d > 0 ? (
-                    <div className="text-green-500">
+                    <div className="text-green-500 sm:hidden block">
                       +{parseFloat(protocol.change_7d).toFixed(2)}%
                     </div>
                   ) : (
-                    <div className="text-red-500">
+                    <div className="text-red-500 sm:hidden block">
                       {parseFloat(protocol.change_7d).toFixed(2)}%
                     </div>
                   )}
@@ -240,12 +240,12 @@ const TVLranking = () => {
             )
             .map((protocol) => (
               <div
-                className="grid grid-cols-7 sm:grid-cols-5 items-center p-2 border-gray-600 border-t text-right"
+                className="grid grid-cols-7 sm:grid-cols-3 items-center p-2 border-gray-600 border-t text-right"
                 key={protocol.id}
               >
                 <Link
                   to={`/protocol/${protocol.name}`}
-                  className="flex items-center w-max text-left hover:bg-gray-600 transition duration-100 rounded-full"
+                  className="flex items-center w-fit text-left hover:bg-gray-600 transition duration-100 rounded-full"
                 >
                   <img
                     src={protocol.logo}
@@ -258,34 +258,34 @@ const TVLranking = () => {
                 </Link>
 
                 <div className="sm:hidden block">{protocol.category}</div>
-                <div className="sm:hidden block">{protocol.chain}</div>
+                <div>{protocol.chain}</div>
 
                 {protocol.change_1h > 0 ? (
-                  <div className="text-green-500">
+                  <div className="text-green-500 sm:hidden block">
                     +{parseFloat(protocol.change_1h).toFixed(2)}%
                   </div>
                 ) : (
-                  <div className="text-red-500">
+                  <div className="text-red-500 sm:hidden block">
                     {parseFloat(protocol.change_1h).toFixed(2)}%
                   </div>
                 )}
 
                 {protocol.change_1d > 0 ? (
-                  <div className="text-green-500">
+                  <div className="text-green-500 sm:hidden block">
                     +{parseFloat(protocol.change_1d).toFixed(2)}%
                   </div>
                 ) : (
-                  <div className="text-red-500">
+                  <div className="text-red-500 sm:hidden block">
                     {parseFloat(protocol.change_1d).toFixed(2)}%
                   </div>
                 )}
 
                 {protocol.change_7d > 0 ? (
-                  <div className="text-green-500">
+                  <div className="text-green-500 sm:hidden block">
                     +{parseFloat(protocol.change_7d).toFixed(2)}%
                   </div>
                 ) : (
-                  <div className="text-red-500">
+                  <div className="text-red-500 sm:hidden block">
                     {parseFloat(protocol.change_7d).toFixed(2)}%
                   </div>
                 )}
