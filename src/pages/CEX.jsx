@@ -18,7 +18,7 @@ const CEX = () => {
       <BackButton />
       <SearchList />
 
-      <div className="h-max my-5 text-white">
+      <div className="h-max my-4 text-white">
         <Ranking chain="CEX" />
       </div>
     </div>

@@ -43,7 +43,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="sm:flex md:flex border-gray-600 border rounded-xl mb-10 hidden h-46 mx-5 md:mx-10">
+    <div className="sm:flex md:flex border-gray-600 border rounded-xl mb-8 hidden h-46 mx-5 md:mx-10">
       <div className="w-full p-4">
         <header className="flex items-center pb-4 text-3xl text-gray-400 ">
           Dashboards

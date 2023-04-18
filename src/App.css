@@ -11,7 +11,10 @@ body{
 }
 
 h1{
-  color: lightslategray
+  color: lightslategray;
+}
+h1,h2{
+  font-size: xx-large;
 }
 
 @media (max-width: 600px) {

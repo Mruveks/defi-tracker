@@ -127,7 +127,7 @@ const YieldsRanking = () => {
         </button>
       </div>
 
-      <div className="h-max mb-10  border rounded-xl border-gray-600 p-2">
+      <div className="h-max mb-8  border rounded-xl border-gray-600 p-2">
         <div className="grid grid-cols-7 sm:grid-cols-4 font-semibold p-2 text-right uppercase italic">
           <header className="text-left">Pool</header>
           <header className="text-left">Project</header>

@@ -16,7 +16,7 @@ const Stables = () => {
       <BackButton />
       <SearchList />
 
-      <div className="h-max my-5">
+      <div className="h-max my-4">
         <StablesTVLchart />
       </div>
       

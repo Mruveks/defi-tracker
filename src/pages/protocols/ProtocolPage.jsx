@@ -71,21 +71,21 @@ const ProtocolPage = () => {
       <SearchList />
 
       {protocolData.length ? (
-        <div className="grid grid-cols-2 gap-10 my-10 rounded-xl">
-          <div className="col-span-2 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600  rounded-xl">
-            <div className="col-span-2 sm:col-span-1 flex items-center text-6xl sm:space-x-0 justify-center p-5 space-x-10 border-b border-gray-600 font-serif italic capitalize">
-              <img
-                src={protocolData[0].logo}
-                alt={protocolId}
-                className="sm:hidden h-16 w-16 rounded-full"
-              />
-              <header>{protocolId}</header>
-              <img
-                src={protocolData[0].logo}
-                alt={protocolId}
-                className="sm:hidden h-16 w-16 rounded-full shadow-"
-              />
-            </div>
+        <div className="grid grid-cols-2 mb-5 rounded-xl">
+          <div className="col-span-2 my-8 sm:col-span-1 flex items-center text-6xl sm:space-x-0 justify-center space-x-10 font-serif italic capitalize">
+            <img
+              src={protocolData[0].logo}
+              alt={protocolId}
+              className="sm:hidden h-16 w-16 rounded-full"
+            />
+            <header>{protocolId}</header>
+            <img
+              src={protocolData[0].logo}
+              alt={protocolId}
+              className="sm:hidden h-16 w-16 rounded-full shadow-"
+            />
+          </div>
+          <div className="col-span-2 mb-8 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
             {protocolData.map((protocol) => (
               <div
                 key={protocol.id}
@@ -102,7 +102,7 @@ const ProtocolPage = () => {
                         <h1>Market Cap</h1>
                         <p>{numeral(protocol.mcap).format("$0.00a")}</p>
                       </div>
-                      <div >
+                      <div>
                         <h1>mcap/TVL</h1>
                         <p>{(protocol.mcap / tvl).toFixed(2)}</p>
                       </div>
@@ -157,7 +157,7 @@ const ProtocolPage = () => {
           {protocolData.map((protocol) => (
             <div
               key={protocol.id}
-              className="col-span-2 grid grid-cols-2 sm:grid-cols-1 rounded-xl border border-gray-600"
+              className="col-span-2  grid grid-cols-2 sm:grid-cols-1 rounded-xl border border-gray-600"
             >
               <div className="space-y-4 p-4 border-r  border-gray-600">
                 <header className="text-4xl">Protocol Information</header>
@@ -171,12 +171,12 @@ const ProtocolPage = () => {
                 ) : null}
                 {protocol.audit_links ? (
                   <div>
-                    <h2>Audits:</h2>
+                    <h2 cl>Audits:</h2>
                     {protocol.audit_links.map((audits) => (
                       <a
                         href={audits}
-                        target="__blank" 
-                        className="hover:underline italic flex overflow-x-clip" 
+                        target="__blank"
+                        className="hover:underline italic flex overflow-x-clip"
                       >
                         {audits}
                       </a>
