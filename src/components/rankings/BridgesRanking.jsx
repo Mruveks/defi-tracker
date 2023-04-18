@@ -35,8 +35,8 @@ const BridgesRanking = () => {
               } grid grid-cols-5 sm:grid-cols-3 items-center rounded-xl text-right p-2`}
               key={index}
             >
-              <div className="flex space-x-4 text-left">
-                <p className="w-6">{index}</p>
+              <div className="flex space-x-4 p-2 text-left">
+                <p className="w-6">{index + 1}</p>
                 <h2 className="text-blue-400">{bridge.displayName}</h2>
               </div>
 

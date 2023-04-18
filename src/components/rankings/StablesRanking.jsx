@@ -51,7 +51,7 @@ const StablesRanking = () => {
                   target="_blank"
                   className="flex items-center space-x-4 p-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
                 >
-                  <div className="w-6">{index}</div>
+                  <div className="w-6">{index + 1}</div>
                   <div className=" text-blue-400">
                     {stable.name} ({stable.symbol})
                   </div>

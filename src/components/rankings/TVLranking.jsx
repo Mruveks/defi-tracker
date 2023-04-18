@@ -180,9 +180,9 @@ const TVLranking = () => {
                 >
                   <Link
                     to={`/protocol/${protocol.name}`}
-                    className="flex items-center space-x-4 w-full px-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
+                    className="flex items-center space-x-4 w-full p-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
                   >
-                    <p className="w-6">{index}</p>
+                    <p className="w-6">{index + 1}</p>
                     <img
                       src={protocol.logo}
                       alt="logo"
@@ -253,13 +253,13 @@ const TVLranking = () => {
                 className={` ${
                   index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"
                 } grid grid-cols-8 sm:grid-cols-3 items-center rounded-xl p-2 text-right`}
-                key={protocol.id}
+                key={index}
               >
                 <Link
                   to={`/protocol/${protocol.name}`}
-                  className="flex items-center px-2 space-x-4 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
+                  className="flex items-center p-2 space-x-4 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
                 >
-                  <p className="w-6">{index}</p>
+                  <p className="w-6">{index + 1}</p>
                   <img
                     src={protocol.logo}
                     alt="logo"

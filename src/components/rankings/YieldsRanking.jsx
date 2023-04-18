@@ -150,8 +150,9 @@ const YieldsRanking = () => {
                   index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"
                 } grid grid-cols-7 sm:grid-cols-4 items-center rounded-xl p-2 text-right`}
               >
-                <div className="text-left capitalize">
-                  {pool.symbol.toLowerCase()}
+                <div className="flex space-x-4 text-left p-2 capitalize items-center">
+                  <p className="w-6">{index + 1}</p>
+                  <p>{pool.symbol.toLowerCase()}</p>
                 </div>
                 <Link
                   to={`/protocol/${pool.project}`}

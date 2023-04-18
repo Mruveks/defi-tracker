@@ -67,9 +67,9 @@ const Ranking = ({ chain }) => {
             >
               <Link
                 to={`/protocol/${protocol.name}`}
-                className="flex items-center space-x-4 px-2 w-fit text-left hover:bg-gray-600 transition duration-300 rounded-xl"
+                className="flex items-center space-x-4 p-2 w-fit text-left hover:bg-gray-600 transition duration-300 rounded-xl"
               >
-                <p className="w-6">{index}</p>
+                <p className="w-6">{index + 1}</p>
                 <img
                   src={protocol.logo}
                   alt="logo"
