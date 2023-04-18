@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import '../css/animations.css'
 import {
   BsPercent,
   BsCoin,
@@ -25,7 +26,7 @@ const Navbar = () => {
   const [activeNav, setActiveNav] = useState("/");
 
   const elementStyle =
-    "flex p-1 items-center capitalize rounded-lg hover:bg-gray-600 rounded-full transition duration-100";
+    "flex px-2 py-1 group w-full items-center capitalize rounded-lg hover:bg-gray-600 rounded-full transition duration-100 group";
 
   const link = (chainId, img) => {
     return (
@@ -37,7 +38,7 @@ const Navbar = () => {
           activeNav === `/${chainId}` ? "bg-gray-700" : ""
         } ${elementStyle} `}
       >
-        <img src={img} alt="" className="rounded-full mr-2" />
+        <img src={img} alt="" className="rounded-full mr-2 wiggle" />
         {chainId}
       </NavLink>
     );
@@ -53,7 +54,7 @@ const Navbar = () => {
                 Dashboards
               </header>
             </li>
-            <li>
+            <li className="group">
               <NavLink
                 to="/"
                 onClick={() => setActiveNav("/defi")}
@@ -61,11 +62,11 @@ const Navbar = () => {
                   activeNav === "/defi" ? "bg-gray-700" : ""
                 } ${elementStyle}`}
               >
-                <BsBarChart size={24} className="mr-2" />
+                <BsBarChart size={24} className="mr-2 wiggle" />
                 Defi
               </NavLink>
             </li>
-            <li>
+            <li className="group">
               <NavLink
                 to="/stables"
                 onClick={() => setActiveNav("/stables")}
@@ -73,11 +74,11 @@ const Navbar = () => {
                   activeNav === "/stables" ? "bg-gray-700" : ""
                 } ${elementStyle} `}
               >
-                <BsCoin size={24} className="mr-2" />
+                <BsCoin size={24} className="mr-2 wiggle" />
                 Stablecoins
               </NavLink>
             </li>
-            <li>
+            <li className="group">
               <NavLink
                 to="/dex"
                 onClick={() => setActiveNav("/dex")}
@@ -85,11 +86,11 @@ const Navbar = () => {
                   activeNav === "/dex" ? "bg-gray-700" : ""
                 } ${elementStyle}`}
               >
-                <BsCodeSlash size={24} className="mr-2" />
+                <BsCodeSlash size={24} className="mr-2 wiggle" />
                 Dex
               </NavLink>
             </li>
-            <li>
+            <li className="group">
               <NavLink
                 to="/cex"
                 onClick={() => setActiveNav("/cex")}
@@ -97,11 +98,11 @@ const Navbar = () => {
                   activeNav === "/cex" ? "bg-gray-700" : ""
                 } ${elementStyle}`}
               >
-                <BsBank size={24} className="mr-2" />
+                <BsBank size={24} className="mr-2 wiggle" />
                 Cex
               </NavLink>
             </li>
-            <li>
+            <li className="group">
               <NavLink
                 to="/yields"
                 onClick={() => setActiveNav("/yields")}
@@ -109,11 +110,11 @@ const Navbar = () => {
                   activeNav === "/yields" ? "bg-gray-700" : ""
                 } ${elementStyle}`}
               >
-                <BsPercent size={24} className="mr-2" />
+                <BsPercent size={24} className="mr-2 wiggle" />
                 Yields
               </NavLink>
             </li>
-            <li>
+            <li className="group">
               <NavLink
                 to="/bridges"
                 onClick={() => setActiveNav("/bridges")}
@@ -121,11 +122,11 @@ const Navbar = () => {
                   activeNav === "/bridges" ? "bg-gray-700" : ""
                 } ${elementStyle}`}
               >
-                <GiRialtoBridge size={24} className="mr-2" />
+                <GiRialtoBridge size={24} className="mr-2 wiggle" />
                 Bridges
               </NavLink>
             </li>
-            <li>
+            <li className="group">
               <NavLink
                 to="/lending"
                 onClick={() => setActiveNav("/lending")}
@@ -133,7 +134,7 @@ const Navbar = () => {
                   activeNav === "/lending" ? "bg-gray-700" : ""
                 } ${elementStyle}`}
               >
-                <RiHandCoinLine size={24} className="mr-2" />
+                <RiHandCoinLine size={24} className="mr-2 wiggle" />
                 Lending
               </NavLink>
             </li>
