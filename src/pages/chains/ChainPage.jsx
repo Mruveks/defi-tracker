@@ -67,7 +67,7 @@ const ChainPage = () => {
         <BackButton />
       <ChainsSearchList />
 
-      <div className="flex justify-center items-center text-center capitalize text-white my-10 text-6xl italic">
+      <div className="flex justify-center items-center text-center capitalize text-white my-5 text-6xl italic">
         <header>{chainId}</header>
       </div>
 
@@ -105,11 +105,9 @@ const ChainPage = () => {
         ) : null}
       </div>
 
-      <header className="flex flex-wrap justify-center my-5 text-white text-3xl">
-        Top protocols from
-        <p className="italic px-2 capitalize"> {chainId} </p> ecosystem
-      </header>
-      <Ranking chain={chainId} />
+      <div className="h-max my-5 text-white">
+        <Ranking chain={chainId} />
+      </div>
     </div>
   );
 };

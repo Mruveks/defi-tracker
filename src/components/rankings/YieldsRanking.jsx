@@ -198,10 +198,12 @@ const YieldsRanking = () => {
               item.apy != "0" &&
               item.tvlUsd >= 1000000 &&
               item.chain === query
-          ).map((pool) => (
+          ).map((pool, index) => (
             <div
-              className="grid grid-cols-7 sm:grid-cols-5 items-center p-2 border-gray-600 border-t text-right"
-              key={pool.id}
+              className={` ${
+                index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"
+              } grid grid-cols-7 sm:grid-cols-5 items-center p-2 rounded-xl text-right`}
+              key={index}
             >
               <div className="text-left capitalize">
                 {pool.symbol.toLowerCase()}

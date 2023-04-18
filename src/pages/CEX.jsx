@@ -18,11 +18,9 @@ const CEX = () => {
       <BackButton />
       <SearchList />
 
-      <header className="flex justify-center text-center items-center capitalize text-white my-10 text-6xl italic">
-        Top Centralised Exchanges
-      </header>
-
-      <Ranking chain="CEX" />
+      <div className="h-max my-5 text-white">
+        <Ranking chain="CEX" />
+      </div>
     </div>
   );
 };

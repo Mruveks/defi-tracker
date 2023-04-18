@@ -18,11 +18,9 @@ const Bridges = () => {
       <BackButton />
       <SearchList />
 
-      <header className="flex justify-center text-center items-center capitalize text-white my-10 text-6xl italic">
-        Top Bridges
-      </header>
-
-      <BridgesRanking />
+      <div className="h-max my-5 text-white">
+        <BridgesRanking />
+      </div>
     </div>
   );
 };

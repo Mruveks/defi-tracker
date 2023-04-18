@@ -150,7 +150,7 @@ const TVLranking = () => {
       </div>
 
       <div className="h-max mb-10 border-gray-600 border p-2 rounded-xl bg-gray-800">
-        <div className="grid grid-cols-7 sm:grid-cols-3 font-semibold p-2 border-b-gray-600 text-right italic uppercase">
+        <div className="grid grid-cols-7 sm:grid-cols-3 text-lg sm:text-sm font-semibold p-2 border-b-gray-600 text-right italic uppercase">
           <header className="text-left">Name</header>
           <header className="sm:hidden block">Category</header>
           <header>Chain</header>

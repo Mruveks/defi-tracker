@@ -20,7 +20,7 @@ const StablesRanking = () => {
   return (
     <>
       <div className="h-max mb-10 border-gray-600 p-2 border rounded-xl bg-gray-800 ">
-        <div className="grid sm:grid-cols-3 grid-cols-7 font-semibold p-2 text-right uppercase italic border-b-gray-600 ">
+        <div className="grid sm:grid-cols-3 grid-cols-7 font-semibold p-2 text-lg sm:text-sm text-right uppercase italic border-b-gray-600 ">
           <header className="text-left">Name</header>
           <header>Price</header>
           <header className="sm:hidden block">Peg Mechanism</header>

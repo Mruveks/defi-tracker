@@ -18,9 +18,6 @@ const Yields = () => {
       <BackButton />
       <SearchList />
 
-      <header className="flex justify-center text-center items-center capitalize text-white my-10 text-6xl italic">
-        Pools Ranking
-      </header>
       <YieldsRanking />
     </div>
   );

@@ -17,11 +17,9 @@ const DEX = () => {
       <BackButton />
       <SearchList />
 
-      <header className="flex justify-center text-center items-center capitalize text-white my-10 text-6xl italic">
-        Top Decentralised Exchanges
-      </header>
-
-      <Ranking chain="Dexes" />
+      <div className="h-max my-5 text-white">
+        <Ranking chain="Dexes" />
+      </div>
     </div>
   );
 };

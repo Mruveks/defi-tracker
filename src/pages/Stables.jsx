@@ -16,11 +16,7 @@ const Stables = () => {
       <BackButton />
       <SearchList />
 
-      <header className="flex justify-center text-center items-center capitalize text-white my-10 text-6xl italic">
-        Top Stablecoins
-      </header>
-
-      <div className="h-max mb-5">
+      <div className="h-max my-5">
         <StablesTVLchart />
       </div>
       
