@@ -18,7 +18,7 @@ const BridgesRanking = () => {
 
   return (
     <div className="h-max border rounded-xl border-gray-600 p-2">
-      <div className="grid grid-cols-5 sm:grid-cols-3 font-semibold text-lg sm:text-sm p-2 text-right uppercase italic">
+      <div className="grid grid-cols-5 sm:grid-cols-3 font-semibold text-lg sm:text-sm p-2 text-right capitalize italic">
         <header className="text-left">Name</header>
         <header>Chain</header>
         <header className="sm:hidden block">1d volume change</header>
@@ -35,8 +35,9 @@ const BridgesRanking = () => {
               } grid grid-cols-5 sm:grid-cols-3 items-center rounded-xl text-right p-2`}
               key={index}
             >
-              <div className="text-left text-blue-400 ">
-                {bridge.displayName}
+              <div className="flex space-x-4 text-left">
+                <p className="w-6">{index}</p>
+                <h2 className="text-blue-400">{bridge.displayName}</h2>
               </div>
 
               <div className="capitalize">{bridge.name}</div>

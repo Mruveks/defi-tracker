@@ -128,7 +128,7 @@ const YieldsRanking = () => {
       </div>
 
       <div className="h-max mb-8  border rounded-xl border-gray-600 p-2">
-        <div className="grid grid-cols-7 sm:grid-cols-4 font-semibold p-2 text-right uppercase italic">
+        <div className="grid grid-cols-7 sm:grid-cols-4 font-semibold p-2 text-lg sm:text-sm text-right capitalize italic">
           <header className="text-left">Pool</header>
           <header className="text-left">Project</header>
           <header className="sm:hidden block">Chain</header>
@@ -155,7 +155,7 @@ const YieldsRanking = () => {
                 </div>
                 <Link
                   to={`/protocol/${pool.project}`}
-                  className="flex w-fit items-center text-left hover:bg-gray-600 transition duration-100 rounded-full"
+                  className="flex items-center space-x-2 px-2 w-fit text-left hover:bg-gray-600 transition duration-300 rounded-xl"
                 >
                   <div className="w-fit md:w-40 px-2 capitalize my-auto text-blue-400">
                     {pool.project}
@@ -210,7 +210,7 @@ const YieldsRanking = () => {
               </div>
               <Link
                 to={`/protocol/${pool.project}`}
-                className="flex w-max items-center text-left hover:bg-gray-600 transition duration-100 rounded-full"
+                className="flex w-max items-center text-left hover:bg-gray-600 transition duration-100 rounded-xl"
               >
                 <div className="w-fit md:w-40 px-2 my-auto capitalize text-blue-400">
                   {pool.project}

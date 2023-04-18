@@ -150,7 +150,7 @@ const TVLranking = () => {
       </div>
 
       <div className="h-max mb-8 border-gray-600 border p-2 rounded-xl bg-gray-800">
-        <div className="grid grid-cols-7 sm:grid-cols-3 text-lg sm:text-sm font-semibold p-2 border-b-gray-600 text-right italic uppercase">
+        <div className="grid grid-cols-8 sm:grid-cols-3 text-lg sm:text-sm font-semibold p-2 border-b-gray-600 text-right italic capitalize">
           <header className="text-left">Name</header>
           <header className="sm:hidden block">Category</header>
           <header>Chain</header>
@@ -158,6 +158,7 @@ const TVLranking = () => {
           <header className="sm:hidden block">1d Change</header>
           <header className="sm:hidden block">7d Change</header>
           <header>TVL</header>
+          <header className="sm:hidden block">Mcap/TVL</header>
         </div>
 
         {query === "" ? (
@@ -175,18 +176,19 @@ const TVLranking = () => {
                   key={index}
                   className={` ${
                     index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"
-                  } grid grid-cols-7 sm:grid-cols-3 items-center rounded-xl p-2 text-right`}
+                  } grid grid-cols-8 sm:grid-cols-3 items-center rounded-xl p-2 text-right`}
                 >
                   <Link
                     to={`/protocol/${protocol.name}`}
-                    className="flex items-center w-fit text-left hover:bg-gray-600 transition duration-100 rounded-full"
+                    className="flex items-center space-x-4 w-full px-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
                   >
+                    <p className="w-6">{index}</p>
                     <img
                       src={protocol.logo}
                       alt="logo"
                       className="h-8 w-8 rounded-full"
                     />
-                    <div className="sm:w-fit w-40 px-2 my-auto text-blue-400">
+                    <div className="w-fit text-blue-400">
                       {protocol.name}
                     </div>
                   </Link>
@@ -225,6 +227,12 @@ const TVLranking = () => {
                   )}
 
                   {numeral(protocol.tvl).format("$0.00a")}
+
+                  {protocol.mcap ? (
+                    <div className="sm:hidden block">{(protocol.mcap / protocol.tvl).toFixed(2)}</div>
+                  ) : (
+                    <div></div>
+                  )}
                 </div>
               ))
           ) : (
@@ -240,23 +248,24 @@ const TVLranking = () => {
                 item.category !== "CEX" &&
                 item.category !== "Chain"
             )
-            .map((protocol) => (
+            .map((protocol, index) => (
               <div
-                className="grid grid-cols-7 sm:grid-cols-3 items-center p-2 border-gray-600 border-t text-right"
+                className={` ${
+                  index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"
+                } grid grid-cols-8 sm:grid-cols-3 items-center rounded-xl p-2 text-right`}
                 key={protocol.id}
               >
                 <Link
                   to={`/protocol/${protocol.name}`}
-                  className="flex items-center w-fit text-left hover:bg-gray-600 transition duration-100 rounded-full"
+                  className="flex items-center px-2 space-x-4 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
                 >
+                  <p className="w-6">{index}</p>
                   <img
                     src={protocol.logo}
                     alt="logo"
                     className="h-8 w-8 rounded-full"
                   />
-                  <div className="sm:w-fit w-40 px-2 my-auto text-blue-400">
-                    {protocol.name}
-                  </div>
+                  <div className="sm:w-fit text-blue-400">{protocol.name}</div>
                 </Link>
 
                 <div className="sm:hidden block">{protocol.category}</div>
@@ -293,6 +302,11 @@ const TVLranking = () => {
                 )}
 
                 {numeral(protocol.tvl).format("$0.00a")}
+                {protocol.mcap ? (
+                  <div className="sm:hidden block">{(protocol.mcap / protocol.tvl).toFixed(2)}</div>
+                ) : (
+                  <div></div>
+                )}
               </div>
             ))
         ) : (
