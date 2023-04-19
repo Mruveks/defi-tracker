@@ -13,6 +13,7 @@ const StablesRanking = () => {
       .get("https://stablecoins.llama.fi/stablecoins?includePrices=true")
       .then((res) => {
         setStables(res.data.peggedAssets);
+        console.log(res.data)
       })
       .catch((err) => console.log(err));
   }, []);
@@ -23,11 +24,11 @@ const StablesRanking = () => {
         <div className="grid sm:grid-cols-3 grid-cols-7 font-semibold p-2 text-lg sm:text-sm text-right capitalize italic">
           <header className="text-left pl-12">Name</header>
           <header>Price</header>
-          <header className="sm:hidden block">Peg Mechanism</header>
+          <header className="sm:hidden block">Peg</header>
           <header className="sm:hidden block">1d Change</header>
           <header className="sm:hidden block">7d Change</header>
           <header className="sm:hidden block">1m Change</header>
-          <header>MarketCap</header>
+          <header>Mcap</header>
         </div>
 
         {stables.length ? (
