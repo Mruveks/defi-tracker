@@ -110,7 +110,7 @@ const Charts = ({ data }) => {
           </LineChart>
         </ResponsiveContainer>
       </div>
-      <div className="right-20 absolute space-x-4 text-lg sm:hidden block">
+      <div className="right-20 pt-4 absolute space-x-4 text-lg sm:hidden block">
         <button
           onClick={toggleScale}
           className={`rounded-lg px-2 transition duration-300 ${

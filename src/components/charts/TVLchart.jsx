@@ -49,14 +49,14 @@ const TVLchart = () => {
         <div className="flex flex-col lg:flex-row">
           <div className="grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
             <div className="grid gap-10 w-full text-4xl m-6 sm:m-0 sm:text-center  text-left">
-              <div className="grid h-fit grid-flow-row w-full p-4">
+              <div className="grid h-fit grid-flow-row w-full py-4">
                 <div>Total Value Locked</div>
                 <div className="text-blue-500">
                   {numeral(num2).format("$0.00a")}
                 </div>
               </div>
 
-              <div className="grid h-fit grid-flow-row w-full p-4">
+              <div className="grid h-fit grid-flow-row w-full py-4">
                 <div>24h Change</div>
                 {percentageChange > 0 ? (
                   <div className="text-green-500">+{percentageChange}%</div>
