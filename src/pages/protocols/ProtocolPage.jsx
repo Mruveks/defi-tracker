@@ -72,7 +72,7 @@ const ProtocolPage = () => {
 
       {protocolData.length ? (
         <div className="grid grid-cols-2 mb-5 rounded-xl">
-          <div className="col-span-2 my-8 sm:col-span-1 flex items-center text-6xl sm:space-x-0 justify-center space-x-10 font-serif italic capitalize">
+          <div className="col-span-2 my-8 flex items-center text-center text-6xl sm:space-x-0 justify-center space-x-10 font-serif italic capitalize">
             <img
               src={protocolData[0].logo}
               alt={protocolId}
