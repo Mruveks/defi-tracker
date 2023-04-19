@@ -48,14 +48,27 @@
 
 /* Rotate */
 .rotate {
-  animation: rotate 2s linear infinite;
+  animation: rotate 0.2s linear forwards;
 }
 
 @keyframes rotate {
-  from {
+  0% {
     transform: rotate(0deg);
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    transform: rotate(90deg);
+  }
+}
+
+.rotate-back {
+  animation: rotate-back 0.2s linear forwards;
+}
+
+@keyframes rotate-back {
+  0% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }

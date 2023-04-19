@@ -18,6 +18,7 @@ import {
 } from "../assets/AssetsIndex.js";
 import { GiRialtoBridge } from "react-icons/gi";
 import { RiHandCoinLine } from "react-icons/ri";
+import "../css/animations.css";
 
 const Navbar = () => {
   const [activeNav, setActiveNav] = useState("/");
@@ -48,19 +49,31 @@ const Navbar = () => {
       setNavHeight("h-46");
     } else setNavHeight("h-16");
   }
+
   const [isRotated, setIsRotated] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
   const handleClick = () => {
     setIsRotated(!isRotated);
+    setIsOpen(!isOpen);
   };
 
   return (
     <div
-      className={`sm:flex md:flex hidden sm:right-0 sm:left-0 md:left-0 md:right-0 fixed z-50 bg-gray-900 border-gray-600 border rounded-xl mb-8 ${navHeight} mx-5 overflow-y-hidden md:mx-10`}
+      className={`sm:flex md:flex hidden sm:right-0 sm:left-0 md:left-0 md:right-0 top-2 fixed z-50 bg-gray-900 border-gray-600 border rounded-xl ${navHeight} mx-5 overflow-y-hidden md:mx-10`}
     >
       <div className="w-full p-4">
         <header className="flex justify-between items-center pb-4 text-3xl text-gray-400 ">
           <p>Dashboards</p>
-          <BsJustify onClick={() => {openNav(); handleClick()}} sName={`box ${isRotated ? 'rotate' : ''} cursor-pointer transition duration-300`}/>
+          <BsJustify
+            onClick={() => {
+              openNav();
+              handleClick();
+            }}
+            className={`box ${isRotated ? "rotate" : ""} ${
+              isOpen ? "" : "rotate-back"
+            } cursor-pointer transition duration-300`}
+          />
         </header>
         <ul className="grid gap-2 grid-cols-3 pb-4 border-gray-600 border-b">
           <li>
