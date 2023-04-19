@@ -3,37 +3,12 @@ import axios from "axios";
 import Loader from "../Loader";
 import numeral from "numeral";
 import moment from "moment";
-import {
-  LineChart,
-  ResponsiveContainer,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-} from "recharts";
+import Charts from "./Chart";
 
 const StablesTVLchart = () => {
   const [stable, setStables] = useState([]);
   const [lastDay, setLastDay] = useState();
   const [day, setDay] = useState();
-
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 640px)");
-
-    const handleMediaQueryChange = (e) => {
-      setIsSmallScreen(e.matches);
-    };
-
-    handleMediaQueryChange(mediaQuery);
-    mediaQuery.addListener(handleMediaQueryChange);
-
-    return () => {
-      mediaQuery.removeListener(handleMediaQueryChange);
-    };
-  }, []);
 
   useEffect(() => {
     axios
@@ -59,47 +34,6 @@ const StablesTVLchart = () => {
         console.log(err);
       });
   }, []);
-
-  const CustomTooltip = ({ active, payload, label }) => {
-    if (active && payload && payload.length > 0) {
-      // add a check for payload
-      const formattedLabel = moment(label).format("DD/MM/YYYY");
-      const formattedValue = numeral(payload[0].value).format("$0,0");
-      return (
-        <div className="bg-transparent  text-2xl border border-none p-2">
-          <p>Total TVL</p>
-          <p className="text-xl italic font-semibold">{formattedValue}</p>
-          <p className="text-base font-semibold">{formattedLabel}</p>
-        </div>
-      );
-    }
-    return null;
-  };
-
-  const CustomizedAxisTick = ({ x, y, payload }) => {
-    const formattedDate = moment(payload.value).format("DD/MM/YYYY");
-
-    return (
-      <g transform={`translate(${x},${y})`}>
-        <text
-          x={0}
-          y={0}
-          dy={16}
-          textAnchor="end"
-          fill="gray"
-          transform="rotate(-35)"
-        >
-          {formattedDate}
-        </text>
-      </g>
-    );
-  };
-
-  const [isLogScale, setIsLogScale] = useState(false);
-
-  const toggleScale = () => {
-    setIsLogScale(!isLogScale);
-  };
 
   const num1 = parseFloat(day).toFixed(2);
   const num2 = parseFloat(lastDay).toFixed(2);
@@ -138,71 +72,8 @@ const StablesTVLchart = () => {
             </div>
           </div>
 
-          <div className="w-full h-full flex py-4">
-            <ResponsiveContainer width="100%" height={500}>
-              <LineChart margin={{ right: 20, left:20, bottom: 40 }} data={stable}>
-                <CartesianGrid
-                  vertical={true}
-                  strokeOpacity={0.05}
-                  horizontal={true}
-                />
-                {isSmallScreen ? null : (
-                  <XAxis
-                    dataKey="date"
-                    interval={182}
-                    tick={<CustomizedAxisTick />}
-                    stroke="gray"
-                    label={{
-                      value: "Date",
-                      position: "insideBottomRight",
-                      offset: 0,
-                    }}
-                  />
-                )}
-                {isSmallScreen ? null : (
-                  <YAxis
-                    stroke="gray"
-                    tickFormatter={(value) => numeral(value).format("$0.00a")}
-                    padding={{ top: 80, bottom: 40 }}
-                    scale={isLogScale ? "log" : "linear"}
-                    domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
-                    label={{
-                      value: "Value",
-                      position: "insideTopLeft",
-                    }}
-                  />
-                )}
-                <Tooltip
-                  active={true}
-                  content={<CustomTooltip />}
-                  position={isSmallScreen ? { x: 20, y: 2 } : { x: 100, y: 2 }}
-                />
-                <Line
-                  dot={false}
-                  type="monotone"
-                  dataKey="value"
-                  stroke="#8884d8"
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-          <div className="sm:hidden right-20 absolute space-x-4 text-lg pt-4">
-            <button
-              onClick={toggleScale}
-              className={`rounded-full px-2 transition duration-300 ${
-                isLogScale === true ? "bg-gray-600" : "bg-transparent"
-              }`}
-            >
-              Logarithmic
-            </button>
-            <button
-              onClick={toggleScale}
-              className={`rounded-full px-2 transition duration-300 ${
-                isLogScale === false ? "bg-gray-600" : "bg-gray-800"
-              }`}
-            >
-              Linear
-            </button>
+          <div className="flex py-4">
+            <Charts data={stable} />
           </div>
         </div>
       ) : (
