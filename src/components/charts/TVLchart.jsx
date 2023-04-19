@@ -5,7 +5,7 @@ import numeral from "numeral";
 import moment from "moment";
 import Charts from "./Chart";
 const TVLchart = () => {
-  const [protocols, setProtocols] = useState([]);
+  const [chartData, setChartData] = useState([]);
   const [lastDay, setLastDay] = useState();
   const [day, setDay] = useState();
 
@@ -20,8 +20,7 @@ const TVLchart = () => {
           date: dates[index],
           value: value,
         }));
-        setProtocols(datasource);
-        console.log(protocols);
+        setChartData(datasource);
         const today = datasource.slice(
           datasource.length - 1,
           datasource.length
@@ -46,10 +45,9 @@ const TVLchart = () => {
 
   return (
     <>
-      {protocols.length ? (
-        <div className="flex flex-col lg:flex-row ">
-          <div className=" grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
-            
+      {chartData.length ? (
+        <div className="flex flex-col lg:flex-row">
+          <div className="grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
             <div className="grid gap-10 w-full text-4xl m-6 sm:m-0 sm:text-center  text-left">
               <div className="grid h-fit grid-flow-row w-full p-4">
                 <div>Total Value Locked</div>
@@ -78,7 +76,7 @@ const TVLchart = () => {
             </div>
 
             <div className="w-full h-full justify-end flex py-4">
-              <Charts data={protocols} />
+              <Charts data={chartData} />
             </div>
           </div>
         </div>

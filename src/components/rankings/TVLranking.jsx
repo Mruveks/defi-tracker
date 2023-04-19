@@ -24,11 +24,11 @@ const TVLranking = () => {
       });
   }, []);
 
-  const buttonStyle = `m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg`;
+  const buttonStyle = `px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600 transition duration-100`;
 
   return (
     <>
-      <div className="flex flex-wrap justify-between py-2 h-full">
+      <div className="flex flex-wrap justify-between h-full">
         <button
           className={`${buttonStyle} ${query === "" ? "bg-blue-600" : ""}`}
           onClick={() => setQuery("")}
@@ -149,7 +149,7 @@ const TVLranking = () => {
         </button>
       </div>
 
-      <div className="h-max mb-8 border-gray-600 border p-2 rounded-xl bg-gray-800">
+      <div className="h-max my-4 border-gray-600 border p-2 rounded-xl bg-gray-800">
         <div className="grid grid-cols-8 sm:grid-cols-3 text-lg sm:text-sm font-semibold p-2 border-b-gray-600 text-right italic capitalize">
           <header className="text-left">Name</header>
           <header className="sm:hidden block">Category</header>
