@@ -26,7 +26,7 @@ const Navbar = () => {
   const [activeNav, setActiveNav] = useState("/");
 
   const elementStyle =
-    "flex px-2 py-1 group w-full items-center capitalize rounded-lg hover:bg-gray-600 rounded-full transition duration-100 group";
+    "flex px-2 py-1 group w-full items-center capitalize rounded-lg hover:bg-gray-600 rounded-xl transition duration-100 group";
 
   const link = (chainId, img) => {
     return (
