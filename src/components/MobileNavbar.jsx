@@ -6,6 +6,7 @@ import {
   BsBank,
   BsCodeSlash,
   BsBarChart,
+  BsJustify,
 } from "react-icons/bs";
 import {
   eth,
@@ -13,8 +14,6 @@ import {
   avax,
   polygon,
   optimism,
-  solana,
-  tron,
   arbitrum,
 } from "../assets/AssetsIndex.js";
 import { GiRialtoBridge } from "react-icons/gi";
@@ -42,11 +41,26 @@ const Navbar = () => {
     );
   };
 
+  const [navHeight, setNavHeight] = useState("h-16");
+
+  function openNav() {
+    if (navHeight === "h-16") {
+      setNavHeight("h-46");
+    } else setNavHeight("h-16");
+  }
+  const [isRotated, setIsRotated] = useState(false);
+  const handleClick = () => {
+    setIsRotated(!isRotated);
+  };
+
   return (
-    <div className="sm:flex md:flex border-gray-600 border rounded-xl mb-8 hidden h-46 mx-5 md:mx-10">
+    <div
+      className={`sm:flex md:flex hidden sm:right-0 sm:left-0 md:left-0 md:right-0 fixed z-50 bg-gray-900 border-gray-600 border rounded-xl mb-8 ${navHeight} mx-5 overflow-y-hidden md:mx-10`}
+    >
       <div className="w-full p-4">
-        <header className="flex items-center pb-4 text-3xl text-gray-400 ">
-          Dashboards
+        <header className="flex justify-between items-center pb-4 text-3xl text-gray-400 ">
+          <p>Dashboards</p>
+          <BsJustify onClick={() => {openNav(); handleClick()}} sName={`box ${isRotated ? 'rotate' : ''} cursor-pointer transition duration-300`}/>
         </header>
         <ul className="grid gap-2 grid-cols-3 pb-4 border-gray-600 border-b">
           <li>
