@@ -34,7 +34,7 @@ const Ranking = ({ chain }) => {
           chain === "Lending" || "CEX" ? "grid-cols-5" : "grid-cols-6"
         } sm:grid-cols-3 font-semibold p-2 text-lg sm:text-sm capitalize italic text-right`}
       >
-        <header className="text-left">Name</header>
+        <header className="text-left pl-12">Name</header>
         {chain === "Lending" || "CEX" || "DEX" ? null : (
           <header className="text-right">Category</header>
         )}

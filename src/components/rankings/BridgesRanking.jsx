@@ -19,7 +19,7 @@ const BridgesRanking = () => {
   return (
     <div className="h-max border rounded-xl border-gray-600 p-2">
       <div className="grid grid-cols-5 sm:grid-cols-3 font-semibold text-lg sm:text-sm p-2 text-right capitalize italic">
-        <header className="text-left">Name</header>
+        <header className="text-left pl-12">Name</header>
         <header>Chain</header>
         <header className="sm:hidden block">1d volume change</header>
         <header className="sm:hidden block">Today's Volume</header>

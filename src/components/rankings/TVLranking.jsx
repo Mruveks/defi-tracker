@@ -28,7 +28,7 @@ const TVLranking = () => {
 
   return (
     <>
-      <div className="flex flex-wrap justify-between h-full">
+      <div className="flex flex-wrap gap-4 justify-between h-full">
         <button
           className={`${buttonStyle} ${query === "" ? "bg-blue-600" : ""}`}
           onClick={() => setQuery("")}
@@ -151,7 +151,7 @@ const TVLranking = () => {
 
       <div className="h-max my-4 border-gray-600 border p-2 rounded-xl bg-gray-800">
         <div className="grid grid-cols-8 sm:grid-cols-3 text-lg sm:text-sm font-semibold p-2 border-b-gray-600 text-right italic capitalize">
-          <header className="text-left">Name</header>
+          <header className="text-left pl-12">Name</header>
           <header className="sm:hidden block">Category</header>
           <header>Chain</header>
           <header className="sm:hidden block">1h Change</header>

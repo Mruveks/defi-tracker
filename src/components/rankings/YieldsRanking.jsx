@@ -20,11 +20,11 @@ const YieldsRanking = () => {
       });
   }, []);
 
-  const buttonStyle = `m-2 py-1 px-4 bg-gray-700 rounded-lg text-lg`;
+  const buttonStyle = `px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600 transition duration-100`;
 
   return (
     <>
-      <div className="flex flex-wrap justify-between py-2 h-full">
+      <div className="flex flex-wrap mt-4 gap-4 justify-between h-full">
         <button
           className={`${buttonStyle} ${query === "" ? "bg-blue-600" : ""}`}
           onClick={() => setQuery("")}
@@ -127,10 +127,10 @@ const YieldsRanking = () => {
         </button>
       </div>
 
-      <div className="h-max mb-8  border rounded-xl border-gray-600 p-2">
+      <div className="h-max my-8 border rounded-xl border-gray-600 p-2">
         <div className="grid grid-cols-7 sm:grid-cols-4 font-semibold p-2 text-lg sm:text-sm text-right capitalize italic">
-          <header className="text-left">Pool</header>
-          <header className="text-left">Project</header>
+          <header className="text-left pl-12">Pool</header>
+          <header className="text-left pl-4">Project</header>
           <header className="sm:hidden block">Chain</header>
           <header>APY</header>
           <header className="sm:hidden block">Base APY</header>
