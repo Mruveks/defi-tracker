@@ -60,6 +60,7 @@ const Charts = ({ data }) => {
     );
   };
 
+  console.log(data)
   return (
     <>
       <div className="w-full h-full flex py-4">

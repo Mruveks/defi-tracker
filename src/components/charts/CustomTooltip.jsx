@@ -3,7 +3,7 @@ import numeral from "numeral";
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length > 0) {
-    const formattedLabel = moment(new Date(label * 1000)).format("DD/MM/YYYY");
+    const formattedLabel = moment(label).format("DD/MM/YYYY");
     const formattedValue = numeral(payload[0].value).format("$0,0");
     return (
       <div className="bg-transparent text-2xl border border-none">
