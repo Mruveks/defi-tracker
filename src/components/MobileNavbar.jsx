@@ -75,7 +75,7 @@ const Navbar = () => {
             } cursor-pointer transition duration-300`}
           />
         </header>
-        <ul className="grid gap-2 grid-cols-3 pb-4 border-gray-600 border-b">
+        <ul className="grid gap-2 sm:grid-cols-2 grid-cols-3 pb-4 border-gray-600 border-b">
           <li>
             <NavLink
               to="/"
@@ -186,7 +186,7 @@ const Navbar = () => {
         <header className="flex items-center py-4 text-3xl text-gray-400 ">
           Top Chains
         </header>
-        <ul className="grid gap-2 grid-cols-3">
+        <ul className="grid gap-2 sm:grid-cols-2  grid-cols-3">
           <li>{link("ethereum", eth)}</li>
           <li>{link("binance", bsc)}</li>
           <li>{link("avalanche", avax)}</li>

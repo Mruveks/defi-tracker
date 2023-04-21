@@ -60,11 +60,11 @@ const Charts = ({ data }) => {
     );
   };
 
-  console.log(data)
+  console.log(data);
   return (
     <>
       <div className="w-full h-full flex py-4">
-        <ResponsiveContainer width="100%" height={500}>
+        <ResponsiveContainer width="100%" height={isSmallScreen ? 200 : 500}>
           <LineChart margin={{ right: 20, left: 20, bottom: 40 }} data={data}>
             <CartesianGrid
               vertical={true}
