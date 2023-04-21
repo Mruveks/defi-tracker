@@ -44,17 +44,18 @@ const ProtocolPage = () => {
 
   const renderInvestors = (investors) => (
     <div className="grid text-lg text-gray-400 italic">
-      {investors.map((investor) => (
+      {investors.map((investor ,index) => (
         <div
-          key={investor}
-          className="w-fit py-2 hover:underline cursor-pointer hover:text-white"
+        key={index}
+        className={`${ index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"} rounded-xl p-2 capitalize hover:underline cursor-pointer hover:text-white`}
         >
           {investor}
         </div>
       ))}
     </div>
   );
-
+  
+  
   return (
     <main className="mx-10 sm:mx-5">
       <Helmet>
@@ -202,35 +203,35 @@ const ProtocolPage = () => {
                 </div>
 
                 {protocol.raises && protocol.raises.length > 0 && (
-                  <div className="space-y-12 pt-8">
+                  <div className="space-y-12 pt-6">
                     <div>
-                      <header className="text-4xl">Raises</header>
+                      <header className="text-4xl mb-2">Raises</header>
                       <div className="space-y-4">
                         {protocol.raises.map(renderRaises)}
                       </div>
                     </div>
-                    <div className="grid grid-cols-2">
-                      <div>
-                        <header className="text-4xl">Lead Investors</header>
-                        {protocol.raises.map((raise) => (
-                          <div key={raise.name}>
-                            {renderInvestors(raise.leadInvestors)}
-                          </div>
-                        ))}
-                      </div>
-                      <div>
-                        <header className="text-4xl">Other Investors</header>
-                        {protocol.raises.map((raise) => (
-                          <>
-                            {raise.otherInvestors.length > 0 ? (
-                              <div key={raise.name}>
-                                {renderInvestors(raise.otherInvestors)}
-                              </div>
-                            ) : null}
-                          </>
-                        ))}
-                      </div>
+                    <div className="grid gap-20 grid-cols-2">
+                    <div>
+                      <header className="text-4xl">Lead Investors</header>
+                      {protocol.raises.map((raise, index) => (
+                        <div key={index}>
+                          {renderInvestors(raise.leadInvestors)}
+                        </div>
+                      ))}
                     </div>
+                    <div>
+                      <header className="text-4xl">Other Investors</header>
+                      {protocol.raises.map((raise) => (
+                        <>
+                          {raise.otherInvestors.length > 0 ? (
+                            <div key={raise.name}>
+                              {renderInvestors(raise.otherInvestors)}
+                            </div>
+                          ) : null}
+                        </>
+                      ))}
+                    </div>
+                      </div>
                   </div>
                 )}
               </div>

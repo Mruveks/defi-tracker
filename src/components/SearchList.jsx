@@ -93,7 +93,7 @@ const SearchList = () => {
                   <img
                     src={val.logo}
                     alt="logo"
-                    className="h-8 w-8 rounded-xl mr-2"
+                    className="h-8 w-8 rounded-full mr-2"
                   />
                   <Link
                     to={`/protocol/${val.name.toLowerCase()}`}
