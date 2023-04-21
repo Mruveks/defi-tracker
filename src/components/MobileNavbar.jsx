@@ -31,7 +31,7 @@ const Navbar = () => {
       <NavLink
         key={chainId}
         to={`/chain/${chainId}`}
-        onClick={() => setActiveNav(`/${chainId}`)}
+        onClick={() => { setActiveNav(`/${chainId}`); openNav()}}
         className={`${
           activeNav === `/${chainId}` ? "bg-gray-700" : ""
         } ${elementStyle} `}
@@ -44,12 +44,6 @@ const Navbar = () => {
 
   const [navHeight, setNavHeight] = useState("h-16");
 
-  function openNav() {
-    if (navHeight === "h-16") {
-      setNavHeight("h-46");
-    } else setNavHeight("h-16");
-  }
-
   const [isRotated, setIsRotated] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -57,6 +51,12 @@ const Navbar = () => {
     setIsRotated(!isRotated);
     setIsOpen(!isOpen);
   };
+  function openNav() {
+    handleClick();
+    if (navHeight === "h-16") {
+      setNavHeight("h-46");
+    } else setNavHeight("h-16");
+  }
 
   return (
     <div
@@ -79,7 +79,10 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/"
-              onClick={() => setActiveNav("/defi")}
+              onClick={() => {
+                setActiveNav("/defi");
+                openNav();
+              }}
               className={`${
                 activeNav === "/defi" ? "bg-gray-700" : ""
               } ${elementStyle}`}
@@ -91,7 +94,10 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/stables"
-              onClick={() => setActiveNav("/stables")}
+              onClick={() => {
+                setActiveNav("/stables");
+                openNav();
+              }}
               className={`${
                 activeNav === "/stables" ? "bg-gray-700" : ""
               } ${elementStyle} `}
@@ -103,7 +109,10 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/dex"
-              onClick={() => setActiveNav("/dex")}
+              onClick={() => {
+                setActiveNav("/dex");
+                openNav();
+              }}
               className={`${
                 activeNav === "/dex" ? "bg-gray-700" : ""
               } ${elementStyle}`}
@@ -115,7 +124,10 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/cex"
-              onClick={() => setActiveNav("/cex")}
+              onClick={() => {
+                setActiveNav("/cex");
+                openNav();
+              }}
               className={`${
                 activeNav === "/cex" ? "bg-gray-700" : ""
               } ${elementStyle}`}
@@ -127,7 +139,10 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/yields"
-              onClick={() => setActiveNav("/yields")}
+              onClick={() => {
+                setActiveNav("/yields");
+                openNav();
+              }}
               className={`${
                 activeNav === "/yields" ? "bg-gray-700" : ""
               } ${elementStyle}`}
@@ -139,7 +154,10 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/bridges"
-              onClick={() => setActiveNav("/bridges")}
+              onClick={() => {
+                setActiveNav("/bridges");
+                openNav();
+              }}
               className={`${
                 activeNav === "/bridges" ? "bg-gray-700" : ""
               } ${elementStyle}`}
@@ -151,7 +169,10 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/lending"
-              onClick={() => setActiveNav("/lending")}
+              onClick={() => {
+                setActiveNav("/lending");
+                openNav();
+              }}
               className={`${
                 activeNav === "/lending" ? "bg-gray-700" : ""
               } ${elementStyle}`}
