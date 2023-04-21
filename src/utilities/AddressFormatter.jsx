@@ -6,19 +6,19 @@ const AddressFormatter = ({ address }) => {
 
   if (address && address.includes(":")) {
     const [blockchain, addr] = address.split(":");
-    firstFour = addr.slice(0, 6);
-    lastFour = addr.slice(-6);
+    firstFour = addr.slice(0, 8);
+    lastFour = addr.slice(-8);
   } else {
-    firstFour = address.slice(0, 6);
-    lastFour = address.slice(-6);
+    firstFour = address.slice(0, 8);
+    lastFour = address.slice(-8);
   }
 
   return (
     <>
-      <span className="font-medium @screen lg:block xl:block hidden">
+      <span className="font-medium italic lg:block xl:block hidden">
         {address}
       </span>
-      <span className="@screen xl:hidden lg:hidden visible">
+      <span className=" italic xl:hidden lg:hidden visible">
         {firstFour}...{lastFour}
       </span>
     </>
