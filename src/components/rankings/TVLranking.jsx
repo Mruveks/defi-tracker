@@ -150,10 +150,10 @@ const TVLranking = () => {
       </div>
 
       <div className="h-max my-4 border-gray-600 border p-2 rounded-xl bg-gray-800">
-        <div className="grid grid-cols-8 sm:grid-cols-3 text-lg sm:text-sm font-semibold p-2 border-b-gray-600 text-right italic capitalize">
+        <div className="grid grid-cols-8 lg:grid-cols-6 sm:grid-cols-2 text-lg sm:text-sm font-semibold p-2 border-b-gray-600 text-right italic capitalize">
           <header className="text-left pl-12">Name</header>
-          <header className="sm:hidden block">Category</header>
-          <header>Chain</header>
+          <header className="sm:hidden md:hidden lg:hidden block">Category</header>
+          <header className="sm:hidden md:hidden lg:hidden block">Chain</header>
           <header className="sm:hidden block">1h Change</header>
           <header className="sm:hidden block">1d Change</header>
           <header className="sm:hidden block">7d Change</header>
@@ -176,7 +176,7 @@ const TVLranking = () => {
                   key={index}
                   className={` ${
                     index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"
-                  } grid grid-cols-8 sm:grid-cols-3 items-center rounded-xl p-2 text-right`}
+                  } grid grid-cols-8 md:grid-cols-6 lg:grid-cols-6 sm:grid-cols-2 items-center rounded-xl p-2 text-right`}
                 >
                   <Link
                     to={`/protocol/${protocol.name}`}
@@ -188,13 +188,11 @@ const TVLranking = () => {
                       alt="logo"
                       className="h-8 w-8 rounded-full"
                     />
-                    <div className="w-fit text-blue-400">
-                      {protocol.name}
-                    </div>
+                    <div className="w-full text-blue-400">{protocol.name}</div>
                   </Link>
 
-                  <div className="sm:hidden block">{protocol.category}</div>
-                  <div>{protocol.chain}</div>
+                  <div className="sm:hidden md:hidden lg:hidden block">{protocol.category}</div>
+                  <div className="sm:hidden md:hidden lg:hidden block">{protocol.chain}</div>
 
                   {protocol.change_1h > 0 ? (
                     <div className="text-green-500 sm:hidden block">
@@ -229,7 +227,9 @@ const TVLranking = () => {
                   {numeral(protocol.tvl).format("$0.00a")}
 
                   {protocol.mcap ? (
-                    <div className="sm:hidden block">{(protocol.mcap / protocol.tvl).toFixed(2)}</div>
+                    <div className="sm:hidden block">
+                      {(protocol.mcap / protocol.tvl).toFixed(2)}
+                    </div>
                   ) : (
                     <div></div>
                   )}
@@ -252,7 +252,7 @@ const TVLranking = () => {
               <div
                 className={` ${
                   index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"
-                } grid grid-cols-8 sm:grid-cols-3 items-center rounded-xl p-2 text-right`}
+                } grid grid-cols-8 md:grid-cols-6 lg:grid-cols-6 sm:grid-cols-2 items-center rounded-xl p-2 text-right`}
                 key={index}
               >
                 <Link
@@ -265,11 +265,11 @@ const TVLranking = () => {
                     alt="logo"
                     className="h-8 w-8 rounded-full"
                   />
-                  <div className="sm:w-fit text-blue-400">{protocol.name}</div>
+                  <div className="sm:w-full text-blue-400">{protocol.name}</div>
                 </Link>
 
-                <div className="sm:hidden block">{protocol.category}</div>
-                <div>{protocol.chain}</div>
+                <div className="sm:hidden md:hidden lg:hidden block">{protocol.category}</div>
+                <div className="sm:hidden md:hidden lg:hidden block">{protocol.chain}</div>
 
                 {protocol.change_1h > 0 ? (
                   <div className="text-green-500 sm:hidden block">
@@ -303,7 +303,9 @@ const TVLranking = () => {
 
                 {numeral(protocol.tvl).format("$0.00a")}
                 {protocol.mcap ? (
-                  <div className="sm:hidden block">{(protocol.mcap / protocol.tvl).toFixed(2)}</div>
+                  <div className="sm:hidden block">
+                    {(protocol.mcap / protocol.tvl).toFixed(2)}
+                  </div>
                 ) : (
                   <div></div>
                 )}

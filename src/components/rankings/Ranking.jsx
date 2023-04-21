@@ -32,14 +32,14 @@ const Ranking = ({ chain }) => {
       <div
         className={`grid ${
           chain === "Lending" || "CEX" ? "grid-cols-5" : "grid-cols-6"
-        } sm:grid-cols-3 font-semibold p-2 text-lg sm:text-sm capitalize italic text-right`}
+        } sm:grid-cols-2 font-semibold p-2 text-lg sm:text-sm capitalize italic text-right`}
       >
         <header className="text-left pl-12">Name</header>
         {chain === "Lending" || "CEX" || "DEX" ? null : (
           <header className="text-right">Category</header>
         )}
         <header className="sm:hidden block">1h Change</header>
-        <header>1d Change</header>
+        <header className="sm:hidden block">1d Change</header>
         <header className="sm:hidden block">7d Change</header>
         <header>TVL</header>
       </div>
@@ -63,7 +63,7 @@ const Ranking = ({ chain }) => {
                 CapChain === "Lending" || "CEX" || "DEX"
                   ? "grid-cols-5"
                   : "grid-cols-6"
-              } sm:grid-cols-3 items-center p-2 rounded-xl text-right`}
+              } sm:grid-cols-2 items-center p-2 rounded-xl text-right`}
             >
               <Link
                 to={`/protocol/${protocol.name}`}
@@ -95,11 +95,11 @@ const Ranking = ({ chain }) => {
               )}
 
               {protocol.change_1d > 0 ? (
-                <div className="text-green-500">
+                <div className="sm:hidden block text-green-500">
                   +{parseFloat(protocol.change_1d).toFixed(2)}%
                 </div>
               ) : (
-                <div className="text-red-500">
+                <div className="sm:hidden block text-red-500">
                   {parseFloat(protocol.change_1d).toFixed(2)}%
                 </div>
               )}
