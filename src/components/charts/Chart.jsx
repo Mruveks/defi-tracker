@@ -38,7 +38,7 @@ const Charts = ({ data }) => {
   const CustomizedAxisTick = ({ x, y, payload }) => {
     const formattedDate = moment(payload.value).format("DD/MM/YYYY");
     const tickIndex = payload.index;
-    const shouldDisplayTick = tickIndex % 6 === 0; // display tick every 6 months
+    const shouldDisplayTick = tickIndex % 3 === 0; // display tick every  months
 
     if (!shouldDisplayTick) {
       return null;
