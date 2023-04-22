@@ -10,6 +10,9 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
+  AreaChart,
+  Brush,
+  Area,
 } from "recharts";
 
 const Charts = ({ data }) => {
@@ -35,83 +38,85 @@ const Charts = ({ data }) => {
     };
   }, []);
 
-  const CustomizedAxisTick = ({ x, y, payload }) => {
-    const formattedDate = moment(payload.value).format("DD/MM/YYYY");
-    const tickIndex = payload.index;
-    const shouldDisplayTick = tickIndex % 3 === 0; // display tick every  months
+  const dataWithDateObjects = data.map((item) => ({
+    ...item,
+    date: new Date(item.date),
+  }));
 
-    if (!shouldDisplayTick) {
-      return null;
+  function formatDate(dateStr) {
+    if (!dateStr) {
+      return "";
     }
+    const date = new Date(dateStr);
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
+  }
 
-    return (
-      <g transform={`translate(${x},${y})`}>
-        <text
-          x={0}
-          y={0}
-          dy={16}
-          textAnchor="end"
-          fill="gray"
-          transform="rotate(-35)"
-        >
-          {formattedDate}
-        </text>
-      </g>
-    );
-  };
-
-  console.log(data);
   return (
     <>
-      <div className="w-full h-full flex py-4">
-        <ResponsiveContainer width="100%" height={isSmallScreen ? 200 : 500}>
-          <LineChart margin={{ right: 20, left: 20, bottom: 40 }} data={data}>
-            <CartesianGrid
-              vertical={true}
-              strokeOpacity={0.05}
-              horizontal={true}
+      <ResponsiveContainer
+        width="100%"
+        className="m-4"
+        height={isSmallScreen ? 200 : 500}
+      >
+        <LineChart data={dataWithDateObjects}>
+          <CartesianGrid
+            vertical={true}
+            strokeOpacity={0.02}
+            horizontal={true}
+          />
+          {isSmallScreen ? null : (
+            <XAxis
+              dataKey="date"
+              interval={7}
+              tick={() => null}
+              stroke="gray"
             />
-            {isSmallScreen ? null : (
-              <XAxis
-                dataKey="date"
-                interval={182}
-                tick={<CustomizedAxisTick />}
-                stroke="gray"
-                label={{
-                  value: "Date",
-                  position: "insideBottomRight",
-                  offset: 0,
-                }}
+          )}
+          {isSmallScreen ? null : (
+            <YAxis
+              stroke="gray"
+              tickFormatter={(value) => numeral(value).format("$0.00a")}
+              padding={{ top: 80, bottom: 40 }}
+              scale={isLogScale ? "log" : "linear"}
+              domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
+            />
+          )}
+          <Tooltip
+            active={true}
+            content={<CustomTooltip />}
+            position={isSmallScreen ? { x: 100, y: 2 } : { x: 100, y: 2 }}
+          />
+          <Line dot={false} type="monotone" dataKey="value" stroke="#8884d8" />
+
+          <Brush
+            margin={{ top: 20, bottom: 20 }}
+            height={40}
+            padding={{ bottom: 4, top: 4 }}
+            dataKey="date"
+            tickFormatter={formatDate}
+            stroke="#8884d8"
+            travellerWidth={10}
+            startIndex={data.length[0]}
+            fill="#222f3e"
+          >
+            <AreaChart margin={{ top: 20, bottom: 20 }}>
+              <CartesianGrid strokeOpacity={0.05} />
+              <YAxis hide={true} stroke="transparent" domain={[0, "dataMin"]} />
+              <Area
+                dataKey="value"
+                margin={{ top: 20, bottom: 20 }}
+                stroke="#8884d8"
+                fill="transparent"
               />
-            )}
-            {isSmallScreen ? null : (
-              <YAxis
-                stroke="gray"
-                tickFormatter={(value) => numeral(value).format("$0.00a")}
-                padding={{ top: 80, bottom: 40 }}
-                scale={isLogScale ? "log" : "linear"}
-                domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
-                label={{
-                  value: "Value",
-                  position: "insideTopLeft",
-                }}
-              />
-            )}
-            <Tooltip
-              active={true}
-              content={<CustomTooltip />}
-              position={isSmallScreen ? { x: 20, y: 2 } : { x: 100, y: 2 }}
-            />
-            <Line
-              dot={false}
-              type="monotone"
-              dataKey="value"
-              stroke="#8884d8"
-            />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
-      <div className="right-20 pt-4 absolute space-x-4 text-lg sm:hidden block">
+            </AreaChart>
+          </Brush>
+        </LineChart>
+      </ResponsiveContainer>
+
+      <div className="right-20 pt-8 absolute space-x-4 text-lg sm:hidden block">
         <button
           onClick={toggleScale}
           className={`rounded-lg px-2 transition duration-300 ${
@@ -132,5 +137,4 @@ const Charts = ({ data }) => {
     </>
   );
 };
-
 export default Charts;

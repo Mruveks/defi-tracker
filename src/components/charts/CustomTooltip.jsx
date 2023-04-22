@@ -6,8 +6,8 @@ const CustomTooltip = ({ active, payload, label }) => {
     const formattedLabel = moment(label).format("DD/MM/YYYY");
     const formattedValue = numeral(payload[0].value).format("$0,0");
     return (
-      <div className="bg-transparent text-2xl border border-none">
-        <p>Total TVL</p>
+      <div className="bg-transparent text-2xl outline-none p-1 ring-0 border border-none">
+        <p className="sm:hidden">Total TVL</p>
         <p className="text-xl italic font-semibold">{formattedValue}</p>
         <p className="text-base font-semibold">{formattedLabel}</p>
       </div>
@@ -16,4 +16,4 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null;
 };
 
-export default CustomTooltip
+export default CustomTooltip;
