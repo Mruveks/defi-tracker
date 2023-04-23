@@ -17,8 +17,8 @@ const BridgesRanking = () => {
   }, []);
 
   return (
-    <div className="h-max border text-lg rounded-xl border-gray-600 p-2">
-      <div className="grid grid-cols-5 text-xl sm:grid-cols-3 font-semibold sm:text-sm p-2 text-right capitalize italic">
+    <div className="h-max border text-md rounded-xl border-gray-600 p-2">
+      <div className="grid grid-cols-5 text-lg sm:grid-cols-3 font-semibold sm:text-sm p-2 text-right capitalize italic">
         <header className="text-left pl-12 sm:pl-0">Name</header>
         <header>Chain</header>
         <header className="sm:hidden block">1d volume change</header>

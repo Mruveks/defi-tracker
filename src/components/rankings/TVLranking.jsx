@@ -24,7 +24,7 @@ const TVLranking = () => {
       });
   }, []);
 
-  const buttonStyle = `px-4 bg-gray-700 rounded-lg text-lg hover:bg-gray-600 transition duration-100`;
+  const buttonStyle = `px-4 bg-gray-700 rounded-lg text-md hover:bg-gray-600 transition duration-100`;
 
   return (
     <>
@@ -149,8 +149,8 @@ const TVLranking = () => {
         </button>
       </div>
 
-      <div className="h-max my-4 text-lg border-gray-600 border p-2 rounded-xl bg-gray-800">
-        <div className="grid grid-cols-8 lg:grid-cols-6 sm:grid-cols-2 text-xl sm:text-sm font-semibold p-2 border-b-gray-600 text-right italic capitalize">
+      <div className="h-max my-4 text-md border-gray-600 border p-2 rounded-xl bg-gray-800">
+        <div className="grid grid-cols-8 lg:grid-cols-6 sm:grid-cols-2 text-lg sm:text-sm font-semibold p-2 border-b-gray-600 text-right italic capitalize">
           <header className="text-left pl-12 sm:pl-0">Name</header>
           <header className="sm:hidden md:hidden lg:hidden block">
             Category
@@ -185,13 +185,13 @@ const TVLranking = () => {
                     className="flex items-center sm:space-x-0 space-x-4 w-full px-2 sm:px-0 py-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
                   >
                     <p className="w-6 sm:hidden">{index + 1}</p>
-                    <img
-                      src={protocol.logo}
-                      alt="logo"
-                      className="h-8 w-8 rounded-full "
-                    />
-                    <div className="w-full text-blue-400 sm:pl-2">
-                      {protocol.name}
+                    <div className="w-full flex items-center text-blue-400 space-x-2">
+                      <img
+                        src={protocol.logo}
+                        alt="logo"
+                        className="h-8 w-8 rounded-full "
+                      />
+                      <p> {protocol.name}</p>
                     </div>
                   </Link>
 
@@ -268,13 +268,13 @@ const TVLranking = () => {
                   className="flex items-center sm:space-x-0 space-x-4 w-full px-2 sm:px-0 py-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
                 >
                   <p className="w-6 sm:hidden">{index + 1}</p>
-                  <img
-                    src={protocol.logo}
-                    alt="logo"
-                    className="h-8 w-8 rounded-full "
-                  />
-                  <div className="w-full text-blue-400 sm:pl-2">
-                    {protocol.name}
+                  <div className="w-full flex items-center text-blue-400 space-x-2">
+                    <img
+                      src={protocol.logo}
+                      alt="logo"
+                      className="h-8 w-8 rounded-full "
+                    />
+                    <p> {protocol.name}</p>
                   </div>
                 </Link>
 

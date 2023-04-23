@@ -20,7 +20,7 @@ const YieldsRanking = () => {
       });
   }, []);
 
-  const buttonStyle = `px-4 rounded-lg text-lg hover:bg-gray-600 transition duration-100`;
+  const buttonStyle = `px-4 rounded-lg text-md hover:bg-gray-600 transition duration-100`;
 
   return (
     <>
@@ -143,8 +143,8 @@ const YieldsRanking = () => {
         </button>
       </div>
 
-      <div className="h-max mb-8 text-lg border rounded-xl border-gray-600 p-2">
-        <div className="grid grid-cols-7 sm:grid-cols-3 font-semibold p-2 text-xl sm:text-sm text-right capitalize italic">
+      <div className="h-max mb-8 text-md border rounded-xl border-gray-600 p-2">
+        <div className="grid grid-cols-7 sm:grid-cols-3 font-semibold p-2 text-lg sm:text-sm text-right capitalize italic">
           <header className="text-left pl-12 sm:pl-0">Pool</header>
           <header className="text-left pl-4">Project</header>
           <header className="sm:hidden block">Chain</header>
@@ -242,9 +242,10 @@ const YieldsRanking = () => {
               } grid grid-cols-7 sm:grid-cols-3 items-center p-2 rounded-xl text-right`}
               key={index}
             >
-              <div className="text-left capitalize">
-                {pool.symbol.toLowerCase()}
-              </div>
+              <div className="flex space-x-4 sm:space-x-0 sm:p-0 text-left p-2 capitalize items-center">
+                  <p className="w-6 sm:hidden">{index + 1}</p>
+                  <p>{pool.symbol.toLowerCase()}</p>
+                </div>
               <Link
                 to={`/protocol/${pool.project}`}
                 className="flex w-fit items-center text-left hover:bg-gray-600 transition duration-100 rounded-xl"
