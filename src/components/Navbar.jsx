@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import '../css/animations.css'
+import "../css/animations.css";
 import {
   BsPercent,
   BsCoin,
@@ -29,13 +29,21 @@ const Navbar = () => {
     "flex px-2 py-1 group w-full items-center capitalize rounded-lg hover:bg-gray-600 rounded-xl transition duration-100 group";
 
   const link = (chainId, img) => {
+    let chainName;
+
+    if (chainId === "BSC") {
+      chainName = "Binance";
+    } else {
+      chainName = chainId;
+    }
+
     return (
       <NavLink
-        key={chainId}
-        to={`/chain/${chainId}`}
-        onClick={() => setActiveNav(`/${chainId}`)}
+        key={chainName}
+        to={`/chain/${chainName}`}
+        onClick={() => setActiveNav(`/${chainName}`)}
         className={`${
-          activeNav === `/${chainId}` ? "bg-gray-700" : ""
+          activeNav === `/${chainName}` ? "bg-gray-700" : ""
         } ${elementStyle} `}
       >
         <img src={img} alt="" className="rounded-full mr-2 wiggle" />
@@ -149,7 +157,7 @@ const Navbar = () => {
               </header>
             </li>
             <li>{link("ethereum", eth)}</li>
-            <li>{link("binance", bsc)}</li>
+            <li>{link("BSC", bsc)}</li>
             <li>{link("avalanche", avax)}</li>
             <li>{link("polygon", polygon)}</li>
             <li>{link("arbitrum", arbitrum)}</li>

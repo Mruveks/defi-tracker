@@ -149,10 +149,12 @@ const TVLranking = () => {
         </button>
       </div>
 
-      <div className="h-max my-4 border-gray-600 border p-2 rounded-xl bg-gray-800">
-        <div className="grid grid-cols-8 lg:grid-cols-6 sm:grid-cols-2 text-lg sm:text-sm font-semibold p-2 border-b-gray-600 text-right italic capitalize">
-          <header className="text-left pl-12">Name</header>
-          <header className="sm:hidden md:hidden lg:hidden block">Category</header>
+      <div className="h-max my-4 text-lg border-gray-600 border p-2 rounded-xl bg-gray-800">
+        <div className="grid grid-cols-8 lg:grid-cols-6 sm:grid-cols-2 text-xl sm:text-sm font-semibold p-2 border-b-gray-600 text-right italic capitalize">
+          <header className="text-left pl-12 sm:pl-0">Name</header>
+          <header className="sm:hidden md:hidden lg:hidden block">
+            Category
+          </header>
           <header className="sm:hidden md:hidden lg:hidden block">Chain</header>
           <header className="sm:hidden block">1h Change</header>
           <header className="sm:hidden block">1d Change</header>
@@ -180,19 +182,25 @@ const TVLranking = () => {
                 >
                   <Link
                     to={`/protocol/${protocol.name}`}
-                    className="flex items-center space-x-4 w-full p-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
+                    className="flex items-center sm:space-x-0 space-x-4 w-full px-2 sm:px-0 py-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
                   >
-                    <p className="w-6">{index + 1}</p>
+                    <p className="w-6 sm:hidden">{index + 1}</p>
                     <img
                       src={protocol.logo}
                       alt="logo"
-                      className="h-8 w-8 rounded-full"
+                      className="h-8 w-8 rounded-full "
                     />
-                    <div className="w-full text-blue-400">{protocol.name}</div>
+                    <div className="w-full text-blue-400 sm:pl-2">
+                      {protocol.name}
+                    </div>
                   </Link>
 
-                  <div className="sm:hidden md:hidden lg:hidden block">{protocol.category}</div>
-                  <div className="sm:hidden md:hidden lg:hidden block">{protocol.chain}</div>
+                  <div className="sm:hidden md:hidden lg:hidden block">
+                    {protocol.category}
+                  </div>
+                  <div className="sm:hidden md:hidden lg:hidden block">
+                    {protocol.chain}
+                  </div>
 
                   {protocol.change_1h > 0 ? (
                     <div className="text-green-500 sm:hidden block">
@@ -250,26 +258,32 @@ const TVLranking = () => {
             )
             .map((protocol, index) => (
               <div
+                key={index}
                 className={` ${
                   index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"
                 } grid grid-cols-8 md:grid-cols-6 lg:grid-cols-6 sm:grid-cols-2 items-center rounded-xl p-2 text-right`}
-                key={index}
               >
                 <Link
                   to={`/protocol/${protocol.name}`}
-                  className="flex items-center p-2 space-x-4 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
+                  className="flex items-center sm:space-x-0 space-x-4 w-full px-2 sm:px-0 py-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
                 >
-                  <p className="w-6">{index + 1}</p>
+                  <p className="w-6 sm:hidden">{index + 1}</p>
                   <img
                     src={protocol.logo}
                     alt="logo"
-                    className="h-8 w-8 rounded-full"
+                    className="h-8 w-8 rounded-full "
                   />
-                  <div className="sm:w-full text-blue-400">{protocol.name}</div>
+                  <div className="w-full text-blue-400 sm:pl-2">
+                    {protocol.name}
+                  </div>
                 </Link>
 
-                <div className="sm:hidden md:hidden lg:hidden block">{protocol.category}</div>
-                <div className="sm:hidden md:hidden lg:hidden block">{protocol.chain}</div>
+                <div className="sm:hidden md:hidden lg:hidden block">
+                  {protocol.category}
+                </div>
+                <div className="sm:hidden md:hidden lg:hidden block">
+                  {protocol.chain}
+                </div>
 
                 {protocol.change_1h > 0 ? (
                   <div className="text-green-500 sm:hidden block">

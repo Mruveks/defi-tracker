@@ -13,16 +13,16 @@ const StablesRanking = () => {
       .get("https://stablecoins.llama.fi/stablecoins?includePrices=true")
       .then((res) => {
         setStables(res.data.peggedAssets);
-        console.log(res.data)
+        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
 
   return (
     <>
-      <div className="h-max mb-8 border-gray-600 p-2 border rounded-xl bg-gray-800 ">
-        <div className="grid sm:grid-cols-3 grid-cols-7 font-semibold p-2 text-lg sm:text-sm text-right capitalize italic">
-          <header className="text-left pl-12">Name</header>
+      <div className="h-max mb-8 text-lg border-gray-600 p-2 border rounded-xl bg-gray-800 ">
+        <div className="grid sm:grid-cols-3 grid-cols-7 font-semibold p-2 text-xl sm:text-sm text-right capitalize italic">
+          <header className="text-left pl-12 sm:pl-0">Name</header>
           <header>Price</header>
           <header className="sm:hidden block">Peg</header>
           <header className="sm:hidden block">1d Change</header>
@@ -50,20 +50,20 @@ const StablesRanking = () => {
                 <a
                   href={`https://www.coingecko.com/en/coins/${stable.gecko_id}`}
                   target="_blank"
-                  className="flex items-center space-x-4 p-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
+                  className="flex w-fit items-center space-x-4 sm:space-x-0 px-2 sm:px-0 py-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
                 >
-                  <div className="w-6">{index + 1}</div>
+                  <div className="w-6 sm:hidden">{index + 1}</div>
                   <div className=" text-blue-400">
                     {stable.name} ({stable.symbol})
                   </div>
                 </a>
 
                 {stable.price >= 1 ? (
-                  <div className="text-green-500">
+                  <div className="text-green-500 font-mono">
                     {parseFloat(stable.price).toFixed(2)}$
                   </div>
                 ) : (
-                  <div className="text-red-500">
+                  <div className="text-red-500 font-mono">
                     {parseFloat(stable.price).toFixed(2)}$
                   </div>
                 )}
@@ -190,17 +190,19 @@ const StablesRanking = () => {
                   )
                 ) : null}
 
-                {stable.circulating.peggedUSD
-                  ? numeral(stable.circulating.peggedUSD).format("$0.00a")
-                  : null}
-                {stable.circulating.peggedEUR
-                  ? numeral(stable.circulating.peggedEUR * 1.08).format(
-                      "$0.00a"
-                    )
-                  : null}
-                {stable.circulating.peggedVAR
-                  ? numeral(stable.circulating.peggedVAR).format("$0.00a")
-                  : null}
+                <div className="font-mono">
+                  {stable.circulating.peggedUSD
+                    ? numeral(stable.circulating.peggedUSD).format("$0.00a")
+                    : null}
+                  {stable.circulating.peggedEUR
+                    ? numeral(stable.circulating.peggedEUR * 1.08).format(
+                        "$0.00a"
+                      )
+                    : null}
+                  {stable.circulating.peggedVAR
+                    ? numeral(stable.circulating.peggedVAR).format("$0.00a")
+                    : null}
+                </div>
               </div>
             ))
         ) : (

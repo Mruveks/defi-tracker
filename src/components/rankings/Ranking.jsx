@@ -28,13 +28,13 @@ const Ranking = ({ chain }) => {
   }, []);
 
   return (
-    <div className="h-max border rounded-xl border-gray-600 p-2">
+    <div className="h-max text-lg border rounded-xl border-gray-600 p-2">
       <div
         className={`grid ${
           chain === "Lending" || "CEX" ? "grid-cols-5" : "grid-cols-6"
-        } sm:grid-cols-2 font-semibold p-2 text-lg sm:text-sm capitalize italic text-right`}
+        } sm:grid-cols-2 font-semibold p-2 text-xl sm:text-sm capitalize italic text-right`}
       >
-        <header className="text-left pl-12">Name</header>
+        <header className="text-left pl-12 sm:pl-0">Name</header>
         {chain === "Lending" || "CEX" || "DEX" ? null : (
           <header className="text-right">Category</header>
         )}
@@ -67,15 +67,15 @@ const Ranking = ({ chain }) => {
             >
               <Link
                 to={`/protocol/${protocol.name}`}
-                className="flex items-center space-x-4 p-2 w-fit text-left hover:bg-gray-600 transition duration-300 rounded-xl"
+                className="flex items-center space-x-4 sm:space-x-0 px-2 sm:px-0 py-2 w-fit text-left hover:bg-gray-600 transition duration-300 rounded-xl"
               >
-                <p className="w-6">{index + 1}</p>
+                <p className="w-6 sm:hidden">{index + 1}</p>
                 <img
                   src={protocol.logo}
                   alt="logo"
                   className="h-8 w-8 rounded-full"
                 />
-                <div className="w-fit md:w-40 my-auto text-blue-400">
+                <div className="w-fit md:w-40 my-auto text-blue-400 pl-2">
                   {protocol.name}
                 </div>
               </Link>
@@ -85,36 +85,36 @@ const Ranking = ({ chain }) => {
               )}
 
               {protocol.change_1h > 0 ? (
-                <div className="sm:hidden block text-green-500">
+                <div className="sm:hidden block text-green-500 font-mono">
                   +{parseFloat(protocol.change_1h).toFixed(2)}%
                 </div>
               ) : (
-                <div className="sm:hidden block text-red-500">
+                <div className="sm:hidden block text-red-500 font-mono">
                   {parseFloat(protocol.change_1h).toFixed(2)}%
                 </div>
               )}
 
               {protocol.change_1d > 0 ? (
-                <div className="sm:hidden block text-green-500">
+                <div className="sm:hidden block text-green-500 font-mono">
                   +{parseFloat(protocol.change_1d).toFixed(2)}%
                 </div>
               ) : (
-                <div className="sm:hidden block text-red-500">
+                <div className="sm:hidden block text-red-500 font-mono">
                   {parseFloat(protocol.change_1d).toFixed(2)}%
                 </div>
               )}
 
               {protocol.change_7d > 0 ? (
-                <div className="sm:hidden block text-green-500">
+                <div className="sm:hidden block text-green-500 font-mono">
                   +{parseFloat(protocol.change_7d).toFixed(2)}%
                 </div>
               ) : (
-                <div className="sm:hidden block text-red-500">
+                <div className="sm:hidden block text-red-500 font-mono">
                   {parseFloat(protocol.change_7d).toFixed(2)}%
                 </div>
               )}
 
-              {numeral(protocol.tvl).format("$0.00a")}
+              <div className="font-mono">{numeral(protocol.tvl).format("$0.00a")}</div>
             </div>
           ))
       ) : (

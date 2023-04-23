@@ -95,17 +95,17 @@ const ProtocolPage = () => {
                 <div className="grid sm:grid-flow-col sm:items-center gap-4">
                   <div>
                     <h1>Total Value Locked</h1>
-                    <p>{numeral(tvl).format("$0.00a")}</p>
+                    <p className="font-mono">{numeral(tvl).format("$0.00a")}</p>
                   </div>
                   {protocol.mcap > 0 ? (
                     <>
                       <div>
                         <h1>Market Cap</h1>
-                        <p>{numeral(protocol.mcap).format("$0.00a")}</p>
+                        <p className="font-mono">{numeral(protocol.mcap).format("$0.00a")}</p>
                       </div>
                       <div>
                         <h1>mcap/TVL</h1>
-                        <p>{(protocol.mcap / tvl).toFixed(2)}</p>
+                        <p className="font-mono">{(protocol.mcap / tvl).toFixed(2)}</p>
                       </div>
                     </>
                   ) : (
@@ -206,7 +206,7 @@ const ProtocolPage = () => {
                   <div className="space-y-12 pt-6">
                     <div>
                       <header className="text-4xl mb-2">Raises</header>
-                      <div className="space-y-4">
+                      <div className="font-mono space-y-4">
                         {protocol.raises.map(renderRaises)}
                       </div>
                     </div>

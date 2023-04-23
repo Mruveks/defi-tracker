@@ -3,9 +3,9 @@ export default function CalculateChange({ lastDay, today }) {
   let style = "";
 
   if (number > 0) {
-    style = "text-green-500";
+    style = "text-green-500 font-mono";
   } else {
-    style = "text-red-500";
+    style = "text-red-500 font-mono";
   }
 
   return <div className={`${style}`}>{number}%</div>;

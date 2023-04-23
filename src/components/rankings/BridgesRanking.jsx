@@ -17,9 +17,9 @@ const BridgesRanking = () => {
   }, []);
 
   return (
-    <div className="h-max border rounded-xl border-gray-600 p-2">
-      <div className="grid grid-cols-5 sm:grid-cols-3 font-semibold text-lg sm:text-sm p-2 text-right capitalize italic">
-        <header className="text-left pl-12">Name</header>
+    <div className="h-max border text-lg rounded-xl border-gray-600 p-2">
+      <div className="grid grid-cols-5 text-xl sm:grid-cols-3 font-semibold sm:text-sm p-2 text-right capitalize italic">
+        <header className="text-left pl-12 sm:pl-0">Name</header>
         <header>Chain</header>
         <header className="sm:hidden block">1d volume change</header>
         <header className="sm:hidden block">Today's Volume</header>
@@ -35,8 +35,8 @@ const BridgesRanking = () => {
               } grid grid-cols-5 sm:grid-cols-3 items-center rounded-xl text-right p-2`}
               key={index}
             >
-              <div className="flex space-x-4 p-2 text-left">
-                <p className="w-6">{index + 1}</p>
+              <div className="flex space-x-4 sm:space-x-0 px-2 sm:px-0 py-2 text-left">
+                <p className="w-6 sm:hidden">{index + 1}</p>
                 <h2 className="text-blue-400">{bridge.displayName}</h2>
               </div>
 
@@ -49,11 +49,11 @@ const BridgesRanking = () => {
                 />
               </div>
 
-              <div className="sm:hidden block">
+              <div className="sm:hidden block font-mono">
                 {numeral(bridge.currentDayVolume).format("$0.00a")}
               </div>
 
-              <div>{numeral(bridge.monthlyVolume).format("$0.00a")}</div>
+              <div className="font-mono">{numeral(bridge.monthlyVolume).format("$0.00a")}</div>
             </div>
           ))
       ) : (
