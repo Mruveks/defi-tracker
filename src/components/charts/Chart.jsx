@@ -43,6 +43,13 @@ const Charts = ({ data }) => {
     date: new Date(item.date),
   }));
 
+  const [activeIndex, setActiveIndex] = useState(
+    dataWithDateObjects.length - 1
+  );
+
+  useEffect(() => {
+    setActiveIndex(dataWithDateObjects.length - 1);
+  }, []);
   function formatDate(dateStr) {
     if (!dateStr) {
       return "";
@@ -64,30 +71,55 @@ const Charts = ({ data }) => {
         <LineChart data={dataWithDateObjects}>
           <CartesianGrid
             vertical={true}
-            strokeOpacity={0.02}
+            strokeOpacity={0.1}
             horizontal={true}
           />
           {isSmallScreen ? null : (
             <XAxis
+              label={{ value: "Date", position: "Center", angle: -360 }}
               dataKey="date"
-              interval={7}
-              tick={() => null}
+              axisLine={false}
+              tickLine={false}
+              interval={365}
+              tickFormatter={(value) => moment(value).format("MMM, YYYY")}
               stroke="gray"
+              tickSize={2}
+              tick={{
+                dx:8,
+                dy: -18,
+                fontSize: 14,
+                textAnchor: "start",
+              }}
             />
           )}
           {isSmallScreen ? null : (
             <YAxis
+              label={{ value: "Value", position: "Center", angle: -90 }}
+              axisLine={false}
+              tickLine={false}
+              fontFamily="font-mono"
               stroke="gray"
               tickFormatter={(value) => numeral(value).format("$0.00a")}
+              tickSize={2}
+              tick={{
+                color: "blue",
+                dx: 12,
+                dy: 8,
+                fontSize: 14,
+                textAnchor: "start",
+              }}
               padding={{ top: 80, bottom: 40 }}
               scale={isLogScale ? "log" : "linear"}
               domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
             />
           )}
           <Tooltip
-            active={true}
+            active={activeIndex !== -1}
+            width="100%"
+            activeIndex={activeIndex}
             content={<CustomTooltip />}
-            position={isSmallScreen ? { x: 100, y: 2 } : { x: 100, y: 2 }}
+            margin={(isSmallScreen ? { top: 12 } : { top: 20 }, { bottom: 20 })}
+            position={isSmallScreen ? { x: 0, y: -20 } : { x: 70, y: 4 }}
           />
           <Line dot={false} type="monotone" dataKey="value" stroke="#8884d8" />
 
@@ -116,11 +148,11 @@ const Charts = ({ data }) => {
         </LineChart>
       </ResponsiveContainer>
 
-      <div className="right-20 pt-8 absolute space-x-4 text-lg sm:hidden block">
+      <div className="right-16 pt-6 absolute space-x-4 text-lg sm:hidden block">
         <button
           onClick={toggleScale}
           className={`rounded-lg px-2 transition duration-300 ${
-            isLogScale === true ? "bg-gray-600" : "bg-transparent"
+            isLogScale === true ? "text-[#8884d8]" : "text-gray-600"
           }`}
         >
           Logarithmic
@@ -128,7 +160,7 @@ const Charts = ({ data }) => {
         <button
           onClick={toggleScale}
           className={`rounded-lg px-2 transition duration-300 ${
-            isLogScale === false ? "bg-gray-600" : "bg-gray-800"
+            isLogScale === false ? "text-[#8884d8] " : "text-gray-600"
           }`}
         >
           Linear

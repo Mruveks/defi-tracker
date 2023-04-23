@@ -51,7 +51,7 @@ const TVLchart = () => {
             <div className="grid gap-10 w-full text-4xl m-6 sm:m-0 sm:text-center  text-left">
               <div className="grid h-fit grid-flow-row w-full py-4">
                 <div>Total Value Locked</div>
-                <div className="text-blue-500">
+                <div className="text-blue-500 font-mono">
                   {numeral(num2).format("$0.00a")}
                 </div>
               </div>
@@ -59,16 +59,16 @@ const TVLchart = () => {
               <div className="grid h-fit grid-flow-row w-full py-4">
                 <div>24h Change</div>
                 {percentageChange > 0 ? (
-                  <div className="text-green-500">+{percentageChange}%</div>
+                  <div className="text-green-500 font-mono">+{percentageChange}%</div>
                 ) : (
-                  <div className="text-red-500">{percentageChange}%</div>
+                  <div className="text-red-500 font-mono">{percentageChange}%</div>
                 )}
                 {dollarChange > 0 ? (
-                  <div className="text-green-500">
+                  <div className="text-green-500 font-mono">
                     {"+" + numeral(dollarChange).format("$0.00a")}
                   </div>
                 ) : (
-                  <div className="text-red-500">
+                  <div className="text-red-500 font-mono">
                     {numeral(dollarChange).format("$0.00a")}
                   </div>
                 )}
