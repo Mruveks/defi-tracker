@@ -20,13 +20,13 @@ const YieldsRanking = () => {
       });
   }, []);
 
-  const buttonStyle = `px-4 bg-gray-700 my-4 rounded-lg text-lg hover:bg-gray-600 transition duration-100`;
+  const buttonStyle = `px-4 rounded-lg text-lg hover:bg-gray-600 transition duration-100`;
 
   return (
     <>
-      <div className="flex flex-wrap gap-4 sm:gap-0 justify-between h-full">
+      <div className="flex flex-wrap gap-4 my-4 sm:my-10 sm:gap-2 h-fit xl:justify-between justify-items-stretch">
         <button
-          className={`${buttonStyle} ${query === "" ? "bg-blue-600" : ""}`}
+          className={`${buttonStyle} ${query === "" ? "bg-blue-600" : "bg-gray-700"}`}
           onClick={() => setQuery("")}
         >
           All
@@ -34,7 +34,7 @@ const YieldsRanking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Ethereum" ? "bg-blue-600" : ""
+            query === "Ethereum" ? "bg-blue-600" : "bg-gray-700"
           }`}
           onClick={() => setQuery("Ethereum")}
         >
@@ -43,7 +43,7 @@ const YieldsRanking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Avalanche" ? "bg-blue-600" : ""
+            query === "Avalanche" ? "bg-blue-600" : "bg-gray-700"
           }`}
           onClick={() => setQuery("Avalanche")}
         >
@@ -51,14 +51,14 @@ const YieldsRanking = () => {
         </button>
 
         <button
-          className={`${buttonStyle} ${query === "BSC" ? "bg-blue-600" : ""}`}
+          className={`${buttonStyle} ${query === "BSC" ? "bg-blue-600" : "bg-gray-700"}`}
           onClick={() => setQuery("BSC")}
         >
           BSC
         </button>
 
         <button
-          className={`${buttonStyle} ${query === "Tron" ? "bg-blue-600" : ""}`}
+          className={`${buttonStyle} ${query === "Tron" ? "bg-blue-600" : "bg-gray-700"}`}
           onClick={() => setQuery("Tron")}
         >
           Tron
@@ -66,7 +66,7 @@ const YieldsRanking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Arbitrum" ? "bg-blue-600" : ""
+            query === "Arbitrum" ? "bg-blue-600" : "bg-gray-700"
           }`}
           onClick={() => setQuery("Arbitrum")}
         >
@@ -75,7 +75,7 @@ const YieldsRanking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Polygon" ? "bg-blue-600" : ""
+            query === "Polygon" ? "bg-blue-600" : "bg-gray-700"
           }`}
           onClick={() => setQuery("Polygon")}
         >
@@ -84,7 +84,7 @@ const YieldsRanking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Cronos" ? "bg-blue-600" : ""
+            query === "Cronos" ? "bg-blue-600" : "bg-gray-700"
           }`}
           onClick={() => setQuery("Cronos")}
         >
@@ -93,7 +93,7 @@ const YieldsRanking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Fantom" ? "bg-blue-600" : ""
+            query === "Fantom" ? "bg-blue-600" : "bg-gray-700"
           }`}
           onClick={() => setQuery("Fantom")}
         >
@@ -101,7 +101,7 @@ const YieldsRanking = () => {
         </button>
 
         <button
-          className={`${buttonStyle} ${query === "Mixin" ? "bg-blue-600" : ""}`}
+          className={`${buttonStyle} ${query === "Mixin" ? "bg-blue-600" : "bg-gray-700"}`}
           onClick={() => setQuery("Mixin")}
         >
           Mixin
@@ -109,7 +109,7 @@ const YieldsRanking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "DefiChain" ? "bg-blue-600" : ""
+            query === "DefiChain" ? "bg-blue-600" : "bg-gray-700"
           }`}
           onClick={() => setQuery("DefiChain")}
         >
@@ -118,7 +118,7 @@ const YieldsRanking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Optimism" ? "bg-blue-600" : ""
+            query === "Optimism" ? "bg-blue-600" : "bg-gray-700"
           }`}
           onClick={() => setQuery("Optimism")}
         >
@@ -127,7 +127,7 @@ const YieldsRanking = () => {
 
         <button
           className={`${buttonStyle} ${
-            query === "Solana" ? "bg-blue-600" : ""
+            query === "Solana" ? "bg-blue-600" : "bg-gray-700"
           }`}
           onClick={() => setQuery("Solana")}
         >
@@ -135,7 +135,7 @@ const YieldsRanking = () => {
         </button>
         <button
           className={`${buttonStyle} ${
-            query === "Bitcoin" ? "bg-blue-600" : ""
+            query === "Bitcoin" ? "bg-blue-600" : "bg-gray-700"
           }`}
           onClick={() => setQuery("Bitcoin")}
         >
