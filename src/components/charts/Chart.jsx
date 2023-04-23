@@ -110,7 +110,7 @@ const Charts = ({ data }) => {
               }}
               padding={{ top: 80, bottom: 40 }}
               scale={isLogScale ? "log" : "linear"}
-              domain={isLogScale ? ["auto", "auto"] : [0, "auto"]}
+              domain={isLogScale ? ["auto", "auto"] : ["auto", "auto"]}
             />
           )}
           <Tooltip
