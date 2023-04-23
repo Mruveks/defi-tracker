@@ -3,6 +3,8 @@ import React from "react";
 const AddressFormatter = ({ address }) => {
   let firstFour;
   let lastFour;
+  const [chain, code] = address.split(":");
+
 
   if (address && address.includes(":")) {
     const [blockchain, addr] = address.split(":");
@@ -16,7 +18,7 @@ const AddressFormatter = ({ address }) => {
   return (
     <>
       <span className="font-medium italic lg:block xl:block hidden">
-        {address}
+        {code}
       </span>
       <span className=" italic xl:hidden lg:hidden visible">
         {firstFour}...{lastFour}

@@ -127,9 +127,8 @@ const Charts = ({ data }) => {
             margin={{ top: 20, bottom: 20 }}
             height={40}
             padding={{ bottom: 4, top: 4 }}
-            dataKey="date"
-            tickFormatter={formatDate}
-            stroke="#8884d8"
+            tickFormatter={() => ''}
+            stroke="rgb(75 85 99)"
             travellerWidth={10}
             startIndex={data.length[0]}
             fill="#222f3e"

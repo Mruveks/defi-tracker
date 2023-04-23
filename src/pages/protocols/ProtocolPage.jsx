@@ -47,7 +47,7 @@ const ProtocolPage = () => {
       {investors.map((investor ,index) => (
         <div
         key={index}
-        className={`${ index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"} rounded-xl p-2 capitalize hover:underline cursor-pointer hover:text-white`}
+        className={`${ index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"} rounded-xl p-2 capitalize`}
         >
           {investor}
         </div>
