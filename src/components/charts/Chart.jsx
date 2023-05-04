@@ -50,16 +50,6 @@ const Charts = ({ data }) => {
   useEffect(() => {
     setActiveIndex(dataWithDateObjects.length - 1);
   }, []);
-  function formatDate(dateStr) {
-    if (!dateStr) {
-      return "";
-    }
-    const date = new Date(dateStr);
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    const year = date.getFullYear();
-    return `${month}/${day}/${year}`;
-  }
 
   return (
     <>
@@ -68,7 +58,19 @@ const Charts = ({ data }) => {
         className="m-4"
         height={isSmallScreen ? 200 : 500}
       >
-        <LineChart data={dataWithDateObjects}>
+        <AreaChart data={dataWithDateObjects}>
+          <defs>
+            <linearGradient
+              id="area-chart-gradient"
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="1"
+            >
+              <stop offset="5%" stopColor="#8884d8" stopOpacity={0.4} />
+              <stop offset="95%" stopColor="#8884d8" stopOpacity={0.01} />
+            </linearGradient>
+          </defs>
           <CartesianGrid
             vertical={true}
             strokeOpacity={0.1}
@@ -76,7 +78,6 @@ const Charts = ({ data }) => {
           />
           {isSmallScreen ? null : (
             <XAxis
-              label={{ value: "Date", position: "Center", angle: -360 }}
               dataKey="date"
               axisLine={false}
               tickLine={false}
@@ -85,8 +86,7 @@ const Charts = ({ data }) => {
               stroke="gray"
               tickSize={2}
               tick={{
-                dx:8,
-                dy: -18,
+          
                 fontSize: 14,
                 textAnchor: "start",
               }}
@@ -94,7 +94,6 @@ const Charts = ({ data }) => {
           )}
           {isSmallScreen ? null : (
             <YAxis
-              label={{ value: "Value", position: "Center", angle: -90 }}
               axisLine={false}
               tickLine={false}
               fontFamily="font-mono"
@@ -103,12 +102,10 @@ const Charts = ({ data }) => {
               tickSize={2}
               tick={{
                 color: "blue",
-                dx: 12,
-                dy: 8,
                 fontSize: 14,
-                textAnchor: "start",
+                textAnchor: "end",
               }}
-              padding={{ top: 80, bottom: 40 }}
+              padding={{ top: 80, bottom: 0 }}
               scale={isLogScale ? "log" : "linear"}
               domain={isLogScale ? ["auto", "auto"] : ["auto", "auto"]}
             />
@@ -121,13 +118,18 @@ const Charts = ({ data }) => {
             margin={(isSmallScreen ? { top: 12 } : { top: 20 }, { bottom: 20 })}
             position={isSmallScreen ? { x: 0, y: -20 } : { x: 70, y: 4 }}
           />
-          <Line dot={false} type="monotone" dataKey="value" stroke="#8884d8" />
-
+          <Area
+            type="monotone"
+            dataKey="value"
+            stroke="#8884d8"
+            fillOpacity={1}
+            fill="url(#area-chart-gradient)"
+          />
           <Brush
             margin={{ top: 20, bottom: 20 }}
             height={40}
             padding={{ bottom: 4, top: 4 }}
-            tickFormatter={() => ''}
+            tickFormatter={() => ""}
             stroke="rgb(75 85 99)"
             travellerWidth={10}
             startIndex={data.length[0]}
@@ -144,7 +146,7 @@ const Charts = ({ data }) => {
               />
             </AreaChart>
           </Brush>
-        </LineChart>
+        </AreaChart>
       </ResponsiveContainer>
 
       <div className="right-16 pt-6 absolute space-x-4 text-lg sm:hidden block">

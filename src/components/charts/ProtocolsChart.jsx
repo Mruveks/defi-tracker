@@ -31,7 +31,7 @@ const Chart = () => {
   }, [protocolId]);
 
   return (
-    <div className="flex py-4">
+    <div className="flex">
       <Charts data={formattedData} />
     </div>
   );
