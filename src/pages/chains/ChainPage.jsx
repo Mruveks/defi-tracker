@@ -60,7 +60,7 @@ const ChainPage = () => {
       <Helmet>
         <title>{`${
           chainId.charAt(0).toUpperCase() + chainId.slice(1)
-        } | DeFi`}</title>
+        } | DefiTracker`}</title>
         <meta name="description" content={`${chainId}`} />
       </Helmet>
 

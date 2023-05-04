@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <div className="grid grid-cols-1 mx-10 sm:mx-5 text-md">
       <Helmet>
-        <title>Home | DeFi</title>
+        <title>DefiTracker</title>
         <meta
           name="description"
           content="Discover the best decentralized finance (DeFi) protocols"

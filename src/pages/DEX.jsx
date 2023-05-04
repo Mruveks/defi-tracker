@@ -7,7 +7,7 @@ const DEX = () => {
   return (
     <div className="grid grid-cols-1 mx-10 sm:mx-5 text-md">
       <Helmet>
-        <title>DEX | DeFi</title>
+        <title>DEX | DefiTracker</title>
         <meta
           name="description"
           content="Find the best decentralized exchanges"

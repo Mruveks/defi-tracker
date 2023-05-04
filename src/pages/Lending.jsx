@@ -8,7 +8,7 @@ const Lending = () => {
   return (
     <div className="grid grid-cols-1 mx-10 sm:mx-5 text-md">
       <Helmet>
-        <title>Lending | DeFi</title>
+        <title>Lending | DefiTracker</title>
         <meta
           name="description"
           content="Find the best decentralized finance (DeFi) lending projects"

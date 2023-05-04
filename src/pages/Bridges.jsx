@@ -8,7 +8,7 @@ const Bridges = () => {
   return (
     <div className="grid grid-cols-1 mx-10 sm:mx-5 text-md">
       <Helmet>
-        <title>Bridges | DeFi</title>
+        <title>Bridges | DefiTracker</title>
         <meta
           name="description"
           content="Find the best DeFi bridges with our comprehensive ranking system."

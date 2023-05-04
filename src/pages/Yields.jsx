@@ -8,7 +8,7 @@ const Yields = () => {
   return (
     <div className="grid grid-cols-1 mx-10 sm:mx-5 text-md">
       <Helmet>
-        <title>Yields | DeFi</title>
+        <title>Yields | DefiTracker</title>
         <meta
           name="description"
           content="Discover the highest-yielding decentralized finance (DeFi) projects"

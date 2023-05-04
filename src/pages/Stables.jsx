@@ -9,7 +9,7 @@ const Stables = () => {
   return (
     <div className="grid grid-cols-1 mx-10 sm:mx-5 text-md">
       <Helmet>
-        <title>Stablecoins | DeFi</title>
+        <title>Stablecoins | DefiTracker</title>
         <meta name="description" content="Find the best stablecoins" />
       </Helmet>
 

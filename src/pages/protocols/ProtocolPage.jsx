@@ -60,7 +60,7 @@ const ProtocolPage = () => {
     <main className="mx-10 sm:mx-5">
       <Helmet>
         <title>
-          {protocolId.charAt(0).toUpperCase() + protocolId.slice(1)} | DeFi
+          {protocolId.charAt(0).toUpperCase() + protocolId.slice(1)} | DefiTracker
         </title>
         <meta
           name="description"

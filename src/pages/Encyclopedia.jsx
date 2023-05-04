@@ -5,7 +5,7 @@ const Encyclopedia = () => {
   return (
     <div>
       <Helmet>
-        <title>Encyclopedia | DeFi</title>
+        <title>Encyclopedia | DefiTracker</title>
         <meta
           name="description"
           content="Learn about decentralized finance (DeFi)"
