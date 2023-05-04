@@ -11,11 +11,11 @@ const TVLchart = () => {
 
   useEffect(() => {
     axios
-      .get("https://api.llama.fi/charts")
+      .get("https://api.llama.fi/v2/historicalChainTvl")
       .then((res) => {
         const data = res.data;
         const dates = data.map((item) => moment.unix(item.date).toDate());
-        const values = data.map((item) => item.totalLiquidityUSD);
+        const values = data.map((item) => item.tvl);
         const datasource = values.map((value, index) => ({
           date: dates[index],
           value: value,
@@ -29,7 +29,6 @@ const TVLchart = () => {
           datasource.length - 2,
           datasource.length - 1
         );
-
         setLastDay(yesterday[0].value);
         setDay(today[0].value);
       })
@@ -38,10 +37,8 @@ const TVLchart = () => {
       });
   }, []);
 
-  const num1 = parseFloat(day).toFixed(2);
-  const num2 = parseFloat(lastDay).toFixed(2);
-  const dollarChange = (num1 - num2).toFixed(2);
-  const percentageChange = (((num1 - num2) / num2) * 100).toFixed(2);
+  const changes = day - lastDay;
+  const percentageChange = (((day - lastDay) / lastDay) * 100).toFixed(2);
 
   return (
     <>
@@ -52,24 +49,28 @@ const TVLchart = () => {
               <div className="grid h-fit grid-flow-row w-fit justify-center py-4">
                 <div>Total Value Locked</div>
                 <div className="text-blue-500 font-mono">
-                  {numeral(num2).format("$0.00a")}
+                  {numeral(day).format("$0.00a")}
                 </div>
               </div>
 
               <div className="grid h-fit grid-flow-row w-fit justify-center py-4">
                 <div>24h Change</div>
                 {percentageChange > 0 ? (
-                  <div className="text-green-500 font-mono">+{percentageChange}%</div>
-                ) : (
-                  <div className="text-red-500 font-mono">{percentageChange}%</div>
-                )}
-                {dollarChange > 0 ? (
                   <div className="text-green-500 font-mono">
-                    {"+" + numeral(dollarChange).format("$0.00a")}
+                    +{percentageChange}%
                   </div>
                 ) : (
                   <div className="text-red-500 font-mono">
-                    {numeral(dollarChange).format("$0.00a")}
+                    {percentageChange}%
+                  </div>
+                )}
+                {changes > 0 ? (
+                  <div className="text-green-500 font-mono">
+                    {"+" + numeral(changes).format("$0.00a")}
+                  </div>
+                ) : (
+                  <div className="text-red-500 font-mono">
+                    {numeral(changes).format("$0.00a")}
                   </div>
                 )}
               </div>

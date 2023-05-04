@@ -3,8 +3,6 @@ import moment from "moment";
 import numeral from "numeral";
 import CustomTooltip from "./CustomTooltip";
 import {
-  LineChart,
-  Line,
   ResponsiveContainer,
   XAxis,
   YAxis,
@@ -67,7 +65,7 @@ const Charts = ({ data }) => {
               x2="0"
               y2="1"
             >
-              <stop offset="5%" stopColor="#8884d8" stopOpacity={0.4} />
+              <stop offset="20%" stopColor="#8884d8" stopOpacity={0.2} />
               <stop offset="95%" stopColor="#8884d8" stopOpacity={0.01} />
             </linearGradient>
           </defs>
@@ -86,7 +84,6 @@ const Charts = ({ data }) => {
               stroke="gray"
               tickSize={2}
               tick={{
-          
                 fontSize: 14,
                 textAnchor: "start",
               }}
@@ -105,7 +102,7 @@ const Charts = ({ data }) => {
                 fontSize: 14,
                 textAnchor: "end",
               }}
-              padding={{ top: 80, bottom: 0 }}
+              padding={isSmallScreen ? {top: 10} : { top: 80, bottom: 0 }}
               scale={isLogScale ? "log" : "linear"}
               domain={isLogScale ? ["auto", "auto"] : ["auto", "auto"]}
             />

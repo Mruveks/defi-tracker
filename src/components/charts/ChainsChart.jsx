@@ -11,7 +11,7 @@ const Chart = () => {
   useEffect(() => {
     axios
       .get(
-        `https://api.llama.fi/charts/${chainId
+        `https://api.llama.fi/v2/historicalChainTvl/${chainId
           .replace(/ /g, "-")
           .toLowerCase()}`
       )
@@ -20,10 +20,11 @@ const Chart = () => {
         const formattedData = data[0].map((item) => {
           return {
             date: moment.unix(item.date).toDate(),
-            value: Number(item.totalLiquidityUSD),
+            value: Number(item.tvl),
           };
         });
         setFormattedData(formattedData);
+        console.log(data)
       })
       .catch((err) => {
         console.log(err);
