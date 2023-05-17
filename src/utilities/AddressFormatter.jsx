@@ -17,10 +17,10 @@ const AddressFormatter = ({ address }) => {
 
   return (
     <>
-      <span className="font-medium italic lg:block xl:block hidden">
+      <span className="font-medium italic lg:block xl:block hidden font-mono">
         {code ? code : address}
       </span>
-      <span className=" italic xl:hidden lg:hidden visible">
+      <span className=" italic xl:hidden lg:hidden visible font-mono">
         {firstFour}...{lastFour}
       </span>
     </>

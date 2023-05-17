@@ -67,10 +67,22 @@ const StablecoinPage = () => {
 
           <div className="col-span-2 mb-8 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
             <div className="space-y-8 h-fit text-white sm:w-full p-4 italic capitalize">
-              <h1>Total Circulating:</h1>
-              {currentCirculating}
-              <h1>Price</h1>
-              {stables.price ? `$${stables.price}` : "-"}
+            <div>
+                <h1>Current Circulating</h1>
+                {stables.price ? (
+                  <div className="font-mono">{currentCirculating}</div>
+                ) : (
+                  "-"
+                )}
+              </div>
+              <div>
+                <h1>Price</h1>
+                {stables.price ? (
+                  <div className="font-mono">${stables.price}</div>
+                ) : (
+                  "-"
+                )}
+              </div>
               <h1>Peg Mechanism</h1>
               {stables.pegMechanism}
             </div>
