@@ -79,7 +79,7 @@ const Charts = ({ data }) => {
               dataKey="date"
               axisLine={false}
               tickLine={false}
-              interval={365}
+              interval={182}
               tickFormatter={(value) => moment(value).format("MMM, YYYY")}
               stroke="gray"
               tickSize={2}

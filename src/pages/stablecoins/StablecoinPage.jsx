@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useParams } from "react-router";
 import axios from "axios";
-import Ranking from "../../components/rankings/Ranking";
+import Charts from "../../components/charts/Chart";
 import BackButton from "../../components/BackButton";
 import ProtocolAddress from "../../utilities/ProtocolAddress";
 import AddressFormatter from "../../utilities/AddressFormatter";
@@ -14,6 +14,8 @@ import { BsArrowUpRight } from "react-icons/bs";
 const StablecoinPage = () => {
   const { stableId } = useParams();
   const [stables, setStables] = useState(null);
+  const [extractedData, setExtractedData] = useState([]);
+
   const [lastDay, setLastDay] = useState();
   const [day, setDay] = useState();
 
@@ -23,7 +25,13 @@ const StablecoinPage = () => {
       .then((res) => {
         const data = res.data;
         setStables(data);
-        console.log(data);
+        const tokens = data.tokens;
+
+        const datesAndValues = tokens.map((token) => ({
+          date: moment.unix(token.date).toDate(),
+          value: Number(token.circulating.peggedUSD),
+        }));
+        setExtractedData(datesAndValues);
       })
       .catch((err) => {
         console.log(err);
@@ -32,35 +40,35 @@ const StablecoinPage = () => {
 
   return (
     <main className="mx-10 sm:mx-5">
-      <Helmet>
-        <title>
-          {stableId.charAt(0).toUpperCase() + stableId.slice(1)} | DefiTracker
-        </title>
-        <meta
-          name="description"
-          content={`Learn more about ${stables.name} features and how it works on our website.`}
-        />
-      </Helmet>
+      {stables ? (
+        <Helmet>
+          <title>{stables.name} | DefiTracker</title>
+          <meta
+            name="description"
+            content={`Learn more about ${stables.name} features and how it works on our website.`}
+          />
+        </Helmet>
+      ) : null}
 
       <BackButton />
-
       {stables ? (
         <div className="grid grid-cols-2 mb-5 rounded-xl">
           <div className="col-span-2 my-8 flex items-center text-center text-6xl sm:space-x-0 justify-center space-x-10 font-serif italic capitalize">
             <header>{stables.name}</header>
           </div>
+
           <div className="col-span-2 mb-8 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
             <div className="space-y-8 h-fit text-white sm:w-full p-4 italic capitalize">
-              <div className="grid w-full items-center">
-                <h1>Chain breakdown</h1>
-                <div className="w-full"></div>
-              </div>
+                <h1>col 1</h1>
+
+            </div>
+            <div className="flex">
+
+            <Charts data={extractedData} />
             </div>
           </div>
-          <div
-            key={stables.id}
-            className="col-span-2  grid grid-cols-2 sm:grid-cols-1 rounded-xl border border-gray-600"
-          >
+
+          <div className="col-span-2  grid grid-cols-2 sm:grid-cols-1 rounded-xl border border-gray-600">
             <div className="space-y-4 p-4 border-r  border-gray-600">
               <header className="text-4xl sm:text-2xl">
                 Protocol Information
@@ -103,7 +111,9 @@ const StablecoinPage = () => {
                     <ProtocolAddress address={stables.address} />
                   </p>
                 </div>
-              ) : null}
+              ) : (
+                stables.address
+              )}
             </div>
           </div>
         </div>
