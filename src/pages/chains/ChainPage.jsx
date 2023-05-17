@@ -12,7 +12,6 @@ import numeral from "numeral";
 const ChainPage = () => {
   const { chainId } = useParams();
   const [chains, setChains] = useState([]);
-
   const [lastDay, setLastDay] = useState();
   const [day, setDay] = useState();
 

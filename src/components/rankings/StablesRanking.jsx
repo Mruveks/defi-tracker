@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 import Loader from "../Loader";
 import numeral from "numeral";
 import CalculateChange from "../../utilities/CalculateChange";
@@ -47,16 +47,15 @@ const StablesRanking = () => {
                 } grid sm:grid-cols-3 grid-cols-7 items-center rounded-xl p-2 text-right`}
                 key={index}
               >
-                <a
-                  href={`https://www.coingecko.com/en/coins/${stable.gecko_id}`}
-                  target="_blank"
+                <Link
+                  to={`/stablecoins/${index + 1}`}
                   className="flex w-fit items-center space-x-4 sm:space-x-0 px-2 sm:px-0 py-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
                 >
                   <div className="w-6 sm:hidden">{index + 1}</div>
                   <div className=" text-blue-400">
                     {stable.name} ({stable.symbol})
                   </div>
-                </a>
+                </Link>
 
                 {stable.price >= 1 ? (
                   <div className="text-green-500 font-mono">

@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router";
 import "./App.css";
 
 import Navbar from "./components/Navbar";
-import MobileNavbar from "./components/MobileNavbar"
+import MobileNavbar from "./components/MobileNavbar";
 import {
   Home,
   Stables,
@@ -18,6 +18,7 @@ import ScrollTopButton from "./components/ScrollTopButton";
 
 const ProtocolPage = lazy(() => import("./pages/protocols/ProtocolPage"));
 const ChainPage = lazy(() => import("./pages/chains/ChainPage"));
+const StablecoinPage = lazy(() => import("./pages/stablecoins/StablecoinPage"));
 
 function App() {
   return (
@@ -43,6 +44,11 @@ function App() {
             key="/chain/:chainId"
             path="/chain/:chainId"
             element={<ChainPage />}
+          />
+          <Route
+            key="/stablecoins/:stableId"
+            path="/stablecoins/:stableId"
+            element={<StablecoinPage />}
           />
         </Routes>
       </Suspense>
