@@ -1,20 +1,19 @@
-
-body{
-  font-family: 'Trebuchet MS';
+body {
+  font-family: "Trebuchet MS";
   background-color: rgb(31 41 55);
   color: #fff;
   overflow-x: hidden;
 }
 
-#img{
-  filter: invert(1)
+#img {
+  filter: invert(1);
 }
 
-h1{
+h1 {
   color: lightslategray;
 }
-h1,h2{
-  font-size: xx-large;
+h2 {
+  color: lightslategray;
 }
 
 @media (max-width: 600px) {

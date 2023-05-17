@@ -76,10 +76,10 @@ const Navbar = () => {
             </li>
             <li className="group">
               <NavLink
-                to="/stables"
-                onClick={() => setActiveNav("/stables")}
+                to="/stablecoins"
+                onClick={() => setActiveNav("/stablecoins")}
                 className={`${
-                  activeNav === "/stables" ? "bg-gray-700" : ""
+                  activeNav === "/stablecoins" ? "bg-gray-700" : ""
                 } ${elementStyle} `}
               >
                 <BsCoin size={24} className="mr-2 wiggle" />

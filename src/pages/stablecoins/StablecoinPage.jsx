@@ -15,9 +15,7 @@ const StablecoinPage = () => {
   const { stableId } = useParams();
   const [stables, setStables] = useState(null);
   const [extractedData, setExtractedData] = useState([]);
-
-  const [lastDay, setLastDay] = useState();
-  const [day, setDay] = useState();
+  const [currentCirculating, setCurrentCirculating] = useState();
 
   useEffect(() => {
     axios
@@ -25,6 +23,8 @@ const StablecoinPage = () => {
       .then((res) => {
         const data = res.data;
         setStables(data);
+        console.log(stables);
+
         const tokens = data.tokens;
 
         const datesAndValues = tokens.map((token) => ({
@@ -32,6 +32,14 @@ const StablecoinPage = () => {
           value: Number(token.circulating.peggedUSD),
         }));
         setExtractedData(datesAndValues);
+
+        const today = datesAndValues.slice(
+          datesAndValues.length - 1,
+          datesAndValues.length
+        );
+        const todayValue = Object.values(today);
+        const value = todayValue[0].value;
+        setCurrentCirculating(numeral(value).format("$0.00a"));
       })
       .catch((err) => {
         console.log(err);
@@ -59,12 +67,16 @@ const StablecoinPage = () => {
 
           <div className="col-span-2 mb-8 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
             <div className="space-y-8 h-fit text-white sm:w-full p-4 italic capitalize">
-                <h1>col 1</h1>
-
+              <h1>Total Circulating:</h1>
+              {currentCirculating}
+              <h1>Price</h1>
+              {stables.price ? `$${stables.price}` : "-"}
+              <h1>Peg Mechanism</h1>
+              {stables.pegMechanism}
             </div>
-            <div className="flex">
 
-            <Charts data={extractedData} />
+            <div className="flex">
+              <Charts data={extractedData} />
             </div>
           </div>
 
@@ -74,9 +86,21 @@ const StablecoinPage = () => {
                 Protocol Information
               </header>
               <p className="text-justify">{stables.description}</p>
-
-              <h2>Audits:</h2>
-
+              <p className="text-justify">{stables.mintRedeemDescription}</p>
+              {stables.auditLinks ? (
+                <div>
+                  <h2>Audits:</h2>
+                  {stables.auditLinks.map((audits) => (
+                    <a
+                      href={audits}
+                      target="__blank"
+                      className="hover:underline italic flex overflow-x-clip"
+                    >
+                      {audits}
+                    </a>
+                  ))}
+                </div>
+              ) : null}
               <div className="flex space-x-2">
                 <a href={stables.url} target="_blank">
                   <button className="px-4 space-x-2 flex items-center py-2 rounded bg-gray-900 w-fit hover:bg-gray-600 transition duration-300">
@@ -93,11 +117,11 @@ const StablecoinPage = () => {
               </div>
             </div>
 
-            <div className="space-y-4 p-4 sm:border-t border-gray-600">
-              <header className="text-4xl sm:text-2xl">
+            <div className="space-y-4 sm:border-t border-gray-600">
+              <header className="text-4xl pt-4 px-4 sm:text-2xl">
                 Token Information
               </header>
-              <div className="flex space-x-2 overflow-hidden">
+              <div className="flex space-x-2 px-4 overflow-hidden">
                 <p>Address: </p>
                 {stables.address ? (
                   <AddressFormatter address={stables.address} />
@@ -106,7 +130,7 @@ const StablecoinPage = () => {
                 )}
               </div>
               {stables.address !== null ? (
-                <div className="items-center">
+                <div className="items-center pb-4 px-4">
                   <p>
                     <ProtocolAddress address={stables.address} />
                   </p>
@@ -114,6 +138,12 @@ const StablecoinPage = () => {
               ) : (
                 stables.address
               )}
+
+              <div className="grid grid-cols-2 border-t border-gray-600 p-4">
+                {stables.currentChainBalances ? (
+                  <div>stables.currentChainBalances</div>
+                ) : null}
+              </div>
             </div>
           </div>
         </div>

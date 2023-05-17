@@ -29,7 +29,7 @@ function App() {
       <Suspense>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/stables" element={<Stables />} />
+          <Route path="/stablecoins" element={<Stables />} />
           <Route path="/yields" element={<Yields />} />
           <Route path="/bridges" element={<Bridges />} />
           <Route path="/lending" element={<Lending />} />
