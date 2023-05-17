@@ -3,16 +3,17 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const ChainsSearchList = () => {
-  const [chains, setChains] = useState([]);
+  const [chains, setProtocols] = useState([]);
   const [searchData, setSearchData] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const searchListRef = useRef(null);
 
   useEffect(() => {
     axios
-      .get("https://api.llama.fi/chains")
+      .get("https://stablecoins.llama.fi/stablecoins?includePrices=false")
       .then((res) => {
-        setChains(res.data);
+        const data = res.data.peggedAssets
+        setProtocols(data)
       })
       .catch((err) => {
         console.log(err);
@@ -59,7 +60,7 @@ const ChainsSearchList = () => {
         <input
           type="search"
           className="border-gray-600 border border-b-0 rounded-b-none block w-full p-4 pl-10 rounded-xl bg-gray-900"
-          placeholder="Search Chains..."
+          placeholder="Search Stablecoins..."
           required
           onChange={(e) => {
             setSearchData(e.target.value);
@@ -90,7 +91,7 @@ const ChainsSearchList = () => {
                   className="flex h-14 px-2 w-full items-center border-t-gray-600 border-t hover:bg-gray-600"
                 >
                   <Link
-                    to={`/chain/${chain.name.toLowerCase()}`}
+                    to={`/stablecoins/${chain.id}`}
                     className="pl-8 flex-1 h-full flex items-center"
                     onClick={() => handleClickOutside()}
                   >

@@ -6,6 +6,7 @@ import Charts from "../../components/charts/Chart";
 import BackButton from "../../components/BackButton";
 import ProtocolAddress from "../../utilities/ProtocolAddress";
 import AddressFormatter from "../../utilities/AddressFormatter";
+import StablecoinsSearchList from "../../components/StablecoinsSearchList"
 import moment from "moment";
 import numeral from "numeral";
 import Loader from "../../components/Loader";
@@ -59,6 +60,7 @@ const StablecoinPage = () => {
       ) : null}
 
       <BackButton />
+      <StablecoinsSearchList />
       {stables ? (
         <div className="grid grid-cols-2 mb-5 rounded-xl">
           <div className="col-span-2 my-8 flex items-center text-center text-6xl sm:space-x-0 justify-center space-x-10 font-serif italic capitalize">
