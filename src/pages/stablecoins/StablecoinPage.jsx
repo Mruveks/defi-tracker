@@ -6,7 +6,7 @@ import Charts from "../../components/charts/Chart";
 import BackButton from "../../components/BackButton";
 import ProtocolAddress from "../../utilities/ProtocolAddress";
 import AddressFormatter from "../../utilities/AddressFormatter";
-import StablecoinsSearchList from "../../components/StablecoinsSearchList"
+import StablecoinsSearchList from "../../components/StablecoinsSearchList";
 import moment from "moment";
 import numeral from "numeral";
 import Loader from "../../components/Loader";
@@ -16,7 +16,8 @@ const StablecoinPage = () => {
   const { stableId } = useParams();
   const [stables, setStables] = useState(null);
   const [extractedData, setExtractedData] = useState([]);
-  const [currentCirculating, setCurrentCirculating] = useState();
+  const [currentCirculating, setCurrentCirculating] = useState([]);
+  const [valuesArray, setValuesArray] = useState([]);
 
   useEffect(() => {
     axios
@@ -24,16 +25,13 @@ const StablecoinPage = () => {
       .then((res) => {
         const data = res.data;
         setStables(data);
-        console.log(stables);
 
         const tokens = data.tokens;
-
         const datesAndValues = tokens.map((token) => ({
           date: moment.unix(token.date).toDate(),
           value: Number(token.circulating.peggedUSD),
         }));
         setExtractedData(datesAndValues);
-
         const today = datesAndValues.slice(
           datesAndValues.length - 1,
           datesAndValues.length
@@ -41,6 +39,14 @@ const StablecoinPage = () => {
         const todayValue = Object.values(today);
         const value = todayValue[0].value;
         setCurrentCirculating(numeral(value).format("$0.00a"));
+
+        const current = Object.values(data)[17];
+        const values = Object.entries(current).map(([chain, value], key) => ({
+          key,
+          chain,
+          value: value.peggedUSD,
+        }));
+        setValuesArray(values);
       })
       .catch((err) => {
         console.log(err);
@@ -69,7 +75,7 @@ const StablecoinPage = () => {
 
           <div className="col-span-2 mb-8 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
             <div className="space-y-8 h-fit text-white sm:w-full p-4 italic capitalize">
-            <div>
+              <div>
                 <h1>Current Circulating</h1>
                 {stables.price ? (
                   <div className="font-mono">{currentCirculating}</div>
@@ -80,7 +86,9 @@ const StablecoinPage = () => {
               <div>
                 <h1>Price</h1>
                 {stables.price ? (
-                  <div className="font-mono">${stables.price}</div>
+                  <div className="font-mono">
+                    {numeral(stables.price).format("$0.00a")}
+                  </div>
                 ) : (
                   "-"
                 )}
@@ -153,10 +161,25 @@ const StablecoinPage = () => {
                 stables.address
               )}
 
-              <div className="grid grid-cols-2 border-t border-gray-600 p-4">
-                {stables.currentChainBalances ? (
-                  <div>stables.currentChainBalances</div>
-                ) : null}
+              <div className="border-t border-gray-600">
+                <header className="text-4xl py-4 px-4 sm:text-2xl">
+                  Token Cirrculation
+                </header>
+                <div className="grid grid-cols-4">
+                  {valuesArray.sort((a, b) => b.value - a.value).map((item, index) => (
+                    <div
+                      className={`grid border-b-2 border-gray-700 py-2 px-4 ${
+                        index % 2 === 0 ? "bg-[#222f3e]" : ""
+                      }`}
+                      key={index}
+                    >
+                      <h3 className="italic">{item.chain}: </h3>
+                      <p className="font-mono">
+                        {numeral(item.value).format("$0.00a")}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
