@@ -151,7 +151,7 @@ const TVLranking = () => {
 
       <div className="h-max my-4 text-md border-gray-600 border p-2 rounded-xl bg-gray-800">
         <div className="grid grid-cols-8 lg:grid-cols-6 sm:grid-cols-2 text-lg sm:text-sm font-semibold p-2 border-b-gray-600 text-right italic capitalize">
-          <header className="text-left pl-12 sm:pl-0">Name</header>
+          <header className="text-left">Name</header>
           <header className="sm:hidden md:hidden lg:hidden block">
             Category
           </header>
@@ -178,13 +178,12 @@ const TVLranking = () => {
                   key={index}
                   className={` ${
                     index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"
-                  } grid grid-cols-8 md:grid-cols-6 lg:grid-cols-6 sm:grid-cols-2 items-center rounded-xl p-2 text-right`}
+                  } grid grid-cols-8 md:grid-cols-6 lg:grid-cols-6 sm:grid-cols-2 items-center rounded-xl my-2 text-right`}
                 >
                   <Link
                     to={`/protocol/${protocol.name}`}
-                    className="flex items-center sm:space-x-0 space-x-4 w-full px-2 sm:px-0 py-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
+                    className="flex items-center sm:space-x-0 space-x-4 w-full pl-2 py-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
                   >
-                    <p className="w-6 sm:hidden">{index + 1}</p>
                     <div className="w-full flex items-center text-blue-400 space-x-2">
                       <img
                         src={protocol.logo}
@@ -261,13 +260,12 @@ const TVLranking = () => {
                 key={index}
                 className={` ${
                   index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"
-                } grid grid-cols-8 md:grid-cols-6 lg:grid-cols-6 sm:grid-cols-2 items-center rounded-xl p-2 text-right`}
+                } grid grid-cols-8 md:grid-cols-6 lg:grid-cols-6 sm:grid-cols-2 items-center rounded-xl my-2 text-right`}
               >
                 <Link
                   to={`/protocol/${protocol.name}`}
-                  className="flex items-center sm:space-x-0 space-x-4 w-full px-2 sm:px-0 py-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
+                  className="flex items-center sm:space-x-0 space-x-4 w-full px-2 sm:px-0 pl-2 py-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
                 >
-                  <p className="w-6 sm:hidden">{index + 1}</p>
                   <div className="w-full flex items-center text-blue-400 space-x-2">
                     <img
                       src={protocol.logo}

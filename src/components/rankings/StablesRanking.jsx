@@ -22,7 +22,7 @@ const StablesRanking = () => {
     <>
       <div className="h-max mb-8 text-md border-gray-600 p-2 border rounded-xl bg-gray-800 ">
         <div className="grid sm:grid-cols-3 grid-cols-7 font-semibold p-2 text-lg sm:text-sm text-right capitalize italic">
-          <header className="text-left pl-12 sm:pl-0">Name</header>
+          <header className="text-left">Name</header>
           <header>Price</header>
           <header className="sm:hidden block">Peg</header>
           <header className="sm:hidden block">1d Change</header>
@@ -44,14 +44,13 @@ const StablesRanking = () => {
               <div
                 className={` ${
                   index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"
-                } grid sm:grid-cols-3 grid-cols-7 items-center rounded-xl p-2 text-right`}
+                } grid sm:grid-cols-3 grid-cols-7 items-center rounded-xl my-2 text-right`}
                 key={index}
               >
                 <Link
                   to={`/stablecoins/${index + 1}`}
-                  className="flex w-fit items-center space-x-4 sm:space-x-0 px-2 sm:px-0 py-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
+                  className="flex items-center space-x-4 sm:space-x-0 px-2 sm:px-0 py-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
                 >
-                  <div className="w-6 sm:hidden">{index + 1}</div>
                   <div className=" text-blue-400">
                     {stable.name} ({stable.symbol})
                   </div>

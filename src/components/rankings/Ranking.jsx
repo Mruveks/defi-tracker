@@ -9,6 +9,24 @@ const Ranking = ({ chain }) => {
   const [protocols, setProtocols] = useState([]);
   const [sortOrder, setSortOrder] = useState("asc");
   const [sortColumn, setSortColumn] = useState("");
+  
+  const handleSort = (column) => {
+    if (sortColumn === column) {
+      if (sortOrder === "desc") {
+        setSortOrder("asc");
+      } else if (sortOrder === "asc") {
+        setSortColumn("");
+        setSortOrder("");
+      }
+    } else {
+      setSortColumn(column);
+      setSortOrder("desc");
+    }
+  };
+
+  useEffect(() => {
+    handleSort('')
+  }, [chain])
 
   let CapChain = "";
 
@@ -31,20 +49,6 @@ const Ranking = ({ chain }) => {
       });
   }, []);
 
-  const handleSort = (column) => {
-    if (sortColumn === column) {
-      if (sortOrder === "desc") {
-        setSortOrder("asc");
-      } else if (sortOrder === "asc") {
-        setSortColumn("");
-        setSortOrder("");
-      }
-    } else {
-      setSortColumn(column);
-      setSortOrder("desc");
-    }
-  };
-
   return (
     <div className="h-max text-md border rounded-xl border-gray-600 p-2">
       <div
@@ -52,7 +56,7 @@ const Ranking = ({ chain }) => {
           chain === "Lending" || "CEX" ? "grid-cols-5" : "grid-cols-6"
         } sm:grid-cols-2 font-semibold p-2 text-lg sm:text-sm capitalize italic text-right`}
       >
-        <header className="text-left pl-12 sm:pl-0">Name</header>
+        <header className="text-left">Name</header>
         {chain === "Lending" || "CEX" || "DEX" ? null : (
           <header
             className="sm:hidden flex justify-self-end items-center space-x-2 hover:cursor-pointer w-fit"
@@ -153,13 +157,12 @@ const Ranking = ({ chain }) => {
                 CapChain === "Lending" || "CEX" || "DEX"
                   ? "grid-cols-5"
                   : "grid-cols-6"
-              } sm:grid-cols-2 items-center p-2 rounded-xl text-right`}
+              } sm:grid-cols-2 items-center my-2 rounded-xl text-right`}
             >
               <Link
                 to={`/protocol/${protocol.name}`}
-                className="flex items-center space-x-4 sm:space-x-0 px-2 sm:px-0 py-2 w-fit text-left hover:bg-gray-600 transition duration-300 rounded-xl"
+                className="flex items-center space-x-4 sm:space-x-0 px-2 sm:px-0 py-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
               >
-                <p className="w-6 sm:hidden">{index + 1}</p>
                 <div className="w-full flex items-center text-blue-400 space-x-2">
                   <img
                     src={protocol.logo}

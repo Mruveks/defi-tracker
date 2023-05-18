@@ -26,7 +26,9 @@ const YieldsRanking = () => {
     <>
       <div className="flex flex-wrap gap-4 my-4 sm:my-10 sm:gap-2 h-fit xl:justify-between justify-items-stretch">
         <button
-          className={`${buttonStyle} ${query === "" ? "bg-blue-600" : "bg-gray-700"}`}
+          className={`${buttonStyle} ${
+            query === "" ? "bg-blue-600" : "bg-gray-700"
+          }`}
           onClick={() => setQuery("")}
         >
           All
@@ -51,14 +53,18 @@ const YieldsRanking = () => {
         </button>
 
         <button
-          className={`${buttonStyle} ${query === "BSC" ? "bg-blue-600" : "bg-gray-700"}`}
+          className={`${buttonStyle} ${
+            query === "BSC" ? "bg-blue-600" : "bg-gray-700"
+          }`}
           onClick={() => setQuery("BSC")}
         >
           BSC
         </button>
 
         <button
-          className={`${buttonStyle} ${query === "Tron" ? "bg-blue-600" : "bg-gray-700"}`}
+          className={`${buttonStyle} ${
+            query === "Tron" ? "bg-blue-600" : "bg-gray-700"
+          }`}
           onClick={() => setQuery("Tron")}
         >
           Tron
@@ -101,7 +107,9 @@ const YieldsRanking = () => {
         </button>
 
         <button
-          className={`${buttonStyle} ${query === "Mixin" ? "bg-blue-600" : "bg-gray-700"}`}
+          className={`${buttonStyle} ${
+            query === "Mixin" ? "bg-blue-600" : "bg-gray-700"
+          }`}
           onClick={() => setQuery("Mixin")}
         >
           Mixin
@@ -145,7 +153,7 @@ const YieldsRanking = () => {
 
       <div className="h-max mb-8 text-md border rounded-xl border-gray-600 p-2">
         <div className="grid grid-cols-7 sm:grid-cols-3 font-semibold p-2 text-lg sm:text-sm text-right capitalize italic">
-          <header className="text-left pl-12 sm:pl-0">Pool</header>
+          <header className="text-left pl-2">Pool</header>
           <header className="text-left pl-4">Project</header>
           <header className="sm:hidden block">Chain</header>
           <header>APY</header>
@@ -167,7 +175,6 @@ const YieldsRanking = () => {
                 } grid grid-cols-7 sm:grid-cols-3 items-center rounded-xl p-2 text-right`}
               >
                 <div className="flex space-x-4 sm:space-x-0 sm:p-0 text-left p-2 capitalize items-center">
-                  <p className="w-6 sm:hidden">{index + 1}</p>
                   <p>{pool.symbol.toLowerCase()}</p>
                 </div>
                 <Link
@@ -243,9 +250,8 @@ const YieldsRanking = () => {
               key={index}
             >
               <div className="flex space-x-4 sm:space-x-0 sm:p-0 text-left p-2 capitalize items-center">
-                  <p className="w-6 sm:hidden">{index + 1}</p>
-                  <p>{pool.symbol.toLowerCase()}</p>
-                </div>
+                <p>{pool.symbol.toLowerCase()}</p>
+              </div>
               <Link
                 to={`/protocol/${pool.project}`}
                 className="flex w-fit items-center text-left hover:bg-gray-600 transition duration-100 rounded-xl"
