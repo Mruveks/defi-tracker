@@ -157,7 +157,7 @@ const Ranking = ({ chain }) => {
                 CapChain === "Lending" || "CEX" || "DEX"
                   ? "grid-cols-5"
                   : "grid-cols-6"
-              } sm:grid-cols-2 items-center my-2 rounded-xl text-right`}
+              } sm:grid-cols-2 items-center my-2 pr-2 rounded-xl text-right`}
             >
               <Link
                 to={`/protocol/${protocol.name}`}

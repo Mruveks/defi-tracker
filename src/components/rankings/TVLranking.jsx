@@ -178,7 +178,7 @@ const TVLranking = () => {
                   key={index}
                   className={` ${
                     index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"
-                  } grid grid-cols-8 md:grid-cols-6 lg:grid-cols-6 sm:grid-cols-2 items-center rounded-xl my-2 text-right`}
+                  } grid grid-cols-8 md:grid-cols-6 lg:grid-cols-6 sm:grid-cols-2 items-center rounded-xl my-2 pr-2 text-right`}
                 >
                   <Link
                     to={`/protocol/${protocol.name}`}
