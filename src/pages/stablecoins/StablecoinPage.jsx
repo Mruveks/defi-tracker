@@ -163,7 +163,7 @@ const StablecoinPage = () => {
 
               <div className="border-t border-gray-600">
                 <header className="text-4xl py-4 px-4 sm:text-2xl">
-                  Token Cirrculation
+                  Token Circulation
                 </header>
                 <div className="grid grid-cols-4">
                   {valuesArray.sort((a, b) => b.value - a.value).map((item, index) => (

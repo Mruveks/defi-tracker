@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 
 const Ranking = ({ chain }) => {
   const [protocols, setProtocols] = useState([]);
+  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortColumn, setSortColumn] = useState("");
   let CapChain = "";
 
   const capitalizeChain = (chain) => {
@@ -27,6 +29,19 @@ const Ranking = ({ chain }) => {
       });
   }, []);
 
+  const handleSort = (column) => {
+    if (column === sortColumn) {
+      setSortOrder((prevSortOrder) => {
+        if (prevSortOrder === "asc") return "desc";
+        if (prevSortOrder === "desc") return "normal";
+        return "asc";
+      });
+    } else {
+      setSortColumn(column);
+      setSortOrder("asc");
+    }
+  };
+
   return (
     <div className="h-max text-md border rounded-xl border-gray-600 p-2">
       <div
@@ -38,10 +53,27 @@ const Ranking = ({ chain }) => {
         {chain === "Lending" || "CEX" || "DEX" ? null : (
           <header className="text-right">Category</header>
         )}
-        <header className="sm:hidden block">1h Change</header>
-        <header className="sm:hidden block">1d Change</header>
-        <header className="sm:hidden block">7d Change</header>
-        <header>TVL</header>
+        <header
+          className="sm:hidden block"
+          onClick={() => handleSort("change_1h")}
+        >
+          1h Change
+        </header>{" "}
+        <header
+          className="sm:hidden block"
+          onClick={() => handleSort("change_1d")}
+        >
+          1d Change
+        </header>{" "}
+        <header
+          className="sm:hidden block"
+          onClick={() => handleSort("change_7d")}
+        >
+          7d Change
+        </header>
+        <header className="sm:hidden block" onClick={() => handleSort("tvl")}>
+          TVL
+        </header>
       </div>
 
       {protocols.length ? (
@@ -54,6 +86,13 @@ const Ranking = ({ chain }) => {
               (CapChain === "CEX" || item.category !== "CEX") &&
               (item.chain === CapChain || item.category === CapChain)
           )
+          .sort((a, b) => {
+            if (sortOrder === "asc") {
+              return a[sortColumn] - b[sortColumn];
+            } else {
+              return b[sortColumn] - a[sortColumn];
+            }
+          })
           .map((protocol, index) => (
             <div
               key={index}
