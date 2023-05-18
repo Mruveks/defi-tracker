@@ -3,11 +3,13 @@ import Loader from "../Loader";
 import axios from "axios";
 import numeral from "numeral";
 import { Link } from "react-router-dom";
+import { TiArrowUnsorted } from "react-icons/ti";
 
 const Ranking = ({ chain }) => {
   const [protocols, setProtocols] = useState([]);
   const [sortOrder, setSortOrder] = useState("asc");
   const [sortColumn, setSortColumn] = useState("");
+
   let CapChain = "";
 
   const capitalizeChain = (chain) => {
@@ -30,15 +32,16 @@ const Ranking = ({ chain }) => {
   }, []);
 
   const handleSort = (column) => {
-    if (column === sortColumn) {
-      setSortOrder((prevSortOrder) => {
-        if (prevSortOrder === "asc") return "desc";
-        if (prevSortOrder === "desc") return "normal";
-        return "asc";
-      });
+    if (sortColumn === column) {
+      if (sortOrder === "desc") {
+        setSortOrder("asc");
+      } else if (sortOrder === "asc") {
+        setSortColumn("");
+        setSortOrder("");
+      }
     } else {
       setSortColumn(column);
-      setSortOrder("asc");
+      setSortOrder("desc");
     }
   };
 
@@ -51,28 +54,76 @@ const Ranking = ({ chain }) => {
       >
         <header className="text-left pl-12 sm:pl-0">Name</header>
         {chain === "Lending" || "CEX" || "DEX" ? null : (
-          <header className="text-right">Category</header>
+          <header
+            className="sm:hidden flex justify-self-end items-center space-x-2 hover:cursor-pointer w-fit"
+            onClick={() => handleSort("category")}
+          >
+            Category <TiArrowUnsorted className="text-base text-gray-500" />
+          </header>
         )}
         <header
-          className="sm:hidden block"
+          className="sm:hidden flex justify-self-end items-center space-x-2 hover:cursor-pointer w-fit"
           onClick={() => handleSort("change_1h")}
         >
-          1h Change
-        </header>{" "}
+          <p>1h Change</p>
+          {sortColumn === "change_1h" && (
+            <TiArrowUnsorted
+              className={`text-base ${
+                sortOrder === "asc" ? "text-red-500" : "text-green-500"
+              }`}
+            />
+          )}
+          {sortColumn !== "change_1h" && (
+            <TiArrowUnsorted className="text-base text-gray-500" />
+          )}
+        </header>
         <header
-          className="sm:hidden block"
+          className="sm:hidden flex justify-self-end items-center space-x-2 hover:cursor-pointer w-fit"
           onClick={() => handleSort("change_1d")}
         >
-          1d Change
-        </header>{" "}
+          <p>1d Change</p>
+          {sortColumn === "change_1d" && (
+            <TiArrowUnsorted
+              className={`text-base ${
+                sortOrder === "asc" ? "text-red-500" : "text-green-500"
+              }`}
+            />
+          )}
+          {sortColumn !== "change_1d" && (
+            <TiArrowUnsorted className="text-base text-gray-500" />
+          )}
+        </header>
         <header
-          className="sm:hidden block"
+          className="sm:hidden flex justify-self-end items-center space-x-2 hover:cursor-pointer w-fit"
           onClick={() => handleSort("change_7d")}
         >
-          7d Change
+          <p>7d Change</p>
+          {sortColumn === "change_7d" && (
+            <TiArrowUnsorted
+              className={`text-base ${
+                sortOrder === "asc" ? "text-red-500" : "text-green-500"
+              }`}
+            />
+          )}
+          {sortColumn !== "change_7d" && (
+            <TiArrowUnsorted className="text-base text-gray-500" />
+          )}
         </header>
-        <header className="sm:hidden block" onClick={() => handleSort("tvl")}>
+        <header
+          className="sm:hidden flex justify-self-end items-center space-x-2 hover:cursor-pointer w-fit"
+          onClick={() => handleSort("tvl")}
+        >
           TVL
+          {sortColumn === "tvl" && (
+            <TiArrowUnsorted
+              className={`text-base ${
+                sortOrder === "asc" ? "text-red-500" : "text-green-500"
+              }`}
+            />
+          )}
+          {sortColumn !== "tvl" && (
+            <TiArrowUnsorted className="text-base text-gray-500" />
+          )}
         </header>
       </div>
 
