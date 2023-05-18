@@ -56,9 +56,9 @@ const Navbar = () => {
     <div className="sm:hidden md:hidden block h-full w-48 px-2 fixed left-0 top-0 ">
       <aside>
         <div className="px-4 py-4 h-full overflow-auto">
-          <ul className="space-y-4 text-base ">
+          <ul className="space-y-2 text-base">
             <li>
-              <header className="flex items-center text-xl text-gray-400 ">
+              <header className="flex items-center text-xl mb-4 text-gray-400 ">
                 Dashboards
               </header>
             </li>
@@ -148,11 +148,11 @@ const Navbar = () => {
             </li>
           </ul>
 
-          <div className="border-b-2 border-gray-600 my-4"></div>
+          <div className="border-b-2 border-gray-600 my-2"></div>
 
-          <ul className="space-y-4 text-base ">
+          <ul className="space-y-2 text-base ">
             <li>
-              <header className="flex items-center text-xl text-gray-400">
+              <header className="flex items-center text-xl mb-4 text-gray-400">
                 Top Chains
               </header>
             </li>
