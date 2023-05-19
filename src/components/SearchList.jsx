@@ -150,7 +150,7 @@ const SearchList = () => {
                       <img
                         src={val.logo}
                         alt="logo"
-                        className="h-8 w-8 rounded-full mr-2"
+                        className="h-8 w-8 rounded-full mr-2 bg-gray-600"
                       />
                     ) : (
                       <BsCoin className="h-8 w-8 mr-2" />
