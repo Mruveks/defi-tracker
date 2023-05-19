@@ -82,7 +82,7 @@ const ProtocolPage = () => {
                       <img
                         src={protocolData[0].logo}
                         alt={protocolId}
-                        className="sm:hidden h-8 w-8 mr-2 rounded-full shadow-"
+                        className="sm:hidden h-8 w-8 mr-2 rounded-full"
                       />
                       <p>{protocolId} ({protocol.symbol})</p>
                     </header>

@@ -11,8 +11,8 @@ import moment from "moment";
 import numeral from "numeral";
 import Loader from "../../components/Loader";
 import { BsArrowUpRight } from "react-icons/bs";
-import PieChart from "../../components/charts/PieChart"
-
+import PieChart from "../../components/charts/PieChart";
+import { BsCoin } from "react-icons/bs";
 const StablecoinPage = () => {
   const { stableId } = useParams();
   const [stables, setStables] = useState(null);
@@ -70,12 +70,14 @@ const StablecoinPage = () => {
       <SearchList />
       {stables ? (
         <div className="grid grid-cols-2 mb-5 rounded-xl">
-          <div className="col-span-2 my-8 flex items-center text-center text-6xl sm:space-x-0 justify-center space-x-10 font-serif italic capitalize">
-            <header>{stables.name}</header>
-          </div>
 
-          <div className="col-span-2 mb-8 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
+
+          <div className="col-span-2 my-4 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
             <div className="space-y-8 h-fit text-white sm:w-full p-4 italic capitalize">
+              <div className="col-span-2 my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-2 w-[110%]">
+                <BsCoin/>
+                <header>{stables.name}</header>
+              </div>
               <div>
                 <h1>Current Circulating</h1>
                 {stables.price ? (
@@ -168,19 +170,22 @@ const StablecoinPage = () => {
                 </header>
                 <PieChart data={valuesArray} />
                 <div className="grid grid-cols-4">
-                  {valuesArray.sort((a, b) => b.value - a.value).filter(item => item.value > 1000).map((item, index) => (
-                    <div
-                      className={`grid border-b-2 border-gray-700 py-2 px-4 ${
-                        index % 2 === 0 ? "bg-[#222f3e]" : ""
-                      }`}
-                      key={index}
-                    >
-                      <h3 className="italic">{item.chain}: </h3>
-                      <p className="font-mono">
-                        {numeral(item.value).format("$0.00a")}
-                      </p>
-                    </div>
-                  ))}
+                  {valuesArray
+                    .sort((a, b) => b.value - a.value)
+                    .filter((item) => item.value > 1000)
+                    .map((item, index) => (
+                      <div
+                        className={`grid border-b-2 border-gray-700 py-2 px-4 ${
+                          index % 2 === 0 ? "bg-[#222f3e]" : ""
+                        }`}
+                        key={index}
+                      >
+                        <h3 className="italic">{item.chain}: </h3>
+                        <p className="font-mono">
+                          {numeral(item.value).format("$0.00a")}
+                        </p>
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>
