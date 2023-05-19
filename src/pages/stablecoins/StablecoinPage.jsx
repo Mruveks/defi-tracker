@@ -168,7 +168,7 @@ const StablecoinPage = () => {
                 </header>
                 <PieChart data={valuesArray} />
                 <div className="grid grid-cols-4">
-                  {valuesArray.sort((a, b) => b.value - a.value).map((item, index) => (
+                  {valuesArray.sort((a, b) => b.value - a.value).filter(item => item.value > 1000).map((item, index) => (
                     <div
                       className={`grid border-b-2 border-gray-700 py-2 px-4 ${
                         index % 2 === 0 ? "bg-[#222f3e]" : ""

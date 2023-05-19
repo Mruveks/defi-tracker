@@ -89,7 +89,7 @@ const Charts = ({ data }) => {
                 fill="#fff"
                 textAnchor={x > cx ? "start" : "end"}
                 dominantBaseline="central"
-                className={isSmallScreen ? "" : "text-xl"}
+                className={isSmallScreen ? "" : "text-lg"}
               >
                 {isSmallScreen ? (
                   <>
