@@ -93,13 +93,13 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink
-              to="/stables"
+              to="/stablecoins"
               onClick={() => {
-                setActiveNav("/stables");
+                setActiveNav("/stablecoins");
                 openNav();
               }}
               className={`${
-                activeNav === "/stables" ? "bg-gray-700" : ""
+                activeNav === "/stablecoins" ? "bg-gray-700" : ""
               } ${elementStyle} `}
             >
               <BsCoin size={28} className="mr-2" />
