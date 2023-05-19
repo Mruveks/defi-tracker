@@ -29,13 +29,14 @@ const SearchList = () => {
         const stablecoinsData = stablecoinResponse.data.peggedAssets;
         const chainsData = chainsResponse.data;
         const protocolsData = protocolsResponse.data;
-        console.log(stablecoinsData);
-        console.log(chainsData);
-        console.log(protocolsData);
+
+        const chainsDataWithTag = chainsData.map((chain) => {
+          return { ...chain, tag: "chain" };
+        });
 
         const mergedData = [
           ...stablecoinsData,
-          ...chainsData,
+          ...chainsDataWithTag,
           ...protocolsData,
         ];
 
@@ -125,7 +126,6 @@ const SearchList = () => {
                 return val;
               }
             })
-
             .filter((val) => val.category != "CEX" && val.category != "Chain")
             .map((val, key) => {
               return (
@@ -137,7 +137,7 @@ const SearchList = () => {
                     to={
                       val.pegType
                         ? `/stablecoins/${val.id}`
-                        : val.chainId
+                        : val.tag === "chain"
                         ? `/chain/${val.name}`
                         : val.chain
                         ? `/protocol/${val.name}`
