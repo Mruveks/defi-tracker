@@ -54,8 +54,8 @@ const TVLchart = () => {
       {chartData.length ? (
         <div className="flex flex-col lg:flex-row">
           <div className="grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
-            <div className="space-y-8 h-fit text-white sm:w-full text-2xl p-4 italic capitalize">
-              <div className="col-span-2 my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-4 w-[110%]">
+            <div className="grid lg:grid-col grid-flow-row space-y-8 h-fit text-white sm:w-full text-2xl p-4 italic capitalize">
+              <div className="my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-4 w-[110%]">
                 <header className="whitespace-pre-wrap flex">DeFi</header>
               </div>
               <div className="grid h-fit grid-flow-row w-fit justify-center py-4">

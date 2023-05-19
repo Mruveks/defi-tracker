@@ -68,67 +68,67 @@ const ChainPage = () => {
       <BackButton />
       <SearchList />
 
-      <div className="h-max text-white ">
-        {chains.length ? (
-          <div className="col-span-2 mt-4 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
-            <div className="space-y-8 h-fit text-white sm:w-full text-2xl p-4 italic capitalize">
-              <div className="col-span-2 my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-4 w-[110%]">
-                <header className="whitespace-pre-wrap flex">{chainId}</header>
-              </div>
-              <div className="grid h-fit grid-flow-row w-fit justify-center py-4">
-                <div>Total Value Locked</div>
-                <div className="text-blue-500 font-mono">
-                  {numeral(day).format("$0.00a")}
-                </div>
-              </div>
-
-              <div className="grid h-fit grid-flow-row w-full pb-4">
-                <div>24h Change</div>
-                {percentageChange > 0 ? (
-                  <div className="text-green-500 font-mono">
-                    +{percentageChange}%
-                  </div>
-                ) : (
-                  <div className="text-red-500 font-mono">
-                    {percentageChange}%
-                  </div>
-                )}
-                {changes > 0 ? (
-                  <div className="text-green-500 font-mono">
-                    {"+" + numeral(changes).format("$0.00a")}
-                  </div>
-                ) : (
-                  <div className="text-red-500 font-mono">
-                    {numeral(changes).format("$0.00a")}
-                  </div>
-                )}
-              </div>
-              <div className="grid h-fit grid-flow-row w-full pb-4">
-                <div>7 day Change</div>
-                {percentageChange_7 > 0 ? (
-                  <div className="text-green-500 font-mono">
-                    +{percentageChange_7}%
-                  </div>
-                ) : (
-                  <div className="text-red-500 font-mono">
-                    {percentageChange_7}%
-                  </div>
-                )}
-                {changes_7 > 0 ? (
-                  <div className="text-green-500 font-mono">
-                    {"+" + numeral(changes_7).format("$0.00a")}
-                  </div>
-                ) : (
-                  <div className="text-red-500 font-mono">
-                    {numeral(changes_7).format("$0.00a")}
-                  </div>
-                )}
+      {chains.length ? (
+        <div className="grid mt-4 sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
+          <div className="grid lg:grid-col grid-flow-row space-y-8 h-fit text-white sm:w-full text-2xl p-4 italic capitalize">
+            <div className="my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-4 w-[110%]">
+              <header className="whitespace-pre-wrap flex capitalize">
+                {chainId}
+              </header>
+            </div>
+            <div className="grid h-fit grid-flow-row w-fit justify-center py-4">
+              <div>Total Value Locked</div>
+              <div className="text-blue-500 font-mono div">
+                {numeral(day).format("$0.00a")}
               </div>
             </div>
-            <ChainsChart />
+            <div>
+              <div>24h Change</div>
+              {percentageChange > 0 ? (
+                <div className="text-green-500 font-mono div">
+                  +{percentageChange}%
+                </div>
+              ) : (
+                <div className="text-red-500 font-mono div">
+                  {percentageChange}%
+                </div>
+              )}
+              {changes > 0 ? (
+                <div className="text-green-500 font-mono div">
+                  {"+" + numeral(changes).format("$0.00a")}
+                </div>
+              ) : (
+                <div className="text-red-500 font-mono div">
+                  {numeral(changes).format("$0.00a")}
+                </div>
+              )}
+            </div>
+            <div>
+              <div>7 day Change</div>
+              {percentageChange_7 > 0 ? (
+                <div className="text-green-500 font-mono div">
+                  +{percentageChange_7}%
+                </div>
+              ) : (
+                <div className="text-red-500 font-mono div">
+                  {percentageChange_7}%
+                </div>
+              )}
+              {changes_7 > 0 ? (
+                <div className="text-green-500 font-mono div">
+                  {"+" + numeral(changes_7).format("$0.00a")}
+                </div>
+              ) : (
+                <div className="text-red-500 font-mono div">
+                  {numeral(changes_7).format("$0.00a")}
+                </div>
+              )}
+            </div>
           </div>
-        ) : null}
-      </div>
+
+          <ChainsChart />
+        </div>
+      ) : null}
 
       <div className="h-max my-4 text-white">
         <Ranking chain={chainId} />
