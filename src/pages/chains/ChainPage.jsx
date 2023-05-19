@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import axios from "axios";
 import ChainsChart from "../../components/charts/ChainsChart";
 import Ranking from "../../components/rankings/Ranking";
-import ChainsSearchList from "../../components/ChainsSearchList";
+import SearchList from "../../components/SearchList";
 import BackButton from "../../components/BackButton";
 import moment from "moment";
 import numeral from "numeral";
@@ -59,7 +59,7 @@ const ChainPage = () => {
       </Helmet>
 
       <BackButton />
-      <ChainsSearchList />
+      <SearchList />
 
       <div className="h-max text-white ">
         {chains.length ? (

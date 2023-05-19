@@ -101,7 +101,7 @@ const SearchList = () => {
         <input
           type="search"
           className="border-gray-600 border border-b-0 rounded-b-none block w-full p-4 pl-10 rounded-xl bg-gray-900"
-          placeholder="Search for Protocols, Chains and Stablecoins..."
+          placeholder="Search for Defi Protocols, Chains and Stablecoins..."
           required
           onChange={(e) => {
             setSearchData(e.target.value);

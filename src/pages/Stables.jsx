@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import StablesRanking from "../components/rankings/StablesRanking";
 import StablesTVLchart from "../components/charts/StablesTVLchart";
-import StablecoinsSearchList from "../components/StablecoinsSearchList"
+import SearchList from "../components/SearchList"
 import BackButton from "../components/BackButton";
 
 const Stables = () => {
@@ -14,7 +14,7 @@ const Stables = () => {
       </Helmet>
 
       <BackButton />
-      <StablecoinsSearchList />
+      <SearchList />
 
       <div className="h-max my-4">
         <StablesTVLchart />
