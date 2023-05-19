@@ -107,7 +107,7 @@ const StablecoinPage = () => {
 
           <div className="col-span-2  grid grid-cols-2 sm:grid-cols-1 rounded-xl border border-gray-600">
             <div className="space-y-4 p-4 border-r  border-gray-600">
-              <header className="text-4xl sm:text-2xl">
+              <header className="text-2xl sm:text-2xl font-bold">
                 Protocol Information
               </header>
               <p className="text-justify">{stables.description}</p>
@@ -143,7 +143,7 @@ const StablecoinPage = () => {
             </div>
 
             <div className="space-y-4 sm:border-t border-gray-600">
-              <header className="text-4xl pt-4 px-4 sm:text-2xl">
+              <header className="text-2xl pt-4 px-4 sm:text-2xl">
                 Token Information
               </header>
               <div className="flex space-x-2 px-4 overflow-hidden">
@@ -165,7 +165,7 @@ const StablecoinPage = () => {
               )}
 
               <div className="border-t border-gray-600">
-                <header className="text-4xl py-4 px-4 sm:text-2xl">
+                <header className="text-2xl py-4 px-4 sm:text-2xl">
                   Token Circulation
                 </header>
                 <PieChart data={valuesArray} />

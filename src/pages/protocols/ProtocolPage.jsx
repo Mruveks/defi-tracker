@@ -159,7 +159,7 @@ const ProtocolPage = () => {
               className="col-span-2  grid grid-cols-2 sm:grid-cols-1 rounded-xl border border-gray-600"
             >
               <div className="space-y-4 p-4 border-r  border-gray-600">
-                <header className="text-4xl sm:text-2xl">
+                <header className="text-2xl sm:text-2xl">
                   Protocol Information
                 </header>
                 <p className="text-justify">{protocol.description}</p>
@@ -205,7 +205,7 @@ const ProtocolPage = () => {
                 {protocol.raises && protocol.raises.length > 0 && (
                   <div className="space-y-12 pt-6">
                     <div>
-                      <header className="text-4xl sm:text-2xl mb-2">
+                      <header className="text-2xl sm:text-2xl mb-2">
                         Raises
                       </header>
                       <div className="font-mono space-y-4">
@@ -214,7 +214,7 @@ const ProtocolPage = () => {
                     </div>
                     <div className="grid gap-20 grid-cols-2">
                       <div>
-                        <header className="text-4xl sm:text-2xl mb-2">
+                        <header className="text-2xl sm:text-2xl mb-2">
                           Lead Investors
                         </header>
                         {protocol.raises.map((raise, index) => (
@@ -224,7 +224,7 @@ const ProtocolPage = () => {
                         ))}
                       </div>
                       <div>
-                        <header className="text-4xl sm:text-2xl mb-2">
+                        <header className="text-2xl sm:text-2xl mb-2">
                           Other Investors
                         </header>
                         {protocol.raises.map((raise, index) => (
@@ -243,7 +243,7 @@ const ProtocolPage = () => {
               </div>
 
               <div className="space-y-4 p-4 sm:border-t border-gray-600">
-                <header className="text-4xl sm:text-2xl">
+                <header className="text-2xl sm:text-2xl">
                   Token Information
                 </header>
                 <div className="flex space-x-2 overflow-hidden">
