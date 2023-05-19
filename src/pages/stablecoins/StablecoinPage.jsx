@@ -11,6 +11,7 @@ import moment from "moment";
 import numeral from "numeral";
 import Loader from "../../components/Loader";
 import { BsArrowUpRight } from "react-icons/bs";
+import PieChart from "../../components/charts/PieChart"
 
 const StablecoinPage = () => {
   const { stableId } = useParams();
@@ -165,6 +166,7 @@ const StablecoinPage = () => {
                 <header className="text-4xl py-4 px-4 sm:text-2xl">
                   Token Circulation
                 </header>
+                <PieChart data={valuesArray} />
                 <div className="grid grid-cols-4">
                   {valuesArray.sort((a, b) => b.value - a.value).map((item, index) => (
                     <div
