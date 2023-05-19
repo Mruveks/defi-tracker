@@ -14,6 +14,7 @@ const ChainPage = () => {
   const [chains, setChains] = useState([]);
   const [lastDay, setLastDay] = useState();
   const [day, setDay] = useState();
+  const [weekAgo, setWeekAgo] = useState();
 
   useEffect(() => {
     axios
@@ -37,9 +38,13 @@ const ChainPage = () => {
           datasource.length - 2,
           datasource.length - 1
         );
-
+        const weekAgoValue = datasource.slice(
+          datasource.length - 8,
+          datasource.length - 7
+        );
         setLastDay(yesterday[0].value);
         setDay(today[0].value);
+        setWeekAgo(weekAgoValue[0].value);
       })
       .catch((err) => {
         console.log(err);
@@ -48,6 +53,8 @@ const ChainPage = () => {
 
   const changes = day - lastDay;
   const percentageChange = (((day - lastDay) / lastDay) * 100).toFixed(2);
+  const changes_7 = day - weekAgo;
+  const percentageChange_7 = (((day - weekAgo) / weekAgo) * 100).toFixed(2);
 
   return (
     <div className="grid grid-cols-1 text-md mx-10 sm:mx-5">
@@ -64,19 +71,19 @@ const ChainPage = () => {
       <div className="h-max text-white ">
         {chains.length ? (
           <div className="col-span-2 mt-4 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
-            <div className="grid gap-10 w-full text-4xl m-6 sm:m-0 sm:text-center items-center text-left">
-              <div className="pt-4 capitalize">
-                <header className="">{chainId}</header>
+            <div className="space-y-8 h-fit text-white sm:w-full text-2xl p-4 italic capitalize">
+              <div className="col-span-2 my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-4 w-[110%]">
+                <header className="whitespace-pre-wrap flex">{chainId}</header>
               </div>
-              <div className="grid h-fit grid-flow-row w-full py-4">
-                <h1>Total Value Locked</h1>
+              <div className="grid h-fit grid-flow-row w-fit justify-center py-4">
+                <div>Total Value Locked</div>
                 <div className="text-blue-500 font-mono">
                   {numeral(day).format("$0.00a")}
                 </div>
               </div>
 
               <div className="grid h-fit grid-flow-row w-full pb-4">
-                <h1>24h Change</h1>
+                <div>24h Change</div>
                 {percentageChange > 0 ? (
                   <div className="text-green-500 font-mono">
                     +{percentageChange}%
@@ -93,6 +100,27 @@ const ChainPage = () => {
                 ) : (
                   <div className="text-red-500 font-mono">
                     {numeral(changes).format("$0.00a")}
+                  </div>
+                )}
+              </div>
+              <div className="grid h-fit grid-flow-row w-full pb-4">
+                <div>7 day Change</div>
+                {percentageChange_7 > 0 ? (
+                  <div className="text-green-500 font-mono">
+                    +{percentageChange_7}%
+                  </div>
+                ) : (
+                  <div className="text-red-500 font-mono">
+                    {percentageChange_7}%
+                  </div>
+                )}
+                {changes_7 > 0 ? (
+                  <div className="text-green-500 font-mono">
+                    {"+" + numeral(changes_7).format("$0.00a")}
+                  </div>
+                ) : (
+                  <div className="text-red-500 font-mono">
+                    {numeral(changes_7).format("$0.00a")}
                   </div>
                 )}
               </div>

@@ -9,6 +9,7 @@ const StablesTVLchart = () => {
   const [stable, setStables] = useState([]);
   const [lastDay, setLastDay] = useState();
   const [day, setDay] = useState();
+  const [weekAgo, setWeekAgo] = useState();
 
   useEffect(() => {
     axios
@@ -29,36 +30,43 @@ const StablesTVLchart = () => {
 
         setLastDay(datasource[767].value);
         setDay(datasource[768].value);
+        setWeekAgo(datasource[761].value);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  const num1 = parseFloat(day).toFixed(2);
-  const num2 = parseFloat(lastDay).toFixed(2);
+  const dollarChange = (day - lastDay).toFixed(2);
+  const percentageChange = (((day - lastDay) / lastDay) * 100).toFixed(2);
 
-  const dollarChange = (num1 - num2).toFixed(2);
-  const percentageChange = (((num1 - num2) / num2) * 100).toFixed(2);
+  const dollarChange_7d = (day - weekAgo).toFixed(2);
+  const percentageChange_7d = (((day - weekAgo) / weekAgo) * 100).toFixed(2);
 
   return (
     <>
       {stable.length ? (
         <div className="grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
-          <div className="grid gap-10 w-full text-4xl m-6 sm:m-0 sm:text-center text-left">
-            <div className="grid h-fit grid-flow-row w-full py-4">
+          <div className="space-y-8 h-fit text-white sm:w-full text-2xl p-4 italic capitalize">
+            <div className="col-span-2 my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-4 w-[110%]">
+              <header className="whitespace-pre-wrap flex">Stablecoins</header>
+            </div>
+            <div className="grid h-fit grid-flow-row w-fit justify-center py-4">
               <div>Total Value Locked</div>
               <div className="text-blue-500 font-mono">
-                {numeral(num2).format("$0.00a")}
+                {numeral(day).format("$0.00a")}
               </div>
             </div>
-
-            <div className="grid h-fit grid-flow-row w-full py-4">
+            <div>
               <div>24h Change</div>
               {percentageChange > 0 ? (
-                <div className="text-green-500 font-mono">+{percentageChange}%</div>
+                <div className="text-green-500 font-mono">
+                  +{percentageChange}%
+                </div>
               ) : (
-                <div className="text-red-500 font-mono">{percentageChange}%</div>
+                <div className="text-red-500 font-mono">
+                  {percentageChange}%
+                </div>
               )}
               {dollarChange > 0 ? (
                 <div className="text-green-500 font-mono">
@@ -67,6 +75,27 @@ const StablesTVLchart = () => {
               ) : (
                 <div className="text-red-500 font-mono">
                   {numeral(dollarChange).format("$0.00a")}
+                </div>
+              )}
+            </div>
+            <div className="grid h-fit grid-flow-row w-full py-4">
+              <div>7 day Change</div>
+              {percentageChange_7d > 0 ? (
+                <div className="text-green-500 font-mono">
+                  +{percentageChange_7d}%
+                </div>
+              ) : (
+                <div className="text-red-500 font-mono">
+                  {percentageChange_7d}%
+                </div>
+              )}
+              {dollarChange_7d > 0 ? (
+                <div className="text-green-500 font-mono">
+                  {"+" + numeral(dollarChange_7d).format("$0.00a")}
+                </div>
+              ) : (
+                <div className="text-red-500 font-mono">
+                  {numeral(dollarChange_7d).format("$0.00a")}
                 </div>
               )}
             </div>

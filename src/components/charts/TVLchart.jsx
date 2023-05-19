@@ -6,8 +6,9 @@ import moment from "moment";
 import Charts from "./Chart";
 const TVLchart = () => {
   const [chartData, setChartData] = useState([]);
-  const [lastDay, setLastDay] = useState();
   const [day, setDay] = useState();
+  const [lastDay, setLastDay] = useState();
+  const [weekAgo, setWeekAgo] = useState();
 
   useEffect(() => {
     axios
@@ -29,8 +30,14 @@ const TVLchart = () => {
           datasource.length - 2,
           datasource.length - 1
         );
+        const weekAgo = datasource.slice(
+          datasource.length - 8,
+          datasource.length - 7
+        );
         setLastDay(yesterday[0].value);
         setDay(today[0].value);
+        setWeekAgo(weekAgo[0].value);
+        console.log(weekAgo);
       })
       .catch((err) => {
         console.log(err);
@@ -39,13 +46,18 @@ const TVLchart = () => {
 
   const changes = day - lastDay;
   const percentageChange = (((day - lastDay) / lastDay) * 100).toFixed(2);
+  const changes2 = day - weekAgo;
+  const percentageChange2 = (((day - weekAgo) / weekAgo) * 100).toFixed(2);
 
   return (
     <>
       {chartData.length ? (
         <div className="flex flex-col lg:flex-row">
           <div className="grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
-            <div className="grid gap-10 w-full text-4xl m-6 sm:m-0 sm:text-center items-center  text-left">
+            <div className="space-y-8 h-fit text-white sm:w-full text-2xl p-4 italic capitalize">
+              <div className="col-span-2 my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-4 w-[110%]">
+                <header className="whitespace-pre-wrap flex">DeFi</header>
+              </div>
               <div className="grid h-fit grid-flow-row w-fit justify-center py-4">
                 <div>Total Value Locked</div>
                 <div className="text-blue-500 font-mono">
@@ -53,7 +65,7 @@ const TVLchart = () => {
                 </div>
               </div>
 
-              <div className="grid h-fit grid-flow-row w-fit justify-center py-4">
+              <div>
                 <div>24h Change</div>
                 {percentageChange > 0 ? (
                   <div className="text-green-500 font-mono">
@@ -71,6 +83,27 @@ const TVLchart = () => {
                 ) : (
                   <div className="text-red-500 font-mono">
                     {numeral(changes).format("$0.00a")}
+                  </div>
+                )}
+              </div>
+              <div>
+                <div>7 day Change</div>
+                {percentageChange2 > 0 ? (
+                  <div className="text-green-500 font-mono">
+                    +{percentageChange2}%
+                  </div>
+                ) : (
+                  <div className="text-red-500 font-mono">
+                    {percentageChange2}%
+                  </div>
+                )}
+                {changes2 > 0 ? (
+                  <div className="text-green-500 font-mono">
+                    {"+" + numeral(changes2).format("$0.00a")}
+                  </div>
+                ) : (
+                  <div className="text-red-500 font-mono">
+                    {numeral(changes2).format("$0.00a")}
                   </div>
                 )}
               </div>
