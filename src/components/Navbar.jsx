@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "../css/animations.css";
 import {
@@ -46,11 +46,33 @@ const Navbar = () => {
           activeNav === `/${chainName}` ? "bg-gray-700" : ""
         } ${elementStyle} `}
       >
-        <img src={img} alt="" className="rounded-full mr-2 wiggle" />
+        <img src={img} alt="" className="rounded-full h-6 w-auto mr-2 wiggle" />
         {chainId}
       </NavLink>
     );
   };
+
+  useEffect(() => {
+    const handleURLChange = () => {
+      if (
+        currentURL.includes(
+          "/defi" ||
+            "/stablecoins" ||
+            "/dex" ||
+            "/cex" ||
+            "/yield" ||
+            "/bridges" ||
+            "/lending"
+        )
+      ) {
+        console.log("does include");
+      } else {
+        setActiveNav("/");
+      }
+    };
+
+    return;
+  }, [window.location.pathname]);
 
   return (
     <div className="sm:hidden md:hidden block h-full w-48 px-2 fixed left-0 top-0 ">
