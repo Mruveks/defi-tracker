@@ -9,7 +9,8 @@ const Ranking = ({ chain }) => {
   const [protocols, setProtocols] = useState([]);
   const [sortOrder, setSortOrder] = useState("asc");
   const [sortColumn, setSortColumn] = useState("");
-  
+  let CapChain = "";
+
   const handleSort = (column) => {
     if (sortColumn === column) {
       if (sortOrder === "desc") {
@@ -24,12 +25,6 @@ const Ranking = ({ chain }) => {
     }
   };
 
-  useEffect(() => {
-    handleSort('')
-  }, [chain])
-
-  let CapChain = "";
-
   const capitalizeChain = (chain) => {
     if (chain && typeof chain === "string") {
       return (CapChain = chain.charAt(0).toUpperCase() + chain.slice(1));
@@ -39,16 +34,20 @@ const Ranking = ({ chain }) => {
   capitalizeChain(chain);
 
   useEffect(() => {
+    handleSort("");
+  }, [chain]);
+
+  useEffect(() => {
     axios
       .get("https://api.llama.fi/protocols")
       .then((res) => {
         setProtocols(res.data);
+        console.log(protocols);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-
   return (
     <div className="h-max text-md border rounded-xl border-gray-600 p-2">
       <div
@@ -139,8 +138,13 @@ const Ranking = ({ chain }) => {
               item.tvl >= 1000 &&
               item.category !== "Chain" &&
               (CapChain === "CEX" || item.category !== "CEX") &&
-              (item.chain === CapChain || item.category === CapChain)
+              (item.chain === CapChain ||
+                (item.chain === "Multi-Chain"
+                  ? item.chains.includes(CapChain)
+                  : null) ||
+                item.category === CapChain)
           )
+
           .sort((a, b) => {
             if (sortOrder === "asc") {
               return a[sortColumn] - b[sortColumn];

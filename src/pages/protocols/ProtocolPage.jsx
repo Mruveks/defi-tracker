@@ -27,15 +27,14 @@ const ProtocolPage = () => {
         const tvl = data[0].tvl;
         const lastElement = tvl[tvl.length - 1];
         setTvl(lastElement.totalLiquidityUSD);
-        console.log(protocolData);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [formattedProtocolId]);
 
-  const renderRaises = (raise) => (
-    <div key={raise.name}>
+  const renderRaises = (raise, index) => (
+    <div key={index}>
       <p>
         {moment.unix(raise.date).toDate().toLocaleString()}: {raise.round} - $
         {raise.amount}m
@@ -72,9 +71,9 @@ const ProtocolPage = () => {
       {protocolData.length ? (
         <div className="grid grid-cols-2 mb-4 rounded-xl">
           <div className="col-span-2 my-4 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
-            {protocolData.map((protocol) => (
+            {protocolData.map((protocol, index) => (
               <div
-                key={protocol.id}
+                key={index}
                 className="space-y-8 h-fit text-white sm:w-full p-4 italic capitalize"
               >
                 <div className="grid sm:grid-flow-row sm:items-center gap-4">
@@ -134,8 +133,8 @@ const ProtocolPage = () => {
                       <div className="flex flex-wrap text-justify">
                         {protocol.chains
                           .filter((chain) => chain != protocol.chain)
-                          .map((chain) => (
-                            <div key={chain.id} className="w-fit pr-2 ">
+                          .map((chain, index) => (
+                            <div key={index} className="w-fit pr-2 ">
                               <Link
                                 to={`/chain/${chain.toLowerCase()}`}
                                 className="hover:underline"
@@ -154,9 +153,9 @@ const ProtocolPage = () => {
             ))}
             <ProtocolsChart />
           </div>
-          {protocolData.map((protocol) => (
+          {protocolData.map((protocol, index) => (
             <div
-              key={protocol.id}
+              key={index}
               className="col-span-2  grid grid-cols-2 sm:grid-cols-1 rounded-xl border border-gray-600"
             >
               <div className="space-y-4 p-4 border-r  border-gray-600">
@@ -228,10 +227,10 @@ const ProtocolPage = () => {
                         <header className="text-4xl sm:text-2xl mb-2">
                           Other Investors
                         </header>
-                        {protocol.raises.map((raise) => (
+                        {protocol.raises.map((raise, index) => (
                           <>
                             {raise.otherInvestors.length > 0 ? (
-                              <div key={raise.name}>
+                              <div key={index}>
                                 {renderInvestors(raise.otherInvestors)}
                               </div>
                             ) : null}
