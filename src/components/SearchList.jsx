@@ -80,7 +80,7 @@ const SearchList = () => {
   }, [searchListRef]);
 
   return (
-    <form className="text-md md:pt-8">
+    <form className="text-md md:pt-2">
       <div className="relative">
         <div className="absolute inset-y-0 left-0 flex items-center p-4 cursor-pointer">
           <svg
