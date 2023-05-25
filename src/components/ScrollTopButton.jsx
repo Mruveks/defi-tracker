@@ -2,36 +2,36 @@ import { useState, useEffect } from "react";
 import { BsArrowUpSquareFill } from "react-icons/bs";
 
 function ScrollToTopButton() {
-  const [showButton, setShowButton] = useState(false);
+	const [showButton, setShowButton] = useState(false);
 
-  useEffect(() => {
-    function handleScroll() {
-      const scrollY = window.scrollY;
-      setShowButton(scrollY > 0);
-    }
+	useEffect(() => {
+		function handleScroll() {
+			const scrollY = window.scrollY;
+			setShowButton(scrollY > 0);
+		}
 
-    document.addEventListener("scroll", handleScroll);
+		document.addEventListener("scroll", handleScroll);
 
-    return () => {
-      document.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+		return () => {
+			document.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
 
-  function handleClick() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
+	function handleClick() {
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	}
 
-  return (
-    <button
-      className={`fixed flex items-center space-x-4 bottom-4 left-4 sm:left-5 md:left-10 sm:bottom-2 backdrop-blur-2xl sm:bg-gray-900 md:bg-gray-900 bg-transparent border transition duration-100 border-gray-600  hover:bg-gray-600 text-gray-400 font-bold py-2 px-4 rounded-xl ${
-        showButton ? "block" : "hidden"
-      }`}
-      onClick={handleClick}
-    >
-      <h2>Scroll to Top</h2>
-      <BsArrowUpSquareFill />
-    </button>
-  );
+	return (
+		<button
+			className={`flex w-full items-center justify-evenly backdrop-blur-2xl sm:bg-gray-900 md:bg-gray-900 bg-transparent border transition duration-100 border-gray-600 hover:bg-gray-600 text-gray-400 font-bold py-2 px-2 md:px-4 rounded-xl ${
+				showButton ? "block" : "hidden"
+			}`}
+			onClick={handleClick}
+		>
+			<p className="sm:hidden md:hidden block">Scroll Up</p>
+			<BsArrowUpSquareFill />
+		</button>
+	);
 }
 
 export default ScrollToTopButton;

@@ -23,37 +23,42 @@ const StablecoinPage = lazy(() => import("./pages/stablecoins/StablecoinPage"));
 
 function App() {
 	return (
-		<div className="pl-48 pt-4 sm:pl-0 md:pl-0 md:mt-0 sm:mt-5">
-			<Navbar />
-			<MobileNavbar />
-			<Suspense>
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/stablecoins" element={<Stables />} />
-					<Route path="/yields" element={<Yields />} />
-					<Route path="/bridges" element={<Bridges />} />
-					<Route path="/lending" element={<Lending />} />
-					<Route path="/cex" element={<CEX />} />
-					<Route path="/dex" element={<DEX />} />
-					<Route
-						key="/protocol/:protocolId"
-						path="/protocol/:protocolId"
-						element={<ProtocolPage />}
-					/>
-					<Route
-						key="/chain/:chainId"
-						path="/chain/:chainId"
-						element={<ChainPage />}
-					/>
-					<Route
-						key="/stablecoins/:stableId"
-						path="/stablecoins/:stableId"
-						element={<StablecoinPage />}
-					/>
-				</Routes>
-			</Suspense>
+		<>
+			<div className="pl-36 pt-4 pb-8 sm:px-0 md:pl-0 md:mt-0 sm:m-5">
+				<Navbar />
+				<MobileNavbar />
+				<Suspense>
+					<Routes>
+						<Route path="/" element={<Home />} />
+						<Route path="/stablecoins" element={<Stables />} />
+						<Route path="/yields" element={<Yields />} />
+						<Route path="/bridges" element={<Bridges />} />
+						<Route path="/lending" element={<Lending />} />
+						<Route path="/cex" element={<CEX />} />
+						<Route path="/dex" element={<DEX />} />
+						<Route
+							key="/protocol/:protocolId"
+							path="/protocol/:protocolId"
+							element={<ProtocolPage />}
+						/>
+						<Route
+							key="/chain/:chainId"
+							path="/chain/:chainId"
+							element={<ChainPage />}
+						/>
+						<Route
+							key="/stablecoins/:stableId"
+							path="/stablecoins/:stableId"
+							element={<StablecoinPage />}
+						/>
+					</Routes>
+				</Suspense>
+				<div className="block md:hidden lg:hidden xl:hidden fixed left-1 bottom-12">
+					<ScrollTopButton />
+				</div>
+			</div>
 			<Footer />
-		</div>
+		</>
 	);
 }
 
