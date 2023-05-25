@@ -61,7 +61,7 @@ const ProtocolAddress = ({ address }) => {
       onClick={handleClick}
     >
       <p>View on blockchain</p>
-      <BsArrowUpRight />
+      <BsArrowUpRight className="sm:hidden"/>
     </button>
   );
 };
