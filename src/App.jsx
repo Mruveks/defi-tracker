@@ -23,7 +23,7 @@ const StablecoinPage = lazy(() => import("./pages/stablecoins/StablecoinPage"));
 
 function App() {
 	return (
-		<div className="pl-48 pt-4 sm:pl-0 md:pl-0 md:mt-0 sm:mt-5 sm:mb-8">
+		<div className="pl-48 pt-4 sm:pl-0 md:pl-0 md:mt-0 sm:mt-5">
 			<Navbar />
 			<MobileNavbar />
 			<Suspense>
