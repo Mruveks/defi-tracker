@@ -26,7 +26,7 @@ const StablecoinPage = () => {
 			.then((res) => {
 				const data = res.data;
 				setStables(data);
-
+				console.log(data[17]);
 				const tokens = data.tokens;
 				const datesAndValues = tokens.map((token) => ({
 					date: moment.unix(token.date).toDate(),
@@ -73,9 +73,9 @@ const StablecoinPage = () => {
 				<div className="grid grid-cols-2 mb-5 rounded-xl">
 					<div className="col-span-2 my-4 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
 						<div className="space-y-8 h-fit text-white sm:w-full p-4 italic capitalize">
-							<div className="col-span-2 my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-2 w-[110%]">
+							<div className="col-span-2 my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-2 w-[120%]">
 								<BsCoin />
-								<header>{stables.name}</header>
+                <header>{stables.name}{" "}({stables.symbol})</header>
 							</div>
 							<div>
 								<h1>Current Circulating</h1>
@@ -114,8 +114,9 @@ const StablecoinPage = () => {
 							{stables.auditLinks ? (
 								<div>
 									<h2>Audits:</h2>
-									{stables.auditLinks.map((audits) => (
+									{stables.auditLinks.map((audits, index) => (
 										<a
+											key={index}
 											href={audits}
 											target="__blank"
 											className="hover:underline italic flex overflow-x-clip"
@@ -174,7 +175,7 @@ const StablecoinPage = () => {
 										.filter((item) => item.value > 1000)
 										.map((item, index) => (
 											<div
-												className={`grid border-b-2 border-gray-700 py-2 px-4 ${
+												className={`grid border-b-2 border-gray-700 overflow-x-hidden py-2 pl-2 ${
 													index % 2 === 0 ? "bg-[#222f3e]" : ""
 												}`}
 												key={index}
