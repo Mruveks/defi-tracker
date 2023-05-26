@@ -8,6 +8,7 @@ import SearchList from "../../components/SearchList";
 import BackButton from "../../components/BackButton";
 import moment from "moment";
 import numeral from "numeral";
+import Loader from "../../components/Loader";
 
 const ChainPage = () => {
   const { chainId } = useParams();
@@ -128,7 +129,7 @@ const ChainPage = () => {
 
           <ChainsChart />
         </div>
-      ) : null}
+      ) : <Loader/>}
 
       <div className="h-max my-4 text-white">
         <Ranking chain={chainId} />
