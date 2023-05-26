@@ -113,7 +113,7 @@ const Ranking = ({ chain }) => {
           )}
         </header>
         <header
-          className="sm:hidden flex justify-self-end items-center space-x-2 hover:cursor-pointer w-fit"
+          className=" flex justify-self-end items-center space-x-2 hover:cursor-pointer w-fit"
           onClick={() => handleSort("tvl")}
         >
           TVL
