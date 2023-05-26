@@ -130,13 +130,13 @@ const StablecoinPage = () => {
 								<a href={stables.url} target="_blank">
 									<button className="px-4 space-x-2 flex items-center py-2 rounded bg-gray-900 w-fit hover:bg-gray-600 transition duration-300">
 										<p>Website</p>
-										<BsArrowUpRight />
+										<BsArrowUpRight className="sm:hidden" />
 									</button>
 								</a>
 								<a href={stables.twitter} target="_blank">
 									<button className="px-4 space-x-2 h-full flex items-center rounded bg-gray-900 w-fit hover:bg-gray-600 transition duration-300">
 										<p>Twitter</p>
-										<BsArrowUpRight />
+										<BsArrowUpRight className="sm:hidden" />
 									</button>
 								</a>
 							</div>
