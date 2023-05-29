@@ -74,7 +74,7 @@ const ChainPage = () => {
 					<div className="grid lg:grid-col grid-flow-row space-y-8 h-fit text-white sm:w-full text-2xl p-4 italic capitalize">
 						<div className="my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-4 w-[110%]">
 							<header className="whitespace-pre-wrap flex capitalize">
-								{chainId}
+                {chainId === "Binance" ? "Binance Smart Chain" : chainId}
 							</header>
 						</div>
 						<div className="grid sm:grid-cols-2 gap-10 grid-cols-1">

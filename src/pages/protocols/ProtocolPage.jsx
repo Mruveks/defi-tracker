@@ -33,7 +33,7 @@ const ProtocolPage = () => {
 						chain,
 						value: value,
 					}))
-					.filter((item) => !item.chain.includes("staking"));
+					.filter((item) => !item.chain.includes("staking") & !item.chain.includes("pool2") & !item.chain.includes("borrowed"));
 				setPieData(values);
 				console.log(data);
 				const tvl = data[0].tvl;
@@ -256,57 +256,71 @@ const ProtocolPage = () => {
 								)}
 							</div>
 
-							<div className="space-y-4 p-4 sm:border-t border-gray-600">
-								<header className="text-2xl sm:text-2xl">
-									Token Information
-								</header>
-								<div className="flex space-x-2 overflow-hidden">
-									<p>Address: </p>
-									{protocol.address ? (
-										<AddressFormatter address={protocol.address} />
-									) : (
-										<p className="text-gray-600">No address available</p>
-									)}
-								</div>
-								{protocol.address !== null ? (
-									<div className="flex space-x-2 items-center">
-										<p>
-											<a
-												href={`https://www.coingecko.com/en/coins/${protocol.gecko_id}`}
-												target="_blank"
-												rel="noopener noreferrer"
-											>
-												<button className="flex space-x-2 items-center px-4 py-2 rounded bg-gray-900 w-fit hover:bg-gray-600 transition duration-300">
-													<p>View on CoinGecko</p>
-													<BsArrowUpRight className="sm:hidden" />
-												</button>
-											</a>
-										</p>
-										<p>
-											<ProtocolAddress address={protocol.address} />
-										</p>
+							<div className="space-y-4 py-4 sm:border-t border-gray-600">
+								<div className="px-4 space-y-4">
+									<header className="text-2xl sm:text-2xl">
+										Token Information
+									</header>
+									<div className="flex space-x-2 overflow-hidden">
+										<p>Address: </p>
+										{protocol.address ? (
+											<AddressFormatter address={protocol.address} />
+										) : (
+											<p className="text-gray-600">No address available</p>
+										)}
 									</div>
-								) : null}
-								<div className="border-t border-gray-600">
+									{protocol.address !== null ? (
+										<div className="flex space-x-2 items-center">
+											<p>
+												<a
+													href={`https://www.coingecko.com/en/coins/${protocol.gecko_id}`}
+													target="_blank"
+													rel="noopener noreferrer"
+												>
+													<button className="flex space-x-2 items-center px-4 py-2 rounded bg-gray-900 w-fit hover:bg-gray-600 transition duration-300">
+														<p>View on CoinGecko</p>
+														<BsArrowUpRight className="sm:hidden" />
+													</button>
+												</a>
+											</p>
+											<p>
+												<ProtocolAddress address={protocol.address} />
+											</p>
+										</div>
+									) : null}
+								</div>
+								<div className="border-t border-gray-600 px-4">
 									<header className="text-2xl py-4 sm:text-2xl">
 										Token Circulation
 									</header>
 									<PieChart data={pieData} />
-									<div className="grid grid-cols-4">
+									<div className="grid grid-cols-3">
 										{pieData
 											.sort((a, b) => b.value - a.value)
 											.filter((item) => item.value > 1000)
 											.map((item, index) => (
 												<div
-													className={`grid border-b-2 border-gray-700 py-2 pl-2 ${
+													className={`grid grid-cols-2 w-full justify-between border-b-2 border-gray-700 p-2 ${
 														index % 2 === 0 ? "bg-[#222f3e]" : ""
 													}`}
 													key={index}
 												>
-													<h3 className="italic">{item.chain}: </h3>
-													<p className="font-mono">
-														{numeral(item.value).format("$0.00a")}
-													</p>
+													<h3 className="italic font-semibold">{item.chain}: </h3>
+													<div className="flex justify-between space-x-4">
+														<p className="font-mono text-right">
+															{numeral(item.value).format("$0.00a")}
+														</p>
+														{tvl ? (
+															<p className="text-right text-gray-400">
+																{(
+																	(numeral(item.value).format("0.00") /
+																		numeral(tvl).format("0.00")) *
+																	100
+																).toFixed(2)}
+																%
+															</p>
+														) : null}
+													</div>
 												</div>
 											))}
 									</div>

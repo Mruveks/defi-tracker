@@ -75,7 +75,9 @@ const StablecoinPage = () => {
 						<div className="space-y-8 h-fit text-white sm:w-full p-4 italic capitalize">
 							<div className="col-span-2 my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-2 w-[120%]">
 								<BsCoin />
-                <header>{stables.name}{" "}({stables.symbol})</header>
+								<header>
+									{stables.name} ({stables.symbol})
+								</header>
 							</div>
 							<div>
 								<h1>Current Circulating</h1>
@@ -164,26 +166,38 @@ const StablecoinPage = () => {
 								stables.address
 							)}
 
-							<div className="border-t border-gray-600">
-								<header className="text-2xl py-4 px-4 sm:text-2xl">
+							<div className="border-t p-4 border-gray-600">
+								<header className="text-2xl sm:text-2xl">
 									Token Circulation
 								</header>
 								<PieChart data={valuesArray} />
-								<div className="grid grid-cols-4">
+								<div className="grid grid-cols-3">
 									{valuesArray
 										.sort((a, b) => b.value - a.value)
 										.filter((item) => item.value > 1000)
 										.map((item, index) => (
 											<div
-												className={`grid border-b-2 border-gray-700 overflow-x-hidden py-2 pl-2 ${
+												className={`grid grid-cols-2 w-full justify-between border-b-2 border-gray-700 p-2 ${
 													index % 2 === 0 ? "bg-[#222f3e]" : ""
 												}`}
 												key={index}
 											>
-												<h3 className="italic">{item.chain}: </h3>
-												<p className="font-mono">
-													{numeral(item.value).format("$0.00a")}
-												</p>
+												<h3 className="italic font-semibold">{item.chain}: </h3>
+												<div className="flex justify-between space-x-4">
+													<p className="font-mono text-right">
+														{numeral(item.value).format("$0.00a")}
+													</p>
+													{currentCirculating ? (
+														<p className="text-right text-gray-400">
+															{(
+																(numeral(item.value).format("0.00") /
+																	numeral(currentCirculating).format("0.00")) *
+																100
+															).toFixed(2)}
+															%
+														</p>
+													) : null}
+												</div>
 											</div>
 										))}
 								</div>
