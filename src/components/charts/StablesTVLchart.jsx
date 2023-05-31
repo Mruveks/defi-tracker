@@ -52,7 +52,7 @@ const StablesTVLchart = () => {
 							<header className="whitespace-pre-wrap flex">Stablecoins</header>
 						</div>
 						<div className="grid sm:grid-cols-2 gap-10 grid-cols-1">
-							<div className="grid h-fit grid-flow-row w-fit justify-center col-span-2">
+							<div className="grid h-fit grid-flow-row w-fit justify-center sm:col-span-2">
 								<div>Total Value Locked</div>
 								<div className="text-blue-500 font-mono">
 									{numeral(day).format("$0.00a")}
