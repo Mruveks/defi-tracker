@@ -46,7 +46,7 @@ const Navbar = () => {
 					activeNav === `/${chainName}` ? "bg-gray-700" : ""
 				} ${elementStyle} `}
 			>
-				<img src={img} alt="" className="rounded-full h-6 w-auto mr-2 wiggle" />
+				<img src={img} alt="" className="rounded-full h-6 w-6 mr-2 wiggle" />
 				{chainId}
 			</NavLink>
 		);

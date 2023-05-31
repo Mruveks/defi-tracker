@@ -1,74 +1,74 @@
 /* Wiggle */
 .animate-wiggle {
-  animation: wiggle 0.5s ease-in-out;
+	animation: wiggle 0.5s ease-in-out;
 }
 
 @keyframes wiggle {
-  0% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(-10deg);
-  }
-  75% {
-    transform: rotate(10deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
+	0% {
+		transform: rotate(0deg);
+	}
+	25% {
+		transform: rotate(-10deg);
+	}
+	75% {
+		transform: rotate(10deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
 }
 
 .group:hover .wiggle {
-  animation: wiggle 0.5s ease-in-out;
+	animation: wiggle 0.5s ease-in-out;
 }
 
 /* Hover underline */
 .hover-underline-animation {
-  display: inline-block;
-  position: relative;
+	display: inline-block;
+	position: relative;
 }
 
 .hover-underline-animation::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 1px;
-  bottom: 0;
-  left: 0;
-  background-color: lightslategray;
-  transform-origin: bottom right;
-  transition: transform 0.5s ease-out;
+	content: "";
+	position: absolute;
+	width: 100%;
+	transform: scaleX(0);
+	height: 1px;
+	bottom: 0;
+	left: 0;
+	background-color: lightslategray;
+	transform-origin: bottom right;
+	transition: transform 0.5s ease-out;
 }
 
 .hover-underline-animation:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
+	transform: scaleX(1);
+	transform-origin: bottom left;
 }
 
 /* Rotate */
 .rotate {
-  animation: rotate 0.2s linear forwards;
+	animation: rotate 0.2s linear forwards;
 }
 
 @keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(90deg);
-  }
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(90deg);
+	}
 }
 
 .rotate-back {
-  animation: rotate-back 0.2s linear forwards;
+	animation: rotate-back 0.2s linear forwards;
 }
 
 @keyframes rotate-back {
-  0% {
-    transform: rotate(90deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
+	0% {
+		transform: rotate(90deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
 }
