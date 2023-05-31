@@ -12,6 +12,7 @@ import { BsArrowUpRight } from "react-icons/bs";
 import AddressFormatter from "../../utilities/AddressFormatter";
 import BackButton from "../../components/BackButton";
 import PieChart from "../../components/charts/PieChart";
+import { AiOutlineInfoCircle } from "react-icons/ai";
 
 const ProtocolPage = () => {
 	const { protocolId } = useParams();
@@ -33,7 +34,12 @@ const ProtocolPage = () => {
 						chain,
 						value: value,
 					}))
-					.filter((item) => !item.chain.includes("staking") & !item.chain.includes("pool2") & !item.chain.includes("borrowed"));
+					.filter(
+						(item) =>
+							!item.chain.includes("staking") &
+							!item.chain.includes("pool2") &
+							!item.chain.includes("borrowed")
+					);
 				setPieData(values);
 				console.log(data);
 				const tvl = data[0].tvl;
@@ -53,6 +59,25 @@ const ProtocolPage = () => {
 			</p>
 		</div>
 	);
+
+	const [showMessage, setShowMessage] = useState(false);
+	let timeout;
+
+	const handleHover = () => {
+		setShowMessage(true);
+	};
+
+	const handleLeave = () => {
+		setTimeout(() => {
+			setShowMessage(false);
+		}, 1000);
+	};
+
+	useEffect(() => {
+		return () => {
+			clearTimeout(timeout);
+		};
+	}, []);
 
 	const renderInvestors = (investors) => (
 		<div className="grid text-lg text-gray-400 italic">
@@ -114,7 +139,18 @@ const ProtocolPage = () => {
 												</p>
 											</div>
 											<div>
-												<h1>mcap/TVL</h1>
+												<h1 className="flex space-x-2 items-center">
+													<p>Mcap/TVL</p>
+													<AiOutlineInfoCircle
+														onMouseEnter={handleHover}
+														onMouseLeave={handleLeave}
+													/>
+													{showMessage && (
+														<p className="hover-message fixed bg-red-400 z-10">
+															Put Message Here
+														</p>
+													)}
+												</h1>
 												<p className="font-mono">
 													{(protocol.mcap / tvl).toFixed(2)}
 												</p>
@@ -293,37 +329,7 @@ const ProtocolPage = () => {
 									<header className="text-2xl py-4 sm:text-2xl">
 										Token Circulation
 									</header>
-									<PieChart data={pieData} />
-									<div className="grid grid-cols-3">
-										{pieData
-											.sort((a, b) => b.value - a.value)
-											.filter((item) => item.value > 1000)
-											.map((item, index) => (
-												<div
-													className={`grid grid-cols-2 w-full justify-between border-b-2 border-gray-700 p-2 ${
-														index % 2 === 0 ? "bg-[#222f3e]" : ""
-													}`}
-													key={index}
-												>
-													<h3 className="italic font-semibold">{item.chain}: </h3>
-													<div className="flex justify-between space-x-4">
-														<p className="font-mono text-right">
-															{numeral(item.value).format("$0.00a")}
-														</p>
-														{tvl ? (
-															<p className="text-right text-gray-400">
-																{(
-																	(numeral(item.value).format("0.00") /
-																		numeral(tvl).format("0.00")) *
-																	100
-																).toFixed(2)}
-																%
-															</p>
-														) : null}
-													</div>
-												</div>
-											))}
-									</div>
+									<PieChart data={pieData} tvl={tvl} />
 								</div>
 							</div>
 						</div>
