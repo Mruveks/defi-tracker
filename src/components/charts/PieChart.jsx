@@ -50,7 +50,7 @@ const Charts = ({ data, tvl }) => {
 	}, []);
 
 	return (
-		<ResponsiveContainer className="m-auto" height={isSmallScreen ? 300 : 600}>
+		<ResponsiveContainer className="m-auto pointer-events-none" height={isSmallScreen ? 300 : 600}>
 			<PieChart>
 				<Pie
 					data={data}
