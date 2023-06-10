@@ -115,7 +115,7 @@ const ProtocolPage = () => {
 							>
 								<div className="grid sm:grid-flow-row sm:items-center gap-4">
 									<div className="col-span-2 my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-4 w-[110%]">
-										<header className="whitespace-pre-wrap flex">
+										<header className="text-4xl whitespace-pre-wrap flex">
 											<img
 												src={protocolData[0].logo}
 												alt={protocolId}

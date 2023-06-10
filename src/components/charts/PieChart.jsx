@@ -5,7 +5,7 @@ import {
 	Pie,
 	Cell,
 	Legend,
-	Line,
+	Tooltip,
 } from "recharts";
 import numeral from "numeral";
 
@@ -49,8 +49,22 @@ const Charts = ({ data, tvl }) => {
 		};
 	}, []);
 
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white p-2 border border-gray-200 shadow-lg">
+          <p className="font-bold">{`Name: ${payload[0].name}`}</p>
+          <p>{`Value: ${numeral(payload[0].value).format('$0,0')}`}</p>
+        </div>
+      );
+    }
+    return null;
+  };
 	return (
-		<ResponsiveContainer className="m-auto pointer-events-none" height={isSmallScreen ? 300 : 600}>
+		<ResponsiveContainer
+			className="m-auto h-max"
+			height={isSmallScreen ? 700 : data.length > 20 ? 1000 : 600}
+		>
 			<PieChart>
 				<Pie
 					data={data}
@@ -83,7 +97,8 @@ const Charts = ({ data, tvl }) => {
 							type: "dot",
 							color: colors[index % colors.length],
 						}))}
-				/>
+        />
+        <Tooltip />
 			</PieChart>
 		</ResponsiveContainer>
 	);

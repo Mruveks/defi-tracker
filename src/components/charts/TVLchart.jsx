@@ -56,7 +56,7 @@ const TVLchart = () => {
 					<div className="grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
 						<div className="grid lg:grid-col grid-flow-row space-y-8 h-fit text-white sm:w-full text-2xl p-4 italic capitalize">
 							<div className="my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-4 w-[110%]">
-								<header className="whitespace-pre-wrap flex">DeFi</header>
+								<header className="text-4xl whitespace-pre-wrap flex">DeFi</header>
 							</div>
 							<div className="grid sm:grid-cols-2 gap-10 grid-cols-1">
 								<div className="grid sm:col-span-2 h-fit grid-flow-row w-fit justify-center">

@@ -19,6 +19,7 @@ const StablecoinPage = () => {
 	const [extractedData, setExtractedData] = useState([]);
 	const [currentCirculating, setCurrentCirculating] = useState([]);
 	const [valuesArray, setValuesArray] = useState([]);
+  const [tvl, setTvl] = useState(0);
 
 	useEffect(() => {
 		axios
@@ -26,7 +27,8 @@ const StablecoinPage = () => {
 			.then((res) => {
 				const data = res.data;
 				setStables(data);
-				console.log(data[17]);
+        console.log(data.tokens[394].circulating.peggedUSD);
+        setTvl((data.tokens[394].circulating.peggedUSD).toFixed(2))
 				const tokens = data.tokens;
 				const datesAndValues = tokens.map((token) => ({
 					date: moment.unix(token.date).toDate(),
@@ -74,8 +76,8 @@ const StablecoinPage = () => {
 					<div className="col-span-2 my-4 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
 						<div className="space-y-8 h-fit text-white sm:w-full p-4 italic capitalize">
 							<div className="col-span-2 my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-2 w-[120%]">
-								<BsCoin />
-								<header>
+								<BsCoin size={30} />
+								<header className="text-4xl">
 									{stables.name} ({stables.symbol})
 								</header>
 							</div>
@@ -166,41 +168,12 @@ const StablecoinPage = () => {
 								stables.address
 							)}
 
-							<div className="border-t p-4 border-gray-600">
+							<div className="border-t h-fit p-4 border-gray-600">
 								<header className="text-2xl sm:text-2xl">
 									Token Circulation
-								</header>
-								<PieChart data={valuesArray} />
-								<div className="grid grid-cols-3">
-									{valuesArray
-										.sort((a, b) => b.value - a.value)
-										.filter((item) => item.value > 1000)
-										.map((item, index) => (
-											<div
-												className={`grid grid-cols-2 w-full justify-between border-b-2 border-gray-700 p-2 ${
-													index % 2 === 0 ? "bg-[#222f3e]" : ""
-												}`}
-												key={index}
-											>
-												<h3 className="italic font-semibold">{item.chain}: </h3>
-												<div className="flex justify-between space-x-4">
-													<p className="font-mono text-right">
-														{numeral(item.value).format("$0.00a")}
-													</p>
-													{currentCirculating ? (
-														<p className="text-right text-gray-400">
-															{(
-																(numeral(item.value).format("0.00") /
-																	numeral(currentCirculating).format("0.00")) *
-																100
-															).toFixed(2)}
-															%
-														</p>
-													) : null}
-												</div>
-											</div>
-										))}
-								</div>
+                </header>
+
+								<PieChart data={valuesArray} tvl={tvl} />
 							</div>
 						</div>
 					</div>
