@@ -11,7 +11,7 @@ import ProtocolAddress from "../../utilities/ProtocolAddress";
 import { BsArrowUpRight } from "react-icons/bs";
 import AddressFormatter from "../../utilities/AddressFormatter";
 import BackButton from "../../components/BackButton";
-import PieChart from "../../components/charts/PieChart";
+import PieChartComponent from "../../components/charts/PieChartComponent";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 
 const ProtocolPage = () => {
@@ -41,8 +41,7 @@ const ProtocolPage = () => {
 							!item.chain.includes("borrowed")
 					);
 				setPieData(values);
-				console.log(data);
-				const tvl = data[0].tvl;
+
 				const lastElement = tvl[tvl.length - 1];
 				setTvl(lastElement.totalLiquidityUSD);
 			})
@@ -329,7 +328,7 @@ const ProtocolPage = () => {
 									<header className="text-2xl py-4 sm:text-2xl">
 										Token Circulation
 									</header>
-									<PieChart data={pieData} tvl={tvl} />
+									<PieChartComponent data={pieData} tvl={tvl} />
 								</div>
 							</div>
 						</div>
