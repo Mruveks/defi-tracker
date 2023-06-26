@@ -10,15 +10,24 @@ import {
 	Tooltip,
 	AreaChart,
 	Brush,
+	Label,
+	ReferenceLine,
 	Area,
 } from "recharts";
 
 const Charts = ({ data }) => {
 	const [isSmallScreen, setIsSmallScreen] = useState(false);
 	const [isLogScale, setIsLogScale] = useState(false);
+	const [hallmarks, setHallmarks] = useState(false);
+
+	const ftxCollapse = moment.unix(1667865600).toDate();
+	const ustDepeg = moment.unix(1651881600).toDate();
 
 	const toggleScale = () => {
 		setIsLogScale(!isLogScale);
+		if (isLogScale === false) {
+			setHallmarks(false);
+		}
 	};
 
 	const dataWithDateObjects = data.map((item) => ({
@@ -26,18 +35,84 @@ const Charts = ({ data }) => {
 		date: new Date(item.date),
 	}));
 
+	const ftxCollapseData = {
+		date: ftxCollapse,
+		value: "date",
+	};
+	const ustDepegData = {
+		date: ustDepeg,
+		value: "date",
+	};
+
+	const updatedData = [
+		...dataWithDateObjects,
+		{
+			...ftxCollapseData,
+		},
+		{
+			...ustDepegData,
+		},
+	];
+
 	const [activeIndex, setActiveIndex] = useState(
 		dataWithDateObjects.length - 1
 	);
+
+	const toggleHallmarks = () => {
+		setHallmarks(!hallmarks);
+		setIsLogScale(false);
+	};
 
 	useEffect(() => {
 		setActiveIndex(dataWithDateObjects.length - 1);
 	}, []);
 
+	const sortedData = [...updatedData].sort((a, b) => a.date - b.date);
+
+	const ftxReferenceDataPoint = sortedData.find(
+		(item) => item.date.getTime() === ftxCollapse.getTime()
+	);
+	const ftxReferenceDataIndex = sortedData.findIndex(
+		(item) => item.date === ftxReferenceDataPoint.date
+	);
+	const ustReferenceDataPoint = sortedData.find(
+		(item) => item.date.getTime() === ustDepeg.getTime()
+	);
+	const ustReferenceDataIndex = sortedData.findIndex(
+		(item) => item.date === ustReferenceDataPoint.date
+	);
+
 	return (
-		<>
-			<ResponsiveContainer width="100%" className="m-4 sm:hidden" height={500}>
-				<AreaChart data={dataWithDateObjects}>
+		<div className="w-full p-4">
+			<div className="flex text-lg sm:hidden space-x-2">
+				<button
+					onClick={toggleScale}
+					className={`rounded-lg px-2 h-fit transition duration-300 ${
+						isLogScale === false ? "bg-[#8884d8] " : "bg-none"
+					}`}
+				>
+					Linear
+				</button>
+				<button
+					onClick={toggleScale}
+					className={`rounded-lg px-2 h-fit transition duration-300 ${
+						isLogScale === true ? "bg-[#8884d8]" : "bg-none"
+					}`}
+				>
+					Logarithmic
+				</button>
+				<button
+					onClick={toggleHallmarks}
+					className={`rounded-lg px-2 h-fit transition duration-300 ${
+						hallmarks === true ? "bg-[#8884d8] " : "bg-none"
+					}`}
+				>
+					Hallmarks
+				</button>
+			</div>
+
+			<ResponsiveContainer width="100%" className="sm:hidden" height={500}>
+				<AreaChart data={updatedData}>
 					<defs>
 						<linearGradient
 							id="area-chart-gradient"
@@ -59,9 +134,9 @@ const Charts = ({ data }) => {
 						dataKey="date"
 						axisLine={false}
 						tickLine={false}
-						interval={182}
-						tickFormatter={(value) => moment(value).format("MMM, YYYY")}
-						stroke="gray"
+						interval={isSmallScreen ? 365 : 182}
+						tickFormatter={(value) => moment(value).format("MMM YYYY")}
+						stroke="#8884d8"
 						tickSize={2}
 						tick={{
 							fontSize: 14,
@@ -72,7 +147,7 @@ const Charts = ({ data }) => {
 						axisLine={false}
 						tickLine={false}
 						fontFamily="font-mono"
-						stroke="gray"
+						stroke="#8884d8"
 						tickFormatter={(value) => numeral(value).format("$0.00a")}
 						tickSize={2}
 						tick={{
@@ -92,6 +167,62 @@ const Charts = ({ data }) => {
 						margin={(isSmallScreen ? { top: 12 } : { top: 20 }, { bottom: 20 })}
 						position={isSmallScreen ? { x: 0, y: -20 } : { x: 70, y: 4 }}
 					/>
+
+					<ReferenceLine
+						segment={
+							hallmarks === true
+								? [
+										{
+											x: ftxReferenceDataIndex,
+											y: 0,
+										},
+										{
+											x: ftxReferenceDataIndex,
+											y:
+												ftxReferenceDataPoint.value +
+												ftxReferenceDataPoint.value / 1.5,
+										},
+								  ]
+								: null
+						}
+						stroke="#fff"
+						strokeDasharray="3 3"
+						ifOverflow="extendDomain"
+					>
+						<Label
+							value="FTX crash"
+							offset={10}
+							position="top"
+							style={{ fill: "#fff" }}
+						/>
+					</ReferenceLine>
+					<ReferenceLine
+						segment={
+							hallmarks === true
+								? [
+										{
+											x: ustReferenceDataIndex,
+											y: 0,
+										},
+										{
+											x: ustReferenceDataIndex,
+											y: ustReferenceDataPoint.value + 4000000000,
+										},
+								  ]
+								: null
+						}
+						stroke="#fff"
+						strokeDasharray="3 3"
+						ifOverflow="extendDomain"
+					>
+						<Label
+							value="UST Depeg"
+							offset={10}
+							position="top"
+							style={{ fill: "#fff" }}
+						/>
+					</ReferenceLine>
+
 					<Area
 						type="monotone"
 						dataKey="value"
@@ -106,7 +237,6 @@ const Charts = ({ data }) => {
 						tickFormatter={() => ""}
 						stroke="rgb(75 85 99)"
 						travellerWidth={10}
-						startIndex={data.length[0]}
 						fill="#222f3e"
 					>
 						<AreaChart margin={{ top: 20, bottom: 20 }}>
@@ -122,26 +252,7 @@ const Charts = ({ data }) => {
 					</Brush>
 				</AreaChart>
 			</ResponsiveContainer>
-
-			<div className="right-16 pt-6 absolute space-x-4 text-lg sm:hidden block">
-				<button
-					onClick={toggleScale}
-					className={`rounded-lg px-2 transition duration-300 ${
-						isLogScale === true ? "text-[#8884d8]" : "text-gray-600"
-					}`}
-				>
-					Logarithmic
-				</button>
-				<button
-					onClick={toggleScale}
-					className={`rounded-lg px-2 transition duration-300 ${
-						isLogScale === false ? "text-[#8884d8] " : "text-gray-600"
-					}`}
-				>
-					Linear
-				</button>
-			</div>
-		</>
+		</div>
 	);
 };
 export default Charts;
