@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import moment from "moment";
 import numeral from "numeral";
 import CustomTooltip from "./CustomTooltip";
@@ -19,6 +19,25 @@ const Charts = ({ data }) => {
 	const [isSmallScreen, setIsSmallScreen] = useState(false);
 	const [isLogScale, setIsLogScale] = useState(false);
 	const [hallmarks, setHallmarks] = useState(false);
+
+	function findLargestElement(array) {
+		if (array.length === 0) {
+			return null;
+		}
+
+		let largestElement = array[0];
+
+		for (let i = 1; i < array.length; i++) {
+			if (array[i].value > largestElement.value) {
+				largestElement = array[i];
+			}
+		}
+
+		return largestElement.value;
+	}
+	const Element = findLargestElement(data);
+	const value = Element;
+	console.log(value);
 
 	const ftxCollapse = moment.unix(1667865600).toDate();
 	const ustDepeg = moment.unix(1651881600).toDate();
@@ -81,8 +100,7 @@ const Charts = ({ data }) => {
 	const ustReferenceDataIndex = sortedData.findIndex(
 		(item) => item.date === ustReferenceDataPoint.date
 	);
-	console.log(ustReferenceDataPoint);
-	console.log(updatedData[1360]);
+
 	return (
 		<div className="w-full p-4">
 			<div className="flex text-lg sm:hidden space-x-2">
@@ -179,9 +197,7 @@ const Charts = ({ data }) => {
 										},
 										{
 											x: ftxReferenceDataIndex,
-											y:
-												ftxReferenceDataPoint.value +
-												ftxReferenceDataPoint.value * 0.5,
+											y: value + value * 0.1,
 										},
 								  ]
 								: null
@@ -207,9 +223,7 @@ const Charts = ({ data }) => {
 										},
 										{
 											x: ustReferenceDataIndex,
-											y:
-												ustReferenceDataPoint.value +
-												ustReferenceDataPoint.value * 0.2,
+											y: value * 1.05,
 										},
 								  ]
 								: null
@@ -219,13 +233,12 @@ const Charts = ({ data }) => {
 						ifOverflow="clip"
 					>
 						<Label
-							value="UST Depeg"
+							value="UST depeg"
 							offset={10}
 							position="top"
 							style={{ fill: "#fff" }}
 						/>
 					</ReferenceLine>
-
 					<Area
 						type="monotone"
 						dataKey="value"
