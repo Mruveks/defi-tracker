@@ -19,6 +19,8 @@ const ProtocolPage = () => {
 	const [protocolData, setProtocolData] = useState([]);
 	const [tvl, setTvl] = useState();
 	const [pieData, setPieData] = useState([]);
+	const [showMessage, setShowMessage] = useState(false);
+	let timeout;
 	let formattedProtocolId = protocolId.replace(/ /g, "-").toLowerCase();
 
 	useEffect(() => {
@@ -27,7 +29,6 @@ const ProtocolPage = () => {
 			.then((res) => {
 				const data = [res.data];
 				setProtocolData(data);
-				console.log(data);
 				const values = Object.entries(data[0].currentChainTvls)
 					.map(([chain, value], key) => ({
 						key,
@@ -42,8 +43,10 @@ const ProtocolPage = () => {
 					);
 				setPieData(values);
 
-				const lastElement = tvl[tvl.length - 1];
+				const total = data[0].tvl;
+				const lastElement = total[total.length - 1];
 				setTvl(lastElement.totalLiquidityUSD);
+				console.log(data);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -58,9 +61,6 @@ const ProtocolPage = () => {
 			</p>
 		</div>
 	);
-
-	const [showMessage, setShowMessage] = useState(false);
-	let timeout;
 
 	const handleHover = () => {
 		setShowMessage(true);
@@ -127,7 +127,13 @@ const ProtocolPage = () => {
 									</div>
 									<div>
 										<h1>Total Value Locked</h1>
-										<p className="font-mono">{numeral(tvl).format("$0.00a")}</p>
+										{tvl > 0 ? (
+											<p className="font-mono">
+												{numeral(tvl).format("$0.00a")}
+											</p>
+										) : (
+											<Loader />
+										)}
 									</div>
 									{protocol.mcap > 0 ? (
 										<>
