@@ -81,7 +81,8 @@ const Charts = ({ data }) => {
 	const ustReferenceDataIndex = sortedData.findIndex(
 		(item) => item.date === ustReferenceDataPoint.date
 	);
-
+	console.log(ustReferenceDataPoint);
+	console.log(updatedData[1360]);
 	return (
 		<div className="w-full p-4">
 			<div className="flex text-lg sm:hidden space-x-2">
@@ -180,7 +181,7 @@ const Charts = ({ data }) => {
 											x: ftxReferenceDataIndex,
 											y:
 												ftxReferenceDataPoint.value +
-												ftxReferenceDataPoint.value / 1.5,
+												ftxReferenceDataPoint.value * 0.5,
 										},
 								  ]
 								: null
@@ -206,14 +207,16 @@ const Charts = ({ data }) => {
 										},
 										{
 											x: ustReferenceDataIndex,
-											y: ustReferenceDataPoint.value + 4000000000,
+											y:
+												ustReferenceDataPoint.value +
+												ustReferenceDataPoint.value * 0.2,
 										},
 								  ]
 								: null
 						}
 						stroke="#fff"
 						strokeDasharray="3 3"
-						ifOverflow="extendDomain"
+						ifOverflow="clip"
 					>
 						<Label
 							value="UST Depeg"
@@ -241,7 +244,7 @@ const Charts = ({ data }) => {
 					>
 						<AreaChart margin={{ top: 20, bottom: 20 }}>
 							<CartesianGrid strokeOpacity={0.05} />
-							<YAxis hide={true} stroke="transparent" domain={[0, "dataMin"]} />
+							<YAxis hide={true} stroke="transparent" />
 							<Area
 								dataKey="value"
 								margin={{ top: 20, bottom: 20 }}
