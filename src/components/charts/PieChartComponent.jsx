@@ -13,6 +13,7 @@ import numeral from "numeral";
 const PieChartComponent = ({ data, tvl }) => {
 	const [isSmallScreen, setIsSmallScreen] = useState(false);
 	const [activeIndex, setActiveIndex] = useState(null);
+  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
 
 	const colors = [
 		"#7eaedf",
