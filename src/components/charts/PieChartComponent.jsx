@@ -10,10 +10,10 @@ import {
 } from "recharts";
 import numeral from "numeral";
 
-const PieChartComponent = ({ data, tvl }) => {
+const PieChartComponent = ({ data }) => {
 	const [isSmallScreen, setIsSmallScreen] = useState(false);
 	const [activeIndex, setActiveIndex] = useState(null);
-  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
+	const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
 
 	const colors = [
 		"#7eaedf",
@@ -59,40 +59,44 @@ const PieChartComponent = ({ data, tvl }) => {
 	};
 
 	const renderCustomTooltip = () => {
-		if (activeIndex !== null) {
-			const activeData = data[activeIndex];
-			if (activeData) {
-				const { chain, value } = activeData;
+		if (data.length > 0) {
+			if (activeIndex !== null) {
+				const activeData = data[activeIndex];
+				if (activeData) {
+					const { chain, value } = activeData;
+					return (
+						<>
+							<Label
+								value={`${chain}: ${numeral(value).format("$0.00a")}`}
+								position="center"
+								style={{
+									fill: `${colors[activeIndex % colors.length]}`,
+									fontSize: `${isSmallScreen ? "16px" : "24px"}`,
+								}}
+							/>
+						</>
+					);
+				}
+			} else {
+				const largestDataEntry = data.reduce((max, entry) =>
+					entry.value > max.value ? entry : max
+				);
+				const { chain, value } = largestDataEntry;
 				return (
 					<>
 						<Label
 							value={`${chain}: ${numeral(value).format("$0.00a")}`}
 							position="center"
 							style={{
-								fill: `${colors[activeIndex % colors.length]}`,
-								fontSize: `${isSmallScreen ? '16px' : '24px'}`,
+								fill: `${
+									colors[data.indexOf(largestDataEntry) % colors.length]
+								}`,
+								fontSize: `${isSmallScreen ? "16px" : "24px"}`,
 							}}
 						/>
 					</>
 				);
 			}
-		} else {
-			const largestDataEntry = data.reduce((max, entry) =>
-				entry.value > max.value ? entry : max
-			);
-			const { chain, value } = largestDataEntry;
-			return (
-				<>
-					<Label
-						value={`${chain}: ${numeral(value).format("$0.00a")}`}
-						position="center"
-						style={{
-							fill: `${colors[data.indexOf(largestDataEntry) % colors.length]}`,
-              fontSize: `${isSmallScreen ? '16px' : '24px'}`,
-						}}
-					/>
-				</>
-			);
 		}
 		return null;
 	};

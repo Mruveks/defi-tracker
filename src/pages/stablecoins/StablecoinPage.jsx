@@ -31,7 +31,7 @@ const StablecoinPage = () => {
         setTvl((data.tokens[394].circulating.peggedUSD).toFixed(2))
 				const tokens = data.tokens;
 				const datesAndValues = tokens.map((token) => ({
-					date: moment.unix(token.date).toDate(),
+					date: token.date,
 					value: Number(token.circulating.peggedUSD),
 				}));
 				setExtractedData(datesAndValues);
