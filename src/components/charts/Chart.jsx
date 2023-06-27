@@ -6,6 +6,7 @@ import {
 	ResponsiveContainer,
 	ComposedChart,
 	Bar,
+	Cell,
 	XAxis,
 	YAxis,
 	CartesianGrid,
@@ -302,8 +303,13 @@ const Charts = ({ data }) => {
 							yAxisId="volumeAxis"
 							dataKey="volume"
 							fill="#e68e9d"
+							fillOpacity={1}
 							animationEasing="ease-in-out"
-						/>
+						>
+							{data.map((entry, index) => (
+								<Cell key={`cell-${index}`} fillOpacity={0.5} />
+							))}
+						</Bar>
 					) : null}
 					<YAxis
 						yAxisId="volumeAxis"
@@ -313,6 +319,10 @@ const Charts = ({ data }) => {
 						fontFamily="font-mono"
 						stroke="#e68e9d"
 						tickFormatter={(value) => numeral(value).format("$0.00a")}
+						tickSize={2}
+						padding={isSmallScreen ? { top: 90 } : { top: 200, bottom: 0 }}
+						scale={isLogScale ? "log" : "linear"}
+						domain={isLogScale ? ["auto", "auto"] : ["auto", "auto"]}
 					/>
 					<Brush
 						margin={{ top: 20, bottom: 20 }}
