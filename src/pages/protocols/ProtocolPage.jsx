@@ -145,18 +145,10 @@ const ProtocolPage = () => {
 													{numeral(protocol.mcap).format("$0.00a")}
 												</p>
 											</div>
+
 											<div>
 												<h1 className="flex space-x-2 items-center">
-													<p>Mcap/TVL</p>
-													<AiOutlineInfoCircle
-														onMouseEnter={handleHover}
-														onMouseLeave={handleLeave}
-													/>
-													{showMessage && (
-														<p className="hover-message fixed bg-red-400 z-10">
-															Put Message Here
-														</p>
-													)}
+													Mcap/TVL
 												</h1>
 												<p className="font-mono">
 													{(protocol.mcap / tvl).toFixed(2)}
