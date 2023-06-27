@@ -43,9 +43,11 @@ const ProtocolPage = () => {
 					);
 				setPieData(values);
 
-				const total = data[0].tvl;
-				const lastElement = total[total.length - 1];
-				setTvl(lastElement.totalLiquidityUSD);
+				if (data[0].tvl.length > 0) {
+					const total = data[0].tvl;
+					const lastElement = total[total.length - 1];
+					setTvl(lastElement.totalLiquidityUSD);
+				}
 				console.log(data);
 			})
 			.catch((err) => {
@@ -132,7 +134,7 @@ const ProtocolPage = () => {
 												{numeral(tvl).format("$0.00a")}
 											</p>
 										) : (
-											<Loader />
+											<div>-</div>
 										)}
 									</div>
 									{protocol.mcap > 0 ? (

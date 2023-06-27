@@ -4,6 +4,8 @@ import numeral from "numeral";
 import CustomTooltip from "./CustomTooltip";
 import {
 	ResponsiveContainer,
+	ComposedChart,
+	Bar,
 	XAxis,
 	YAxis,
 	CartesianGrid,
@@ -19,6 +21,8 @@ const Charts = ({ data }) => {
 	const [isSmallScreen, setIsSmallScreen] = useState(false);
 	const [isLogScale, setIsLogScale] = useState(false);
 	const [hallmarks, setHallmarks] = useState(false);
+	const [isVolume, setIsVolume] = useState(false);
+	const [hasVolume, setHasVolume] = useState(false);
 
 	function findLargestElement(array) {
 		if (array.length === 0) {
@@ -35,9 +39,9 @@ const Charts = ({ data }) => {
 
 		return largestElement.value;
 	}
+
 	const Element = findLargestElement(data);
 	const value = Element;
-	console.log(value);
 
 	const ftxCollapse = moment.unix(1667865600).toDate();
 	const ustDepeg = moment.unix(1651881600).toDate();
@@ -51,7 +55,7 @@ const Charts = ({ data }) => {
 
 	const dataWithDateObjects = data.map((item) => ({
 		...item,
-		date: new Date(item.date),
+		date: new Date(moment.unix(item.date).toDate()),
 	}));
 
 	const updatedData = [
@@ -68,6 +72,17 @@ const Charts = ({ data }) => {
 		setHallmarks(!hallmarks);
 		setIsLogScale(false);
 	};
+	const toggleVolume = () => {
+		setIsVolume(!isVolume);
+	};
+
+	useEffect(() => {
+		data.map((element) => {
+			if (element.volume) {
+				setHasVolume(true);
+			}
+		});
+	});
 
 	useEffect(() => {
 		setActiveIndex(dataWithDateObjects.length - 1);
@@ -87,14 +102,13 @@ const Charts = ({ data }) => {
 	const ustReferenceDataIndex = sortedData.findIndex(
 		(item) => item.date === ustReferenceDataPoint.date
 	);
-  
 
 	return (
 		<div className="w-full p-4">
 			<div className="flex text-lg sm:hidden space-x-2">
 				<button
 					onClick={toggleScale}
-					className={`rounded-lg px-2 h-fit transition duration-300 ${
+					className={`rounded-lg px-2 h-fit transition duration-300 border border-gray-600 ${
 						isLogScale === false ? "bg-[#8884d8] " : "bg-none"
 					}`}
 				>
@@ -102,7 +116,7 @@ const Charts = ({ data }) => {
 				</button>
 				<button
 					onClick={toggleScale}
-					className={`rounded-lg px-2 h-fit transition duration-300 ${
+					className={`rounded-lg px-2 h-fit transition duration-300 border border-gray-600 ${
 						isLogScale === true ? "bg-[#8884d8]" : "bg-none"
 					}`}
 				>
@@ -110,16 +124,26 @@ const Charts = ({ data }) => {
 				</button>
 				<button
 					onClick={toggleHallmarks}
-					className={`rounded-lg px-2 h-fit transition duration-300 ${
+					className={`rounded-lg px-2 h-fit transition duration-300 border border-gray-600 ${
 						hallmarks === true ? "bg-[#8884d8] " : "bg-none"
 					}`}
 				>
 					Hallmarks
 				</button>
+				{hasVolume === true ? (
+					<button
+						onClick={toggleVolume}
+						className={`rounded-lg px-2 h-fit transition duration-300 border border-gray-600 ${
+							isVolume === true ? "bg-[#8884d8] " : "bg-none"
+						}`}
+					>
+						Volume
+					</button>
+				) : null}
 			</div>
 
 			<ResponsiveContainer width="100%" className="sm:hidden" height={500}>
-				<AreaChart data={updatedData}>
+				<ComposedChart data={updatedData}>
 					<defs>
 						<linearGradient
 							id="area-chart-gradient"
@@ -138,7 +162,7 @@ const Charts = ({ data }) => {
 						horizontal={true}
 					/>
 					<XAxis
-            dataKey="date"
+						dataKey="date"
 						axisLine={false}
 						tickLine={false}
 						interval={isSmallScreen ? 365 : 365}
@@ -148,7 +172,7 @@ const Charts = ({ data }) => {
 						tick={{
 							fontSize: 14,
 							textAnchor: "start",
-            }}
+						}}
 					/>
 					<YAxis
 						axisLine={false}
@@ -175,7 +199,7 @@ const Charts = ({ data }) => {
 						position={isSmallScreen ? { x: 0, y: -20 } : { x: 70, y: 4 }}
 					/>
 
-          <ReferenceLine
+					<ReferenceLine
 						segment={
 							hallmarks === true
 								? [
@@ -192,7 +216,7 @@ const Charts = ({ data }) => {
 						}
 						stroke="#fff"
 						strokeDasharray="3 3"
-            ifOverflow="hidden"
+						ifOverflow="hidden"
 					>
 						<Label
 							value="FTX crash"
@@ -234,6 +258,23 @@ const Charts = ({ data }) => {
 						fillOpacity={1}
 						fill="url(#area-chart-gradient)"
 					/>
+					{isVolume ? (
+						<Bar
+							yAxisId="volumeAxis"
+							dataKey="volume"
+							fill="#e68e9d"
+							animationEasing="ease-in-out"
+						/>
+					) : null}
+					<YAxis
+						yAxisId="volumeAxis"
+						orientation="right"
+						axisLine={false}
+						tickLine={false}
+						fontFamily="font-mono"
+						stroke="#e68e9d"
+						tickFormatter={(value) => numeral(value).format("$0.00a")}
+					/>
 					<Brush
 						margin={{ top: 20, bottom: 20 }}
 						height={40}
@@ -241,7 +282,7 @@ const Charts = ({ data }) => {
 						tickFormatter={() => ""}
 						stroke="rgb(75 85 99)"
 						travellerWidth={10}
-            fill="#222f3e"
+						fill="#222f3e"
 					>
 						<AreaChart margin={{ top: 20, bottom: 20 }}>
 							<CartesianGrid strokeOpacity={0.05} />
@@ -254,7 +295,7 @@ const Charts = ({ data }) => {
 							/>
 						</AreaChart>
 					</Brush>
-				</AreaChart>
+				</ComposedChart>
 			</ResponsiveContainer>
 		</div>
 	);

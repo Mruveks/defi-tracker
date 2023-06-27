@@ -19,7 +19,7 @@ const Chart = () => {
         const data = [res.data];
         const formattedData = data[0].map((item) => {
           return {
-            date: moment.unix(item.date).toDate(),
+            date: item.date,
             value: Number(item.tvl),
           };
         });

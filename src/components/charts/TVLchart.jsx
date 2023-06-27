@@ -6,43 +6,59 @@ import moment from "moment";
 import Charts from "./Chart";
 const TVLchart = () => {
 	const [chartData, setChartData] = useState([]);
+	const [volumeData, setVolumeData] = useState([]);
 	const [day, setDay] = useState();
 	const [lastDay, setLastDay] = useState();
 	const [weekAgo, setWeekAgo] = useState();
 
 	useEffect(() => {
-		axios
-			.get("https://api.llama.fi/v2/historicalChainTvl")
-			.then((res) => {
-				const data = res.data;
-				const dates = data.map((item) => moment.unix(item.date).toDate());
-				const values = data.map((item) => item.tvl);
-				const datasource = values.map((value, index) => ({
-					date: dates[index],
-					value: value,
+		const fetchData = async () => {
+			try {
+				const historicalTvlRes = await axios.get(
+					"https://api.llama.fi/v2/historicalChainTvl"
+				);
+				const data = historicalTvlRes.data;
+				const datasource = data.map(({ date, tvl }) => ({
+					date,
+					value: tvl,
 				}));
 				setChartData(datasource);
-				const today = datasource.slice(
-					datasource.length - 1,
-					datasource.length
+
+				const today = datasource[datasource.length - 1]?.value || 0;
+				const yesterday = datasource[datasource.length - 2]?.value || 0;
+				const weekAgo = datasource[datasource.length - 8]?.value || 0;
+				setLastDay(yesterday);
+				setDay(today);
+				setWeekAgo(weekAgo);
+
+				const dailyVolumeRes = await axios.get(
+					"https://api.llama.fi/overview/dexs?excludeTotalDataChart=false&excludeTotalDataChartBreakdown=true&dataType=dailyVolume"
 				);
-				const yesterday = datasource.slice(
-					datasource.length - 2,
-					datasource.length - 1
+				const volumeData = dailyVolumeRes.data.totalDataChart.map(
+					([date, volume]) => ({
+						date: parseInt(date),
+						volume,
+					})
 				);
-				const weekAgo = datasource.slice(
-					datasource.length - 8,
-					datasource.length - 7
-				);
-				setLastDay(yesterday[0].value);
-				setDay(today[0].value);
-				setWeekAgo(weekAgo[0].value);
-				console.log(weekAgo);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+				setVolumeData(volumeData);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		fetchData();
 	}, []);
+
+	const mergedData = chartData.map((item) => {
+		const volumeItem = volumeData.find((vItem) => {
+			return parseInt(vItem.date) === parseInt(item.date);
+		});
+
+		return {
+			...item,
+			...volumeItem,
+		};
+	});
 
 	const changes = day - lastDay;
 	const percentageChange = (((day - lastDay) / lastDay) * 100).toFixed(2);
@@ -56,7 +72,9 @@ const TVLchart = () => {
 					<div className="grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
 						<div className="grid lg:grid-col grid-flow-row space-y-8 h-fit text-white sm:w-full text-2xl p-4 italic capitalize">
 							<div className="my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-4 w-[110%]">
-								<header className="text-4xl whitespace-pre-wrap flex">DeFi</header>
+								<header className="text-4xl whitespace-pre-wrap flex">
+									DeFi
+								</header>
 							</div>
 							<div className="grid sm:grid-cols-2 gap-10 grid-cols-1">
 								<div className="grid sm:col-span-2 h-fit grid-flow-row w-fit justify-center">
@@ -110,7 +128,7 @@ const TVLchart = () => {
 							</div>
 						</div>
 						<div className="w-full h-full justify-end flex py-4">
-							<Charts data={chartData} />
+							<Charts data={mergedData} />
 						</div>
 					</div>
 				</div>

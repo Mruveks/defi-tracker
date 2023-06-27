@@ -16,7 +16,7 @@ const StablesTVLchart = () => {
 			.get("https://stablecoins.llama.fi/stablecoincharts/all?stablecoin=1")
 			.then((res) => {
 				const stables = res.data;
-				const dates = stables.map((item) => moment.unix(item.date).toDate());
+				const dates = stables.map((item) => item.date);
 				const totalCirculating = stables.map(
 					(item) => item.totalCirculatingUSD
 				);
@@ -49,7 +49,9 @@ const StablesTVLchart = () => {
 				<div className="grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
 					<div className="space-y-8 h-fit text-white sm:w-full text-2xl p-4 italic capitalize">
 						<div className="col-span-2 my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-4 w-[110%]">
-							<header className="text-4xl whitespace-pre-wrap flex">Stablecoins</header>
+							<header className="text-4xl whitespace-pre-wrap flex">
+								Stablecoins
+							</header>
 						</div>
 						<div className="grid sm:grid-cols-2 gap-10 grid-cols-1">
 							<div className="grid h-fit grid-flow-row w-fit justify-center sm:col-span-2">
