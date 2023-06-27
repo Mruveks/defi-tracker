@@ -21,6 +21,7 @@ import ScrollTopButton from "./components/ScrollTopButton";
 const ProtocolPage = lazy(() => import("./pages/protocols/ProtocolPage"));
 const ChainPage = lazy(() => import("./pages/chains/ChainPage"));
 const StablecoinPage = lazy(() => import("./pages/stablecoins/StablecoinPage"));
+const ChainOverview = lazy(() => import("./pages/chains/ChainOverview"));
 
 function App() {
 	return (
@@ -37,7 +38,9 @@ function App() {
 						<Route path="/bridges" element={<Bridges />} />
 						<Route path="/lending" element={<Lending />} />
 						<Route path="/cex" element={<CEX />} />
-						<Route path="/dex" element={<DEX />} />
+            <Route path="/dex" element={<DEX />} />
+            <Route path="/chains" element={<ChainOverview />} />
+
 						<Route
 							key="/protocol/:protocolId"
 							path="/protocol/:protocolId"

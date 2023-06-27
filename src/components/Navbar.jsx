@@ -10,6 +10,7 @@ import {
 } from "react-icons/bs";
 import { GiRialtoBridge } from "react-icons/gi";
 import { RiHandCoinLine } from "react-icons/ri";
+import { TiArrowDown, TiArrowUp } from "react-icons/ti";
 import ScrollToTopButton from "./ScrollTopButton";
 import {
 	eth,
@@ -73,6 +74,11 @@ const Navbar = () => {
 
 		return;
 	}, [window.location.pathname]);
+	const [isExpanded, setIsExpanded] = useState(false);
+
+	const toggleExpand = () => {
+		setIsExpanded(!isExpanded);
+	};
 
 	return (
 		<div className="sm:hidden md:hidden block h-full w-46 border-r border-gray-600 fixed left-0 top-0 ">
@@ -85,16 +91,42 @@ const Navbar = () => {
 							</header>
 						</li>
 						<li className="group">
-							<NavLink
-								to="/"
-								onClick={() => setActiveNav("/defi")}
-								className={`${
+							<div
+								onClick={(() => toggleExpand())}
+								className={`flex justify-between cursor-pointer ${
 									activeNav === "/defi" ? "bg-gray-700" : ""
 								} ${elementStyle}`}
 							>
-								<BsBarChart size={24} className="mr-2 wiggle" />
-								Defi
-							</NavLink>
+								<p className="flex">
+									<BsBarChart size={24} className="mr-2 wiggle" />
+									Defi
+								</p>
+								{isExpanded ? (
+									<TiArrowUp size={24} />
+								) : (
+									<TiArrowDown size={24} />
+								)}
+							</div>
+							{isExpanded && (
+								<div className="h-fit pl-8">
+									<NavLink
+										to="/"
+										className={`${
+											activeNav === "/defi" ? "bg-gray-700" : ""
+										} ${elementStyle}`}
+									>
+										Overview
+									</NavLink>
+									<NavLink
+										to="/chains"
+										className={`${
+											activeNav === "/defi" ? "bg-gray-700" : ""
+										} ${elementStyle}`}
+									>
+										Chains
+									</NavLink>
+								</div>
+							)}
 						</li>
 						<li className="group">
 							<NavLink
@@ -188,7 +220,7 @@ const Navbar = () => {
 						<li>{link("tron", tron)}</li>
 					</ul>
 				</div>
-        <div className="flex mt-20 px-4">
+				<div className="flex mt-20 px-4">
 					<ScrollToTopButton />
 				</div>
 			</aside>
