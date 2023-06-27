@@ -14,6 +14,7 @@ import {
 	CEX,
 	DEX,
 } from "./pages/index";
+import RollingBanner from "./components/RollingBanner";
 import Footer from "./components/Footer";
 import ScrollTopButton from "./components/ScrollTopButton";
 
@@ -25,6 +26,7 @@ function App() {
 	return (
 		<>
 			<div className="pl-36 pt-4 pb-8 sm:px-0 md:pl-0 md:mt-0 sm:m-5">
+			<RollingBanner />
 				<Navbar />
 				<MobileNavbar />
 				<Suspense>
