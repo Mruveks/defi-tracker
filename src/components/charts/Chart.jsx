@@ -54,23 +54,10 @@ const Charts = ({ data }) => {
 		date: new Date(item.date),
 	}));
 
-	const ftxCollapseData = {
-		date: ftxCollapse,
-		value: "date",
-	};
-	const ustDepegData = {
-		date: ustDepeg,
-		value: "date",
-	};
-
 	const updatedData = [
 		...dataWithDateObjects,
-		{
-			...ftxCollapseData,
-		},
-		{
-			...ustDepegData,
-		},
+		{ date: ftxCollapse, value: "date" },
+		{ date: ustDepeg, value: "date" },
 	];
 
 	const [activeIndex, setActiveIndex] = useState(
@@ -100,6 +87,7 @@ const Charts = ({ data }) => {
 	const ustReferenceDataIndex = sortedData.findIndex(
 		(item) => item.date === ustReferenceDataPoint.date
 	);
+  
 
 	return (
 		<div className="w-full p-4">
@@ -150,17 +138,17 @@ const Charts = ({ data }) => {
 						horizontal={true}
 					/>
 					<XAxis
-						dataKey="date"
+            dataKey="date"
 						axisLine={false}
 						tickLine={false}
-						interval={isSmallScreen ? 365 : 182}
+						interval={isSmallScreen ? 365 : 365}
 						tickFormatter={(value) => moment(value).format("MMM YYYY")}
 						stroke="#8884d8"
 						tickSize={2}
 						tick={{
 							fontSize: 14,
 							textAnchor: "start",
-						}}
+            }}
 					/>
 					<YAxis
 						axisLine={false}
@@ -187,7 +175,7 @@ const Charts = ({ data }) => {
 						position={isSmallScreen ? { x: 0, y: -20 } : { x: 70, y: 4 }}
 					/>
 
-					<ReferenceLine
+          <ReferenceLine
 						segment={
 							hallmarks === true
 								? [
@@ -204,7 +192,7 @@ const Charts = ({ data }) => {
 						}
 						stroke="#fff"
 						strokeDasharray="3 3"
-						ifOverflow="extendDomain"
+            ifOverflow="hidden"
 					>
 						<Label
 							value="FTX crash"
@@ -230,7 +218,7 @@ const Charts = ({ data }) => {
 						}
 						stroke="#fff"
 						strokeDasharray="3 3"
-						ifOverflow="clip"
+						ifOverflow="hidden"
 					>
 						<Label
 							value="UST depeg"
@@ -253,7 +241,7 @@ const Charts = ({ data }) => {
 						tickFormatter={() => ""}
 						stroke="rgb(75 85 99)"
 						travellerWidth={10}
-						fill="#222f3e"
+            fill="#222f3e"
 					>
 						<AreaChart margin={{ top: 20, bottom: 20 }}>
 							<CartesianGrid strokeOpacity={0.05} />
