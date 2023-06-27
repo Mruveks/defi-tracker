@@ -11,7 +11,7 @@ import moment from "moment";
 import numeral from "numeral";
 import Loader from "../../components/Loader";
 import { BsArrowUpRight } from "react-icons/bs";
-import PieChart from "../../components/charts/PieChart";
+import PieChart from "../../components/charts/PieChartComponent";
 import { BsCoin } from "react-icons/bs";
 const StablecoinPage = () => {
 	const { stableId } = useParams();
