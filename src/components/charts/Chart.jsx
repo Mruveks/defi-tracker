@@ -62,9 +62,9 @@ const Charts = ({ data }) => {
 
 	const updatedData = [
 		...dataWithDateObjects,
-		{ date: ftxCollapse, value: "date" },
-		{ date: ustDepeg, value: "date" },
-		{ date: threeAC, value: "date" },
+		{ date: ftxCollapse },
+		{ date: ustDepeg },
+		{ date: threeAC },
 	];
 
 	const [activeIndex, setActiveIndex] = useState(
@@ -154,7 +154,7 @@ const Charts = ({ data }) => {
 			</div>
 
 			<ResponsiveContainer width="100%" className="sm:hidden" height={500}>
-				<ComposedChart data={updatedData}>
+				<ComposedChart data={hallmarks === true ? sortedData.slice(0,-3) : updatedData.slice(0,-3)}>
 					<defs>
 						<linearGradient
 							id="area-chart-gradient"
