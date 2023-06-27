@@ -45,6 +45,7 @@ const Charts = ({ data }) => {
 
 	const ftxCollapse = moment.unix(1667865600).toDate();
 	const ustDepeg = moment.unix(1651881600).toDate();
+	const threeAC = moment.unix(1654819200).toDate();
 
 	const toggleScale = () => {
 		setIsLogScale(!isLogScale);
@@ -62,6 +63,7 @@ const Charts = ({ data }) => {
 		...dataWithDateObjects,
 		{ date: ftxCollapse, value: "date" },
 		{ date: ustDepeg, value: "date" },
+		{ date: threeAC, value: "date" },
 	];
 
 	const [activeIndex, setActiveIndex] = useState(
@@ -101,6 +103,14 @@ const Charts = ({ data }) => {
 	);
 	const ustReferenceDataIndex = sortedData.findIndex(
 		(item) => item.date === ustReferenceDataPoint.date
+	);
+
+	const threeAcReferenceDataPoint = sortedData.find(
+		(item) => item.date.getTime() === threeAC.getTime()
+	);
+
+	const threeAcReferenceDataIndex = sortedData.findIndex(
+		(item) => item.date === threeAcReferenceDataPoint.date
 	);
 
 	return (
@@ -209,7 +219,7 @@ const Charts = ({ data }) => {
 										},
 										{
 											x: ftxReferenceDataIndex,
-											y: value + value * 0.1,
+											y: value - value * 0.1,
 										},
 								  ]
 								: null
@@ -220,9 +230,10 @@ const Charts = ({ data }) => {
 					>
 						<Label
 							value="FTX crash"
-							offset={10}
-							position="top"
+							offset={-10}
+							position="insideTopLeft"
 							style={{ fill: "#fff" }}
+							angle="-45"
 						/>
 					</ReferenceLine>
 					<ReferenceLine
@@ -235,7 +246,7 @@ const Charts = ({ data }) => {
 										},
 										{
 											x: ustReferenceDataIndex,
-											y: value * 1.05,
+											y: value,
 										},
 								  ]
 								: null
@@ -246,9 +257,37 @@ const Charts = ({ data }) => {
 					>
 						<Label
 							value="UST depeg"
-							offset={10}
-							position="top"
+							offset={-10}
+							position="insideTopLeft"
 							style={{ fill: "#fff" }}
+							angle="-45"
+						/>
+					</ReferenceLine>
+					<ReferenceLine
+						segment={
+							hallmarks === true
+								? [
+										{
+											x: threeAcReferenceDataIndex,
+											y: 0,
+										},
+										{
+											x: threeAcReferenceDataIndex,
+											y: value - value * 0.1,
+										},
+								  ]
+								: null
+						}
+						stroke="#fff"
+						strokeDasharray="3 3"
+						ifOverflow="hidden"
+					>
+						<Label
+							value="3ac bankruptcy"
+							offset={-10}
+							position="insideTopLeft"
+							style={{ fill: "#fff" }}
+							angle="-45"
 						/>
 					</ReferenceLine>
 					<Area
