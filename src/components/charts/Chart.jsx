@@ -18,7 +18,7 @@ import {
 	Area,
 } from "recharts";
 
-const Charts = ({ data }) => {
+const Charts = ({ data, options }) => {
 	const [isSmallScreen, setIsSmallScreen] = useState(false);
 	const [isLogScale, setIsLogScale] = useState(false);
 	const [hallmarks, setHallmarks] = useState(false);
@@ -125,14 +125,16 @@ const Charts = ({ data }) => {
 				>
 					Linear
 				</button>
-				<button
-					onClick={toggleScale}
-					className={`rounded-lg px-2 h-fit transition duration-300 border border-gray-600 ${
-						isLogScale === true ? "bg-[#8884d8]" : "bg-none"
-					}`}
-				>
-					Logarithmic
-				</button>
+				{options === "bridge" ? null : (
+					<button
+						onClick={toggleScale}
+						className={`rounded-lg px-2 h-fit transition duration-300 border border-gray-600 ${
+							isVolume === true ? "bg-[#8884d8] " : "bg-none"
+						}`}
+					>
+						Logarithmic
+					</button>
+				)}
 				<button
 					onClick={toggleHallmarks}
 					className={`rounded-lg px-2 h-fit transition duration-300 border border-gray-600 ${
@@ -154,7 +156,13 @@ const Charts = ({ data }) => {
 			</div>
 
 			<ResponsiveContainer width="100%" className="sm:hidden" height={500}>
-				<ComposedChart data={hallmarks === true ? sortedData.slice(0,-3) : updatedData.slice(0,-3)}>
+				<ComposedChart
+					data={
+						hallmarks === true
+							? sortedData.slice(0, -3)
+							: updatedData.slice(0, -3)
+					}
+				>
 					<defs>
 						<linearGradient
 							id="area-chart-gradient"
@@ -197,7 +205,11 @@ const Charts = ({ data }) => {
 							fontSize: 14,
 							textAnchor: "end",
 						}}
-						padding={isSmallScreen ? { top: 10 } : { top: 80, bottom: 0 }}
+						padding={
+							isSmallScreen
+								? { top: 10 }
+								: { top: options ? 40 : 80, bottom: options ? 40 : 0 }
+						}
 						scale={isLogScale ? "log" : "linear"}
 						domain={isLogScale ? ["auto", "auto"] : ["auto", "auto"]}
 					/>
@@ -205,7 +217,7 @@ const Charts = ({ data }) => {
 						active={activeIndex !== -1}
 						width="100%"
 						activeIndex={activeIndex}
-						content={<CustomTooltip />}
+						content={<CustomTooltip options={options ? "yes" : null} />}
 						margin={(isSmallScreen ? { top: 12 } : { top: 20 }, { bottom: 20 })}
 						position={isSmallScreen ? { x: 0, y: -20 } : { x: 70, y: 4 }}
 					/>
