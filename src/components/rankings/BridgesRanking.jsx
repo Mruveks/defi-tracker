@@ -4,11 +4,13 @@ import numeral from "numeral";
 import Loader from "../Loader";
 import CalculateChange from "../../utilities/CalculateChange";
 import Charts from "../charts/Chart";
+import moment from "moment";
 
 const BridgesRanking = () => {
 	const [bridges, setBridges] = useState([]);
 	const [chartData, setChartData] = useState([]);
-
+	const [lastItem, setLastItem] = useState([]);
+	const [lastDate, setLastDate] = useState();
 	useEffect(() => {
 		axios
 			.get("https://bridges.llama.fi/bridges?includeChains=true")
@@ -30,19 +32,54 @@ const BridgesRanking = () => {
 					withdrawTxs: item.withdrawTxs,
 					txDiff: item.depositTxs - item.withdrawTxs,
 				}));
+				const last = updateData.slice(updateData.length - 1);
+
 				setChartData(updateData);
-				console.log(updateData);
+				setLastItem(last);
+				setLastDate(moment.unix(last[0].date));
 			})
 			.catch((err) => console.log(err));
 	}, []);
-
 	return (
 		<>
-			<div className="h-max mb-8 text-md border-gray-600 p-2 border rounded-xl bg-gray-800">
-				<header className="text-4xl space-x-2 whitespace-pre-wrap flex p-2">
-					Bridges Outflows vs Inflows
-				</header>
-				<Charts data={chartData} options="bridge" />
+			<div className="grid mb-4 sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl p-4">
+				<div className="space-y-8 h-fit text-white sm:w-full italic capitalize">
+					<header className="text-4xl">
+						Bridges <br /> Outflows vs Inflows
+					</header>
+					{lastItem && lastItem[0] ? (
+						<div className="space-y-4">
+							<span className="flex space-x-2">
+								<h1>Last data entry:</h1>
+								<p>{lastDate.format("DD.MM.YYYY")}</p>
+							</span>
+
+							<div>
+								<span className="flex space-x-2">
+									<h1>Outgoing Transactions:</h1>
+									<p>{lastItem[0].withdrawTxs}</p>
+								</span>
+								<span className="flex space-x-2">
+									<h1>Outgoing Transactions Value:</h1>
+									<p>-{numeral(lastItem[0].withdrawUSD).format("$0,0.0")}</p>
+								</span>
+							</div>
+							<div>
+								<span className="flex space-x-2">
+									<h1>Incoming Transactions:</h1>
+									<p>{lastItem[0].depositTxs}</p>
+								</span>{" "}
+								<span className="flex space-x-2">
+									<h1>Incoming Transactions Value:</h1>
+									<p>{numeral(lastItem[0].depositUSD).format("$0,0.0")}</p>
+								</span>
+							</div>
+						</div>
+					) : null}
+				</div>
+				<div className="grid lg:grid-col grid-flow-row space-y-8 h-fit text-white sm:w-full text-2xl p-4 italic capitalize">
+					<Charts data={chartData} options="bridge" />
+				</div>
 			</div>
 			<div className="h-max border text-md rounded-xl border-gray-600 p-2">
 				<div className="grid grid-cols-5 text-lg sm:grid-cols-3 font-semibold sm:text-sm p-2 text-right capitalize italic">
