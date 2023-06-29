@@ -105,7 +105,7 @@ const PieChartComponent = ({ data }) => {
 		<div id="chart-container">
 			<ResponsiveContainer
 				className="m-auto h-max"
-				height={isSmallScreen ? 700 : data.length > 20 ? 1000 : 600}
+				height={isSmallScreen ? 400 : data.length > 20 ? 1000 : 600}
 			>
 				<PieChart onMouseMove={handleMouseMove}>
 					<Pie
@@ -131,7 +131,10 @@ const PieChartComponent = ({ data }) => {
 						verticalAlign="bottom"
 						align="left"
 						layout="horizontal"
-						wrapperStyle={{ marginRight: "80px" }}
+						wrapperStyle={{
+							marginRight: "80px",
+							fontSize: isSmallScreen ? "small" : "large",
+						}}
 						payload={data
 							.sort((a, b) => b.value - a.value)
 							.map((entry, index) => ({
