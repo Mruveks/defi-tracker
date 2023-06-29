@@ -50,7 +50,7 @@ function BackButton() {
 	return (
 		<div className="flex sm:hidden md:hidden items-center space-x-8">
 			<button
-				className="flex w-fit items-center space-x-2 my-2 bg-gray-700 rounded-xl backdrop-blur-2xl sm:bg-gray-900 md:bg-gray-900 bg-transparent border transition duration-100 border-gray-600  hover:bg-gray-600 text-gray-400 font-bold py-2 px-4 "
+				className="flex w-fit items-center space-x-2 my-2 bg-gray-850 rounded-xl backdrop-blur-2xl border transition duration-100 border-gray-600  hover:bg-gray-600 text-gray-400 font-bold py-2 px-4 "
 				onClick={handleClick}
 			>
 				<BsArrowLeft />

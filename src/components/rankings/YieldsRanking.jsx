@@ -24,7 +24,7 @@ const YieldsRanking = () => {
 
   return (
     <>
-      <div className="flex flex-wrap gap-4 my-4 sm:my-10 sm:gap-2 h-fit xl:justify-between justify-items-stretch">
+      <div className="flex  flex-wrap gap-4 my-4 sm:my-10 sm:gap-2 h-fit xl:justify-between justify-items-stretch">
         <button
           className={`${buttonStyle} ${
             query === "" ? "bg-blue-600" : "bg-gray-700"
@@ -151,7 +151,7 @@ const YieldsRanking = () => {
         </button>
       </div>
 
-      <div className="h-max mb-8 text-md border rounded-xl border-gray-600 p-2">
+      <div className="h-max mb-8 text-md border rounded-xl bg-gray-850 border-gray-600 p-2">
         <div className="grid grid-cols-7 sm:grid-cols-3 font-semibold p-2 text-lg sm:text-sm text-right capitalize italic">
           <header className="text-left pl-2">Pool</header>
           <header className="text-left pl-4">Project</header>
@@ -171,7 +171,7 @@ const YieldsRanking = () => {
               <div
                 key={index}
                 className={` ${
-                  index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"
+                  index % 2 === 0 ? "bg-gray-800" : "bg-gray-850"
                 } grid grid-cols-7 sm:grid-cols-3 items-center rounded-xl p-2 text-right`}
               >
                 <div className="flex space-x-4 sm:space-x-0 sm:p-0 text-left p-2 capitalize items-center">

@@ -66,7 +66,7 @@ const StablecoinPage = () => {
 			<BackButton />
 			<SearchList />
 
-			<div className="grid mt-4 sm:grid-cols-1 grid-cols-[50%_50%] border border-gray-600 rounded-xl">
+			<div className="grid mt-4 sm:grid-cols-1 grid-cols-[50%_50%] border bg-gray-850 border-gray-600 rounded-xl">
 				<div className="text-xl p-4 italic capitalize">
 					<header className="text-4xl space-x-2 whitespace-pre-wrap flex capitalize">
 						<p>Total Value Locked All Chains:</p>

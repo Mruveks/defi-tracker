@@ -19,7 +19,7 @@ const StablecoinPage = () => {
 	const [extractedData, setExtractedData] = useState([]);
 	const [currentCirculating, setCurrentCirculating] = useState([]);
 	const [valuesArray, setValuesArray] = useState([]);
-  const [tvl, setTvl] = useState(0);
+	const [tvl, setTvl] = useState(0);
 
 	useEffect(() => {
 		axios
@@ -27,8 +27,8 @@ const StablecoinPage = () => {
 			.then((res) => {
 				const data = res.data;
 				setStables(data);
-        console.log(data.tokens[394].circulating.peggedUSD);
-        setTvl((data.tokens[394].circulating.peggedUSD).toFixed(2))
+				console.log(data.tokens[394].circulating.peggedUSD);
+				setTvl(data.tokens[394].circulating.peggedUSD.toFixed(2));
 				const tokens = data.tokens;
 				const datesAndValues = tokens.map((token) => ({
 					date: token.date,
@@ -72,10 +72,10 @@ const StablecoinPage = () => {
 			<SearchList />
 
 			{stables ? (
-				<div className="grid grid-cols-2 mb-5 rounded-xl">
-					<div className="col-span-2 my-4 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
-						<div className="space-y-8 h-fit text-white sm:w-full p-4 italic capitalize">
-							<div className="col-span-2 my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-2 w-[120%]">
+				<div className="grid grid-cols-2 mb-4 rounded-xl">
+					<div className="grid col-span-2 sm:grid-cols-1 md:grid-cols-1 grid-cols-[30%_70%] my-4">
+						<div className="grid  text-white sm:w-full p-4 bg-gray-850 rounded-l-xl italic capitalize border border-gray-600 h-full">
+							<div className="flex items-center not-italic sm:space-x-0 text-2xl space-x-2 w-[120%]">
 								<BsCoin size={30} />
 								<header className="text-4xl">
 									{stables.name} ({stables.symbol})
@@ -99,16 +99,19 @@ const StablecoinPage = () => {
 									"-"
 								)}
 							</div>
-							<h1>Peg Mechanism</h1>
-							{stables.pegMechanism}
+
+							<div>
+								<h1>Peg Mechanism</h1>
+								{stables.pegMechanism}
+							</div>
 						</div>
 
-						<div className="flex">
+						<div className="border border-gray-600 border-l-0 sm:hidden md:hidden">
 							<Charts data={extractedData} />
 						</div>
 					</div>
 
-					<div className="col-span-2  grid grid-cols-2 sm:grid-cols-1 rounded-xl border border-gray-600">
+					<div className="col-span-2 bg-gray-850 grid grid-cols-2 sm:grid-cols-1 rounded-xl border border-gray-600">
 						<div className="space-y-4 p-4 border-r  border-gray-600">
 							<header className="text-2xl sm:text-2xl">
 								Protocol Information
@@ -171,7 +174,7 @@ const StablecoinPage = () => {
 							<div className="border-t h-fit p-4 border-gray-600">
 								<header className="text-2xl sm:text-2xl">
 									Token Circulation
-                </header>
+								</header>
 
 								<PieChart data={valuesArray} tvl={tvl} />
 							</div>

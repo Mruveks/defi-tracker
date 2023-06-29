@@ -46,13 +46,11 @@ const StablesTVLchart = () => {
 	return (
 		<>
 			{stable.length ? (
-				<div className="grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
-					<div className="space-y-8 h-fit text-white sm:w-full text-2xl p-4 italic capitalize">
-						<div className="col-span-2 my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-4 w-[110%]">
-							<header className="text-4xl whitespace-pre-wrap flex">
-								Stablecoins
-							</header>
-						</div>
+				<div className="grid sm:grid-cols-1 md:grid-cols-1 grid-cols-[30%_70%]">
+					<div className="grid lg:grid-col grid-flow-row space-y-8 text-white sm:w-full text-2xl p-4 bg-gray-850 rounded-l-xl italic capitalize border border-gray-600 h-full">
+						<header className="text-4xl whitespace-pre-wrap flex">
+							Stablecoins
+						</header>
 						<div className="grid sm:grid-cols-2 gap-10 grid-cols-1">
 							<div className="grid h-fit grid-flow-row w-fit justify-center sm:col-span-2">
 								<div>Total Value Locked</div>
@@ -105,7 +103,7 @@ const StablesTVLchart = () => {
 						</div>
 					</div>
 
-					<div className="flex py-4">
+					<div className="border border-gray-600 border-l-0 sm:hidden md:hidden">
 						<Charts data={stable} />
 					</div>
 				</div>

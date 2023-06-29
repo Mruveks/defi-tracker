@@ -108,11 +108,11 @@ const ProtocolPage = () => {
 
 			{protocolData.length ? (
 				<div className="grid grid-cols-2 mb-4 rounded-xl">
-					<div className="col-span-2 my-4 grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
+					<div className="grid col-span-2 sm:grid-cols-1 md:grid-cols-1 grid-cols-[30%_70%] my-4">
 						{protocolData.map((protocol, index) => (
 							<div
 								key={index}
-								className="space-y-8 h-fit text-white sm:w-full p-4 italic capitalize"
+								className="grid lg:grid-col grid-flow-row space-y-8 text-white sm:w-full text-2xl p-4 bg-gray-850 rounded-l-xl italic capitalize border border-gray-600 h-full"
 							>
 								<div className="grid sm:grid-flow-row sm:items-center gap-4">
 									<div className="col-span-2 my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-4 w-[110%]">
@@ -200,12 +200,15 @@ const ProtocolPage = () => {
 								</div>
 							</div>
 						))}
-						<ProtocolsChart />
+						<div className="border border-gray-600 border-l-0 sm:hidden md:hidden">
+							<ProtocolsChart />
+						</div>{" "}
 					</div>
-					{protocolData.map((protocol, index) => (
+					
+          {protocolData.map((protocol, index) => (
 						<div
 							key={index}
-							className="col-span-2  grid grid-cols-2 sm:grid-cols-1 rounded-xl border border-gray-600"
+							className="col-span-2  grid grid-cols-2 sm:grid-cols-1 rounded-xl border bg-gray-850 border-gray-600"
 						>
 							<div className="space-y-4 p-4 border-r  border-gray-600">
 								<header className="text-2xl sm:text-2xl">

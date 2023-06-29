@@ -20,7 +20,7 @@ const StablesRanking = () => {
 
   return (
     <>
-      <div className="h-max mb-8 text-md border-gray-600 p-2 border rounded-xl bg-gray-800 ">
+      <div className="h-max mb-8 text-md border-gray-600 p-2 border rounded-xl bg-gray-850 ">
         <div className="grid sm:grid-cols-3 grid-cols-7 font-semibold p-2 text-lg sm:text-sm text-right capitalize italic">
           <header className="text-left">Name</header>
           <header>Price</header>
@@ -43,7 +43,7 @@ const StablesRanking = () => {
             .map((stable, index) => (
               <div
                 className={` ${
-                  index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"
+                  index % 2 === 0 ? "bg-gray-800" : "bg-gray-850"
                 } grid sm:grid-cols-3 grid-cols-7 items-center rounded-xl my-2 pr-2 text-right`}
                 key={index}
               >

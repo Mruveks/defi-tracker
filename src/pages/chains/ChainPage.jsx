@@ -70,13 +70,12 @@ const ChainPage = () => {
 			<SearchList />
 
 			{chains.length ? (
-				<div className="grid mt-4 sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
-					<div className="grid lg:grid-col grid-flow-row space-y-8 h-fit text-white sm:w-full text-2xl p-4 italic capitalize">
-						<div className="my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-4 w-[110%]">
-							<header className="text-4xl whitespace-pre-wrap flex capitalize">
-                {chainId === "Binance" ? "Binance Smart Chain" : chainId}
-							</header>
-						</div>
+				<div className="grid sm:grid-cols-1 md:grid-cols-1 grid-cols-[30%_70%] mt-4">
+					<div className="grid lg:grid-col grid-flow-row space-y-8 text-white sm:w-full text-2xl p-4 bg-gray-850 rounded-l-xl italic capitalize border border-gray-600 h-full">
+						<header className="text-4xl whitespace-pre-wrap flex capitalize">
+							{chainId === "Binance" ? "Binance Smart Chain" : chainId}
+						</header>
+
 						<div className="grid sm:grid-cols-2 gap-10 grid-cols-1">
 							<div className="grid sm:col-span-2 h-fit grid-flow-row w-fit justify-center">
 								<div>Total Value Locked</div>
@@ -128,7 +127,9 @@ const ChainPage = () => {
 							</div>
 						</div>
 					</div>
-					<ChainsChart />
+					<div className="border border-gray-600 border-l-0 sm:hidden md:hidden">
+						<ChainsChart />
+					</div>
 				</div>
 			) : (
 				<Loader />

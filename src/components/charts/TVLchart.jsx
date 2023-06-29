@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "../Loader";
 import numeral from "numeral";
-import moment from "moment";
 import Charts from "./Chart";
+import { TiArrowDown, TiArrowUp } from "react-icons/ti";
+
 const TVLchart = () => {
 	const [chartData, setChartData] = useState([]);
 	const [volumeData, setVolumeData] = useState([]);
@@ -68,53 +69,44 @@ const TVLchart = () => {
 	return (
 		<>
 			{chartData.length ? (
-				<div className="flex flex-col lg:flex-row">
-					<div className="grid sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl">
-						<div className="grid lg:grid-col grid-flow-row space-y-8 h-fit text-white sm:w-full text-2xl p-4 italic capitalize">
-							<div className="my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-4 w-[110%]">
-								<header className="text-4xl whitespace-pre-wrap flex">
-									DeFi
-								</header>
-							</div>
-							<div className="grid sm:grid-cols-2 gap-10 grid-cols-1">
-								<div className="grid sm:col-span-2 h-fit grid-flow-row w-fit justify-center">
-									<div>Total Value Locked</div>
-									<div className="text-blue-500 font-mono">
-										{numeral(day).format("$0.00a")}
-									</div>
+				<div className="grid sm:grid-cols-1 md:grid-cols-1 grid-cols-[30%_70%]">
+					<div className="grid lg:grid-col grid-flow-row space-y-8 text-white sm:w-full text-2xl p-4 bg-gray-850 rounded-l-xl italic capitalize border border-gray-600 h-full">
+						<header className="text-4xl whitespace-pre-wrap flex">DeFi</header>
+						<div className="grid sm:grid-cols-2 gap-10 grid-cols-1">
+							<div className="grid sm:col-span-2 h-fit grid-flow-row w-fit justify-center">
+								<div>Total Value Locked</div>
+								<div className="text-blue-500 font-mono">
+									{numeral(day).format("$0.00a")}
 								</div>
-								<div>
-									<div>24h Change</div>
-									{percentageChange > 0 ? (
-										<div className="text-green-500 font-mono">
-											+{percentageChange}%
-										</div>
-									) : (
-										<div className="text-red-500 font-mono">
-											{percentageChange}%
-										</div>
-									)}
+							</div>
+							<div>
+								<div>24h Change</div>
+								<div className="flex space-x-2">
 									{changes > 0 ? (
 										<div className="text-green-500 font-mono">
 											{"+" + numeral(changes).format("$0.00a")}
 										</div>
 									) : (
-										<div className="text-red-500 font-mono">
+										<div className="text-red-500 font-mono ">
 											{numeral(changes).format("$0.00a")}
 										</div>
 									)}
-								</div>
-								<div>
-									<div>7 day Change</div>
-									{percentageChange2 > 0 ? (
+									{percentageChange > 0 ? (
 										<div className="text-green-500 font-mono">
-											+{percentageChange2}%
+											<TiArrowUp />
+											<p>{percentageChange}%</p>
 										</div>
 									) : (
-										<div className="text-red-500 font-mono">
-											{percentageChange2}%
+										<div className="text-red-500 font-mono flex items-center text-lg">
+											<TiArrowDown />
+											{percentageChange.slice(1)}%
 										</div>
 									)}
+								</div>
+							</div>
+							<div>
+								<div>7 day Change</div>
+								<div className="flex space-x-2">
 									{changes2 > 0 ? (
 										<div className="text-green-500 font-mono">
 											{"+" + numeral(changes2).format("$0.00a")}
@@ -124,12 +116,23 @@ const TVLchart = () => {
 											{numeral(changes2).format("$0.00a")}
 										</div>
 									)}
+									{percentageChange2 > 0 ? (
+										<div className="text-green-500 font-mono">
+											<TiArrowUp />
+											{percentageChange2}%
+										</div>
+									) : (
+										<div className="text-red-500 font-mono flex items-center text-lg">
+											<TiArrowDown />
+											{percentageChange2.slice(1)}%
+										</div>
+									)}
 								</div>
 							</div>
 						</div>
-						<div className="w-full h-full justify-end flex py-4">
-							<Charts data={mergedData} />
-						</div>
+					</div>
+					<div className="border border-gray-600 border-l-0 sm:hidden md:hidden">
+						<Charts data={mergedData} />
 					</div>
 				</div>
 			) : (

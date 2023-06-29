@@ -115,7 +115,7 @@ const Charts = ({ data, options }) => {
 	);
 
 	return (
-		<div className="w-full p-4">
+		<div className="w-full p-4 bg-gray-900 rounded-r-xl">
 			<div className="flex text-lg sm:hidden space-x-2">
 				<button
 					onClick={toggleScale}

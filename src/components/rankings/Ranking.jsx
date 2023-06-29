@@ -49,7 +49,7 @@ const Ranking = ({ chain }) => {
 			});
 	}, []);
 	return (
-		<div className="h-max text-md border rounded-xl border-gray-600 p-2">
+		<div className="h-max text-md bg-gray-850 border rounded-xl border-gray-600 p-2">
 			<div
 				className={`grid ${
 					chain === "Lending" || "CEX" ? "grid-cols-5" : "grid-cols-6"
@@ -156,7 +156,7 @@ const Ranking = ({ chain }) => {
 						<div
 							key={index}
 							className={`grid ${
-								index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"
+								index % 2 === 0 ? "bg-gray-800" : "bg-gray-850"
 							}  ${
 								CapChain === "Lending" || "CEX" || "DEX"
 									? "grid-cols-5"

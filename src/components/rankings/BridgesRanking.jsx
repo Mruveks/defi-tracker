@@ -45,10 +45,10 @@ const BridgesRanking = () => {
 				const changeTxs = changeData.depositTxs - changeData.withdrawTxs;
 				const yesterdayVsTodayChangeTxs =
 					(changeTxs / updateData[0].value) * 100;
-        console.log(changeTxs);
-        
-        setChange(yesterdayVsTodayChange);
-        setChangeTxsValue(changeTxs)
+				console.log(changeTxs);
+
+				setChange(yesterdayVsTodayChange);
+				setChangeTxsValue(changeTxs);
 				setChangeTxs(yesterdayVsTodayChangeTxs);
 				setChartData(updateData);
 				setLastItem(last);
@@ -58,8 +58,8 @@ const BridgesRanking = () => {
 	}, []);
 	return (
 		<>
-			<div className="grid mb-4 sm:grid-cols-1 grid-cols-[25%_75%] border border-gray-600 rounded-xl p-4">
-				<div className="space-y-8 h-fit text-white sm:w-full italic capitalize">
+			<div className="grid mb-4 sm:grid-cols-1 grid-cols-[30%_70%]">
+				<div className="space-y-8 h-full p-4 text-white sm:w-full italic capitalize border border-gray-600 bg-gray-850 rounded-l-xl">
 					<header className="text-4xl">
 						Bridges <br /> Outflows vs Inflows
 					</header>
@@ -120,12 +120,12 @@ const BridgesRanking = () => {
 						</div>
 					) : null}
 				</div>
-				<div className="grid lg:grid-col grid-flow-row space-y-8 h-fit text-white sm:w-full text-2xl p-4 italic capitalize">
+				<div className="border border-l-0 rounded-r-xl border-gray-600">
 					<Charts data={chartData} options="bridge" />
 				</div>
 			</div>
 
-			<div className="grid space-y-4 my-4 border border-gray-600 rounded-xl p-4">
+			<div className="grid space-y-4 my-4 border bg-gray-850 border-gray-600 rounded-xl p-4">
 				<header className="text-2xl">What is Bridge?</header>
 				<p className="text-justify">
 					To understand what a blockchain bridge is, you need to first
@@ -148,7 +148,7 @@ const BridgesRanking = () => {
 				</p>
 			</div>
 
-			<div className="h-max border text-md rounded-xl border-gray-600 p-2">
+			<div className="h-max border text-md rounded-xl bg-gray-850 border-gray-600 p-2">
 				<div className="grid grid-cols-5 text-lg sm:grid-cols-3 font-semibold sm:text-sm p-2 text-right capitalize italic">
 					<header className="text-left">Name</header>
 					<header>Chain</header>
@@ -162,7 +162,7 @@ const BridgesRanking = () => {
 						.map((bridge, index) => (
 							<div
 								className={`${
-									index % 2 === 0 ? "bg-[#222f3e]" : "bg-gray-800"
+									index % 2 === 0 ? "bg-gray-800" : "bg-gray-850"
 								} grid grid-cols-5 sm:grid-cols-3 items-center rounded-xl text-right my-2 px-2`}
 								key={index}
 							>

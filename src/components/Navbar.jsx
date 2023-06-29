@@ -27,7 +27,7 @@ const Navbar = () => {
 	const [activeNav, setActiveNav] = useState("/");
 
 	const elementStyle =
-		"flex px-2 py-1 group w-full items-center capitalize rounded-lg hover:bg-gray-600 rounded-xl transition duration-100 group";
+		"flex px-1 py-1 group w-full items-center capitalize rounded-lg hover:bg-gray-600 rounded-xl transition duration-100 group";
 
 	const link = (chainId, img) => {
 		let chainName;
@@ -93,9 +93,7 @@ const Navbar = () => {
 						<li className="group">
 							<div
 								onClick={() => toggleExpand()}
-								className={`flex justify-between cursor-pointer ${
-									activeNav === "/defi" ? "bg-gray-700" : ""
-								} ${elementStyle}`}
+								className={`flex justify-between cursor-pointer ${elementStyle}`}
 							>
 								<p className="flex">
 									<BsBarChart size={20} className="mr-2 wiggle" />
@@ -108,20 +106,20 @@ const Navbar = () => {
 								)}
 							</div>
 							{isExpanded && (
-								<div className="h-fit w-full pl-7">
+								<div className="h-fit w-full">
 									<NavLink
-                    to="/"
-                    onClick={() => setActiveNav("/")}
-										className={` ${
+										to="/"
+										onClick={() => setActiveNav("/")}
+										className={`pl-9 ${
 											activeNav === "/" ? "bg-gray-700" : ""
 										} ${elementStyle}`}
 									>
 										Overview
 									</NavLink>
 									<NavLink
-                    to="/chains"
-                    onClick={() => setActiveNav("/chains")}
-										className={`${
+										to="/chains"
+										onClick={() => setActiveNav("/chains")}
+										className={`pl-9 ${
 											activeNav === "/chains" ? "bg-gray-700" : ""
 										} ${elementStyle}`}
 									>
