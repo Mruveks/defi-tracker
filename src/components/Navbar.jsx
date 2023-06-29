@@ -47,7 +47,7 @@ const Navbar = () => {
 					activeNav === `/${chainName}` ? "bg-gray-700" : ""
 				} ${elementStyle} `}
 			>
-				<img src={img} alt="" className="rounded-full h-6 w-6 mr-2 wiggle" />
+				<img src={img} alt="" className="rounded-full h-5 w-5 mr-2 wiggle" />
 				{chainId}
 			</NavLink>
 		);
@@ -81,46 +81,48 @@ const Navbar = () => {
 	};
 
 	return (
-		<div className="sm:hidden md:hidden block h-full w-46 border-r border-gray-600 fixed left-0 top-0 ">
+		<div className="sm:hidden md:hidden block h-full w-52 border-r border-gray-600 fixed left-0 top-0 ">
 			<aside>
 				<div className="px-4 py-4 h-full overflow-auto">
 					<ul className="space-y-2 text-base">
 						<li>
 							<header className="flex items-center text-xl mb-4 text-gray-400 ">
-								Dashboards
+								<NavLink to="/">DefiTracker.eu</NavLink>
 							</header>
 						</li>
 						<li className="group">
 							<div
-								onClick={(() => toggleExpand())}
+								onClick={() => toggleExpand()}
 								className={`flex justify-between cursor-pointer ${
 									activeNav === "/defi" ? "bg-gray-700" : ""
 								} ${elementStyle}`}
 							>
 								<p className="flex">
-									<BsBarChart size={24} className="mr-2 wiggle" />
+									<BsBarChart size={20} className="mr-2 wiggle" />
 									Defi
 								</p>
 								{isExpanded ? (
-									<TiArrowUp size={24} />
+									<TiArrowUp size={20} />
 								) : (
-									<TiArrowDown size={24} />
+									<TiArrowDown size={20} />
 								)}
 							</div>
 							{isExpanded && (
-								<div className="h-fit pl-8">
+								<div className="h-fit w-full pl-7">
 									<NavLink
-										to="/"
-										className={`${
-											activeNav === "/defi" ? "bg-gray-700" : ""
+                    to="/"
+                    onClick={() => setActiveNav("/")}
+										className={` ${
+											activeNav === "/" ? "bg-gray-700" : ""
 										} ${elementStyle}`}
 									>
 										Overview
 									</NavLink>
 									<NavLink
-										to="/chains"
+                    to="/chains"
+                    onClick={() => setActiveNav("/chains")}
 										className={`${
-											activeNav === "/defi" ? "bg-gray-700" : ""
+											activeNav === "/chains" ? "bg-gray-700" : ""
 										} ${elementStyle}`}
 									>
 										Chains
@@ -136,7 +138,7 @@ const Navbar = () => {
 									activeNav === "/stablecoins" ? "bg-gray-700" : ""
 								} ${elementStyle} `}
 							>
-								<BsCoin size={24} className="mr-2 wiggle" />
+								<BsCoin size={20} className="mr-2 wiggle" />
 								Stablecoins
 							</NavLink>
 						</li>
@@ -148,7 +150,7 @@ const Navbar = () => {
 									activeNav === "/dex" ? "bg-gray-700" : ""
 								} ${elementStyle}`}
 							>
-								<BsCodeSlash size={24} className="mr-2 wiggle" />
+								<BsCodeSlash size={20} className="mr-2 wiggle" />
 								Dex
 							</NavLink>
 						</li>
@@ -160,7 +162,7 @@ const Navbar = () => {
 									activeNav === "/cex" ? "bg-gray-700" : ""
 								} ${elementStyle}`}
 							>
-								<BsBank size={24} className="mr-2 wiggle" />
+								<BsBank size={20} className="mr-2 wiggle" />
 								Cex
 							</NavLink>
 						</li>
@@ -172,7 +174,7 @@ const Navbar = () => {
 									activeNav === "/yields" ? "bg-gray-700" : ""
 								} ${elementStyle}`}
 							>
-								<BsPercent size={24} className="mr-2 wiggle" />
+								<BsPercent size={20} className="mr-2 wiggle" />
 								Yields
 							</NavLink>
 						</li>
@@ -184,7 +186,7 @@ const Navbar = () => {
 									activeNav === "/bridges" ? "bg-gray-700" : ""
 								} ${elementStyle}`}
 							>
-								<GiRialtoBridge size={24} className="mr-2 wiggle" />
+								<GiRialtoBridge size={20} className="mr-2 wiggle" />
 								Bridges
 							</NavLink>
 						</li>
@@ -196,7 +198,7 @@ const Navbar = () => {
 									activeNav === "/lending" ? "bg-gray-700" : ""
 								} ${elementStyle}`}
 							>
-								<RiHandCoinLine size={24} className="mr-2 wiggle" />
+								<RiHandCoinLine size={20} className="mr-2 wiggle" />
 								Lending
 							</NavLink>
 						</li>

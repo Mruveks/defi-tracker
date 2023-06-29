@@ -26,7 +26,7 @@ const ChainOverview = lazy(() => import("./pages/chains/ChainOverview"));
 function App() {
 	return (
 		<>
-			<div className="pl-36 pt-4 pb-8 sm:px-0 md:pl-0 md:mt-0 sm:m-5">
+			<div className="pl-52 pt-4 pb-8 sm:px-0 md:pl-0 md:mt-0 sm:m-5">
 				<RollingBanner />
 				<Navbar />
 				<MobileNavbar />
