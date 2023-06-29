@@ -63,7 +63,7 @@ const Navbar = () => {
 
 	return (
 		<div
-			className={`sm:flex md:flex hidden sm:right-0 sm:left-0 md:left-0 md:right-0 top-0 fixed z-50 bg-gray-900 rounded-b-xl md:mx-10 ${navHeight} overflow-y-hidden `}
+			className={`sm:flex md:flex hidden right-0 sm:left-0 md:left-0 md:right-4 top-0 fixed z-50 bg-gray-900 rounded-b-xl md:mx-10 ${navHeight} overflow-y-hidden `}
 		>
 			<div className="w-full p-4">
 				<header className="flex justify-between items-center pb-4 text-3xl text-gray-400 ">

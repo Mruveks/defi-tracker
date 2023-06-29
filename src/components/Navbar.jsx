@@ -81,7 +81,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<div className="sm:hidden md:hidden block h-full w-52 border-r border-gray-600 fixed left-0 top-0 ">
+		<div className="sm:hidden md:hidden block h-full w-52 border-r bg-gray-900 border-gray-600 fixed left-0 top-0 ">
 			<aside>
 				<div className="px-4 py-4 h-full overflow-auto">
 					<ul className="space-y-2 text-base">

@@ -114,7 +114,7 @@ const SearchList = () => {
 			{isOpen && (
 				<div
 					ref={searchListRef}
-					className="max-h-60 z-10 absolute right-10 left-10 md:left-10 lg:left-44 xl:left-44 xl:ml-2 lg:ml-2 border-gray-600 border bg-gray-900 rounded-b-xl overflow-y-auto"
+					className="max-h-60 z-10 absolute right-10 left-10 md:left-10 lg:left-60 xl:left-60 xl:ml-2 lg:ml-2 border-gray-600 border bg-gray-900 rounded-b-xl overflow-y-auto"
 				>
 					{allData
 						.filter((val) => {
