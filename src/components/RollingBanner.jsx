@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import BannerData from "../utilities/BannerData";
+import { flame } from "../assets/AssetsIndex";
 
 const RollingBanner = () => {
 	const contentRef = useRef(null);
@@ -60,10 +61,13 @@ const RollingBanner = () => {
 		>
 			<div
 				ref={contentRef}
-				className="flex w-full space-x-4 whitespace-nowrap"
+				className="flex items-center w-full space-x-4 whitespace-nowrap"
 				style={{ transform: `translateX(${position}px)` }}
 			>
-				<header className="">Top TVL Gainers:</header>
+				<header className="flex items-center">
+					<img src={flame} alt="flame" className="h-4 pr-1" />
+					Top TVL Gainers:
+				</header>
 				<BannerData />
 			</div>
 		</div>

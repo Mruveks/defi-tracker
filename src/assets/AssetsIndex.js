@@ -10,6 +10,8 @@ import kava from './kava.png'
 import ftm from './fantom.png'
 import tron from './tron.png'
 
+import flame from './flame.png'
+
 export {
   arbitrum,
   eth,
@@ -21,5 +23,6 @@ export {
   kava,
   ftm,
   tron,
-  algo
+  algo,
+  flame
 }
