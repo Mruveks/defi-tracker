@@ -129,7 +129,7 @@ const Charts = ({ data, options }) => {
 					<button
 						onClick={toggleScale}
 						className={`rounded-lg px-2 h-fit transition duration-300 border border-gray-600 ${
-							isVolume === true ? "bg-[#8884d8] " : "bg-none"
+							isLogScale === true ? "bg-[#8884d8] " : "bg-none"
 						}`}
 					>
 						Logarithmic
