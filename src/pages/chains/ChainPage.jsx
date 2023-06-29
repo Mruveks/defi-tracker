@@ -58,7 +58,7 @@ const ChainPage = () => {
 	const percentageChange_7 = (((day - weekAgo) / weekAgo) * 100).toFixed(2);
 
 	return (
-		<div className="grid grid-cols-1 text-md mx-10 sm:mx-5">
+		<div className="grid grid-cols-1 text-md mx-2 lg:mx-10 xl:mx-10">
 			<Helmet>
 				<title>{`${
 					chainId.charAt(0).toUpperCase() + chainId.slice(1)

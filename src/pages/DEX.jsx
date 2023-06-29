@@ -5,7 +5,7 @@ import SearchList from "../components/SearchList";
 import BackButton from "../components/BackButton";
 const DEX = () => {
 	return (
-		<div className="grid grid-cols-1 mx-10 sm:mx-5 text-md">
+		<div className="grid grid-cols-1 mx-2 lg:mx-10 xl:mx-10 text-md">
 			<Helmet>
 				<title>DEX | DefiTracker</title>
 				<meta

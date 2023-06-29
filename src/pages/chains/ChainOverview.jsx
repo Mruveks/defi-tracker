@@ -54,7 +54,7 @@ const StablecoinPage = () => {
 	}, []);
 
 	return (
-		<main className="mx-10 sm:mx-5">
+		<main className="mx-2 lg:mx-10 xl:mx-10">
 			<Helmet>
 				<title>Chains | DefiTracker</title>
 				<meta

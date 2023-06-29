@@ -58,8 +58,8 @@ const BridgesRanking = () => {
 	}, []);
 	return (
 		<>
-			<div className="grid mb-4 sm:grid-cols-1 grid-cols-[30%_70%]">
-				<div className="space-y-8 h-full p-4 text-white sm:w-full italic capitalize border border-gray-600 bg-gray-850 rounded-l-xl">
+			<div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 grid-cols-[30%_70%] rounded-xl overflow-hidden border border-gray-600">
+				<div className="grid  space-y-8 text-white sm:w-full text-2xl p-4 bg-gray-850 italic capitalize h-full">
 					<header className="text-4xl">
 						Bridges <br /> Outflows vs Inflows
 					</header>
@@ -120,7 +120,7 @@ const BridgesRanking = () => {
 						</div>
 					) : null}
 				</div>
-				<div className="border border-l-0 rounded-r-xl border-gray-600">
+				<div className="border-gray-600 border-t xl:border-l xl:border-t-0">
 					<Charts data={chartData} options="bridge" />
 				</div>
 			</div>

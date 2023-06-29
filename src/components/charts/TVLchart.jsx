@@ -69,10 +69,10 @@ const TVLchart = () => {
 	return (
 		<>
 			{chartData.length ? (
-				<div className="grid sm:grid-cols-1 md:grid-cols-1 grid-cols-[30%_70%]">
-					<div className="grid lg:grid-col grid-flow-row space-y-8 text-white sm:w-full text-2xl p-4 bg-gray-850 rounded-l-xl italic capitalize border border-gray-600 h-full">
+				<div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 grid-cols-[30%_70%] rounded-xl overflow-hidden border border-gray-600">
+					<div className="grid  space-y-8 text-white sm:w-full text-2xl p-4 bg-gray-850 italic capitalize h-full">
 						<header className="text-4xl whitespace-pre-wrap flex">DeFi</header>
-						<div className="grid sm:grid-cols-2 gap-10 grid-cols-1">
+						<div className="grid grid-cols-1">
 							<div className="grid sm:col-span-2 h-fit grid-flow-row w-fit justify-center">
 								<div>Total Value Locked</div>
 								<div className="text-blue-500 font-mono">
@@ -131,7 +131,7 @@ const TVLchart = () => {
 							</div>
 						</div>
 					</div>
-					<div className="border border-gray-600 border-l-0 sm:hidden md:hidden">
+					<div className="border-gray-600 border-t xl:border-l xl:border-t-0">
 						<Charts data={mergedData} />
 					</div>
 				</div>

@@ -115,8 +115,8 @@ const Charts = ({ data, options }) => {
 	);
 
 	return (
-		<div className="w-full p-4 bg-gray-900 rounded-r-xl">
-			<div className="flex text-lg sm:hidden space-x-2">
+		<div className="w-full sm:hidden p-4 bg-gray-900">
+			<div className="flex sm:grid-cols-2 sm:grid items-center sm:mx-auto mb-4 w-fit sm:space-y-2  text-lg space-x-2">
 				<button
 					onClick={toggleScale}
 					className={`rounded-lg px-2 h-fit transition duration-300 border border-gray-600 ${
@@ -155,7 +155,7 @@ const Charts = ({ data, options }) => {
 				) : null}
 			</div>
 
-			<ResponsiveContainer width="100%" className="sm:hidden" height={500}>
+			<ResponsiveContainer width="100%" height={500}>
 				<ComposedChart
 					data={
 						hallmarks === true
