@@ -101,7 +101,7 @@ const SearchList = () => {
 				</div>
 				<input
 					type="search"
-					className="border-gray-600 border border-b-0 rounded-b-none block w-full p-4 pl-10 rounded-xl bg-gray-900"
+					className="border-gray-600 border border-b-0 block rounded-t-xl w-full p-4 pl-10 bg-gray-900"
 					placeholder="Search for Defi Protocols, Chains and Stablecoins..."
 					required
 					onChange={(e) => {
@@ -114,7 +114,7 @@ const SearchList = () => {
 			{isOpen && (
 				<div
 					ref={searchListRef}
-					className="max-h-60 z-10 absolute right-10 left-10 md:left-10 lg:left-60 xl:left-60 xl:ml-2 lg:ml-2 border-gray-600 border bg-gray-900 rounded-b-xl overflow-y-auto"
+					className="max-h-60 z-10 absolute right-7 left-7 md:left-2 md:right-2 lg:right-10 lg:left-60 xl:left-60 xl:right-10 xl:ml-2 lg:ml-2 border-gray-600 border bg-gray-900 rounded-b-xl overflow-y-auto"
 				>
 					{allData
 						.filter((val) => {
