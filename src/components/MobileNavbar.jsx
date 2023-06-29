@@ -16,6 +16,7 @@ import {
 	optimism,
 	arbitrum,
 } from "../assets/AssetsIndex.js";
+import { TiArrowDown, TiArrowUp } from "react-icons/ti";
 import { GiRialtoBridge } from "react-icons/gi";
 import { RiHandCoinLine } from "react-icons/ri";
 import "../css/animations.css";
@@ -39,7 +40,7 @@ const Navbar = () => {
 					activeNav === `/${chainId}` ? "bg-gray-700" : ""
 				} ${elementStyle} `}
 			>
-				<img src={img} alt="" className="rounded-full mr-2" />
+				<img src={img} alt="" className="rounded-full h-5 w-5 mr-2" />
 				{chainId}
 			</NavLink>
 		);
@@ -61,11 +62,17 @@ const Navbar = () => {
 		} else setNavHeight("h-16");
 	}
 
+	const [isExpanded, setIsExpanded] = useState(false);
+
+	const toggleExpand = () => {
+		setIsExpanded(!isExpanded);
+	};
+
 	return (
 		<div
-			className={`sm:flex md:flex hidden right-0 sm:left-0 md:left-0 md:right-4 top-0 fixed z-50 bg-gray-900 border-b border-gray-600 md:mx-10 ${navHeight} overflow-y-hidden `}
+			className={`sm:flex md:flex hidden right-0 left-0 top-0 fixed z-50  border-b border-gray-600 ${navHeight} overflow-y-hidden `}
 		>
-			<div className="w-full p-4">
+			<div className="w-full bg-gray-900 p-4">
 				<header className="flex justify-between items-center pb-4 text-3xl text-gray-400 ">
 					<p>Dashboards</p>
 					<BsJustify
@@ -80,19 +87,38 @@ const Navbar = () => {
 				</header>
 				<ul className="grid gap-2 sm:grid-cols-2 grid-cols-3 pb-4 border-gray-600 border-b">
 					<li>
-						<NavLink
-							to="/"
-							onClick={() => {
-								setActiveNav("/defi");
-								openNav();
-							}}
-							className={`${
-								activeNav === "/defi" ? "bg-gray-700" : ""
-							} ${elementStyle}`}
+						<div
+							onClick={() => toggleExpand()}
+							className={`flex justify-between cursor-pointer ${elementStyle}`}
 						>
-							<BsBarChart size={24} className="mr-2" />
-							Defi
-						</NavLink>
+							<p className="flex">
+								<BsBarChart size={20} className="mr-2 wiggle" />
+								Defi
+							</p>
+							{isExpanded ? <TiArrowUp size={20} /> : <TiArrowDown size={20} />}
+						</div>
+						{isExpanded && (
+							<div className="h-fit w-full">
+								<NavLink
+									to="/"
+									onClick={() => setActiveNav("/")}
+									className={`pl-10 ${
+										activeNav === "/" ? "bg-gray-700" : ""
+									} ${elementStyle}`}
+								>
+									Overview
+								</NavLink>
+								<NavLink
+									to="/chains"
+									onClick={() => setActiveNav("/chains")}
+									className={`pl-9 ${
+										activeNav === "/chains" ? "bg-gray-700" : ""
+									} ${elementStyle}`}
+								>
+									Chains
+								</NavLink>
+							</div>
+						)}
 					</li>
 					<li>
 						<NavLink
@@ -120,7 +146,7 @@ const Navbar = () => {
 								activeNav === "/dex" ? "bg-gray-700" : ""
 							} ${elementStyle}`}
 						>
-							<BsCodeSlash size={24} className="mr-2" />
+							<BsCodeSlash size={20} className="mr-2" />
 							Dex
 						</NavLink>
 					</li>
@@ -135,7 +161,7 @@ const Navbar = () => {
 								activeNav === "/cex" ? "bg-gray-700" : ""
 							} ${elementStyle}`}
 						>
-							<BsBank size={24} className="mr-2" />
+							<BsBank size={20} className="mr-2" />
 							Cex
 						</NavLink>
 					</li>
@@ -150,7 +176,7 @@ const Navbar = () => {
 								activeNav === "/yields" ? "bg-gray-700" : ""
 							} ${elementStyle}`}
 						>
-							<BsPercent size={24} className="mr-2" />
+							<BsPercent size={20} className="mr-2" />
 							Yields
 						</NavLink>
 					</li>
@@ -165,7 +191,7 @@ const Navbar = () => {
 								activeNav === "/bridges" ? "bg-gray-700" : ""
 							} ${elementStyle}`}
 						>
-							<GiRialtoBridge size={24} className="mr-2" />
+							<GiRialtoBridge size={20} className="mr-2" />
 							Bridges
 						</NavLink>
 					</li>
@@ -180,7 +206,7 @@ const Navbar = () => {
 								activeNav === "/lending" ? "bg-gray-700" : ""
 							} ${elementStyle}`}
 						>
-							<RiHandCoinLine size={24} className="mr-2" />
+							<RiHandCoinLine size={20} className="mr-2" />
 							Lending
 						</NavLink>
 					</li>
