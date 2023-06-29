@@ -1,41 +1,68 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import BannerData from "../utilities/BannerData";
+
 const RollingBanner = () => {
 	const contentRef = useRef(null);
 	const animationRef = useRef(null);
+	const [isHovered, setIsHovered] = useState(false);
+	const [position, setPosition] = useState(1900);
+	const [contentWidth, setContentWidth] = useState(0);
+	const [parentWidth, setParentWidth] = useState(0);
 
-	const animate = () => {
-		const contentWidth = contentRef.current.offsetWidth;
-		const parentWidth = contentRef.current.parentNode.offsetWidth;
+	useEffect(() => {
+		setContentWidth(contentRef.current.offsetWidth);
+		setParentWidth(contentRef.current.parentNode.offsetWidth);
+	}, []);
 
-		let position = parentWidth;
+	useEffect(() => {
+		const animate = () => {
+			const newPosition = position - 2;
 
-		const frame = () => {
-			position -= 1;
-			contentRef.current.style.transform = `translateX(${position}px)`;
+			const frame = () => {
+				const updatedPosition = isHovered ? position : newPosition;
+				contentRef.current.style.transform = `translateX(${updatedPosition}px)`;
 
-			if (position <= -contentWidth) {
-				position = parentWidth;
-				contentRef.current.style.transform = `translateX(${position}px)`;
-			}
+				if (updatedPosition <= -contentWidth) {
+					setPosition(parentWidth);
+				} else {
+					setPosition(updatedPosition);
+				}
+
+				animationRef.current = requestAnimationFrame(frame);
+			};
 
 			animationRef.current = requestAnimationFrame(frame);
 		};
 
-		frame();
-	};
-
-	useEffect(() => {
-		animate();
+		if (!isHovered) {
+			animationRef.current = requestAnimationFrame(animate);
+		}
 
 		return () => {
 			cancelAnimationFrame(animationRef.current);
 		};
-	}, []);
+	}, [isHovered, position, contentWidth, parentWidth]);
+
+	const handleMouseEnter = () => {
+		cancelAnimationFrame(animationRef.current);
+		setIsHovered(true);
+	};
+
+	const handleMouseLeave = () => {
+		setIsHovered(false);
+	};
 
 	return (
-		<div className="w-[110%] overflow-hidden ml-4 z-10 mb-2 md:pl-0 items-center flex">
-			<div ref={contentRef} className="flex w-full space-x-4 overflow-hidden">
+		<div
+			className="w-[100%]  sm:mt-10 md:mt-20 overflow-hidden ml-4 z-10 mb-2 md:pl-0 items-center flex"
+			onMouseEnter={handleMouseEnter}
+			onMouseLeave={handleMouseLeave}
+		>
+			<div
+				ref={contentRef}
+				className="flex w-full space-x-4 whitespace-nowrap"
+				style={{ transform: `translateX(${position}px)` }}
+			>
 				<header className="">Top TVL Gainers:</header>
 				<BannerData />
 			</div>

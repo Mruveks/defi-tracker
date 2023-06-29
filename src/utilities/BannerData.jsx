@@ -25,15 +25,15 @@ const BannerData = () => {
 	}, []);
 
 	return (
-		<div className="flex space-x-4">
+		<div className="flex space-x-4 ">
 			{protocols.map((protocol, index) => (
 				<li key={protocol.id} className="flex space-x-1">
 					<p
-						className={`text-gray-400 ${
+						className={`text-gray-500 ${
 							index === 0
 								? " text-amber-300"
 								: index === 1
-								? "text-gray-200"
+								? "text-slate-400"
 								: index === 2
 								? "text-amber-600"
 								: null
