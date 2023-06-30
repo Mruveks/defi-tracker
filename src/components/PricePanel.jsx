@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { BsArrowLeft } from "react-icons/bs";
 import axios from "axios";
 import numeral from "numeral";
+import { Link } from "react-router-dom";
 import {
 	eth,
 	lido,
@@ -20,7 +21,7 @@ function PricePanel() {
 	const [aavePrice, setAavePrice] = useState(0);
 	const [curvePrice, setCurvePrice] = useState(0);
 	const [sushiPrice, setSushiPrice] = useState(0);
-  const [pancakePrice, setPancakePrice] = useState(0)
+	const [pancakePrice, setPancakePrice] = useState(0);
 	const navigate = useNavigate();
 
 	function handleClick() {
@@ -39,8 +40,8 @@ function PricePanel() {
 				setLidoPrice(data["coingecko:lido-dao"].price);
 				setAavePrice(data["coingecko:aave"].price);
 				setSushiPrice(data["coingecko:sushi"].price);
-        setCurvePrice(data["coingecko:curve-dao-token"].price);
-        setPancakePrice(data["coingecko:pancakeswap-token"].price)
+				setCurvePrice(data["coingecko:curve-dao-token"].price);
+				setPancakePrice(data["coingecko:pancakeswap-token"].price);
 			} catch (error) {
 				console.log(error);
 			}
@@ -58,34 +59,34 @@ function PricePanel() {
 				<BsArrowLeft />
 				<p>Go Back</p>
 			</button>
-			<p className="flex items-center">
+			<Link to="/chain/ethereum" className="flex items-center hover:underline">
 				<img src={eth} alt="" className="rounded-full h-5 w-5 mr-1" />
-				Ethereum: {numeral(ethPrice).format("$0,0.00")}
-			</p>
-			<p className="flex items-center">
+				ETH: {numeral(ethPrice).format("$0,0.00")}
+			</Link>
+			<Link to="/protocol/Uniswap%20V2" className="flex items-center hover:underline">
 				<img src={uniswap} alt="" className="rounded-full h-5 w-5 mr-1" />
-				Uniswap: {numeral(uniPrice).format("$0,0.00")}
-			</p>
-			<p className="flex items-center">
+				UNI: {numeral(uniPrice).format("$0,0.00")}
+			</Link>
+			<Link to="/protocol/lido"className="flex items-center hover:underline">
 				<img src={lido} alt="" className="rounded-full h-5 w-5 mr-1" />
-				Lido: {numeral(lidoPrice).format("$0,0.00")}
-			</p>
-			<p className="flex items-center">
+				LDO: {numeral(lidoPrice).format("$0,0.00")}
+			</Link>
+			<Link to="/protocol/aave%20V2" className="flex items-center hover:underline">
 				<img src={aave} alt="" className="rounded-full h-5 w-5 mr-1" />
-				Aave: {numeral(aavePrice).format("$0,0.00")}
-			</p>
-			<p className="flex items-center">
+				AAVE: {numeral(aavePrice).format("$0,0.00")}
+			</Link>
+			<Link to="/protocol/Curve%20DEX" className="flex items-center hover:underline">
 				<img src={curve} alt="" className="rounded-full h-5 w-5 mr-1" />
-				Curve: {numeral(curvePrice).format("$0,0.00")}
-			</p>
-			<p className="flex items-center">
+				CRV: {numeral(curvePrice).format("$0,0.00")}
+			</Link>
+			<Link to="/protocol/SushiSwap" className="flex items-center hover:underline">
 				<img src={sushi} alt="" className="rounded-full h-5 w-5 mr-1" />
-				Sushi: {numeral(sushiPrice).format("$0,0.00")}
-      </p>
-      <p className="flex items-center">
+				SUSHI: {numeral(sushiPrice).format("$0,0.00")}
+			</Link>
+			<Link to="/protocol/PancakeSwap%20AMM" className="flex items-center hover:underline">
 				<img src={pancakeswap} alt="" className="rounded-full h-5 w-5 mr-1" />
-				Pancakeswap: {numeral(pancakePrice).format("$0,0.00")}
-			</p>
+				CAKE: {numeral(pancakePrice).format("$0,0.00")}
+			</Link>
 		</div>
 	);
 }
