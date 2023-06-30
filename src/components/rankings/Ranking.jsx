@@ -47,9 +47,10 @@ const Ranking = ({ chain }) => {
 			.catch((err) => {
 				console.log(err);
 			});
-	}, []);
+  }, []);
+  
 	return (
-		<div className="h-max text-md bg-gray-850 border rounded-xl border-gray-600 p-2">
+		<div className="h-max text-md bg-gray-850 border rounded-xl border-gray-600 py-2">
 			<div
 				className={`grid ${
 					chain === "Lending" || "CEX" ? "grid-cols-5" : "grid-cols-6"
@@ -161,13 +162,13 @@ const Ranking = ({ chain }) => {
 								CapChain === "Lending" || "CEX" || "DEX"
 									? "grid-cols-5"
 									: "grid-cols-6"
-							} sm:grid-cols-2 items-center my-2 pr-2 rounded-xl text-right`}
+							} sm:grid-cols-2 items-center my-2 px-2 text-right`}
 						>
 							<Link
 								to={`/protocol/${protocol.name}`}
-								className="flex items-center space-x-4 sm:space-x-0 px-2 sm:px-0 py-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
+								className="flex items-center space-x-4 sm:space-x-0 px-2 sm:px-0 py-2 text-left text-blue-400 hover:underline transition duration-300 rounded-xl"
 							>
-								<div className="w-full flex items-center text-blue-400 space-x-2">
+								<div className="w-full flex items-center space-x-2">
 									<img
 										src={protocol.logo}
 										alt="logo"

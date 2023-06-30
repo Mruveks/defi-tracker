@@ -25,7 +25,7 @@ const TVLranking = () => {
 
 	return (
 		<>
-			<div className="h-max my-4 text-md border-gray-600 border p-2 rounded-xl bg-gray-850">
+			<div className="h-max my-4 text-md border-gray-600 border py-2 rounded-xl bg-gray-850">
 				<div className="grid grid-cols-8 lg:grid-cols-6 sm:grid-cols-2 text-lg sm:text-sm font-semibold p-2 border-b-gray-600 text-right italic capitalize">
 					<header className="text-left">Name</header>
 					<header className="sm:hidden md:hidden lg:hidden block">
@@ -56,7 +56,7 @@ const TVLranking = () => {
 								key={index}
 								className={` ${
 									index % 2 === 0 ? "bg-gray-800" : "bg-gray-850"
-								} grid grid-cols-8 md:grid-cols-6 lg:grid-cols-6 sm:grid-cols-2 items-center rounded-xl my-2 pr-2 text-right`}
+								} grid grid-cols-8 md:grid-cols-6 lg:grid-cols-6 sm:grid-cols-2 items-center my-2 px-2 text-right`}
 							>
 								<Link
 									to={`/protocol/${protocol.name}`}

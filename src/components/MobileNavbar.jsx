@@ -25,7 +25,7 @@ const Navbar = () => {
 	const [activeNav, setActiveNav] = useState("/");
 
 	const elementStyle =
-		"flex items-center capitalize rounded-lg hover:bg-gray-700";
+		"flex items-center capitalize p-1 rounded-lg hover:bg-gray-700";
 
 	const link = (chainId, img) => {
 		return (
@@ -98,11 +98,11 @@ const Navbar = () => {
 							{isExpanded ? <TiArrowUp size={20} /> : <TiArrowDown size={20} />}
 						</div>
 						{isExpanded && (
-							<div className="h-fit w-full">
+							<div className="h-fit space-y-2 pt-2 w-full">
 								<NavLink
 									to="/"
 									onClick={() => setActiveNav("/")}
-									className={`pl-10 ${
+									className={`pl-8 ${
 										activeNav === "/" ? "bg-gray-700" : ""
 									} ${elementStyle}`}
 								>
@@ -111,7 +111,7 @@ const Navbar = () => {
 								<NavLink
 									to="/chains"
 									onClick={() => setActiveNav("/chains")}
-									className={`pl-9 ${
+									className={`pl-8 ${
 										activeNav === "/chains" ? "bg-gray-700" : ""
 									} ${elementStyle}`}
 								>
@@ -131,7 +131,7 @@ const Navbar = () => {
 								activeNav === "/stablecoins" ? "bg-gray-700" : ""
 							} ${elementStyle} `}
 						>
-							<BsCoin size={28} className="mr-2" />
+							<BsCoin size={20} className="mr-2" />
 							Stablecoins
 						</NavLink>
 					</li>

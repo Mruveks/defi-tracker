@@ -6,7 +6,7 @@ import SearchList from "../components/SearchList";
 
 const CEX = () => {
   return (
-    <div className="grid grid-cols-1 mx-2 lg:mx-10 xl:mx-10text-md">
+    <div className="grid grid-cols-1 mx-2 lg:mx-10 xl:mx-10 text-md">
       <Helmet>
         <title>CEX | DefiTracker</title>
         <meta

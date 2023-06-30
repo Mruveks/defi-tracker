@@ -106,7 +106,7 @@ const Navbar = () => {
 								)}
 							</div>
 							{isExpanded && (
-								<div className="h-fit w-full">
+								<div className="h-fit space-y-2 pt-2 w-full">
 									<NavLink
 										to="/"
 										onClick={() => setActiveNav("/")}

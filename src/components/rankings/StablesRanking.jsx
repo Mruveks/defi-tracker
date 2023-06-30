@@ -20,7 +20,7 @@ const StablesRanking = () => {
 
   return (
     <>
-      <div className="h-max mb-8 text-md border-gray-600 p-2 border rounded-xl bg-gray-850 ">
+      <div className="h-max mb-8 text-md border-gray-600 py-2 border rounded-xl bg-gray-850 ">
         <div className="grid sm:grid-cols-3 grid-cols-7 font-semibold p-2 text-lg sm:text-sm text-right capitalize italic">
           <header className="text-left">Name</header>
           <header>Price</header>
@@ -44,12 +44,12 @@ const StablesRanking = () => {
               <div
                 className={` ${
                   index % 2 === 0 ? "bg-gray-800" : "bg-gray-850"
-                } grid sm:grid-cols-3 grid-cols-7 items-center rounded-xl my-2 pr-2 text-right`}
+                } grid sm:grid-cols-3 grid-cols-7 items-center my-2 pr-2 text-right`}
                 key={index}
               >
                 <Link
                   to={`/stablecoins/${index + 1}`}
-                  className="flex items-center space-x-4 sm:space-x-0 px-2 sm:px-0 py-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
+                  className="flex items-center space-x-4 sm:space-x-0 px-2 sm:px-0 py-2 text-left text-blue-400 hover:underline transition duration-300 rounded-xl"
                 >
                   <div className=" text-blue-400">
                     {stable.name} ({stable.symbol})

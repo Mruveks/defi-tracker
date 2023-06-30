@@ -15,6 +15,7 @@ import {
 	Brush,
 	Label,
 	ReferenceLine,
+	ReferenceArea,
 	Area,
 } from "recharts";
 
@@ -304,12 +305,24 @@ const Charts = ({ data, options }) => {
 						/>
 					</ReferenceLine>
 					<Area
+						dot={false}
 						type="monotone"
 						dataKey="value"
 						stroke="#8884d8"
 						fillOpacity={1}
 						fill="url(#area-chart-gradient)"
+						connectNulls={false}
 					/>
+					<ReferenceArea x1={110} x2={111} y1={11110} y2={11111}>
+						<text
+							x={22220}
+							y={22220}
+							fontSize={12}
+							fill="#8884d8"
+						>
+							Background Text
+						</text>
+					</ReferenceArea>
 					{isVolume ? (
 						<Bar
 							yAxisId="volumeAxis"

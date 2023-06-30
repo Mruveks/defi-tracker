@@ -148,7 +148,7 @@ const BridgesRanking = () => {
 				</p>
 			</div>
 
-			<div className="h-max border text-md rounded-xl bg-gray-850 border-gray-600 p-2">
+			<div className="h-max border text-md bg-gray-850 rounded-xl border-gray-600 ">
 				<div className="grid grid-cols-5 text-lg sm:grid-cols-3 font-semibold sm:text-sm p-2 text-right capitalize italic">
 					<header className="text-left">Name</header>
 					<header>Chain</header>
@@ -163,7 +163,7 @@ const BridgesRanking = () => {
 							<div
 								className={`${
 									index % 2 === 0 ? "bg-gray-800" : "bg-gray-850"
-								} grid grid-cols-5 sm:grid-cols-3 items-center rounded-xl text-right my-2 px-2`}
+								} grid grid-cols-5 sm:grid-cols-3 items-center text-right p-2`}
 								key={index}
 							>
 								<div className="my-2 text-left">
