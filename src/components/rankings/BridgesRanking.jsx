@@ -14,12 +14,12 @@ const BridgesRanking = () => {
 	const [change, setChange] = useState(0);
 	const [changeTxs, setChangeTxs] = useState(0);
 	const [changeTxsValue, setChangeTxsValue] = useState(0);
+
 	useEffect(() => {
 		axios
 			.get("https://bridges.llama.fi/bridges?includeChains=true")
 			.then((res) => {
 				setBridges(res.data.bridges);
-				console.log(res);
 			})
 			.catch((err) => console.log(err));
 		axios
@@ -59,60 +59,62 @@ const BridgesRanking = () => {
 	return (
 		<>
 			<div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 grid-cols-[30%_70%] rounded-xl overflow-hidden border border-gray-600">
-				<div className="grid  space-y-8 text-white sm:w-full text-2xl p-4 bg-gray-850 italic capitalize h-full">
+				<div className="space-y-4 text-white sm:w-full text-xl p-4 bg-gray-850 italic capitalize h-full">
 					<header className="text-4xl">
 						Bridges <br /> Outflows vs Inflows
 					</header>
 					{lastItem && lastItem[0] ? (
 						<div className="space-y-4">
-							<span className="flex space-x-2">
+							<span className="flex justify-between">
 								<h1>Last data entry:</h1>
 								<p>{lastDate.format("DD.MM.YYYY")}</p>
 							</span>
 							<div>
-								<span className="flex space-x-2">
+								<span className="flex justify-between">
 									<h1>Transacion difference:</h1>
-									<p>{changeTxsValue}</p>
-									<span className="flex text-xs items-center">
-										(
-										{changeTxs > 0 ? (
-											<p className="text-green-400">+{changeTxs.toFixed(4)}%</p>
-										) : (
-											<p className="text-red-400">-{changeTxs.toFixed(2)}%</p>
-										)}
-										)
-									</span>
+									<div className="flex space-x-2">
+										<p>{changeTxsValue}</p>
+										<span className="flex text-xs items-center">
+											{changeTxs > 0 ? (
+												<p className="text-green-400">
+													+{changeTxs.toFixed(4)}%
+												</p>
+											) : (
+												<p className="text-red-400">-{changeTxs.toFixed(2)}%</p>
+											)}
+										</span>
+									</div>
 								</span>
-								<span className="flex space-x-2">
+								<span className="flex justify-between">
 									<h1>Transacion Value difference:</h1>
-									<p>{numeral(lastItem[0].value).format("$0,0.0")}</p>
-									<span className="flex text-xs items-center">
-										(
-										{change > 0 ? (
-											<p className="text-green-400">+{change.toFixed(2)}%</p>
-										) : (
-											<p className="text-red-400">-{change.toFixed(2)}%</p>
-										)}
-										)
-									</span>
+									<div className="flex space-x-2">
+										<p>{numeral(lastItem[0].value).format("$0,0.0")}</p>
+										<span className="flex text-xs items-center">
+											{change > 0 ? (
+												<p className="text-green-400">+{change.toFixed(2)}%</p>
+											) : (
+												<p className="text-red-400">-{change.toFixed(2)}%</p>
+											)}
+										</span>
+									</div>
 								</span>
 							</div>
 							<div>
-								<span className="flex space-x-2">
+								<span className="flex justify-between">
 									<h1>Outgoing Transactions:</h1>
 									<p>{lastItem[0].withdrawTxs}</p>
 								</span>
-								<span className="flex space-x-2">
+								<span className="flex justify-between">
 									<h1>Outgoing Transactions Value:</h1>
 									<p>-{numeral(lastItem[0].withdrawUSD).format("$0,0.0")}</p>
 								</span>
 							</div>
 							<div>
-								<span className="flex space-x-2">
+								<span className="flex justify-between">
 									<h1>Incoming Transactions:</h1>
 									<p>{lastItem[0].depositTxs}</p>
 								</span>{" "}
-								<span className="flex space-x-2">
+								<span className="flex justify-between">
 									<h1>Incoming Transactions Value:</h1>
 									<p>{numeral(lastItem[0].depositUSD).format("$0,0.0")}</p>
 								</span>

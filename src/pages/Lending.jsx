@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import PricePanel from "../components/PricePanel";
 import Ranking from "../components/rankings/Ranking";
-import SearchList from "../components/PricePanel";
+import SearchList from "../components/SearchList";
 
 const Lending = () => {
   return (

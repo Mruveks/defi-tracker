@@ -69,17 +69,18 @@ const TVLchart = () => {
 	return (
 		<>
 			{chartData.length ? (
-				<div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 grid-cols-[30%_70%] rounded-xl overflow-hidden border border-gray-600">
-					<div className="grid  space-y-8 text-white sm:w-full text-2xl p-4 bg-gray-850 italic capitalize h-full">
+        <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 grid-cols-[30%_70%] rounded-xl overflow-hidden border border-gray-600">
+          
+					<div className="space-y-4 text-white sm:w-full text-xl p-4 bg-gray-850 italic capitalize h-full">
 						<header className="text-4xl whitespace-pre-wrap flex">DeFi</header>
 						<div className="grid grid-cols-1">
-							<div className="grid sm:col-span-2 h-fit grid-flow-row w-fit justify-center">
+							<div className="flex w-full justify-between">
 								<div>Total Value Locked</div>
 								<div className="text-blue-500 font-mono">
 									{numeral(day).format("$0.00a")}
 								</div>
 							</div>
-							<div>
+							<div className="flex w-full justify-between">
 								<div>24h Change</div>
 								<div className="flex space-x-2">
 									{changes > 0 ? (
@@ -92,7 +93,7 @@ const TVLchart = () => {
 										</div>
 									)}
 									{percentageChange > 0 ? (
-										<div className="text-green-500 font-mono">
+										<div className="text-green-500 font-mono flex items-center text-lg">
 											<TiArrowUp />
 											<p>{percentageChange}%</p>
 										</div>
@@ -104,11 +105,11 @@ const TVLchart = () => {
 									)}
 								</div>
 							</div>
-							<div>
+							<div className="flex w-full justify-between">
 								<div>7 day Change</div>
 								<div className="flex space-x-2">
 									{changes2 > 0 ? (
-										<div className="text-green-500 font-mono">
+										<div className="text-green-500 font-mono ">
 											{"+" + numeral(changes2).format("$0.00a")}
 										</div>
 									) : (
@@ -117,7 +118,7 @@ const TVLchart = () => {
 										</div>
 									)}
 									{percentageChange2 > 0 ? (
-										<div className="text-green-500 font-mono">
+										<div className="text-green-500 font-mono flex items-center text-lg">
 											<TiArrowUp />
 											{percentageChange2}%
 										</div>
@@ -131,7 +132,8 @@ const TVLchart = () => {
 							</div>
 						</div>
 					</div>
-					<div className="border-gray-600 border-t xl:border-l xl:border-t-0">
+					
+          <div className="border-gray-600 border-t xl:border-l xl:border-t-0">
 						<Charts data={mergedData} />
 					</div>
 				</div>

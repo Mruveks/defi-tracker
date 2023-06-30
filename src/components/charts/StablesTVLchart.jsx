@@ -47,58 +47,63 @@ const StablesTVLchart = () => {
 		<>
 			{stable.length ? (
 				<div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 grid-cols-[30%_70%] rounded-xl overflow-hidden border border-gray-600">
-					<div className="grid  space-y-8 text-white sm:w-full text-2xl p-4 bg-gray-850 italic capitalize h-full">
+					<div className="space-y-4 text-white sm:w-full text-xl p-4 bg-gray-850 italic capitalize h-full">
 						<header className="text-4xl whitespace-pre-wrap flex">
 							Stablecoins
 						</header>
-						<div className="grid sm:grid-cols-2 gap-10 grid-cols-1">
-							<div className="grid h-fit grid-flow-row w-fit justify-center sm:col-span-2">
+						<div className="grid ">
+							<div className="flex justify-between">
 								<div>Total Value Locked</div>
 								<div className="text-blue-500 font-mono">
 									{numeral(day).format("$0.00a")}
 								</div>
 							</div>
-							<div>
+							<div className="flex justify-between">
 								<div>24h Change</div>
-								{percentageChange > 0 ? (
-									<div className="text-green-500 font-mono">
-										+{percentageChange}%
-									</div>
-								) : (
-									<div className="text-red-500 font-mono">
-										{percentageChange}%
-									</div>
-								)}
-								{dollarChange > 0 ? (
-									<div className="text-green-500 font-mono">
-										{"+" + numeral(dollarChange).format("$0.00a")}
-									</div>
-								) : (
-									<div className="text-red-500 font-mono">
-										{numeral(dollarChange).format("$0.00a")}
-									</div>
-								)}
+								<div className="flex space-x-2">
+									{dollarChange > 0 ? (
+										<div className="text-green-500 font-mono flex items-center">
+											{"+" + numeral(dollarChange).format("$0.00a")}
+										</div>
+									) : (
+										<div className="text-red-500 font-mono flex items-center">
+											{numeral(dollarChange).format("$0.00a")}
+										</div>
+									)}
+									{percentageChange > 0 ? (
+										<div className="text-green-500 font-mono text-lg">
+											+{percentageChange}%
+										</div>
+									) : (
+										<div className="text-red-500 font-mono text-lg">
+											{percentageChange}%
+										</div>
+									)}
+								</div>
 							</div>
-							<div className="grid h-fit grid-flow-row w-full py-4">
+
+							<div className="flex justify-between">
 								<div>7 day Change</div>
-								{percentageChange_7d > 0 ? (
-									<div className="text-green-500 font-mono">
-										+{percentageChange_7d}%
-									</div>
-								) : (
-									<div className="text-red-500 font-mono">
-										{percentageChange_7d}%
-									</div>
-								)}
-								{dollarChange_7d > 0 ? (
-									<div className="text-green-500 font-mono">
-										{"+" + numeral(dollarChange_7d).format("$0.00a")}
-									</div>
-								) : (
-									<div className="text-red-500 font-mono">
-										{numeral(dollarChange_7d).format("$0.00a")}
-									</div>
-								)}
+								<div className="flex space-x-2">
+									{dollarChange_7d > 0 ? (
+										<div className="text-green-500 font-mono">
+											{"+" + numeral(dollarChange_7d).format("$0.00a")}
+										</div>
+									) : (
+										<div className="text-red-500 font-mono">
+											{numeral(dollarChange_7d).format("$0.00a")}
+										</div>
+									)}
+									{percentageChange_7d > 0 ? (
+										<div className="text-green-500 font-mono flex items-center text-lg">
+											+{percentageChange_7d}%
+										</div>
+									) : (
+										<div className="text-red-500 font-mono flex items-center text-lg">
+											{percentageChange_7d}%
+										</div>
+									)}
+								</div>
 							</div>
 						</div>
 					</div>

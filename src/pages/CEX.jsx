@@ -15,7 +15,7 @@ const CEX = () => {
         />
       </Helmet>
 
-      <BackButton />
+      <PricePanel />
       <SearchList />
 
       <div className="h-max my-4 text-white">
