@@ -74,33 +74,34 @@ const StablecoinPage = () => {
 			{stables ? (
 				<div className="grid grid-cols-2 mb-4 rounded-xl">
 					<div className="grid col-span-2 sm:grid-cols-1 md:grid-cols-1 grid-cols-[30%_70%] my-4">
-						<div className="grid  text-white sm:w-full p-4 bg-gray-850 rounded-l-xl italic capitalize border border-gray-600 h-full">
-							<div className="flex items-center not-italic sm:space-x-0 text-2xl space-x-2 w-[120%]">
+						<div className="space-y-8 text-white sm:w-full px-4 text-lg bg-gray-850 rounded-l-xl capitalize border border-gray-600 py-4 h-full">
+							<div className="whitespace-pre-wrap flex items-center sm:space-x-0 text-2xl space-x-2 w-[120%]">
 								<BsCoin size={30} />
 								<header className="text-4xl">
 									{stables.name} ({stables.symbol})
 								</header>
 							</div>
 							<div>
-								<h1>Current Circulating</h1>
-								{stables.price ? (
-									<div className="font-mono">{currentCirculating}</div>
-								) : (
-									"-"
-								)}
+								<div className="flex justify-between">
+									<h1>Current Circulating</h1>
+									{stables.price ? (
+										<div className="font-mono">{currentCirculating}</div>
+									) : (
+										"-"
+									)}
+								</div>
+								<div className="flex justify-between">
+									<h1>Price</h1>
+									{stables.price ? (
+										<div className="font-mono">
+											{numeral(stables.price).format("$0.00a")}
+										</div>
+									) : (
+										"-"
+									)}
+								</div>
 							</div>
-							<div>
-								<h1>Price</h1>
-								{stables.price ? (
-									<div className="font-mono">
-										{numeral(stables.price).format("$0.00a")}
-									</div>
-								) : (
-									"-"
-								)}
-							</div>
-
-							<div>
+							<div className="flex justify-between">
 								<h1>Peg Mechanism</h1>
 								{stables.pegMechanism}
 							</div>

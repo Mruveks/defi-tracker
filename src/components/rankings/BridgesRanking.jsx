@@ -59,7 +59,7 @@ const BridgesRanking = () => {
 	return (
 		<>
 			<div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 grid-cols-[30%_70%] rounded-xl overflow-hidden border border-gray-600">
-				<div className="space-y-4 text-white sm:w-full text-xl p-4 bg-gray-850 italic capitalize h-full">
+				<div className="space-y-8 text-white sm:w-full text-xl p-4 bg-gray-850 capitalize h-full">
 					<header className="text-4xl">
 						Bridges <br /> Outflows vs Inflows
 					</header>
@@ -74,7 +74,7 @@ const BridgesRanking = () => {
 									<h1>Transacion difference:</h1>
 									<div className="flex space-x-2">
 										<p>{changeTxsValue}</p>
-										<span className="flex text-xs items-center">
+										<span className="flex text-lg items-center">
 											{changeTxs > 0 ? (
 												<p className="text-green-400">
 													+{changeTxs.toFixed(4)}%
@@ -89,7 +89,7 @@ const BridgesRanking = () => {
 									<h1>Transacion Value difference:</h1>
 									<div className="flex space-x-2">
 										<p>{numeral(lastItem[0].value).format("$0,0.0")}</p>
-										<span className="flex text-xs items-center">
+										<span className="flex text-lg items-center">
 											{change > 0 ? (
 												<p className="text-green-400">+{change.toFixed(2)}%</p>
 											) : (
@@ -102,21 +102,25 @@ const BridgesRanking = () => {
 							<div>
 								<span className="flex justify-between">
 									<h1>Outgoing Transactions:</h1>
-									<p>{lastItem[0].withdrawTxs}</p>
+									<p className="text-lg">{lastItem[0].withdrawTxs}</p>
 								</span>
 								<span className="flex justify-between">
 									<h1>Outgoing Transactions Value:</h1>
-									<p>-{numeral(lastItem[0].withdrawUSD).format("$0,0.0")}</p>
+									<p className="text-lg">
+										-{numeral(lastItem[0].withdrawUSD).format("$0,0.0")}
+									</p>
 								</span>
 							</div>
 							<div>
 								<span className="flex justify-between">
 									<h1>Incoming Transactions:</h1>
-									<p>{lastItem[0].depositTxs}</p>
+									<p className="text-lg">{lastItem[0].depositTxs}</p>
 								</span>{" "}
 								<span className="flex justify-between">
 									<h1>Incoming Transactions Value:</h1>
-									<p>{numeral(lastItem[0].depositUSD).format("$0,0.0")}</p>
+									<p className="text-lg">
+										{numeral(lastItem[0].depositUSD).format("$0,0.0")}
+									</p>
 								</span>
 							</div>
 						</div>

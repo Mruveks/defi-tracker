@@ -13,6 +13,7 @@ import AddressFormatter from "../../utilities/AddressFormatter";
 import PricePanel from "../../components/PricePanel";
 import PieChartComponent from "../../components/charts/PieChartComponent";
 import { AiOutlineInfoCircle } from "react-icons/ai";
+import { TiArrowDown, TiArrowUp } from "react-icons/ti";
 
 const ProtocolPage = () => {
 	const { protocolId } = useParams();
@@ -20,6 +21,8 @@ const ProtocolPage = () => {
 	const [tvl, setTvl] = useState();
 	const [pieData, setPieData] = useState([]);
 	const [showMessage, setShowMessage] = useState(false);
+	const [otherChains, setOtherChains] = useState(false);
+
 	let timeout;
 	let formattedProtocolId = protocolId.replace(/ /g, "-").toLowerCase();
 
@@ -73,7 +76,9 @@ const ProtocolPage = () => {
 			setShowMessage(false);
 		}, 1000);
 	};
-
+	const handleShowOtherChains = () => {
+		setOtherChains(!otherChains);
+	};
 	useEffect(() => {
 		return () => {
 			clearTimeout(timeout);
@@ -112,22 +117,22 @@ const ProtocolPage = () => {
 						{protocolData.map((protocol, index) => (
 							<div
 								key={index}
-								className="grid lg:grid-col grid-flow-row space-y-8 text-white sm:w-full text-2xl p-4 bg-gray-850 rounded-l-xl italic capitalize border border-gray-600 h-full"
+								className="space-y-8 text-white sm:w-full text-xl p-4 bg-gray-850 rounded-l-xl capitalize border border-gray-600 h-full"
 							>
-								<div className="grid sm:grid-flow-row sm:items-center gap-4">
-									<div className="col-span-2 my-4 flex items-center not-italic sm:space-x-0 text-2xl space-x-4 w-[110%]">
-										<header className="text-4xl whitespace-pre-wrap flex">
-											<img
-												src={protocolData[0].logo}
-												alt={protocolId}
-												className="sm:hidden h-8 w-8 mr-2 rounded-full"
-											/>
-											<p>
-												{protocolId} ({protocol.symbol})
-											</p>
-										</header>
-									</div>
-									<div>
+								<div className="col-span-2 my-4 flex items-center not-italic sm:space-x-0 space-x-4 w-[110%]">
+									<header className="text-4xl whitespace-pre-wrap flex items-center">
+										<img
+											src={protocolData[0].logo}
+											alt={protocolId}
+											className="sm:hidden h-8 w-8 mr-2 rounded-full"
+										/>
+										<p>
+											{protocolId} ({protocol.symbol})
+										</p>
+									</header>
+								</div>
+								<div className="grid">
+									<div className="flex justify-between">
 										<h1>Total Value Locked</h1>
 										{tvl > 0 ? (
 											<p className="font-mono">
@@ -139,17 +144,15 @@ const ProtocolPage = () => {
 									</div>
 									{protocol.mcap > 0 ? (
 										<>
-											<div>
+											<div className="flex justify-between">
 												<h1>Market Cap</h1>
 												<p className="font-mono">
 													{numeral(protocol.mcap).format("$0.00a")}
 												</p>
 											</div>
 
-											<div>
-												<h1 className="flex space-x-2 items-center">
-													Mcap/TVL
-												</h1>
+											<div className="flex justify-between">
+												<h1>Mcap/TVL</h1>
 												<p className="font-mono">
 													{(protocol.mcap / tvl).toFixed(2)}
 												</p>
@@ -157,52 +160,78 @@ const ProtocolPage = () => {
 										</>
 									) : (
 										<>
-											<div>
+											<div className="flex justify-between">
 												<h1>Market Cap</h1>
 												<p>-</p>
 											</div>
-											<div>
+											<div className="flex justify-between">
 												<h1>mcap/TVL</h1>
 												<p>-</p>
 											</div>
 										</>
 									)}
 								</div>
-								<div className="grid w-full items-center">
-									<h1>Chain breakdown</h1>
-									<div className=" w-full">
+
+								<div className="grid">
+									<div className=" w-full flex justify-between">
+										<h1>Native Chain</h1>
 										<Link
 											to={`/chain/${protocol.chain.toLowerCase()}`}
 											className="hover:underline"
 										>
 											{protocol.chain}
 										</Link>
-
-										{protocol.chains.length > 0 ? (
-											<div className="flex flex-wrap text-justify">
-												{protocol.chains
-													.filter((chain) => chain != protocol.chain)
-													.map((chain, index) => (
-														<div key={index} className="w-fit pr-2 ">
-															<Link
-																to={`/chain/${chain.toLowerCase()}`}
-																className="hover:underline"
-															>
-																{chain}
-															</Link>
-														</div>
-													))}
-											</div>
-										) : (
-											<p>{protocol.chain}</p>
-										)}
 									</div>
+									{protocol.chains.length > 1 ? (
+										<div className="">
+											<span
+												className="flex justify-between items-center cursor-pointer"
+												onClick={() => handleShowOtherChains()}
+											>
+												<h1>Other Chains</h1>
+												{otherChains === true ? <TiArrowUp /> : <TiArrowDown />}
+											</span>
+											{protocol.chains.length > 0 ? (
+												<div
+													className={`text-left justify-items-end ${
+														protocol.chains.length > 10
+															? "overflow-y-scroll"
+															: ""
+													} max-h-72 ${
+														otherChains === true ? "grid" : "hidden"
+													}`}
+												>
+													{protocol.chains
+														.filter((chain) => chain != protocol.chain)
+														.map((chain, index) => (
+															<div
+																key={index}
+																className={`w-full ${
+																	index % 2 === 0
+																		? "bg-gray-800"
+																		: "bg-gray-850"
+																}`}
+															>
+																<Link
+																	to={`/chain/${chain.toLowerCase()}`}
+																	className="hover:underline"
+																>
+																	{chain}
+																</Link>
+															</div>
+														))}
+												</div>
+											) : (
+												<p>{protocol.chain}</p>
+											)}
+										</div>
+									) : null}
 								</div>
 							</div>
 						))}
 						<div className="border border-gray-600 border-l-0 sm:hidden md:hidden">
 							<ProtocolsChart />
-						</div>{" "}
+						</div>
 					</div>
 
 					{protocolData.map((protocol, index) => (

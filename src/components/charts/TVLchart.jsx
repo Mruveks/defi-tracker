@@ -12,6 +12,9 @@ const TVLchart = () => {
 	const [lastDay, setLastDay] = useState();
 	const [weekAgo, setWeekAgo] = useState();
 
+	const [dayVolume, setDayVolume] = useState();
+	const [lastDayVolume, setLastDayVolume] = useState();
+
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -41,6 +44,11 @@ const TVLchart = () => {
 						volume,
 					})
 				);
+				const todayVolume = volumeData[volumeData.length - 1]?.volume || 0;
+				const lastVolume = volumeData[volumeData.length - 2]?.volume || 0;
+
+				setDayVolume(todayVolume);
+				setLastDayVolume(lastVolume);
 				setVolumeData(volumeData);
 			} catch (error) {
 				console.log(error);
@@ -66,36 +74,42 @@ const TVLchart = () => {
 	const changes2 = day - weekAgo;
 	const percentageChange2 = (((day - weekAgo) / weekAgo) * 100).toFixed(2);
 
+	const volumeChange = dayVolume - lastDayVolume;
+	const volumeChangePercentage = (
+		((dayVolume - lastDayVolume) / lastDayVolume) *
+		100
+	).toFixed(2);
 	return (
 		<>
 			{chartData.length ? (
-        <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 grid-cols-[30%_70%] rounded-xl overflow-hidden border border-gray-600">
-          
-					<div className="space-y-4 text-white sm:w-full text-xl p-4 bg-gray-850 italic capitalize h-full">
-						<header className="text-4xl whitespace-pre-wrap flex">DeFi</header>
-						<div className="grid grid-cols-1">
-							<div className="flex w-full justify-between">
-								<div>Total Value Locked</div>
-								<div className="text-blue-500 font-mono">
+				<div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 grid-cols-[30%_70%] rounded-xl overflow-hidden border border-gray-600">
+					<div className="space-y-8 text-white sm:w-full text-xl p-4 bg-gray-850 capitalize h-full">
+						<header className="text-4xl whitespace-pre-wrap flex">
+							DeFi
+						</header>
+						<div>
+							<div className="flex w-full justify-between items-center">
+								<h1>Total Value Locked</h1>
+								<div className="font-mono text-2xl">
 									{numeral(day).format("$0.00a")}
 								</div>
 							</div>
-							<div className="flex w-full justify-between">
-								<div>24h Change</div>
+							<div className="flex w-full justify-between items-center">
+								<h1>Change (24h)</h1>
 								<div className="flex space-x-2">
 									{changes > 0 ? (
-										<div className="text-green-500 font-mono">
+										<div className="text-green-500 font-mono text-xl">
 											{"+" + numeral(changes).format("$0.00a")}
 										</div>
 									) : (
-										<div className="text-red-500 font-mono ">
+										<div className="text-red-500 font-mono text-xl">
 											{numeral(changes).format("$0.00a")}
 										</div>
 									)}
 									{percentageChange > 0 ? (
 										<div className="text-green-500 font-mono flex items-center text-lg">
 											<TiArrowUp />
-											<p>{percentageChange}%</p>
+											{percentageChange}%
 										</div>
 									) : (
 										<div className="text-red-500 font-mono flex items-center text-lg">
@@ -105,15 +119,15 @@ const TVLchart = () => {
 									)}
 								</div>
 							</div>
-							<div className="flex w-full justify-between">
-								<div>7 day Change</div>
+							<div className="flex w-full justify-between items-center">
+								<h1>Change (7d)</h1>
 								<div className="flex space-x-2">
 									{changes2 > 0 ? (
-										<div className="text-green-500 font-mono ">
+										<div className="text-green-500 font-mono text-xl">
 											{"+" + numeral(changes2).format("$0.00a")}
 										</div>
 									) : (
-										<div className="text-red-500 font-mono">
+										<div className="text-red-500 font-mono text-xl">
 											{numeral(changes2).format("$0.00a")}
 										</div>
 									)}
@@ -131,9 +145,34 @@ const TVLchart = () => {
 								</div>
 							</div>
 						</div>
+						<div className="flex justify-between items-center">
+							<h1>Volume (24h)</h1>
+							<div className="flex space-x-2">
+								{volumeChange > 0 ? (
+									<div className="text-green-500 font-mono text-xl">
+										{"+" + numeral(volumeChange).format("$0.00a")}
+									</div>
+								) : (
+									<div className="text-red-500 font-mono text-xl">
+										{numeral(volumeChange).format("$0.00a")}
+									</div>
+								)}
+								{volumeChangePercentage > 0 ? (
+									<div className="text-green-500 font-mono flex items-center text-lg">
+										<TiArrowUp />
+										{volumeChangePercentage}%
+									</div>
+								) : (
+									<div className="text-red-500 font-mono flex items-center text-lg">
+										<TiArrowDown />
+										{volumeChangePercentage.slice(1)}%
+									</div>
+								)}
+							</div>
+						</div>
 					</div>
-					
-          <div className="border-gray-600 border-t xl:border-l xl:border-t-0">
+
+					<div className="border-gray-600 border-t xl:border-l xl:border-t-0">
 						<Charts data={mergedData} />
 					</div>
 				</div>
