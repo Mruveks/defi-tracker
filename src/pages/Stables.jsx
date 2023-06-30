@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import StablesRanking from "../components/rankings/StablesRanking";
 import StablesTVLchart from "../components/charts/StablesTVLchart";
 import SearchList from "../components/SearchList";
-import BackButton from "../components/BackButton";
+import PricePanel from "../components/PricePanel";
 
 const Stables = () => {
 	return (
@@ -13,7 +13,7 @@ const Stables = () => {
 				<meta name="description" content="Find the best stablecoins" />
 			</Helmet>
 
-			<BackButton />
+			<PricePanel />
 			<SearchList />
 
 			<div className="h-max my-4">

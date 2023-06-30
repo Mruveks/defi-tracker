@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import BackButton from "../components/BackButton";
+import PricePanel from "../components/PricePanel";
 import Ranking from "../components/rankings/Ranking";
 import SearchList from "../components/SearchList";
 

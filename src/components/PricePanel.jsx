@@ -12,14 +12,15 @@ import {
 	sushi,
 	curve,
 } from "../assets/AssetsIndex";
-function BackButton() {
+
+function PricePanel() {
 	const [ethPrice, setEthPrice] = useState(0);
 	const [lidoPrice, setLidoPrice] = useState(0);
 	const [uniPrice, setUniPrice] = useState(0);
 	const [aavePrice, setAavePrice] = useState(0);
 	const [curvePrice, setCurvePrice] = useState(0);
 	const [sushiPrice, setSushiPrice] = useState(0);
-
+  const [pancakePrice, setPancakePrice] = useState(0)
 	const navigate = useNavigate();
 
 	function handleClick() {
@@ -30,7 +31,7 @@ function BackButton() {
 		const fetchPrice = async () => {
 			try {
 				const response = await axios.get(
-					"https://coins.llama.fi/prices/current/coingecko:ethereum,coingecko:lido-dao,coingecko:uniswap,coingecko:aave,coingecko:curve-dao-token,coingecko:sushi"
+					"https://coins.llama.fi/prices/current/coingecko:ethereum,coingecko:lido-dao,coingecko:uniswap,coingecko:aave,coingecko:curve-dao-token,coingecko:sushi,coingecko:pancakeswap-token"
 				);
 				const data = response.data.coins;
 				setEthPrice(data["coingecko:ethereum"].price);
@@ -38,7 +39,8 @@ function BackButton() {
 				setLidoPrice(data["coingecko:lido-dao"].price);
 				setAavePrice(data["coingecko:aave"].price);
 				setSushiPrice(data["coingecko:sushi"].price);
-				setCurvePrice(data["coingecko:curve-dao-token"].price);
+        setCurvePrice(data["coingecko:curve-dao-token"].price);
+        setPancakePrice(data["coingecko:pancakeswap-token"].price)
 			} catch (error) {
 				console.log(error);
 			}
@@ -79,9 +81,13 @@ function BackButton() {
 			<p className="flex items-center">
 				<img src={sushi} alt="" className="rounded-full h-5 w-5 mr-1" />
 				Sushi: {numeral(sushiPrice).format("$0,0.00")}
+      </p>
+      <p className="flex items-center">
+				<img src={pancakeswap} alt="" className="rounded-full h-5 w-5 mr-1" />
+				Pancakeswap: {numeral(pancakePrice).format("$0,0.00")}
 			</p>
 		</div>
 	);
 }
 
-export default BackButton;
+export default PricePanel;

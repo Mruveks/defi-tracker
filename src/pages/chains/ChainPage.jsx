@@ -5,7 +5,7 @@ import axios from "axios";
 import ChainsChart from "../../components/charts/ChainsChart";
 import Ranking from "../../components/rankings/Ranking";
 import SearchList from "../../components/SearchList";
-import BackButton from "../../components/BackButton";
+import PricePanel from "../../components/PricePanel";
 import moment from "moment";
 import numeral from "numeral";
 import Loader from "../../components/Loader";
@@ -66,7 +66,7 @@ const ChainPage = () => {
 				<meta name="description" content={`${chainId}`} />
 			</Helmet>
 
-			<BackButton />
+			<PricePanel />
 			<SearchList />
 
 			{chains.length ? (

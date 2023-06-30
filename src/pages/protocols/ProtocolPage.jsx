@@ -10,7 +10,7 @@ import numeral from "numeral";
 import ProtocolAddress from "../../utilities/ProtocolAddress";
 import { BsArrowUpRight } from "react-icons/bs";
 import AddressFormatter from "../../utilities/AddressFormatter";
-import BackButton from "../../components/BackButton";
+import PricePanel from "../../components/PricePanel";
 import PieChartComponent from "../../components/charts/PieChartComponent";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 
@@ -103,7 +103,7 @@ const ProtocolPage = () => {
 				/>
 			</Helmet>
 
-			<BackButton />
+			<PricePanel />
 			<SearchList />
 
 			{protocolData.length ? (
@@ -204,8 +204,8 @@ const ProtocolPage = () => {
 							<ProtocolsChart />
 						</div>{" "}
 					</div>
-					
-          {protocolData.map((protocol, index) => (
+
+					{protocolData.map((protocol, index) => (
 						<div
 							key={index}
 							className="col-span-2  grid grid-cols-2 sm:grid-cols-1 rounded-xl border bg-gray-850 border-gray-600"

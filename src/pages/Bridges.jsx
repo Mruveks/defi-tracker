@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import BridgesRanking from "../components/rankings/BridgesRanking";
 import SearchList from "../components/SearchList";
-import BackButton from "../components/BackButton";
+import PricePanel from "../components/PricePanel";
 
 const Bridges = () => {
   return (
@@ -15,7 +15,7 @@ const Bridges = () => {
         />
       </Helmet>
 
-      <BackButton />
+      <PricePanel />
       <SearchList />
 
       <div className="h-max my-4 text-white">

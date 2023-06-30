@@ -2,7 +2,7 @@ import React from "react";
 import YieldsRanking from "../components/rankings/YieldsRanking";
 import { Helmet } from "react-helmet";
 import SearchList from "../components/SearchList";
-import BackButton from "../components/BackButton";
+import PricePanel from "../components/PricePanel";
 
 const Yields = () => {
   return (
@@ -15,7 +15,7 @@ const Yields = () => {
         />
       </Helmet>
 
-      <BackButton />
+      <PricePanel />
       <SearchList />
 
       <YieldsRanking />

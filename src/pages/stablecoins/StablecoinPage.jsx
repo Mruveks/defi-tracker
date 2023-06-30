@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { useParams } from "react-router";
 import axios from "axios";
 import Charts from "../../components/charts/Chart";
-import BackButton from "../../components/BackButton";
+import PricePanel from "../../components/PricePanel";
 import ProtocolAddress from "../../utilities/ProtocolAddress";
 import AddressFormatter from "../../utilities/AddressFormatter";
 import SearchList from "../../components/SearchList";
@@ -68,7 +68,7 @@ const StablecoinPage = () => {
 				</Helmet>
 			) : null}
 
-			<BackButton />
+			<PricePanel />
 			<SearchList />
 
 			{stables ? (

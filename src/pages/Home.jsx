@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import TVLranking from "../components/rankings/TVLranking";
 import TVLchart from "../components/charts/TVLchart";
 import SearchList from "../components/SearchList";
-import BackButton from "../components/BackButton";
+import PricePanel from "../components/PricePanel";
 const Home = () => {
 	return (
 		<div className="grid grid-cols-1 mx-2 lg:mx-10 xl:mx-10 text-md">
@@ -16,7 +16,7 @@ const Home = () => {
 				/>
 			</Helmet>
 
-			<BackButton />
+			<PricePanel />
 			<SearchList />
 
 			<div className="h-max my-4 text-white">
