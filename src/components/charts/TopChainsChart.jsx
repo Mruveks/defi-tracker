@@ -15,9 +15,16 @@ import Loader from "../Loader";
 
 const TopChainsChart = ({ data }) => {
 	const [isChartReady, setChartReady] = useState(false);
+	const [isLogScale, setIsLogScale] = useState(false);
+
+	const toggleScale = () => {
+		setIsLogScale(!isLogScale);
+		if (isLogScale === false) {
+			setHallmarks(false);
+		}
+	};
 
 	useEffect(() => {
-		// Simulate loading delay
 		setTimeout(() => {
 			setChartReady(true);
 		}, 2000);
@@ -97,6 +104,25 @@ const TopChainsChart = ({ data }) => {
 
 	return (
 		<div className="w-full p-4">
+			<div className="flex sm:grid-cols-2 sm:grid items-center sm:mx-auto mb-4 w-fit sm:space-y-2  text-lg space-x-2">
+				<button
+					onClick={toggleScale}
+					className={`rounded-lg px-2 h-fit transition duration-300 border border-gray-600 ${
+						isLogScale === false ? "bg-[#8884d8] " : "bg-none"
+					}`}
+				>
+					Linear
+				</button>
+					<button
+						onClick={toggleScale}
+						className={`rounded-lg px-2 h-fit transition duration-300 border border-gray-600 ${
+							isLogScale === true ? "bg-[#8884d8] " : "bg-none"
+						}`}
+					>
+						Logarithmic
+					</button>
+			</div>
+
 			<ResponsiveContainer height={500}>
 				<LineChart data={data}>
 					<Line
@@ -183,8 +209,8 @@ const TopChainsChart = ({ data }) => {
 							textAnchor: "end",
 						}}
 						padding={{ top: 40 }}
-						scale="log"
-						domain={["auto", "auto"]}
+						scale={isLogScale ? "log" : "linear"}
+						domain={isLogScale ? ["auto", "auto"] : ["auto", "auto"]}
 					/>
 					<Tooltip
 						content={<CustomTooltip />}
