@@ -23,8 +23,10 @@ const PieChartComponent = ({ data }) => {
 		"#e68e9d",
 		"#8884d8",
 		"#b486c7",
-		"#a893cc",
+		"#ff0000",
 		"#c7d48d",
+		"#00aabb",
+		"#ffcc00",
 	];
 
 	useEffect(() => {
@@ -47,7 +49,6 @@ const PieChartComponent = ({ data }) => {
 		const containerRect = container.getBoundingClientRect();
 		const offsetX = e.clientX - containerRect.left;
 		const offsetY = e.clientY - containerRect.top;
-		setTooltipPosition({ x: offsetX, y: offsetY });
 	};
 
 	const handleMouseEnterSlice = (data, index) => {
