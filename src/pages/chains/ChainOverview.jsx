@@ -263,17 +263,23 @@ const ChartOverwiew = () => {
 			<div className="grid mt-4 sm:grid-cols-1 grid-cols-[40%_60%] border bg-gray-850 border-gray-600 rounded-xl overflow-hidden">
 				<div className="col-span-2 text-xl p-4 italic capitalize">
 					<header className="text-4xl space-x-2 whitespace-pre-wrap flex capitalize">
-						<p>Total Value Locked All Chains:</p>
+						<p>Total Value Locked on All Chains:</p>
 						<p>{tvl > 0 ? numeral(tvl).format("$0,") : null}</p>
 					</header>
 				</div>
 
-				<Suspense fallback={<Loader />}>
-					{chainData && <PieChartComponent data={chainData} />}
-				</Suspense>
-				<Suspense fallback={<Loader />}>
-					{mergedData && <TopChainsChart data={mergedData} />}
-				</Suspense>
+				<div className="col-span-2">
+					<Suspense fallback={<Loader />}>
+						{mergedData && <TopChainsChart data={mergedData} />}
+					</Suspense>
+				</div>
+				<div>
+					<Suspense fallback={<Loader />}>
+						{chainData && <PieChartComponent data={chainData} />}
+					</Suspense>
+				</div>
+				<span>
+				</span>
 			</div>
 		</main>
 	);

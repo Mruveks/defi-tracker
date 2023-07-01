@@ -103,7 +103,7 @@ const PieChartComponent = ({ data }) => {
 	};
 
 	return (
-		<div id="chart-container">
+		<div id="chart-container " className="p-4">
 			<ResponsiveContainer
 				className="m-auto h-max"
 				height={isSmallScreen ? 400 : data.length > 20 ? 1000 : 600}
@@ -134,7 +134,8 @@ const PieChartComponent = ({ data }) => {
 						layout="horizontal"
 						wrapperStyle={{
 							marginRight: "80px",
-							fontSize: isSmallScreen ? "small" : "large",
+              fontSize: isSmallScreen ? "small" : "large",
+              paddingLeft: 10
 						}}
 						payload={data
 							.sort((a, b) => b.value - a.value)
