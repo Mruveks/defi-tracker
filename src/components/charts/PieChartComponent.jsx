@@ -106,7 +106,7 @@ const PieChartComponent = ({ data }) => {
 		<div id="chart-container " className="p-4">
 			<ResponsiveContainer
 				className="m-auto h-max"
-				height={isSmallScreen ? 400 : data.length > 20 ? 1000 : 600}
+				height={isSmallScreen ? 400 : data.length > 20 ? 800 : 600}
 			>
 				<PieChart onMouseMove={handleMouseMove}>
 					<Pie
