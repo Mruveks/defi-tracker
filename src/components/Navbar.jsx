@@ -124,6 +124,15 @@ const Navbar = () => {
 										} ${elementStyle}`}
 									>
 										Chains
+                  </NavLink>
+                  <NavLink
+										to="/protocols"
+										onClick={() => setActiveNav("/protocols")}
+										className={`pl-9 ${
+											activeNav === "/protocols" ? "bg-gray-700" : ""
+										} ${elementStyle}`}
+									>
+										Protocols
 									</NavLink>
 								</div>
 							)}
