@@ -124,15 +124,15 @@ const Navbar = () => {
 										} ${elementStyle}`}
 									>
 										Chains
-                  </NavLink>
-                  <NavLink
-										to="/protocols"
-										onClick={() => setActiveNav("/protocols")}
+									</NavLink>
+									<NavLink
+										to="/protocol/categories"
+										onClick={() => setActiveNav("/protocol/categories")}
 										className={`pl-9 ${
-											activeNav === "/protocols" ? "bg-gray-700" : ""
+											activeNav === "/protocol/categories" ? "bg-gray-700" : ""
 										} ${elementStyle}`}
 									>
-										Protocols
+										Categories
 									</NavLink>
 								</div>
 							)}

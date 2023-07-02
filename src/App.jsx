@@ -22,7 +22,7 @@ const ProtocolPage = lazy(() => import("./pages/protocols/ProtocolPage"));
 const ChainPage = lazy(() => import("./pages/chains/ChainPage"));
 const StablecoinPage = lazy(() => import("./pages/stablecoins/StablecoinPage"));
 const ChainOverview = lazy(() => import("./pages/chains/ChainOverview"));
-const ProtocolsOverview = lazy(() => import("./pages/protocols/ProtocolsOverview"));
+const ProtocolCategories = lazy(() => import("./pages/protocols/ProtocolCategories"));
 
 function App() {
 	return (
@@ -41,7 +41,7 @@ function App() {
 						<Route path="/cex" element={<CEX />} />
             <Route path="/dex" element={<DEX />} />
             <Route path="/chains" element={<ChainOverview />} />
-            <Route path="/protocols" element={<ProtocolsOverview />} />
+            <Route path="/protocol/categories" element={<ProtocolCategories />} />
 
 						<Route
 							key="/protocol/:protocolId"

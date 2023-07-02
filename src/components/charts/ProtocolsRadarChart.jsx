@@ -1,11 +1,6 @@
 import React from "react";
 import {
-	RadarChart,
-	Radar,
-	PolarGrid,
-	PolarAngleAxis,
 	CartesianGrid,
-	PolarRadiusAxis,
 	BarChart,
 	XAxis,
 	YAxis,
@@ -50,22 +45,10 @@ const ProtocolsRadarChart = ({ data }) => {
 		"#ffbb78",
 	];
 
-	const renderRadars = () => {
-		return data.map((category, index) => (
-			<Radar
-				key={category.subject}
-				name={category.subject}
-				dataKey="count"
-				stroke="#8884d8"
-				fillOpacity={0.6}
-				fill="url(#area-chart-gradient)"
-			/>
-		));
-	};
-
 	return (
-		<div className="grid my-4 py-4 rounded-xl border border-gray-600">
-			<BarChart data={data} width={1600} height={600} margin={{ bottom: 80 }}>
+    <div className="grid my-4 py-4 rounded-xl border bg-gray-900 border-gray-600">
+      <header className="text-4xl p-4">Protocol Category Distribution</header>
+			<BarChart data={data} width={1600} height={600}>
 				<CartesianGrid vertical={false} strokeDasharray="3 3" opacity={0.4} />
 				<XAxis
 					dataKey="subject"
@@ -128,26 +111,6 @@ const ProtocolsRadarChart = ({ data }) => {
 						}))}
 				/>
 			</BarChart>
-			<div className="px-4">
-				<RadarChart outerRadius={200} width={600} height={600} data={data}>
-					<defs>
-						<linearGradient
-							id="area-chart-gradient"
-							x1="0"
-							y1="0"
-							x2="0"
-							y2="1"
-						>
-							<stop offset="20%" stopColor="#8884d8" stopOpacity={0.2} />
-							<stop offset="95%" stopColor="#8884d8" stopOpacity={0.01} />
-						</linearGradient>
-					</defs>
-					<PolarGrid />
-					<PolarAngleAxis dataKey="subject" />
-					<PolarRadiusAxis angle={18} domain={[0, 500]} />
-					{renderRadars()}
-				</RadarChart>
-			</div>
 		</div>
 	);
 };
