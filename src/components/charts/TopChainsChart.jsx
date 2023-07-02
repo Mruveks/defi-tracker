@@ -10,6 +10,8 @@ import {
 	Line,
 	CartesianGrid,
 	Tooltip,
+	Area,
+	AreaChart,
 } from "recharts";
 import Loader from "../Loader";
 
@@ -48,7 +50,7 @@ const TopChainsChart = ({ data }) => {
 		if (active && payload && payload.length) {
 			const data = payload[0].payload;
 			return (
-				<div className="w-60 backdrop-blur-md p-2 rounded-xl border border-gray-600 bg-transparent">
+				<div className="w-60 p-2 rounded-xl border border-gray-600 bg-gray-800">
 					<p className="label text-2xl">
 						{moment(data.date).format("MMM DD, YYYY")}
 					</p>
@@ -124,74 +126,84 @@ const TopChainsChart = ({ data }) => {
 			</div>
 
 			<ResponsiveContainer height={500}>
-				<LineChart data={data}>
-					<Line
+				<AreaChart data={data}>
+					<Area
 						type="monotone"
+						fillOpacity={1}
 						dot={false}
 						dataKey="value"
-						stroke={colors[0]}
+						fill={colors[0]}
 					/>
-					<Line
+					<Area
 						type="monotone"
+						fillOpacity={1}
 						dot={false}
 						dataKey="value2"
-						stroke={colors[1]}
+						fill={colors[1]}
 					/>
-					<Line
+					<Area
 						type="monotone"
+						fillOpacity={1}
 						dot={false}
 						dataKey="value3"
-						stroke={colors[2]}
+						fill={colors[2]}
 					/>
-					<Line
+					<Area
 						type="monotone"
+						fillOpacity={1}
 						dot={false}
 						dataKey="value4"
-						stroke={colors[3]}
+						fill={colors[3]}
 					/>
-					<Line
+					<Area
 						type="monotone"
+						fillOpacity={1}
 						dot={false}
 						dataKey="value5"
-						stroke={colors[5]}
+						fill={colors[5]}
 					/>
-					<Line
+					<Area
 						type="monotone"
+						fillOpacity={1}
 						dot={false}
 						dataKey="value6"
-						stroke={colors[6]}
+						fill={colors[6]}
 					/>
-					<Line
+					<Area
 						type="monotone"
+						fillOpacity={1}
 						dot={false}
 						dataKey="value7"
-						stroke={colors[7]}
+						fill={colors[7]}
 					/>
-					<Line
+					<Area
 						type="monotone"
+						fillOpacity={1}
 						dot={false}
 						dataKey="value8"
-						stroke={colors[8]}
+						fill={colors[8]}
 					/>
-					<Line
+					<Area
 						type="monotone"
+						fillOpacity={1}
 						dot={false}
 						dataKey="value9"
-						stroke={colors[9]}
+						fill={colors[9]}
 					/>
-					<Line
+					<Area
 						type="monotone"
+						fillOpacity={1}
 						dot={false}
 						dataKey="value10"
-						stroke={colors[10]}
+						fill={colors[10]}
 					/>
 
-					<CartesianGrid strokeDasharray="3 3" opacity={0.1} />
+					<CartesianGrid strokeDasharray="3 3" opacity={0.2} />
 					<XAxis
 						dataKey="date"
 						interval={365}
 						tickFormatter={(value) => moment(value).format("MMM YYYY")}
-						stroke="#8884d8"
+						fill="#8884d8"
 						tickSize={2}
 						tick={{
 							fontSize: 14,
@@ -221,7 +233,7 @@ const TopChainsChart = ({ data }) => {
 						}}
 						position={{ x: 80, y: 120 }}
 					/>
-				</LineChart>
+				</AreaChart>
 			</ResponsiveContainer>
 		</div>
 	);
