@@ -113,14 +113,14 @@ const TopChainsChart = ({ data }) => {
 				>
 					Linear
 				</button>
-					<button
-						onClick={toggleScale}
-						className={`rounded-lg px-2 h-fit transition duration-300 border border-gray-600 ${
-							isLogScale === true ? "bg-[#8884d8] " : "bg-none"
-						}`}
-					>
-						Logarithmic
-					</button>
+				<button
+					onClick={toggleScale}
+					className={`rounded-lg px-2 h-fit transition duration-300 border border-gray-600 ${
+						isLogScale === true ? "bg-[#8884d8] " : "bg-none"
+					}`}
+				>
+					Logarithmic
+				</button>
 			</div>
 
 			<ResponsiveContainer height={500}>
@@ -210,7 +210,7 @@ const TopChainsChart = ({ data }) => {
 						}}
 						padding={{ top: 40 }}
 						scale={isLogScale ? "log" : "linear"}
-						domain={isLogScale ? ["auto", "auto"] : ["auto", "auto"]}
+						domain={isLogScale ? [10000, "auto"] : ["auto", "auto"]}
 					/>
 					<Tooltip
 						content={<CustomTooltip />}

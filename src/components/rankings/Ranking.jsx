@@ -42,13 +42,20 @@ const Ranking = ({ chain }) => {
 			.get("https://api.llama.fi/protocols")
 			.then((res) => {
 				setProtocols(res.data);
-				console.log(protocols);
+        const data = res.data;
+        console.log(data)
+				const map = data
+					.map((item) => ({
+						items: item.category === "Farm" ? item : null,
+					}))
+					.filter((item) => item.items !== null);
+				console.log(map);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
-  }, []);
-  
+	}, []);
+
 	return (
 		<div className="h-max text-md bg-gray-850 border rounded-xl border-gray-600 py-2">
 			<div

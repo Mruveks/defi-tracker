@@ -23,7 +23,6 @@ const ChainPage = () => {
 			.get(`https://api.llama.fi/v2/historicalChainTvl/${chainId}`)
 			.then((res) => {
 				const data = res.data;
-				console.log(data);
 				const dates = data.map((item) => moment.unix(item.date).toDate());
 				const values = data.map((item) => item.tvl);
 				const datasource = values.map((value, index) => ({
@@ -31,7 +30,6 @@ const ChainPage = () => {
 					value: value,
 				}));
 				setChains(datasource);
-				console.log(chains);
 				const today = datasource.slice(
 					datasource.length - 1,
 					datasource.length

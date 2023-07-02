@@ -256,11 +256,10 @@ const ChartOverwiew = () => {
 					content={`Learn more about chains and how they work on our website.`}
 				/>
 			</Helmet>
-
 			<PricePanel />
 			<SearchList />
 
-			<div className="grid mt-4 sm:grid-cols-1 grid-cols-[40%_60%] border bg-gray-850 border-gray-600 rounded-xl overflow-hidden">
+      <div className="grid mt-4 sm:grid-cols-1 grid-cols-[40%_60%] border bg-gray-850 border-gray-600 rounded-xl overflow-hidden">
 				<div className="col-span-2 text-xl p-4 italic capitalize">
 					<header className="text-4xl space-x-2 whitespace-pre-wrap flex capitalize">
 						<p>Total Value Locked on All Chains:</p>
@@ -278,8 +277,6 @@ const ChartOverwiew = () => {
 						{chainData && <PieChartComponent data={chainData} />}
 					</Suspense>
 				</div>
-				<span>
-				</span>
 			</div>
 		</main>
 	);
