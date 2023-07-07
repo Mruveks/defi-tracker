@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import numeral from "numeral";
-import CustomTooltip from "./CustomTooltip";
 import {
 	ResponsiveContainer,
-	LineChart,
 	XAxis,
 	YAxis,
-	Line,
 	CartesianGrid,
 	Tooltip,
 	Area,
@@ -21,9 +18,6 @@ const TopChainsChart = ({ data }) => {
 
 	const toggleScale = () => {
 		setIsLogScale(!isLogScale);
-		if (isLogScale === false) {
-			setHallmarks(false);
-		}
 	};
 
 	useEffect(() => {
@@ -200,14 +194,15 @@ const TopChainsChart = ({ data }) => {
 
 					<CartesianGrid strokeDasharray="3 3" opacity={0.2} />
 					<XAxis
+						fontFamily="font-mono"
+						stroke="#8884d8"
 						dataKey="date"
 						interval={365}
 						tickFormatter={(value) => moment(value).format("MMM YYYY")}
-						fill="#8884d8"
 						tickSize={2}
 						tick={{
+							color: "blue",
 							fontSize: 14,
-							textAnchor: "start",
 						}}
 					/>
 					<YAxis
