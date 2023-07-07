@@ -3,6 +3,7 @@ import axios from "axios";
 import moment from "moment";
 
 const DataFetcher = () => {
+	const [tvlData, setTvlData] = useState(null);
 	const [mergedData, setMergedData] = useState([]);
 	const [data, setData] = useState([]);
 
@@ -36,13 +37,18 @@ const DataFetcher = () => {
 				]);
 
 				const chainData = chainRes.data;
-
 				const updatedData = chainData
 					.sort((a, b) => b.value - a.value)
 					.map((item) => ({
 						chain: item.name,
 						value: item.tvl,
 					}));
+
+				const allTvl = updatedData.reduce(
+					(total, item) => total + item.value,
+					0
+				);
+				setTvlData(allTvl);
 
 				const othersTvl = updatedData
 					.slice(100)
@@ -94,7 +100,7 @@ const DataFetcher = () => {
 		fetchData();
 	}, []);
 
-	return [data, mergedData];
+	return [tvlData, data, mergedData];
 };
 
 export default DataFetcher;

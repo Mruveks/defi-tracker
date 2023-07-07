@@ -12,8 +12,13 @@ import DataFetcher from "../../utilities/ChainsDataFetcher";
 
 const ChartOverwiew = () => {
 	const [tvl, setTvl] = useState(0);
-  const [data, mergedData] = DataFetcher();
-  
+	const [tvlData, data, mergedData] = DataFetcher();
+
+	useEffect(() => {
+		if (tvlData) {
+			setTvl(tvlData);
+		}
+	}, [tvlData]);
 	return (
 		<main className="mx-2 lg:mx-10 xl:mx-10">
 			<Helmet>
@@ -26,7 +31,7 @@ const ChartOverwiew = () => {
 			<PricePanel />
 			<SearchList />
 
-      <div className="grid mt-4 sm:grid-cols-1 grid-cols-[40%_60%] border bg-gray-850 border-gray-600 rounded-xl overflow-hidden">
+			<div className="grid mt-4 sm:grid-cols-1 grid-cols-[40%_60%] border bg-gray-850 border-gray-600 rounded-xl overflow-hidden">
 				<div className="col-span-2 text-xl p-4 italic capitalize">
 					<header className="text-4xl space-x-2 whitespace-pre-wrap flex capitalize">
 						<p>Total Value Locked on All Chains:</p>

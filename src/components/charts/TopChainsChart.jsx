@@ -105,7 +105,7 @@ const TopChainsChart = ({ data }) => {
 	}
 
 	return (
-		<div className="w-full p-4">
+		<div className="w-full p-4 h-full">
 			<div className="flex sm:grid-cols-2 sm:grid items-center sm:mx-auto mb-4 w-fit sm:space-y-2  text-lg space-x-2">
 				<button
 					onClick={toggleScale}
