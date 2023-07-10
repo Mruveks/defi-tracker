@@ -7,7 +7,7 @@ import numeral from "numeral";
 import TopChainsChart from "../../components/charts/TopChainsChart";
 import PieChartComponent from "../../components/charts/PieChartComponent";
 import Loader from "../../components/Loader";
-import moment from "moment";
+import ChainRanking from "../../components/rankings/ChainRanking";
 import DataFetcher from "../../utilities/ChainsDataFetcher";
 
 const ChartOverwiew = () => {
@@ -39,16 +39,20 @@ const ChartOverwiew = () => {
 					</header>
 				</div>
 
-				<div className="col-span-2">
-					<Suspense fallback={<Loader />}>
-						{mergedData && <TopChainsChart data={mergedData} />}
-					</Suspense>
-				</div>
 				<div>
 					<Suspense fallback={<Loader />}>
 						{data && <PieChartComponent data={data} />}
 					</Suspense>
 				</div>
+				<div className="col-span-1">
+					<Suspense fallback={<Loader />}>
+						{mergedData && <TopChainsChart data={mergedData} />}
+					</Suspense>
+				</div>
+			</div>
+
+			<div className="h-max my-4 text-white">
+				<ChainRanking />
 			</div>
 		</main>
 	);
