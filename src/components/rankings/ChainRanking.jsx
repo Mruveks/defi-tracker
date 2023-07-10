@@ -44,7 +44,7 @@ const ChainRanking = () => {
 								key={index}
 								className={` ${
 									index % 2 === 0 ? "bg-gray-800" : "bg-gray-850"
-								} grid grid-cols-6 md:grid-cols-4 lg:grid-cols-4 sm:grid-cols-2 items-center px-2 text-right`}
+								} grid grid-cols-6 md:grid-cols-4 lg:grid-cols-4 sm:grid-cols-2 items-center px-2 py-1 text-right`}
 							>
 								<Link
 									to={`/chain/${protocol.name}`}

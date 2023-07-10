@@ -56,11 +56,11 @@ const TVLranking = () => {
 								key={index}
 								className={` ${
 									index % 2 === 0 ? "bg-gray-800" : "bg-gray-850"
-								} grid grid-cols-8 md:grid-cols-6 lg:grid-cols-6 sm:grid-cols-2 items-center my-2 px-2 text-right`}
+								} grid grid-cols-8 md:grid-cols-6 lg:grid-cols-6 sm:grid-cols-2 items-center py-1 px-2 text-right`}
 							>
 								<Link
 									to={`/protocol/${protocol.name}`}
-									className="flex items-center sm:space-x-0 space-x-4 w-full pl-2 py-2 text-left hover:bg-gray-600 transition duration-300 rounded-xl"
+									className="flex items-center sm:space-x-0 space-x-4 w-full pl-2 py-2 text-left hover:underline decoration-blue-400 transition duration-300 rounded-xl"
 								>
 									<div className="w-full flex items-center text-blue-400 space-x-2">
 										<img

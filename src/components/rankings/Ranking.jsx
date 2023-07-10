@@ -42,8 +42,8 @@ const Ranking = ({ chain }) => {
 			.get("https://api.llama.fi/protocols")
 			.then((res) => {
 				setProtocols(res.data);
-        const data = res.data;
-        console.log(data)
+				const data = res.data;
+				console.log(data);
 				const map = data
 					.map((item) => ({
 						items: item.category === "Farm" ? item : null,
@@ -152,7 +152,6 @@ const Ranking = ({ chain }) => {
 									: null) ||
 								item.category === CapChain)
 					)
-
 					.sort((a, b) => {
 						if (sortOrder === "asc") {
 							return a[sortColumn] - b[sortColumn];
@@ -169,7 +168,7 @@ const Ranking = ({ chain }) => {
 								CapChain === "Lending" || "CEX" || "DEX"
 									? "grid-cols-5"
 									: "grid-cols-6"
-							} sm:grid-cols-2 items-center my-2 px-2 text-right`}
+							} sm:grid-cols-2 items-center py-1 px-2 text-right`}
 						>
 							<Link
 								to={`/protocol/${protocol.name}`}

@@ -21,8 +21,8 @@ const YieldsRanking = () => {
 
 	return (
 		<>
-			<div className="h-max my-4  text-md border rounded-xl bg-gray-850 border-gray-600">
-				<div className="grid grid-cols-7 sm:grid-cols-3 font-semibold py-2 pr-2 text-lg sm:text-sm text-right capitalize italic">
+			<div className="h-max my-4 py-2 text-md border rounded-xl bg-gray-850 border-gray-600">
+				<div className="grid grid-cols-7 sm:grid-cols-3 font-semibold py-2 text-lg sm:text-sm capitalize italic text-right">
 					<header className="text-left pl-2">Pool</header>
 					<header className="text-left pl-4">Project</header>
 					<header className="sm:hidden block">Chain</header>
@@ -41,7 +41,7 @@ const YieldsRanking = () => {
 							key={index}
 							className={` ${
 								index % 2 === 0 ? "bg-gray-800" : "bg-gray-850"
-							} grid grid-cols-7 sm:grid-cols-3 items-center p-2 text-right`}
+							} grid grid-cols-7 sm:grid-cols-3 items-center py-1 px-2 text-right`}
 						>
 							<div className="flex space-x-4 sm:space-x-0 sm:p-0 text-left my-2 capitalize items-center">
 								<p>{pool.symbol.toLowerCase()}</p>

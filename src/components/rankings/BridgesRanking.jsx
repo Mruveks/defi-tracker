@@ -80,7 +80,7 @@ const BridgesRanking = () => {
 													+{changeTxs.toFixed(4)}%
 												</p>
 											) : (
-												<p className="text-red-400">-{changeTxs.toFixed(2)}%</p>
+												<p className="text-red-400">{changeTxs.toFixed(2)}%</p>
 											)}
 										</span>
 									</div>
@@ -93,7 +93,7 @@ const BridgesRanking = () => {
 											{change > 0 ? (
 												<p className="text-green-400">+{change.toFixed(2)}%</p>
 											) : (
-												<p className="text-red-400">-{change.toFixed(2)}%</p>
+												<p className="text-red-400">{change.toFixed(2)}%</p>
 											)}
 										</span>
 									</div>
@@ -154,10 +154,10 @@ const BridgesRanking = () => {
 				</p>
 			</div>
 
-			<div className="h-max border text-md bg-gray-850 rounded-xl border-gray-600 ">
+			<div className="h-max border text-md bg-gray-850 py-2 rounded-xl border-gray-600 ">
 				<div className="grid grid-cols-5 text-lg sm:grid-cols-3 font-semibold sm:text-sm p-2 text-right capitalize italic">
 					<header className="text-left">Name</header>
-					<header>Chain</header>
+					<header>Chains</header>
 					<header className="sm:hidden block">1d volume change</header>
 					<header className="sm:hidden block">Today's Volume</header>
 					<header>Monthly Volume</header>

@@ -44,7 +44,7 @@ const StablesRanking = () => {
               <div
                 className={` ${
                   index % 2 === 0 ? "bg-gray-800" : "bg-gray-850"
-                } grid sm:grid-cols-3 grid-cols-7 items-center my-2 pr-2 text-right`}
+                } grid sm:grid-cols-3 grid-cols-7 items-center pr-2 py-1 text-right`}
                 key={index}
               >
                 <Link
