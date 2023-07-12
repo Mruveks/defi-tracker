@@ -15,7 +15,6 @@ const BannerData = () => {
 					.filter((protocol) => protocol.tvl >= 1000000)
 					.slice(0, 10);
 				setProtocols(returnData);
-				console.log(returnData);
 			} catch (error) {
 				console.log(error);
 			}

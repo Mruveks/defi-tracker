@@ -26,9 +26,14 @@ const StablecoinPage = () => {
 			.get(`https://stablecoins.llama.fi/stablecoin/${stableId}`)
 			.then((res) => {
 				const data = res.data;
-				setStables(data);
-				console.log(data.tokens[394].circulating.peggedUSD);
-				setTvl(data.tokens[394].circulating.peggedUSD.toFixed(2));
+        setStables(data);
+        console.log(data)
+				if (data.circulating) {
+					setTvl(data[0].circulating.peggedUSD.toFixed(2));
+					console.log(data[0].circulating.peggedUSD.toFixed(2));
+				} else {
+					setTvl(data.tokens[394].circulating.peggedUSD.toFixed(2));
+				}
 				const tokens = data.tokens;
 				const datesAndValues = tokens.map((token) => ({
 					date: token.date,

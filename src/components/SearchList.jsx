@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { BsCoin } from "react-icons/bs";
+import { BsCoin, BsCodeSlash } from "react-icons/bs";
 const SearchList = () => {
 	const [protocols, setProtocols] = useState([]);
 	const [searchData, setSearchData] = useState("");
@@ -131,7 +131,7 @@ const SearchList = () => {
 							return (
 								<div
 									key={key}
-									className="flex h-14 px-2 w-full items-center border-t-gray-600 border-t hover:bg-gray-600"
+									className="flex h-14 px-2 w-full border-t-gray-600 border-t hover:bg-gray-600 transition duration-300"
 								>
 									<Link
 										to={
@@ -152,10 +152,24 @@ const SearchList = () => {
 												alt="logo"
 												className="h-8 w-8 rounded-full mr-2 bg-gray-600"
 											/>
+										) : val.tag ? (
+											<BsCodeSlash className="h-8 w-8 mr-2" />
 										) : (
 											<BsCoin className="h-8 w-8 mr-2" />
 										)}
 										{val.name}
+										<p className="pl-2 text-sm text-blue-400">
+											({val.tokenSymbol ? val.tokenSymbol : val.symbol})
+										</p>
+										<p className="pl-2 text-xs text-gray-400">
+											{val.pegType
+												? "stablecoin"
+												: val.tag === "chain"
+												? "chain"
+												: val.chain
+												? "protocol"
+												: null}
+										</p>
 									</Link>
 								</div>
 							);
