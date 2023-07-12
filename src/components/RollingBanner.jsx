@@ -64,9 +64,9 @@ const RollingBanner = () => {
 				className="flex items-center w-full space-x-4 whitespace-nowrap"
 				style={{ transform: `translateX(${position}px)` }}
 			>
-				<header className="flex items-center">
+				<header className="flex items-center pr-2">
 					<img src={flame} alt="flame" className="h-4 pr-1" />
-					Top TVL Gainers:
+					Top 24h TVL Gainers:
 				</header>
 				<BannerData />
 			</div>
