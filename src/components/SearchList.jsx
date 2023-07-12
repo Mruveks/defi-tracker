@@ -163,11 +163,11 @@ const SearchList = () => {
 										</p>
 										<p className="pl-2 text-xs text-gray-400">
 											{val.pegType
-												? "stablecoin"
+												? "Stablecoin"
 												: val.tag === "chain"
-												? "chain"
+												? "Chain"
 												: val.chain
-												? "protocol"
+												? `${val.category}`
 												: null}
 										</p>
 									</Link>
