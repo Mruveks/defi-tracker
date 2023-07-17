@@ -197,7 +197,7 @@ const Charts = ({ data, options }) => {
 					<YAxis
 						axisLine={false}
 						tickLine={false}
-						fontFamily="font-mono"
+						fontFamily=""
 						stroke="#8884d8"
 						tickFormatter={(value) => numeral(value).format("$0.00a")}
 						tickSize={2}

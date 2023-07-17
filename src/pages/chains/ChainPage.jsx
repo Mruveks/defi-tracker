@@ -101,7 +101,7 @@ const ChainPage = () => {
 									) : (
 										<div className="text-red-500 font-mono div text-lg items-center flex">
 											<TiArrowDown />
-											{percentageChange}%
+											{percentageChange.slice(1)}%
 										</div>
 									)}
 								</div>
@@ -126,7 +126,7 @@ const ChainPage = () => {
 									) : (
 										<div className="text-red-500 font-mono div text-lg items-center flex">
 											<TiArrowDown />
-											{percentageChange_7}%
+											{percentageChange_7.slice(1)}%
 										</div>
 									)}
 								</div>
