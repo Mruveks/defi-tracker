@@ -5,6 +5,7 @@ import Loader from "../Loader";
 import CalculateChange from "../../utilities/CalculateChange";
 import Charts from "../charts/Chart";
 import moment from "moment";
+import { TiArrowDown, TiArrowUp } from "react-icons/ti";
 
 const BridgesRanking = () => {
 	const [bridges, setBridges] = useState([]);
@@ -56,6 +57,14 @@ const BridgesRanking = () => {
 			})
 			.catch((err) => console.log(err));
 	}, []);
+
+	const [descHeight, setDescHeight] = useState("h-fit");
+
+	const handleOpenDesc = () => {
+		if (descHeight === "h-fit") {
+			setDescHeight("h-16");
+		} else setDescHeight("h-fit");
+	};
 	return (
 		<>
 			<div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 grid-cols-[30%_70%] rounded-xl overflow-hidden border border-gray-600">
@@ -131,8 +140,22 @@ const BridgesRanking = () => {
 				</div>
 			</div>
 
-			<div className="grid space-y-4 my-4 border bg-gray-850 border-gray-600 rounded-xl p-4">
-				<header className="text-2xl">What is Bridge?</header>
+			<div
+				className={`grid space-y-4 my-4 border bg-gray-850 ${descHeight} overflow-hidden border-gray-600 rounded-xl p-4`}
+			>
+				<header
+					onClick={handleOpenDesc}
+					className="text-2xl flex w-full justify-between cursor-pointer"
+				>
+					<p>What is Bridge?</p>
+					<p className="flex">
+						{descHeight != "h-fit" ? (
+							<TiArrowDown size={30} />
+						) : (
+							<TiArrowUp size={30} />
+						)}
+					</p>
+				</header>
 				<p className="text-justify">
 					To understand what a blockchain bridge is, you need to first
 					understand what a blockchain is. Bitcoin, Ethereum, and BNB Smart
