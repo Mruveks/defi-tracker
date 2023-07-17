@@ -23,6 +23,7 @@ const Charts = ({ data, options }) => {
 	const [isSmallScreen, setIsSmallScreen] = useState(false);
 	const [isLogScale, setIsLogScale] = useState(false);
 	const [hallmarks, setHallmarks] = useState(false);
+	const [hallmarksButton, setHallmarksButton] = useState(false);
 	const [isVolume, setIsVolume] = useState(false);
 	const [hasVolume, setHasVolume] = useState(false);
 
@@ -113,8 +114,22 @@ const Charts = ({ data, options }) => {
 
 	const threeAcReferenceDataIndex = sortedData.findIndex(
 		(item) => item.date === threeAcReferenceDataPoint.date
-  );
-  
+	);
+	const firstDate = moment(updatedData[0].date).format("X");
+	let secondDate = 0;
+
+	useEffect(() => {
+		if (ustReferenceDataIndex > 0) {
+			secondDate = moment(
+				dataWithDateObjects[ustReferenceDataIndex].date
+			).format("X");
+		}
+
+		if (firstDate < secondDate) {
+			setHallmarksButton(true);
+		} else setHallmarksButton(false);
+	});
+
 	return (
 		<div className="w-full sm:hidden p-4 bg-gray-900">
 			<div className="flex sm:grid-cols-2 sm:grid items-center sm:mx-auto mb-4 w-fit sm:space-y-2  text-lg space-x-2">
@@ -136,14 +151,16 @@ const Charts = ({ data, options }) => {
 						Logarithmic
 					</button>
 				)}
-				<button
-					onClick={toggleHallmarks}
-					className={`rounded-lg px-2 h-fit transition duration-300 border border-gray-600 ${
-						hallmarks === true ? "bg-[#8884d8] " : "bg-none"
-					}`}
-				>
-					Hallmarks
-				</button>
+				{hallmarksButton === true ? (
+					<button
+						onClick={toggleHallmarks}
+						className={`rounded-lg px-2 h-fit transition duration-300 border border-gray-600 ${
+							hallmarks === true ? "bg-[#8884d8] " : "bg-none"
+						}`}
+					>
+						Hallmarks
+					</button>
+				) : null}
 				{hasVolume === true ? (
 					<button
 						onClick={toggleVolume}
@@ -159,9 +176,7 @@ const Charts = ({ data, options }) => {
 			<ResponsiveContainer width="100%" height={500}>
 				<ComposedChart
 					data={
-						hallmarks === true
-							? sortedData.slice(3)
-							: updatedData.slice(0, -3)
+						hallmarks === true ? sortedData.slice(3) : updatedData.slice(0, -3)
 					}
 				>
 					<defs>
@@ -314,12 +329,7 @@ const Charts = ({ data, options }) => {
 						connectNulls={false}
 					/>
 					<ReferenceArea x1={110} x2={111} y1={11110} y2={11111}>
-						<text
-							x={22220}
-							y={22220}
-							fontSize={12}
-							fill="#8884d8"
-						>
+						<text x={22220} y={22220} fontSize={12} fill="#8884d8">
 							Background Text
 						</text>
 					</ReferenceArea>

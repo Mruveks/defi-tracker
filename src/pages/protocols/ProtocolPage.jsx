@@ -258,7 +258,7 @@ const ProtocolPage = () => {
 											<a
 												href={audits}
 												target="__blank"
-												className="hover:underline italic flex overflow-x-clip whitespace-nowrap w-fit"
+												className="hover:underline italic flex overflow-x-clip whitespace-nowrap"
 											>
 												{audits}
 											</a>
