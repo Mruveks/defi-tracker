@@ -113,8 +113,8 @@ const Charts = ({ data, options }) => {
 
 	const threeAcReferenceDataIndex = sortedData.findIndex(
 		(item) => item.date === threeAcReferenceDataPoint.date
-	);
-
+  );
+  
 	return (
 		<div className="w-full sm:hidden p-4 bg-gray-900">
 			<div className="flex sm:grid-cols-2 sm:grid items-center sm:mx-auto mb-4 w-fit sm:space-y-2  text-lg space-x-2">
@@ -160,7 +160,7 @@ const Charts = ({ data, options }) => {
 				<ComposedChart
 					data={
 						hallmarks === true
-							? sortedData.slice(0, -3)
+							? sortedData.slice(3)
 							: updatedData.slice(0, -3)
 					}
 				>
