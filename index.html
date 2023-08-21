@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" id="img" type="image/png" href="/src/assets/icon.png"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DefiTracker</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" id="img" type="image/png" href="/src/assets/icon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>DefiTracker</title>
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-T6K1VH6B5F"
+		></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+
+			gtag("config", "G-T6K1VH6B5F");
+		</script>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type="module" src="/src/main.jsx"></script>
+	</body>
 </html>
