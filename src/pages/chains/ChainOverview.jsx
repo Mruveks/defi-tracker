@@ -35,7 +35,7 @@ const ChartOverwiew = () => {
 				<div className="col-span-2 text-xl p-4 italic capitalize">
 					<header className="text-4xl space-x-2 whitespace-pre-wrap flex capitalize">
 						<p>Total Value Locked on All Chains:</p>
-						<p>{tvl > 0 ? numeral(tvl).format("$0,") : null}</p>
+						<p className="text-blue-400">{tvl > 0 ? numeral(tvl).format("$0,") : null}</p>
 					</header>
 				</div>
 
