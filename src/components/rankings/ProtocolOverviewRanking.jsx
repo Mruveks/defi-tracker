@@ -36,16 +36,16 @@ const ProtocolOverviewRanking = ({ data }) => {
 
 	return (
 		<div className="grid my-4 rounded-xl border border-gray-600">
-			<div className="grid italic p-4 grid-cols-[10%_10%_10%_80%]">
+			<div className="grid italic p-4 sm:grid-cols-3 grid-cols-[15%_10%_10%_65%]">
 				<header>Category</header>
 				<header>Protocols</header>
 				<header>TVL</header>
-				<header>Description</header>
+				<header className="sm:hidden">Description</header>
 			</div>
 			{data.map((item, index) => (
 				<div
 					key={index}
-					className={`grid p-4 grid-cols-[10%_10%_10%_80%] ${
+					className={`grid p-4 grid-cols-[15%_10%_10%_65%] sm:grid-cols-3 ${
 						index % 2 === 0 ? "bg-gray-850" : "bg-gray-800"
 					}`}
 				>
@@ -57,7 +57,7 @@ const ProtocolOverviewRanking = ({ data }) => {
 					</header>
 					<div>{item.count}</div>
 					<div>{numeral(item.tvl).format("$0.0a")}</div>
-					<div>{item.description}</div>
+					<div className="w-full sm:hidden">{item.description}</div>
 				</div>
 			))}
 		</div>
