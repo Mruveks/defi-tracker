@@ -101,7 +101,11 @@ const Navbar = () => {
 							<div className="h-fit space-y-2 pt-2 w-full">
 								<NavLink
 									to="/"
-									onClick={() => setActiveNav("/")}
+									onClick={() => {
+										setActiveNav("/");
+										openNav();
+										toggleExpand();
+									}}
 									className={`pl-8 ${
 										activeNav === "/" ? "bg-gray-700" : ""
 									} ${elementStyle}`}
@@ -110,12 +114,29 @@ const Navbar = () => {
 								</NavLink>
 								<NavLink
 									to="/chains"
-									onClick={() => setActiveNav("/chains")}
+									onClick={() => {
+										setActiveNav("/chains");
+										openNav();
+										toggleExpand();
+									}}
 									className={`pl-8 ${
 										activeNav === "/chains" ? "bg-gray-700" : ""
 									} ${elementStyle}`}
 								>
 									Chains
+								</NavLink>
+								<NavLink
+									to="/protocol/categories"
+									onClick={() => {
+										setActiveNav("/protocol/categories");
+										openNav();
+										toggleExpand();
+									}}
+									className={`pl-9 ${
+										activeNav === "/protocol/categories" ? "bg-gray-700" : ""
+									} ${elementStyle}`}
+								>
+									Categories
 								</NavLink>
 							</div>
 						)}

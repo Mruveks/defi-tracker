@@ -23,16 +23,9 @@ const ChainRanking = () => {
 	return (
 		<>
 			<div className="h-max my-4 text-md border-gray-600 border py-2 rounded-xl bg-gray-850">
-				<div className="grid grid-cols-6 lg:grid-cols-4 sm:grid-cols-2 text-lg sm:text-sm font-semibold p-2 border-b-gray-600 text-right italic capitalize">
-					<header className="text-left">Name</header>
-					<header className="sm:hidden block">1h Change</header>
-					<header className="sm:hidden block">1d Change</header>
-					<header className="sm:hidden block">7d Change</header>
+				<div className="grid grid-cols-2 text-lg sm:text-sm font-semibold p-2 border-b-gray-600 text-left italic capitalize">
+					<header>Name</header>
 					<header>TVL</header>
-					<header className="sm:hidden flex w-full justify-end items-center space-x-1">
-						<AiOutlineInfoCircle className="text-gray-400" />
-						<p>Mcap/TVL</p>
-					</header>
 				</div>
 
 				{protocols.length ? (
@@ -44,7 +37,7 @@ const ChainRanking = () => {
 								key={index}
 								className={` ${
 									index % 2 === 0 ? "bg-gray-800" : "bg-gray-850"
-								} grid grid-cols-6 md:grid-cols-4 lg:grid-cols-4 sm:grid-cols-2 items-center px-2 py-1 text-right`}
+								} grid grid-cols-2 items-center px-2 py-1 text-left`}
 							>
 								<Link
 									to={`/chain/${protocol.name}`}
@@ -57,9 +50,7 @@ const ChainRanking = () => {
 										) : null}
 									</div>
 								</Link>
-
-								<div></div>
-								{numeral(protocol.tvl).format("$0.00a")}
+								<div>{numeral(protocol.tvl).format("$0.00a")}</div>
 							</div>
 						))
 				) : (

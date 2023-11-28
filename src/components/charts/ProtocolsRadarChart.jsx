@@ -101,8 +101,12 @@ const ProtocolsRadarChart = ({ data }) => {
 					<Bar
 						dataKey="count"
 						fill="url(#area-chart-gradient)"
-						label={{ position: "top", fill: "#fff" }}
-						barSize={100}
+						label={{
+							position: "top",
+							fill: "#fff",
+							fontSize: isSmallScreen ? 10 : 15,
+						}}
+						barSize={80}
 						opacity={0.8}
 					>
 						{data.map((entry, index) => (

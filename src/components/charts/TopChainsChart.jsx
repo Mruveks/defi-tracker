@@ -99,25 +99,7 @@ const TopChainsChart = ({ data }) => {
 	}
 
 	return (
-		<div className="w-full p-4 h-full">
-			<div className="flex sm:grid-cols-2 sm:grid items-center sm:mx-auto mb-4 w-fit sm:space-y-2  text-lg space-x-2">
-				<button
-					onClick={toggleScale}
-					className={`rounded-lg px-2 h-fit transition duration-300 border border-gray-600 ${
-						isLogScale === false ? "bg-[#8884d8] " : "bg-none"
-					}`}
-				>
-					Linear
-				</button>
-				<button
-					onClick={toggleScale}
-					className={`rounded-lg px-2 h-fit transition duration-300 border border-gray-600 ${
-						isLogScale === true ? "bg-[#8884d8] " : "bg-none"
-					}`}
-				>
-					Logarithmic
-				</button>
-			</div>
+		<div className="w-full sm:hidden p-4 h-full">
 
 			<ResponsiveContainer height={500}>
 				<AreaChart data={data}>
@@ -201,23 +183,22 @@ const TopChainsChart = ({ data }) => {
 						tickFormatter={(value) => moment(value).format("MMM YYYY")}
 						tickSize={2}
 						tick={{
-							color: "blue",
 							fontSize: 14,
+              textAnchor: "start",
 						}}
 					/>
 					<YAxis
 						fontFamily="font-mono"
-						stroke="#8884d8"
+            stroke="#8884d8"
 						tickFormatter={(value) => numeral(value).format("$0.00a")}
 						tickSize={2}
 						tick={{
-							color: "blue",
 							fontSize: 14,
 							textAnchor: "end",
 						}}
 						padding={{ top: 40 }}
-						scale={isLogScale ? "log" : "linear"}
-						domain={isLogScale ? [10000, "auto"] : ["auto", "auto"]}
+						scale={"log"}
+						domain={["auto", "auto"]}
 					/>
 					<Tooltip
 						content={<CustomTooltip />}
