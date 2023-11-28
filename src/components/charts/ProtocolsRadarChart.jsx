@@ -5,10 +5,8 @@ import {
 	XAxis,
 	YAxis,
 	Cell,
-	Legend,
 	Bar,
 	Label,
-	LabelList,
 	ResponsiveContainer,
 } from "recharts";
 
@@ -65,7 +63,7 @@ const ProtocolsRadarChart = ({ data }) => {
 			<header className="text-4xl p-4">Protocol Category Distribution</header>
 			<ResponsiveContainer
 				className="m-auto h-max"
-				height={isSmallScreen ? 400 : 600}
+				height={isSmallScreen ? 200 : 400}
 			>
 				<BarChart data={data} height={600}>
 					<CartesianGrid vertical={false} strokeDasharray="3 3" opacity={0.4} />

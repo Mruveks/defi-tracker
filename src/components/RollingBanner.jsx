@@ -55,7 +55,7 @@ const RollingBanner = () => {
 
 	return (
 		<div
-			className="w-[100%]  sm:mt-10 md:mt-20 overflow-hidden ml-4 z-10 mb-2 md:pl-0 items-center flex"
+			className="w-[100%] sm:invisible sm:mt-10 md:mt-20 overflow-hidden ml-4 z-10 mb-2 md:pl-0 items-center flex"
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
 		>
