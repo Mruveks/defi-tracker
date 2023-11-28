@@ -60,7 +60,6 @@ const Chart = () => {
 			...volumeItem,
 		};
   });
-  console.log(mergedData)
 
 	return (
 		<div className="flex">

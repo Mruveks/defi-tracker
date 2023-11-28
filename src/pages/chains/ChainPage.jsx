@@ -77,7 +77,7 @@ const ChainPage = () => {
 						<div className="">
 							<div className="flex justify-between items-center">
 								<h1>Total Value Locked</h1>
-								<div className="font-mono div text-2xl">
+								<div className="font-mono div text-xl">
 									{numeral(day).format("$0.00a")}
 								</div>
 							</div>
@@ -94,12 +94,12 @@ const ChainPage = () => {
 										</div>
 									)}
 									{percentageChange > 0 ? (
-										<div className="text-green-500 font-mono div text-lg items-center flex">
+										<div className="text-green-500 font-mono div text-sm items-center flex">
 											<TiArrowUp />
 											{percentageChange}%
 										</div>
 									) : (
-										<div className="text-red-500 font-mono div text-lg items-center flex">
+										<div className="text-red-500 font-mono div text-sm items-center flex">
 											<TiArrowDown />
 											{percentageChange.slice(1)}%
 										</div>
@@ -119,12 +119,12 @@ const ChainPage = () => {
 										</div>
 									)}
 									{percentageChange_7 > 0 ? (
-										<div className="text-green-500 font-mono div text-lg items-center flex">
+										<div className="text-green-500 font-mono div text-sm items-center flex">
 											<TiArrowUp />
 											{percentageChange_7}%
 										</div>
 									) : (
-										<div className="text-red-500 font-mono div text-lg items-center flex">
+										<div className="text-red-500 font-mono div text-sm items-center flex">
 											<TiArrowDown />
 											{percentageChange_7.slice(1)}%
 										</div>
