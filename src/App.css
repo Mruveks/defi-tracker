@@ -1,29 +1,34 @@
-@import url('https://fonts.googleapis.com/css2?family=Anek+Latin:wght@300;400;500;600&display=swap');
+@font-face {
+	font-family: "Open Sans";
+	src: url("fonts/OpenSans-VariableFont_wdth,wght.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
 
 body {
-  font-family: "Source Sans Pro";
-  background-color: rgb(31 41 55);
-  color: #fff;
-  overflow-x: hidden;
+	font-family: "Open Sans";
+	background-color: rgb(31 41 55);
+	color: #fff;
+	overflow-x: hidden;
 }
 
 #img {
-  filter: invert(1);
+	filter: invert(1);
 }
 
 h1 {
-  color: lightslategray;
+	color: lightslategray;
 }
 h2 {
-  color: lightslategray;
+	color: lightslategray;
 }
-header{
-  font-weight: 700;
+header {
+	font-weight: 700;
 }
 
 @media (max-width: 600px) {
-  .recharts-xAxis,
-  .recharts-yAxis {
-    display: none;
-  }
+	.recharts-xAxis,
+	.recharts-yAxis {
+		display: none;
+	}
 }
