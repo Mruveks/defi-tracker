@@ -38,10 +38,7 @@ const StablesTVLchart = () => {
 	}, []);
 
 	const dollarChange = (day - lastDay).toFixed(2);
-	const percentageChange = (((day - lastDay) / lastDay) * 100).toFixed(2);
-
 	const dollarChange_7d = (day - weekAgo).toFixed(2);
-	const percentageChange_7d = (((day - weekAgo) / weekAgo) * 100).toFixed(2);
 
 	return (
 		<>
@@ -70,15 +67,6 @@ const StablesTVLchart = () => {
 											{numeral(dollarChange).format("$0.00a")}
 										</div>
 									)}
-									{percentageChange > 0 ? (
-										<div className="text-green-500 font-mono text-lg">
-											+{percentageChange}%
-										</div>
-									) : (
-										<div className="text-red-500 font-mono text-lg">
-											{percentageChange}%
-										</div>
-									)}
 								</div>
 							</div>
 
@@ -92,15 +80,6 @@ const StablesTVLchart = () => {
 									) : (
 										<div className="text-red-500 font-mono">
 											{numeral(dollarChange_7d).format("$0.00a")}
-										</div>
-									)}
-									{percentageChange_7d > 0 ? (
-										<div className="text-green-500 font-mono flex items-center text-lg">
-											+{percentageChange_7d}%
-										</div>
-									) : (
-										<div className="text-red-500 font-mono flex items-center text-lg">
-											{percentageChange_7d}%
 										</div>
 									)}
 								</div>

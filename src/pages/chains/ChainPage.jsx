@@ -9,7 +9,6 @@ import PricePanel from "../../components/PricePanel";
 import moment from "moment";
 import numeral from "numeral";
 import Loader from "../../components/Loader";
-import { TiArrowDown, TiArrowUp } from "react-icons/ti";
 
 const ChainPage = () => {
 	const { chainId } = useParams();
@@ -52,9 +51,7 @@ const ChainPage = () => {
 	}, [chainId]);
 
 	const changes = day - lastDay;
-	const percentageChange = (((day - lastDay) / lastDay) * 100).toFixed(2);
 	const changes_7 = day - weekAgo;
-	const percentageChange_7 = (((day - weekAgo) / weekAgo) * 100).toFixed(2);
 
 	return (
 		<div className="grid grid-cols-1 text-md mx-2 lg:mx-10 xl:mx-10">
@@ -93,17 +90,6 @@ const ChainPage = () => {
 											{numeral(changes).format("$0.00a")}
 										</div>
 									)}
-									{percentageChange > 0 ? (
-										<div className="text-green-500 font-mono div text-sm items-center flex">
-											<TiArrowUp />
-											{percentageChange}%
-										</div>
-									) : (
-										<div className="text-red-500 font-mono div text-sm items-center flex">
-											<TiArrowDown />
-											{percentageChange.slice(1)}%
-										</div>
-									)}
 								</div>
 							</div>
 							<div className="flex justify-between items-center">
@@ -116,17 +102,6 @@ const ChainPage = () => {
 									) : (
 										<div className="text-red-500 font-mono div text-xl">
 											{numeral(changes_7).format("$0.00a")}
-										</div>
-									)}
-									{percentageChange_7 > 0 ? (
-										<div className="text-green-500 font-mono div text-sm items-center flex">
-											<TiArrowUp />
-											{percentageChange_7}%
-										</div>
-									) : (
-										<div className="text-red-500 font-mono div text-sm items-center flex">
-											<TiArrowDown />
-											{percentageChange_7.slice(1)}%
 										</div>
 									)}
 								</div>

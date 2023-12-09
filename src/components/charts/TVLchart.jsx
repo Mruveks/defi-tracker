@@ -84,9 +84,7 @@ const TVLchart = () => {
 			{chartData.length ? (
 				<div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 grid-cols-[30%_70%] rounded-xl overflow-hidden border border-gray-600">
 					<div className="space-y-8 text-white sm:w-full text-xl p-4 bg-gray-850 capitalize h-full">
-						<header className="text-4xl whitespace-pre-wrap flex">
-							DeFi
-						</header>
+						<header className="text-4xl whitespace-pre-wrap flex">DeFi</header>
 						<div>
 							<div className="flex w-full justify-between items-center">
 								<h1>Total Value Locked</h1>
@@ -106,17 +104,6 @@ const TVLchart = () => {
 											{numeral(changes).format("$0.00a")}
 										</div>
 									)}
-									{percentageChange > 0 ? (
-										<div className="text-green-500 font-mono flex items-center text-lg">
-											<TiArrowUp />
-											{percentageChange}%
-										</div>
-									) : (
-										<div className="text-red-500 font-mono flex items-center text-lg">
-											<TiArrowDown />
-											{percentageChange.slice(1)}%
-										</div>
-									)}
 								</div>
 							</div>
 							<div className="flex w-full justify-between items-center">
@@ -129,17 +116,6 @@ const TVLchart = () => {
 									) : (
 										<div className="text-red-500 font-mono text-xl">
 											{numeral(changes2).format("$0.00a")}
-										</div>
-									)}
-									{percentageChange2 > 0 ? (
-										<div className="text-green-500 font-mono flex items-center text-lg">
-											<TiArrowUp />
-											{percentageChange2}%
-										</div>
-									) : (
-										<div className="text-red-500 font-mono flex items-center text-lg">
-											<TiArrowDown />
-											{percentageChange2.slice(1)}%
 										</div>
 									)}
 								</div>
@@ -155,17 +131,6 @@ const TVLchart = () => {
 								) : (
 									<div className="text-red-500 font-mono text-xl">
 										{numeral(volumeChange).format("$0.00a")}
-									</div>
-								)}
-								{volumeChangePercentage > 0 ? (
-									<div className="text-green-500 font-mono flex items-center text-lg">
-										<TiArrowUp />
-										{volumeChangePercentage}%
-									</div>
-								) : (
-									<div className="text-red-500 font-mono flex items-center text-lg">
-										<TiArrowDown />
-										{volumeChangePercentage.slice(1)}%
 									</div>
 								)}
 							</div>

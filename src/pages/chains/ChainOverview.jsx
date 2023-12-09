@@ -1,6 +1,5 @@
 import React, { useEffect, useState, Suspense, lazy } from "react";
 import { Helmet } from "react-helmet";
-import axios from "axios";
 import PricePanel from "../../components/PricePanel";
 import SearchList from "../../components/SearchList";
 import numeral from "numeral";
