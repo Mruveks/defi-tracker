@@ -20,7 +20,6 @@ const ProtocolPage = () => {
 	const [protocolData, setProtocolData] = useState([]);
 	const [tvl, setTvl] = useState();
 	const [pieData, setPieData] = useState([]);
-	const [showMessage, setShowMessage] = useState(false);
 	const [otherChains, setOtherChains] = useState(false);
 
 	let timeout;
@@ -67,15 +66,6 @@ const ProtocolPage = () => {
 		</div>
 	);
 
-	const handleHover = () => {
-		setShowMessage(true);
-	};
-
-	const handleLeave = () => {
-		setTimeout(() => {
-			setShowMessage(false);
-		}, 1000);
-	};
 	const handleShowOtherChains = () => {
 		setOtherChains(!otherChains);
 	};
@@ -152,7 +142,16 @@ const ProtocolPage = () => {
 											</div>
 
 											<div className="flex justify-between">
-												<h1>Mcap/TVL</h1>
+												<h1 className="flex w-full items-center">
+													<div className="group flex items-center space-x-2 relative">
+														<p>Mcap/TVL</p>
+														<AiOutlineInfoCircle className="text-gray-400 group-hover:text-blue-500 cursor-pointer" />
+														<div className="hidden group-hover:block whitespace-nowrap font-normal absolute -top-12 text-xs transform bg-gray-800 border border-gray-600 text-white p-2 rounded-xl">
+															Greater than 1 = overvalued <br />
+															Less than 1 = undervalued
+														</div>
+													</div>
+												</h1>
 												<p className="font-mono">
 													{(protocol.mcap / tvl).toFixed(2)}
 												</p>

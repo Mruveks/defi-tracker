@@ -37,8 +37,14 @@ const TVLranking = () => {
 					<header className="sm:hidden block">7d Change</header>
 					<header>TVL</header>
 					<header className="sm:hidden flex w-full justify-end items-center space-x-1">
-						<AiOutlineInfoCircle className="text-gray-400" />
-						<p>Mcap/TVL</p>
+						<div className="group flex items-center space-x-2 relative">
+							<AiOutlineInfoCircle className="text-gray-400 group-hover:text-blue-500 cursor-pointer" />
+							<p>Mcap/TVL</p>
+							<div className="hidden group-hover:block whitespace-nowrap font-normal absolute -top-12 text-xs transform -translate-x-1/2 bg-gray-800 border border-gray-600 text-white p-2 rounded-xl">
+                Greater than 1 = overvalued <br/>
+                Less than 1 = undervalued
+							</div>
+						</div>
 					</header>
 				</div>
 
